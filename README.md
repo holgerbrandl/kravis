@@ -7,12 +7,10 @@ Visualzing tablular and relational data is the core of data-science. `kravis` im
 
 The grammar implemented by kravis is inspired from [`ggplot2`](http://ggplot2.org/)
 
-Example
 
 
 
-
-## How to use
+## Setup
 
 
 Add the following artifact to your gradle.build
@@ -32,9 +30,17 @@ dependencies {
 }
 ```
 
-## Examples
+## Example
 
 
 ```kotlin
-//TBD
+import com.github.holgerbrandl.kravis.*
+
+sleepData
+    .plot()
+    .x { it["Sepal.Width"] + 2 }
+    .y { "Sepal.Length" }
+    .color { "Species" }
+    .addPoints()
+    .show()
 ```
