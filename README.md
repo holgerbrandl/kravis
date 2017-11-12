@@ -36,7 +36,7 @@ dependencies {
 ```kotlin
 import com.github.holgerbrandl.kravis.*
 
-sleepData
+irisData
     .plot()
     .x { it["Sepal.Width"] + 2 }
     .y { "Sepal.Length" }
