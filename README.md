@@ -1,11 +1,11 @@
-# A Kotlin grammar for data-frame visualization
+# A Kotlin grammar for scientific data visualization
 
 
-Visualzing tablular and relational data is the core of data-science. `kravis` implements a grammar to create a wide range of plots using a standardized set of verbs.
+Visualizing tabular and relational data is the core of data-science. `kravis` implements a grammar to create a wide range of plots using a standardized set of verbs.
 
 
 
-The grammar implemented by kravis is inspired from [`ggplot2`](http://ggplot2.org/)
+The grammar implemented by `kravis` is inspired from [`ggplot2`](http://ggplot2.org/)
 
 
 ---
