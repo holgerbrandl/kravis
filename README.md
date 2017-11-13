@@ -77,4 +77,7 @@ plotOf(users)
 ## References
 
 * https://github.com/timmolter/XChart is a light-weight Java library for plotting data
+* https://github.com/data2viz/data2viz a multi platform data visualization library with comprehensive DSL
+
+
 
