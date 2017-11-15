@@ -30,7 +30,13 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     compile "de.mpicbg.scicomp:krangl:0.7-SNAPSHOT"
+
+    // todo remove xchart
     compile 'org.knowm.xchart:xchart:3.5.0'
+
+    compile group: 'no.tornado', name: 'tornadofx', version: '1.7.12'
+    compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
+
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile "io.kotlintest:kotlintest:1.1.6"

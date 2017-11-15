@@ -188,6 +188,15 @@ class PlotBuilder(val df: DataFrame) {
             SwingWrapper(chart).displayChart()
         }
     }
+
+    fun addBars(): PlotBuilder {
+        layers.add(GeomLayer())
+        return this
+    }
+
+    class BarLayer(val stat: String = "count", val position: String = "stack") : GeomLayer() {
+
+    }
 }
 
 open class GeomLayer {
