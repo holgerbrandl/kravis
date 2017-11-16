@@ -9,6 +9,7 @@ import java.util.*
 
 val random = Random(1)
 
+// for clustering example see https://github.com/thomasnield/kotlin-statistics
 
 class MassiveScatter : View("My View") {
 

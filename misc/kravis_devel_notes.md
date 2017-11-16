@@ -1,6 +1,7 @@
 # Milestoness
 
 
+
 ## M1
 
 
@@ -62,6 +63,17 @@ which has encoders for all types
 
 ## Next steps
 
+
+
+## stats utils
+
+http://commons.apache.org/proper/commons-math/javadocs/api-3.6/overview-summary.html
+
+
+
+## Reading List
+
+---
 Explore https://github.com/hudsonb/kubed/
 
 
