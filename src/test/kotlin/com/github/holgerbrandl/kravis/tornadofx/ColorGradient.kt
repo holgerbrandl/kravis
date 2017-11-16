@@ -57,20 +57,19 @@ class ColorGradient : View("My View") {
 //https://stackoverflow.com/questions/27532/generating-gradients-programmatically
 // todo use sigmoid transition here
 // todo we may want to rather built some lookup table
-fun gradientColor(x: Double, minX: Double, maxX: Double, from: Color = Color.RED, to: Color = Color.GREEN): Color {
+// what about 3way gradients (with white in the middele (https://stackoverflow.com/questions/13771575/java-3-color-gradient)?
+fun gradientColor(x: Double, minX: Double, maxX: Double,
+
+                  from: Color = Color.RED, to: Color = Color.GREEN): Color {
     val range = maxX - minX
     val p = (x - minX) / range
 
-    return with(from) {
-        Color(
-            //firstCol.R * p + secondCol.R * (1 - p)
-            red * p + to.red * (1 - p),
-            green * p + to.green * (1 - p),
-            blue * p + to.blue * (1 - p),
-            1.0
-        )
-    }
-
+    return Color(
+        from.red * p + to.red * (1 - p),
+        from.green * p + to.green * (1 - p),
+        from.blue * p + to.blue * (1 - p),
+        1.0
+    )
 }
 
 

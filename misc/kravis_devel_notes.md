@@ -1,3 +1,24 @@
+[TOC]: # " Contents"
+
+# Contents
+- [Milestoness](#milestoness)
+    - [M1](#m1)
+    - [M2](#m2)
+- [java fx](#java-fx)
+- [Geoms](#geoms)
+    - [Scatter](#scatter)
+    - [line plot with trends](#line-plot-with-trends)
+    - [Rendering](#rendering)
+        - [render in jupyter](#render-in-jupyter)
+        - [basic reusable rendering device for kotlin repl](#basic-reusable-rendering-device-for-kotlin-repl)
+        - [offscreen pdf renderin](#offscreen-pdf-renderin)
+    - [svg output](#svg-output)
+    - [Next steps](#next-steps)
+    - [stats utils](#stats-utils)
+    - [Reading List](#reading-list)
+
+
+
 # Milestoness
 
 
@@ -8,7 +29,7 @@
 geom
 * barchart
 * linebarcht with trend (lm and loess)
-* scatter (size, alpha)
+* scatter (size, alpha, text)
 * histogram (color, alpha)
 * plot chart background images (e.g. cells)
 
@@ -25,14 +46,36 @@ infrastrcuture
 
 # java fx
 
-line plot with trends
+
+---
+https://lankydanblog.com/2017/01/29/javafx-graphs-look-pretty-good/
+
+write ui components with fxml
+
+---
+https://github.com/kairikozuma/scatter-plot
+
+complete app article with table and data view
+
+
+# Geoms
+
+## Scatter
 
 * different point sizes
 * different alphas
-* color-map (gradient, discrete)
-* trendline(s) overlay
 * text labels
+* color-map (gradient, discrete)
+* legends for all aes
 
+## line plot with trends
+
+* trendline(s) overlay
+scatter with trend
+
+1. model with lm
+2. sample points
+3. spline through points using in http://fxexperience.com/2012/01/curve-fitting-and-styling-areachart/
 
 
 ## Rendering

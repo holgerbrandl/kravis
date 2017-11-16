@@ -6,13 +6,6 @@ import javafx.scene.chart.NumberAxis
 import javafx.scene.paint.Color
 import tornadofx.*
 
-class BarChartTestApp : App(BarChartTest::class, BarChartStyles::class)
-class LineChartTestApp : App(LineChartTest::class, BarChartStyles::class)
-
-
-fun main(args: Array<String>) {
-    Application.launch(LineChartTestApp::class.java, *args)
-}
 
 /**
  * @author Holger Brandl
@@ -43,17 +36,10 @@ class BarChartStyles : Stylesheet() {
     }
 }
 
-class LineChartTest : View() {
-    override val root = linechart("Unit Sales Q2 2016", CategoryAxis(), NumberAxis()) {
-        series("Product X") {
-            data("MAR", 10245)
-            data("APR", 23963)
-            data("MAY", 15038)
-        }
-        series("Product Y") {
-            data("MAR", 28443)
-            data("APR", 22845)
-            data("MAY", 19045)
-        }
-    }
+
+class BarChartTestApp : App(BarChartTest::class, BarChartStyles::class)
+
+
+fun main(args: Array<String>) {
+    Application.launch(LineChartTestApp::class.java, *args)
 }
