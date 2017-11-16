@@ -1,7 +1,9 @@
 package com.github.holgerbrandl.kravis.tornadofx
 
 import com.github.holgerbrandl.kravis.MathUtil.Companion.multNormDist
+import com.github.holgerbrandl.kravis.javafx.legends.MyLegend
 import javafx.application.Application
+import javafx.geometry.Side
 import javafx.scene.chart.NumberAxis
 import javafx.scene.paint.Color
 import javafx.scene.shape.Rectangle
@@ -32,22 +34,32 @@ class ColorGradient : View("My View") {
                 newData.setNode(rect1)
 
                 newData.getNode().setOpacity(random.nextDouble())
-
-                //                data.add(newData)
-
                 newData
             }
-
-
         }
 
-        https@ //stackoverflow.com/questions/21826607/how-to-set-specific-color-to-javafx-chart-series-data
-
+        //        https@ //stackoverflow.com/questions/21826607/how-to-set-specific-color-to-javafx-chart-series-data
         series("Product X") {
             norm2.map { data(it[0], it[1]) }
         }
 
-        System.err.println(" adding data")
+        // gradient legend
+        legendSide = Side.RIGHT
+
+
+        val newLegend = MyLegend()
+        newLegend.isVertical = true
+
+        newLegend.items.addAll(listOf(MyLegend.LegendItem("grad"), MyLegend.LegendItem("ient"), MyLegend.LegendItem("legend")))
+
+
+        val legend = lookupAll(".chart-legend").first()
+
+        // cascades
+        //        lookupAll(".chart-legend").first().add(newLegend)
+
+        // upper left corner artifact
+        legend.getParent().addChildIfPossible(newLegend)
 
     }
 

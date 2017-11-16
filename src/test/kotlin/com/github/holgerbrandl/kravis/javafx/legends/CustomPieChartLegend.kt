@@ -14,11 +14,8 @@ import javafx.scene.effect.Glow
 import javafx.scene.effect.Reflection
 import javafx.scene.paint.Color
 import javafx.scene.shape.Rectangle
-import javafx.scene.text.Font
-import javafx.scene.text.FontWeight
-import javafx.scene.text.Text
 import javafx.stage.Stage
-import tornadofx.addChildIfPossible
+import tornadofx.add
 
 //from https://gist.github.com/jewelsea/1422628
 class PieChartCustomLegend : Application() {
@@ -38,16 +35,30 @@ class PieChartCustomLegend : Application() {
 
         chart.legendSide = Side.RIGHT
 
+
+        val newLegend = MyLegend()
+        newLegend.items.addAll(listOf(MyLegend.LegendItem("foo"), MyLegend.LegendItem("foo")))
+
+
+        chart.lookupAll(".chart-legend").first().add(newLegend)
+        newLegend.isVertical = true
+        //        chart.legendSideProperty().
+
+
+        // gradient elemnt
+        //        http@ //www.java2s.com/Tutorials/Java/JavaFX/0110__JavaFX_Gradient_Color.htm/**/
+
         (scene.root as Group).children.add(chart)
         stage.scene = scene
         stage.show()
 
-        val items = chart.lookupAll("Label.chart-legend-item")
+        val items = chart.lookupAll("Label.chart-legend")
         var i = 0
         // these colors came from caspian.css .default-color0..4.chart-pie
         val colors = arrayOf(Color.web("#f9d900"), Color.web("#a9e200"), Color.web("#22bad9"), Color.web("#0181e2"), Color.web("#2f357f"))
 
-        items.first().parent.addChildIfPossible(Text(0.0, 0.0, "HUHUHUHU").apply { font = Font.font(null, FontWeight.BOLD, Double.NaN) }, 0)
+        //        items.first().parent.addChildIfPossible(Text("HUHUHUHU").apply { font = Font.font(null, FontWeight.BOLD, 20.0) }, 0)
+
         for (item in items) {
             val label = item as Label
             val rectangle = Rectangle(10.0, 10.0, colors[i])
@@ -57,8 +68,6 @@ class PieChartCustomLegend : Application() {
             label.graphic = rectangle
             i++
         }
-
-
     }
 
     companion object {

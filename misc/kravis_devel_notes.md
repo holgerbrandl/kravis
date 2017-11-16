@@ -157,6 +157,8 @@ or via css
 }
 ```
 
+all css https://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html#legend
+
 ---
 hide legend
 
