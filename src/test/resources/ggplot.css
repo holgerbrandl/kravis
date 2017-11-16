@@ -1,0 +1,37 @@
+/*see https://docs.oracle.com/javafx/2/charts/css-styles.htm*/
+
+/*.axis-tick-mark {*/
+/*-fx-stroke: #637040;*/
+/*-fx-stroke-width: 3;*/
+/*}*/
+/*.axis-minor-tick-mark {*/
+/*-fx-stroke: #859656;*/
+/*}*/
+
+.axis {
+    /*-fx-font-size: 1.4em;*/
+    /*-fx-tick-label-fill: #914800;*/
+    /*-fx-font-family: Tahoma;*/
+    /*-fx-tick-length: 20;*/
+    -fx-minor-tick-length: 0;
+}
+
+/*https://www.eehelp.com/question/lines-grid-javafx-8-0-linechart/*/
+.chart-horizontal-grid-lines,
+.chart-vertical-grid-lines {
+    -fx-stroke-dash-array: null;
+    -fx-stroke: #ffffff;
+}
+
+.chart-plot-background {
+    /*-fx-background-color: #dadada;*/
+
+    /* nice !*/
+    /*-fx-background-color: transparent;*/
+    /* cool !*/
+    /*-fx-background-image: url("Clipboard.png");*/
+
+    -fx-background-color: rgba(211, 211, 211, 0.7);
+}
+
+

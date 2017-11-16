@@ -1,0 +1,4 @@
+
+.readonly-checkbox *.text:disabled {
+    -fx-opacity: 1.0;
+}

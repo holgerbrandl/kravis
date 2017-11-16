@@ -9,14 +9,13 @@ import javafx.scene.chart.Axis
 import javafx.scene.chart.NumberAxis
 import javafx.scene.chart.ScatterChart
 import javafx.scene.chart.XYChart
-import javafx.scene.shape.Shape
-import javafx.scene.text.Text
+import javafx.scene.layout.StackPane
 import javafx.stage.Stage
-import java.util.*
 
 
 // from  https://docs.oracle.com/javafx/2/charts/scatter-chart.htm
-class ScatterChartWithTextLabels : Application() {
+// from  https://stackoverflow.com/questions/38613278/how-to-change-bubble-size-in-bubblechart-javafx
+class ScatterChartWithSizeAes : Application() {
 
     override fun start(stage: Stage) {
         stage.title = "Scatter Chart Sample"
@@ -56,29 +55,32 @@ class ScatterChartWithTextLabels : Application() {
         series2.getData().add(XYChart.Data(8.1, 287.4))
 
 
-        // First, note that for the exact functionality you're trying to achieve, this can be done simply by setting a node on the data.
-        val sc = object : ScatterChart<Double, Double>(xAxis, yAxis) {
-
-            private val shapes = ArrayList<Shape>()
+        // https://stackoverflow.com/questions/39658056/how-do-i-change-the-size-of-a-chart-symbol-in-a-javafx-scatter-chart
+        val sc = ScatterChart<Double, Double>(xAxis, yAxis)
 
 
-            override fun layoutPlotChildren() {
-                super.layoutPlotChildren()
-                plotChildren.removeAll(shapes)
-                shapes.clear()
-                for (d in series1.getData()) {
-                    val x = xAxis.getDisplayPosition(d.getXValue())
-                    val y = yAxis.getDisplayPosition(d.getYValue())
-                    //                    shapes.add(Circle(x, y, 3.0, Color.RED))
-                    shapes.add(Text(x, y, "foo"))
-                }
-                //                plotChildren.addAll(shapes)
-                plotChildren.addAll(listOf(Text(50.0, 200.0, "foo")))
-                plotChildren.addAll(shapes)
-
-            }
-
-        }
+        //        val sc = object : ScatterChart<Double, Double>(xAxis, yAxis) {
+        //
+        //            private val shapes = ArrayList<Shape>()
+        //
+        //
+        //            override fun layoutPlotChildren() {
+        //                super.layoutPlotChildren()
+        //                plotChildren.removeAll(shapes)
+        //                shapes.clear()
+        //                for (d in series1.getData()) {
+        //                    val x = xAxis.getDisplayPosition(d.getXValue())
+        //                    val y = yAxis.getDisplayPosition(d.getYValue())
+        //                    //                    shapes.add(Circle(x, y, 3.0, Color.RED))
+        //                    shapes.add(Text(x, y, "foo"))
+        //                }
+        //                //                plotChildren.addAll(shapes)
+        //                plotChildren.addAll(listOf(Text(50.0, 200.0, "foo")))
+        //                plotChildren.addAll(shapes)
+        //
+        //            }
+        //
+        //        }
 
 
         xAxis.label = "Age (years)"
@@ -87,6 +89,19 @@ class ScatterChartWithTextLabels : Application() {
         sc.title = "Investment Overview"
 
         sc.data.addAll(series1, series2)
+
+
+        // https://stackoverflow.com/questions/39658056/how-do-i-change-the-size-of-a-chart-symbol-in-a-javafx-scatter-chart
+        for (series in sc.getData()) {
+            //for all series, take date, each data has Node (symbol) for representing point
+            for (data in series.getData()) {
+                // this node is StackPane
+                val stackPane = data.getNode() as StackPane
+                stackPane.prefWidth = 5.0
+                stackPane.prefHeight = 5.0
+            }
+        }
+
 
         // https://stackoverflow.com/questions/38871202/how-to-add-shapes-on-javafx-linechart
         //        sc.
@@ -100,5 +115,5 @@ class ScatterChartWithTextLabels : Application() {
 
 
 fun main(args: Array<String>) {
-    Application.launch(ScatterChartWithTextLabels::class.java, *args)
+    Application.launch(ScatterChartWithSizeAes::class.java, *args)
 }

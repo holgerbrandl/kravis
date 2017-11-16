@@ -4,24 +4,28 @@
 - [Milestoness](#milestoness)
     - [M1](#m1)
     - [M2](#m2)
-- [java fx](#java-fx)
+- [Api design](#api-design)
 - [Geoms](#geoms)
+    - [boxplot](#boxplot)
+- [geom_raster](#geom-raster)
     - [Scatter](#scatter)
     - [line plot with trends](#line-plot-with-trends)
+- [JavaFX API](#javafx-api)
+    - [legends](#legends)
+    - [Theming](#theming)
     - [Rendering](#rendering)
         - [render in jupyter](#render-in-jupyter)
         - [basic reusable rendering device for kotlin repl](#basic-reusable-rendering-device-for-kotlin-repl)
         - [offscreen pdf renderin](#offscreen-pdf-renderin)
     - [svg output](#svg-output)
-    - [Next steps](#next-steps)
+    - [misc](#misc)
+- [Next steps](#next-steps)
     - [stats utils](#stats-utils)
     - [Reading List](#reading-list)
 
 
 
 # Milestoness
-
-
 
 ## M1
 
@@ -44,9 +48,6 @@ infrastrcuture
 
 
 
-# java fx
-
-
 ---
 https://lankydanblog.com/2017/01/29/javafx-graphs-look-pretty-good/
 
@@ -58,15 +59,45 @@ https://github.com/kairikozuma/scatter-plot
 complete app article with table and data view
 
 
+# Api design
+
+see examples on https://knowm.org/open-source/xchart/xchart-example-code/
+
+
 # Geoms
+
+## boxplot
+
+http://irondukepublishing.github.io/waterlooFX/
+
+# geom_raster
+
+how does ggplot actually work here --> see TM
+
+this works somehow /Users/brandl/projects/kotlin/kravis/src/test/kotlin/com/github/holgerbrandl/kravis/tornadofx/ScatterTheme.kt
+```
+.chart-plot-background {
+    /*-fx-background-color: #dadada;*/
+    -fx-background-color: transparent;
+    -fx-background-image: url("Clipboard.png");
+}
+
+```
+![](.kravis_devel_notes_images/c1a14cda.png)
+
+but we'd like to set it programmatically and rescale the image as needed
+
 
 ## Scatter
 
-* different point sizes
-* different alphas
-* text labels
-* color-map (gradient, discrete)
+* [x] different point sizes
+    * bubble makes it easy but is ellipsoid
+* [x] different alphas
+* [x]text labels
+* [x] color-map (gradient, discrete)
 * legends for all aes
+* [x] category axis (bubble does not support it, scatter does)
+* log axis (see https://stackoverflow.com/questions/14459923/javafx-2-x-logarithmic-scale-on-y-axis)
 
 ## line plot with trends
 
@@ -77,6 +108,73 @@ scatter with trend
 2. sample points
 3. spline through points using in http://fxexperience.com/2012/01/curve-fitting-and-styling-areachart/
 
+
+
+# JavaFX API
+
+> JavaFX charts are an evil piece of code
+
+
+
+---
+ https://stackoverflow.com/questions/38106407/javafx-scatterchart-how-to-set-icon-for-data-points
+
+```
+// but these are absolute positions
+for (d in series1.getData()) {
+d.node = circle(x, y, 30)
+}
+```
+
+---
+https://stackoverflow.com/questions/20983131/remove-javafx-2-linechart-legend-items
+You can find a node based on it's type (and optionally style name) using this method:
+
+```
+Legend legend = (Legend) findNode(chart, Legend.class.getName(), "chart-legend");
+```
+
+---
+stacking charts
+https://stackoverflow.com/questions/28788117/stacking-charts-in-javafx
+
+
+## legends
+
+see `/Users/brandl/projects/kotlin/kravis/src/test/kotlin/com/github/holgerbrandl/kravis/javafx/legends`
+
+Move legends https://stackoverflow.com/questions/30301458/how-to-show-legends-inside-linechart-area
+
+```
+for (Node n : lineChart.lookupAll(".chart-legend")) {
+    n.setTranslateY(-200);
+}
+```
+or via css
+```
+.chart-legend{
+     -fx-translate-y: -200;
+}
+```
+
+---
+hide legend
+
+https://stackoverflow.com/questions/20983131/remove-javafx-2-linechart-legend-items
+
+`chart.setLegendVisible(false) `
+
+
+
+https://stackoverflow.com/questions/34881129/javafx-scatter-chart-custom-legend
+
+---
+https://stackoverflow.com/questions/44956955/javafx-use-chart-legend-to-toggle-show-hide-series-possible --> register mouse click listener on legned items
+
+## Theming
+
+From https://books.google.de/books?id=Wb8ICAAAQBAJ&pg=PA984&lpg=PA984&dq=javafx+bubble+circle+not+ellipsis&source=bl&ots=_9czWEf41V&sig=8mDa8ytbdZruTz_ynND1FPDwZLA&hl=de&sa=X&ved=0ahUKEwjprLe34cLXAhUMalAKHUzyCdEQ6AEIQDAD#v=onepage&q=javafx%20bubble%20circle%20not%20ellipsis&f=false
+![](.kravis_devel_notes_images/06bc7cf5.png)
 
 ## Rendering
 
@@ -103,8 +201,12 @@ https://stackoverflow.com/questions/26948700/convert-svg-to-javafx-image
 as pdf use batik https://stackoverflow.com/questions/6875807/convert-svg-to-pdf
 which has encoders for all types
 
+## misc
 
-## Next steps
+use canvas mode in javafx2.2 for better performance
+http://www.canoo.com/blog/2012/09/21/take-care-of-the-javafx-scene-graph/?lang=de
+
+# Next steps
 
 
 
@@ -163,3 +265,7 @@ http://thorwin.blogspot.de/2015/03/trend-curveline-in-javafx-chart.html
 https://github.com/jfree/jfreesvgO
 
 
+---
+https://jtablesaw.wordpress.com/tag/visualization/
+
+histogram, boxplots
