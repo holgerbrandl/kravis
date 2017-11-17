@@ -46,26 +46,22 @@ class ObjectPlotBuilder<T>(val objects: List<T>) {
     fun color(label: String = "", propExtract: T.(T) -> Any?): ObjectPlotBuilder<T> = updateAes(propExtract, COLOR, label)
 
 
-    private fun updateAes(propExtract: T.(T) -> Any?, aesDim: AesDim, label: String): ObjectPlotBuilder<T> {
+    private fun updateAes(propExtract: T.(T) -> Any?, aesDim: AesDim, label: String): ObjectPlotBuilder<T> = apply {
         val values = objects.map { run { propExtract(it, it) } }
         plotBuilder.aesthetics.put(aesDim, Aesthetic(handleListErasure(label, values)))
-
-        return this
     }
 
 
-    fun addPoints(): ObjectPlotBuilder<T> {
+    fun addPoints(): ObjectPlotBuilder<T> = apply {
         plotBuilder.addPoints()
-        return this;
     }
 
     fun show() {
         plotBuilder.show()
     }
 
-    fun title(title: String): ObjectPlotBuilder<T> {
+    fun title(title: String): ObjectPlotBuilder<T> = apply {
         plotBuilder.title = title
-        return this
     }
 }
 
@@ -83,16 +79,12 @@ class PlotBuilder(val df: DataFrame) {
     var title: String? = null
 
 
-    //    val aes = mapOf<String, TableExpression>().toMutableMap()
-
-    private fun updateAes(colName: String, aesthetic: AesDim, label: String): PlotBuilder {
+    private fun updateAes(colName: String, aesthetic: AesDim, label: String) = apply {
         aesthetics.put(aesthetic, Aesthetic(df[colName]));
-
-        return this
     }
 
-    private fun updateAes(expr: TableExpression, aesthetic: AesDim, label: String): PlotBuilder {
-        aesthetics.put(aesthetic, Aesthetic(df.addColumn(label, expr)[label])); return this
+    private fun updateAes(expr: TableExpression, aesthetic: AesDim, label: String) = apply {
+        aesthetics.put(aesthetic, Aesthetic(df.addColumn(label, expr)[label]))
     }
 
     fun x(label: String, expr: TableExpression): PlotBuilder = updateAes(expr, X, label)
@@ -118,16 +110,15 @@ class PlotBuilder(val df: DataFrame) {
     fun alpha(colName: String): PlotBuilder = updateAes(colName, ALPHA, colName)
 
 
-    fun title(title: String): PlotBuilder {
-        this.title = title; return this
+    fun title(title: String): PlotBuilder = apply {
+        this.title = title
     }
 
     val layers = listOf<GeomLayer>().toMutableList()
 
 
-    fun addPoints(): PlotBuilder {
+    fun addPoints() = apply {
         layers.add(PointLayer())
-        return this;
     }
 
     fun show() {
@@ -189,9 +180,8 @@ class PlotBuilder(val df: DataFrame) {
         }
     }
 
-    fun addBars(): PlotBuilder {
+    fun addBars() = apply {
         layers.add(GeomLayer())
-        return this
     }
 
     class BarLayer(val stat: String = "count", val position: String = "stack") : GeomLayer() {
