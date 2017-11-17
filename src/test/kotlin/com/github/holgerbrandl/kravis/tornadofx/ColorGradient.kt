@@ -7,6 +7,7 @@ import javafx.geometry.Side
 import javafx.scene.chart.NumberAxis
 import javafx.scene.paint.Color
 import javafx.scene.shape.Rectangle
+import javafx.scene.text.Text
 import tornadofx.*
 
 
@@ -47,22 +48,50 @@ class ColorGradient : View("My View") {
         legendSide = Side.RIGHT
 
 
+        // todo build actual cool legend with http://www.java2s.com/Tutorials/Java/JavaFX/0110__JavaFX_Gradient_Color.htm
+
         val newLegend = MyLegend()
         newLegend.isVertical = true
 
         newLegend.items.addAll(listOf(MyLegend.LegendItem("grad"), MyLegend.LegendItem("ient"), MyLegend.LegendItem("legend")))
 
 
-        val legend = lookupAll(".chart-legend").first()
+        //        val legend = lookupAll(".chart-legend").first()
+
+        // https://stackoverflow.com/questions/47339421/how-to-add-secondary-legend-to-javafx-chart/47358154#47358154
+        with(lookupAll(".chart-legend").first()) {
+
+            getChildList()?.clear()
+            vbox {
+                vbox {
+                    label("Line 1")
+                    label("Line 2")
+                    label("Line 3")
+                }
+                vbox {}
+                vbox {
+                    paddingTop = 30
+                    label("Line 1")
+                    label("Line 2")
+                    label("Line 3")
+                }
+                vbox {
+                    Text(50.0, 30.0, "foo")
+                }
+            }
+
+        }
 
         // cascades
         //        lookupAll(".chart-legend").first().add(newLegend)
 
         // upper left corner artifact
-        legend.getParent().addChildIfPossible(newLegend)
+        //        legend.getParent().addChildIfPossible(newLegend)
 
     }
 
+
+    // see https://stackoverflow.com/questions/47339421/how-to-add-secondary-legend-to-javafx-chart
 
 }
 
