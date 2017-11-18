@@ -61,6 +61,6 @@ fun main(args: Array<String>) {
 
     Platform.runLater {
         val webview = FX.find(MyWindowRenderer::class.java).webview()
-        webview.engine.loadContent("<html>hello, world AGAIN!</html>", "text/html")
+        webview.engine.loadContent("<html>new content!</html>", "text/html")
     }
 }
