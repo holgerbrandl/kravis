@@ -6,108 +6,61 @@ package com.github.holgerbrandl.kravis
 
 import javafx.application.Platform
 import javafx.embed.swing.JFXPanel
-import javafx.scene.Group
-import javafx.scene.Scene
-import javafx.scene.web.WebEngine
-import javafx.scene.web.WebView
 import javafx.stage.Stage
-import java.awt.BorderLayout
-import java.awt.Dimension
-import javax.swing.JButton
+import tornadofx.App
+import tornadofx.FX
+import tornadofx.View
+import tornadofx.webview
 import javax.swing.JFrame
-import javax.swing.JPanel
 import javax.swing.SwingUtilities
+import javax.swing.WindowConstants
 
-/**
- * SwingFXWebView
- */
-class SwingFXWebView : JPanel() {
 
-    private var stage: Stage? = null
-    var browser: WebView? = null
-    private var jfxPanel: JFXPanel? = null
-    private var swingButton: JButton? = null
-    private var webEngine: WebEngine? = null
-
-    init {
-        initComponents()
+open class MyWindowRenderer : View("My View") {
+    override val root = webview {
+        //        me = this
+        //            https@ //stackoverflow.com/questions/20149894/how-to-load-webpage-from-a-string-of-html-code-in-javafx-webviewer
+        //            engine.load(TornadoFXScreencastsURI)
+        //  <base> tag is the trick to load relative resources with loadContent(String)
+        engine.loadContent("<html>hello, world</html>", "text/html");
     }
 
-    private fun initComponents() {
+    //    fun foo() ="hello"
+}
 
-        jfxPanel = JFXPanel()
-        createScene()
+object Renderer : App(MyWindowRenderer::class)
 
-        layout = BorderLayout()
-        add(jfxPanel!!, BorderLayout.CENTER)
+// see https://github.com/edvin/tornadofx/wiki/Integrate-with-existing-Applications#bootstrapping-tornadofx-from-swing
+object SwingApp {
 
-        swingButton = JButton()
-        swingButton!!.addActionListener { Platform.runLater { webEngine!!.reload() } }
-        swingButton!!.text = "Reload"
+    private val app1 = App(MyWindowRenderer::class)
 
-        add(swingButton!!, BorderLayout.SOUTH)
-    }
 
-    /**
-     * createScene
-     *
-     * Note: Key is that Scene needs to be created and run on "FX user thread"
-     * NOT on the AWT-EventQueue Thread
-     *
-     */
-    private fun createScene() {
-        //        PlatformImpl.startup {
+    fun createAndShowGUI() {
+        val frame = JFrame()
+        frame.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
+
+        val wrapper = JFXPanel()
+        frame.contentPane.add(wrapper)
+        frame.pack()
+        frame.isVisible = true
+
+        // Init TornadoFX Application
         Platform.runLater {
-            stage = Stage()
-
-            stage!!.title = "Hello Java FX"
-            stage!!.isResizable = true
-
-            val root = Group()
-            val scene = Scene(root, 80.0, 20.0)
-            stage!!.scene = scene
-
-            // Set up the embedded browser:
-            browser = WebView()
-            webEngine = browser!!.engine
-            webEngine!!.load("http://www.google.com")
-
-            val children = root.children
-            children.add(browser)
-
-            jfxPanel!!.scene = scene
-        }
-    }
-
-
-    fun loadPage(content: String) {
-        Platform.runLater {
-            browser?.engine?.loadContent(content, "text/html")
-        }
-    }
-
-    fun showInPanel() {
-        SwingUtilities.invokeLater {
-            val frame = JFrame()
-
-            frame.contentPane.add(this)
-
-            frame.minimumSize = Dimension(640, 480)
-            frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-            frame.isVisible = true
+            val stage = Stage()
+            val app = app1
+            app.start(stage)
         }
     }
 }
+
 
 fun main(args: Array<String>) {
-    // Run this later:
-    val swingFXWebView by lazy { SwingFXWebView() }
+    SwingUtilities.invokeLater { SwingApp.createAndShowGUI() }
+    Thread.sleep(6000)
 
-    swingFXWebView.showInPanel()
-
-    Thread.sleep(8000)
-
-    swingFXWebView.loadPage("<html>hello, world</html>")
+    Platform.runLater {
+        val webview = FX.find(MyWindowRenderer::class.java).webview()
+        webview.engine.loadContent("<html>hello, world AGAIN!</html>", "text/html")
+    }
 }
-
-
