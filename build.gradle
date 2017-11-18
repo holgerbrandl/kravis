@@ -23,6 +23,7 @@ repositories {
     mavenCentral()
     mavenLocal()
     maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
+    maven { url 'http://clojars.org/repo/' }
 }
 
 
@@ -37,6 +38,7 @@ dependencies {
     compile group: 'no.tornado', name: 'tornadofx', version: '1.7.12'
     compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
 
+//    compile 'cljsjs:vega-lite:2.0.0-0'
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile "io.kotlintest:kotlintest:1.1.6"
