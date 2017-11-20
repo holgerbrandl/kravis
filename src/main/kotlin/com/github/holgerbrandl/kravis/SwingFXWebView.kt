@@ -60,7 +60,11 @@ fun main(args: Array<String>) {
     Thread.sleep(6000)
 
     Platform.runLater {
-        val webview = FX.find(MyWindowRenderer::class.java).webview()
+        val webview = (FX.find(MyWindowRenderer::class.java).root)
         webview.engine.loadContent("<html>new content!</html>", "text/html")
+        //        webview.engine.load("http://www.java2s.com/Code/Java/JavaFX/UsingWebViewtodisplayHTML.htm")
     }
+
+    Thread.sleep(6000)
+
 }
