@@ -74,3 +74,12 @@ api entrypoint for testing vegas.util.Look
 
 nice grouped barchart
 https://vega.github.io/vega/examples/grouped-bar-chart/
+
+
+
+## misc
+
+
+Is it possible to embed chrome browser in JavaFx application? Yes JCEF
+
+https://stackoverflow.com/questions/32200511/is-it-possible-to-change-webview-of-javafx-to-chrome

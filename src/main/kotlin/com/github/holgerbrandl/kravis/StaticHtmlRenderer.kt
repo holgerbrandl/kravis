@@ -123,9 +123,10 @@ fun main(args: Array<String>) {
 
     System.err.println(pageHTML)
     //
-    //    SwingFXWebView().apply {
-    //        showInPanel()
-    //        Thread.sleep(3000)
-    //        loadPage(pageHTML)
-    //    }
+    show(pageHTML)
+    //        SwingFXWebView().apply {
+    //            showInPanel()
+    //            Thread.sleep(3000)
+    //            loadPage(pageHTML)
+    //        }
 }

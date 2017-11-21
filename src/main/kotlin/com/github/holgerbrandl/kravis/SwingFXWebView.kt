@@ -55,12 +55,30 @@ object SwingApp {
 }
 
 
+private val fxDeviceInitializer by lazy { SwingUtilities.invokeAndWait { SwingApp.createAndShowGUI() } }
+
+fun show(html: String) {
+    System.setProperty("java.awt.headless", "false")
+
+    fxDeviceInitializer
+
+    // see https://github.com/edvin/tornadofx/issues/410
+    Platform.runLater {
+        val webview = FX.find(MyWindowRenderer::class.java).root
+        webview.engine.loadContent(html)
+    }
+}
+
 fun main(args: Array<String>) {
-    SwingUtilities.invokeLater { SwingApp.createAndShowGUI() }
+
     Thread.sleep(6000)
 
     Platform.runLater {
-        val webview = (FX.find(MyWindowRenderer::class.java).root)
+        // make sure to create the window
+        fxDeviceInitializer
+
+        // see https://github.com/edvin/tornadofx/issues/410
+        val webview = FX.find(MyWindowRenderer::class.java).root
         webview.engine.loadContent("<html>new content!</html>", "text/html")
         //        webview.engine.load("http://www.java2s.com/Code/Java/JavaFX/UsingWebViewtodisplayHTML.htm")
     }
