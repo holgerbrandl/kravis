@@ -83,3 +83,8 @@ https://vega.github.io/vega/examples/grouped-bar-chart/
 Is it possible to embed chrome browser in JavaFx application? Yes JCEF
 
 https://stackoverflow.com/questions/32200511/is-it-possible-to-change-webview-of-javafx-to-chrome
+
+
+---
+vega can render into svg
+see https://github.com/vega/vega-lite/issues/1758

@@ -43,6 +43,15 @@ class StaticHTMLRenderer(val specJson: String) {
 
     fun pageHTML(name: String = defaultName) = headerHTML().trim() + plotHTML(name) + footerHTML.trim()
 
+    fun openInChrome(name: String = defaultName) {
+
+        createTempFile("kravis", suffix = ".html").apply{
+            writeText(pageHTML(defaultName))
+        }.let{
+            ProcessBuilder("open", it.absolutePath).start()
+        }
+    }
+
     /**
      * Typically you'll want to use this method to render your chart. Returns a full page of HTML wrapped in an iFrame
      * for embedding within existing HTML pages (such as Jupyter).
@@ -104,22 +113,30 @@ class StaticHTMLRenderer(val specJson: String) {
 }
 
 fun main(args: Array<String>) {
-    val pageHTML = StaticHTMLRenderer("""
-        {
+    val renderer = StaticHTMLRenderer("""
+  {
+  "width": 600,
+  "autosize": {
+    "type": "pad",
+  },
   "data": {
     "values": [
-      {"a": "C", "b": 2}, {"a": "C", "b": 7}, {"a": "C", "b": 4},
-      {"a": "D", "b": 1}, {"a": "D", "b": 2}, {"a": "D", "b": 6},
-      {"a": "E", "b": 8}, {"a": "E", "b": 4}, {"a": "E", "b": 7}
+      {"a": "A","b": 28}, {"a": "B","b": 55}, {"a": "C","b": 43},
+      {"a": "D","b": 91}, {"a": "E","b": 81}, {"a": "F","b": 53},
+      {"a": "G","b": 19}, {"a": "H","b": 87}, {"a": "I","b": 52}
     ]
   },
   "mark": "bar",
   "encoding": {
-    "x": {"field": "a", "type": "nominal"},
-    "y": {"aggregate": "average", "field": "b", "type": "quantitative"}
+    "x": {"field": "a", "type": "ordinal"},
+    "y": {"field": "b", "type": "quantitative"}
   }
 }
-        """).pageHTML()
+        """)
+//    val pageHTML = renderer.pageHTML()
+    renderer.openInChrome()
+
+
 
     System.err.println(pageHTML)
     //

@@ -7,10 +7,7 @@ package com.github.holgerbrandl.kravis
 import javafx.application.Platform
 import javafx.embed.swing.JFXPanel
 import javafx.stage.Stage
-import tornadofx.App
-import tornadofx.FX
-import tornadofx.View
-import tornadofx.webview
+import tornadofx.*
 import javax.swing.JFrame
 import javax.swing.SwingUtilities
 import javax.swing.WindowConstants
@@ -23,6 +20,18 @@ open class MyWindowRenderer : View("My View") {
         //            engine.load(TornadoFXScreencastsURI)
         //  <base> tag is the trick to load relative resources with loadContent(String)
         engine.loadContent("<html>hello, world</html>", "text/html");
+
+    }
+
+
+    // see
+    // https://stackoverflow.com/questions/38543474/way-of-setting-primarystage-or-scene-properties-in-tornadofx
+    // https://stackoverflow.com/questions/38432698/webview-size-in-javafx-stage
+    init {
+        with(root) {
+            prefHeightProperty().bind(currentStage?.heightProperty())
+            prefWidthProperty().bind(currentStage?.widthProperty())
+        }
     }
 
     //    fun foo() ="hello"
@@ -49,18 +58,25 @@ object SwingApp {
         Platform.runLater {
             val stage = Stage()
             val app = app1
+
+//            prefHeightProperty().bind(stage.heightProperty());
+//            browser.browser.prefWidthProperty().bind(stage.widthProperty());
+
             app.start(stage)
         }
     }
 }
 
 
-private val fxDeviceInitializer by lazy { SwingUtilities.invokeAndWait { SwingApp.createAndShowGUI() } }
+private val fxDeviceInitializer by lazy {
+    SwingUtilities.invokeAndWait { SwingApp.createAndShowGUI() } }
 
 fun show(html: String) {
     System.setProperty("java.awt.headless", "false")
 
     fxDeviceInitializer
+
+
 
     // see https://github.com/edvin/tornadofx/issues/410
     Platform.runLater {
@@ -70,12 +86,12 @@ fun show(html: String) {
 }
 
 fun main(args: Array<String>) {
+    fxDeviceInitializer
 
     Thread.sleep(6000)
 
     Platform.runLater {
         // make sure to create the window
-        fxDeviceInitializer
 
         // see https://github.com/edvin/tornadofx/issues/410
         val webview = FX.find(MyWindowRenderer::class.java).root
