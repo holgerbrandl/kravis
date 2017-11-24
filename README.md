@@ -85,7 +85,6 @@ JVM vis
 * [plotly-scala](https://github.com/alexarchambault/plotly-scala) which provides scala bindings for plotly.js and works within jupyter
 
 
-
-
-
+Used by kravis
+* https://github.com/vega/vega-embed to publish Vega visualizations as embedded web components with interactive parameters.
 

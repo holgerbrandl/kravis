@@ -27,7 +27,8 @@ class StaticHTMLRenderer(val specJson: String) {
            | <script>
            |   var embedSpec = {
            |     mode: "vega-lite",
-           |     spec: $specJson
+           |     spec: $specJson,
+           |     actions: false,
            |   }
            |   vg.embed("#$name", embedSpec, function(error, result) {});
            | </script>
