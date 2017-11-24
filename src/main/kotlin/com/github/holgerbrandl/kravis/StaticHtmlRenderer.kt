@@ -137,10 +137,9 @@ fun main(args: Array<String>) {
     renderer.openInChrome()
 
 
-
-    System.err.println(pageHTML)
+    //    System.err.println(pageHTML)
     //
-    show(pageHTML)
+    //    show(pageHTML)
     //        SwingFXWebView().apply {
     //            showInPanel()
     //            Thread.sleep(3000)

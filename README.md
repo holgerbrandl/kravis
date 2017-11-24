@@ -76,11 +76,13 @@ plotOf(users)
 
 ## References
 
+JVM vis
 * [XChart](https://github.com/timmolter/XChart) is a light-weight Java library for plotting data
 * [data2viz](https://github.com/data2viz/data2viz) is a multi platform data visualization library with comprehensive DSL
 * [Kubed](https://github.com/hudsonb/kubed/) is a Kotlin library for manipulating the JavaFX scenegraph based on data.
 * [TornadoFX](https://github.com/edvin/tornadofx/wiki/Charts) provides some Kotlin wrappers around JavaFX
 * [Jzy3d](http://www.jzy3d.org/) is an open source java library that allows to easily draw 3d scientific data: surfaces, scatter plots, bar charts
+* [plotly-scala](https://github.com/alexarchambault/plotly-scala) which provides scala bindings for plotly.js and works within jupyter
 
 
 
