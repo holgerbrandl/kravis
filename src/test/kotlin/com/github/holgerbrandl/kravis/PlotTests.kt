@@ -1,5 +1,7 @@
 package com.github.holgerbrandl.kravis
 
+import com.github.holgerbrandl.kravis.spec.xplot.plot
+import com.github.holgerbrandl.kravis.spec.xplot.plotOf
 import krangl.sleepData
 import org.junit.Test
 import java.time.LocalDate

@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis
+package com.github.holgerbrandl.kravis.spec.xplot
 
 import krangl.*
 import krangl.ArrayUtils.handleListErasure
@@ -34,7 +34,7 @@ internal val ALPHA = AesDim("alpha")
 
 class ObjectPlotBuilder<T>(val objects: List<T>) {
 
-    private val plotBuilder = com.github.holgerbrandl.kravis.PlotBuilder(emptyDataFrame())
+    private val plotBuilder = PlotBuilder(emptyDataFrame())
 
     //    private val aesthetics = mapOf<String, Aesthetic>().toMutableMap()
 

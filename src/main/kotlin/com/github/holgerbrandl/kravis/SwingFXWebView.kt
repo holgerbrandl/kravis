@@ -7,7 +7,10 @@ package com.github.holgerbrandl.kravis
 import javafx.application.Platform
 import javafx.embed.swing.JFXPanel
 import javafx.stage.Stage
-import tornadofx.*
+import tornadofx.App
+import tornadofx.FX
+import tornadofx.View
+import tornadofx.webview
 import javax.swing.JFrame
 import javax.swing.SwingUtilities
 import javax.swing.WindowConstants
@@ -68,7 +71,7 @@ object SwingApp {
 }
 
 
-private val fxDeviceInitializer by lazy {
+internal val fxDeviceInitializer by lazy {
     SwingUtilities.invokeAndWait { SwingApp.createAndShowGUI() } }
 
 fun show(html: String) {

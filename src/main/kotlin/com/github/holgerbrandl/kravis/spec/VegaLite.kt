@@ -1,6 +1,6 @@
 package com.github.holgerbrandl.kravis.spec
 
-import com.github.holgerbrandl.kravis.StaticHTMLRenderer
+import com.github.holgerbrandl.kravis.SizeAdjustProxy
 import com.github.holgerbrandl.kravis.spec.Mark.guess
 import com.squareup.moshi.Moshi
 import krangl.ArrayUtils
@@ -156,6 +156,13 @@ class VLBuilder<T>(val objects: Iterable<T>) {
     }
 
 
+    override fun toString(): String {
+        // render it as a side effect
+        render()
+        return super.toString()
+    }
+
+    // todo add device parameter here with sensible default
     fun render() {
         //        show("hallo simonm")
         // here comes the hard part:
@@ -207,10 +214,11 @@ class VLBuilder<T>(val objects: Iterable<T>) {
         ).joinToString(",\n") + "}"
 
 
-        print(jsonSpec)
-        StaticHTMLRenderer(jsonSpec).openInChrome()
-        //        show(StaticHTMLRenderer(jsonSpec).pageHTML())
+        //        print(jsonSpec)
+        //        StaticHTMLRenderer(jsonSpec).openInChrome()
 
+        SizeAdjustProxy.showPlot(jsonSpec)
+        //        show(StaticHTMLRenderer(jsonSpec).pageHTML())
     }
 }
 
