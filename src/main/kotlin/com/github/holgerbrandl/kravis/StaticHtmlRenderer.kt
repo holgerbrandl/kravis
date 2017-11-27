@@ -24,15 +24,24 @@ class StaticHTMLRenderer(val specJson: String) {
     """.trimMargin("|")
 
     fun plotHTML(name: String = this.defaultName): String {
+
+        // see https://github.com/vega/vega-embed#vega-embed-opt-specification-reference
         return """
            | <div id='$name'></div>
+           |
+           | <script type="application/json" id="kravis_spec">
+           | $specJson
+           | </script>
+           |
            | <script>
-           |   var embedSpec = {
-           |     mode: "vega-lite",
-           |     spec: $specJson,
-           |     actions: false,
-           |   }
-           |   vg.embed("#$name", embedSpec, function(error, result) {});
+           |     var embedSpec = JSON.parse(document.getElementById('kravis_spec').innerHTML);
+           |     var opt = {
+           |      actions: false
+           |     };
+           |
+           |     vegaEmbed('#$name', embedSpec, opt).then(function(result) {
+           |        // access view as result.view
+           |     }).catch(console.error);
            | </script>
 
         """.trimMargin("|")
@@ -48,9 +57,9 @@ class StaticHTMLRenderer(val specJson: String) {
 
     fun openInChrome(name: String = defaultName) {
 
-        createTempFile("kravis", suffix = ".html").apply{
+        createTempFile("kravis", suffix = ".html").apply {
             writeText(pageHTML(defaultName))
-        }.let{
+        }.let {
             ProcessBuilder("open", it.absolutePath).start()
         }
     }
@@ -102,13 +111,14 @@ class StaticHTMLRenderer(val specJson: String) {
         "d3" to "3.5.17"
     )
 
-    private fun CDN(artifact: String, file: String) = "https://cdn.jsdelivr.net/webjars/org.webjars.bower/$artifact/${WebJars[artifact]}/$file"
+    //    private fun CDN(artifact: String, file: String) = "https://cdn.jsdelivr.net/webjars/org.webjars.bower/$artifact/${WebJars[artifact]}/$file"
+    private fun CDN(artifact: String) = "https://cdnjs.cloudflare.com/ajax/libs/$artifact"
 
     val JSImports = listOf(
-        CDN("d3", "d3.min.js"),
-        CDN("vega", "vega.min.js"),
-        CDN("vega-lite", "vega-lite.min.js"),
-        "https://vega.github.io/vega-editor/vendor/vega-embed.js"
+        "https://d3js.org/d3.v4.min.js",
+        CDN("vega/3.0.7/vega.js"),
+        CDN("vega-lite/2.0.1/vega-lite.js"),
+        CDN("vega-embed/3.0.0-rc7/vega-embed.js")
     )
 
     val defaultName = "vegas-" + java.util.UUID.randomUUID().toString()
@@ -140,7 +150,8 @@ fun main(args: Array<String>) {
     val json = File("src/test/resources/vl_regression/simple_scatter.json").readText()
 
     val renderer = StaticHTMLRenderer(json)
-//    val pageHTML = renderer.pageHTML()
+    //    val pageHTML = renderer.pageHTML()
+    show(renderer.pageHTML())
     renderer.openInChrome()
 
 

@@ -82,7 +82,6 @@ object SizeAdjustProxy {
                               "height": ${webview.root.height - 100},
                             """ + curJson!!.removePrefix("{")
 
-                println("replotting....")
                 show(StaticHTMLRenderer(sizeAdjustedJson).pageHTML())
             }
         }

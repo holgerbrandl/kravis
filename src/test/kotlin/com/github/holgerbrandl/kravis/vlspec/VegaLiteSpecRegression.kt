@@ -1,5 +1,6 @@
 package com.github.holgerbrandl.kravis.vlspec
 
+import com.github.holgerbrandl.kravis.spec.Aggregate
 import com.github.holgerbrandl.kravis.spec.EncodingChannel.*
 import com.github.holgerbrandl.kravis.spec.plotOf
 import com.google.gson.GsonBuilder
@@ -67,9 +68,18 @@ class VegaLiteSpecRegression {
             encoding(color) { vore }
         }
 
-        val buildJson = plotOf.buildJson()
+        assertExpected(plotOf.buildJson())
+    }
 
-        assertExpected(buildJson)
+    @Test
+    fun `simple histogram`() {
+        // should be guessed correctly as histogram
+        val plotOf = plotOf(sleepPatterns) {
+            encoding(x, bin = true) { sleep_total }
+            encoding(y, aggregate = Aggregate.count)
+        }
+
+        assertExpected(plotOf.buildJson())
     }
 
 
@@ -97,17 +107,4 @@ class VegaLiteSpecRegression {
         val el = parser.parse(someJson)
         return gson.toJson(el) // done
     }
-}
-
-fun main2(args: Array<String>) {
-
-
-    val plotOf = plotOf(sleepPatterns) {
-        encoding(x) { sleep_total }
-        encoding(y) { sleep_rem }
-    }
-
-
-    plotOf.render()
-    plotOf.render()
 }
