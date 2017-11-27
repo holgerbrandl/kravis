@@ -2,12 +2,18 @@ package com.github.holgerbrandl.kravis.experimental
 
 import javafx.application.Platform
 import javafx.embed.swing.JFXPanel
+import javafx.embed.swing.SwingFXUtils
 import javafx.geometry.Pos
 import javafx.scene.Scene
+import javafx.scene.SnapshotParameters
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.control.TextField
 import javafx.scene.layout.VBox
+import javafx.scene.web.WebView
+import java.io.File
+import java.io.IOException
+import javax.imageio.ImageIO
 
 
 // http://www.jensd.de/wordpress/?p=1029
@@ -40,6 +46,17 @@ class SwingFXPanel : JFXPanel() {
         setScene(scene)
     }
 }
+
+
+private fun WebView.saveImage(file: File) {
+    val snapshot = snapshot(SnapshotParameters(), null)
+    val renderedImage = SwingFXUtils.fromFXImage(snapshot, null)
+    try {
+        ImageIO.write(renderedImage, "png", file)
+    } catch (ex: IOException) {
+    }
+}
+
 
 fun main(args: Array<String>) {
     SwingFXPanel()

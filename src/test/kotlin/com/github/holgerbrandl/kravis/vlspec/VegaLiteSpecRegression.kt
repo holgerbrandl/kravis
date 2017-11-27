@@ -98,7 +98,11 @@ class VegaLiteSpecRegression {
         val expected = file.readLines().joinToString("\n")
 
         assertEquals(expected, obtained)
+
+        // compare actual images
+        //        saveImage(File(testDataDir, name.methodName.replace(" ", "_") + ".png"))
     }
+
 
     fun makePretty(someJson: String): String {
         val parser = JsonParser()

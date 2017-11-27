@@ -1,0 +1,22 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "data:text/plain;base64,W3sieCI6MTIuMX0seyJ4IjoxNy4wfSx7IngiOjE0LjR9LHsieCI6MTQuOX0seyJ4Ijo0LjB9LHsieCI6MTQuNH0seyJ4Ijo4Ljd9LHsieCI6Ny4wfSx7IngiOjEwLjF9LHsieCI6My4wfSx7IngiOjUuM30seyJ4Ijo5LjR9LHsieCI6MTAuMH0seyJ4IjoxMi41fSx7IngiOjEwLjN9LHsieCI6OC4zfSx7IngiOjkuMX0seyJ4IjoxNy40fSx7IngiOjUuM30seyJ4IjoxOC4wfSx7IngiOjMuOX0seyJ4IjoxOS43fSx7IngiOjIuOX0seyJ4IjozLjF9LHsieCI6MTAuMX0seyJ4IjoxMC45fSx7IngiOjE0Ljl9LHsieCI6MTIuNX0seyJ4Ijo5Ljh9LHsieCI6MS45fSx7IngiOjIuN30seyJ4Ijo2LjJ9LHsieCI6Ni4zfSx7IngiOjguMH0seyJ4Ijo5LjV9LHsieCI6My4zfSx7IngiOjE5LjR9LHsieCI6MTAuMX0seyJ4IjoxNC4yfSx7IngiOjE0LjN9LHsieCI6MTIuOH0seyJ4IjoxMi41fSx7IngiOjE5Ljl9LHsieCI6MTQuNn0seyJ4IjoxMS4wfSx7IngiOjcuN30seyJ4IjoxNC41fSx7IngiOjguNH0seyJ4IjozLjh9LHsieCI6OS43fSx7IngiOjE1Ljh9LHsieCI6MTAuNH0seyJ4IjoxMy41fSx7IngiOjkuNH0seyJ4IjoxMC4zfSx7IngiOjExLjB9LHsieCI6MTEuNX0seyJ4IjoxMy43fSx7IngiOjMuNX0seyJ4Ijo1LjZ9LHsieCI6MTEuMX0seyJ4IjoxOC4xfSx7IngiOjUuNH0seyJ4IjoxMy4wfSx7IngiOjguN30seyJ4Ijo5LjZ9LHsieCI6OC40fSx7IngiOjExLjN9LHsieCI6MTAuNn0seyJ4IjoxNi42fSx7IngiOjEzLjh9LHsieCI6MTUuOX0seyJ4IjoxMi44fSx7IngiOjkuMX0seyJ4Ijo4LjZ9LHsieCI6MTUuOH0seyJ4Ijo0LjR9LHsieCI6MTUuNn0seyJ4Ijo4Ljl9LHsieCI6NS4yfSx7IngiOjYuM30seyJ4IjoxMi41fSx7IngiOjkuOH1d",
+    "format": {
+      "type": "json"
+    }
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "x",
+      "type": "quantitative",
+      "bin": true
+    },
+    "y": {
+      "field": "y",
+      "type": "quantitative",
+      "aggregate": "count"
+    }
+  }
+}

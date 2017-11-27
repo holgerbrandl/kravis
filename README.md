@@ -86,6 +86,9 @@ JVM vis
 * [grafana](https://grafana.com/) is an open platform for beautiful analytics and monitoring
 
 
-Used by kravis
-* https://github.com/vega/vega-embed to publish Vega visualizations as embedded web components with interactive parameters.
+Vega-(lite) based
+* [altair](https://github.com/altair-viz/altair) provides declarative statistical visualization library for Python
+* [vega-embed](https://github.com/vega/vega-embed) to publish Vega visualizations as embedded web components with interactive parameters.
+
+
 

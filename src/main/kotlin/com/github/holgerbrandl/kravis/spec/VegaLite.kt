@@ -7,7 +7,6 @@ import com.github.salomonbrys.kotson.jsonObject
 import com.squareup.moshi.Moshi
 import krangl.ArrayUtils
 import krangl.asDataFrame
-import org.json.JSONObject
 import java.util.*
 
 /**
@@ -40,6 +39,7 @@ enum class Mark { bar, circle, square, tick, line, area, point, rule, text, gues
 
         val actualMark = when {
             this != guess -> this
+            vlBuilder.encodings.any { it.bin != null } -> Mark.bar
             dataTypes.take(2).all { it == Type.quantitative } -> Mark.point
             else -> Mark.bar
         }
@@ -95,66 +95,6 @@ enum class Type { quantitative, temporal, ordinal2, nominal; }
 enum class Aggregate { mean, sum, median, min, max, count; }
 
 
-private val s = "quantitative"
-
-//internal fun jsonOptional(name: String, value: Any?) = if (value != null) """,${"\n"}"$name": "${value.toString()}"${"\n"},""" else ""
-
-class Json() {
-
-    val json = JSONObject()
-
-    constructor(init: Json.() -> Unit) : this() {
-        this.init()
-    }
-
-    infix fun <T> String.To(value: T) {
-        json.put(this, value)
-    }
-
-    override fun toString(): String {
-        return json.toString()
-    }
-}
-
-
-// from https://stackoverflow.com/questions/41861449/kotlin-dsl-for-creating-json-objects-without-creating-garbage
-class JsonContext internal constructor() {
-    internal val output = StringBuilder()
-
-    private var indentation = 4
-
-    private fun StringBuilder.indent() = apply {
-        for (i in 1..indentation)
-            append(' ')
-    }
-
-    private var needsSeparator = false
-
-    private fun StringBuilder.separator() = apply {
-        if (needsSeparator) append(",\n")
-    }
-
-    infix fun String.to(value: Any) {
-        output.separator().indent().append("\"$this\": \"$value\"")
-        needsSeparator = true
-    }
-
-    infix fun String.toJson(block: JsonContext.() -> Unit) {
-        output.separator().indent().append("\"$this\": {\n")
-        indentation += 4
-        needsSeparator = false
-        block(this@JsonContext)
-        needsSeparator = true
-        indentation -= 4
-        output.append("\n").indent().append("}")
-    }
-}
-
-fun json(block: JsonContext.() -> Unit) = JsonContext().run {
-    block()
-    "{\n" + output.toString() + "\n}"
-}
-
 class Encoding<T>(val encoding: EncodingChannel,
                   val data: Lazy<List<Any?>>?,  // can be null for aggregate columns
                   val label: String = encoding.label, // this is not the original spec!
@@ -179,7 +119,6 @@ class Encoding<T>(val encoding: EncodingChannel,
 
 
         val encBuilder = jsonObject(encoding.toString() to encProps)
-
 
 
         return encBuilder.toString().run { substring(1, this.length - 1) }
@@ -231,7 +170,7 @@ class VLBuilder<T>(val objects: Iterable<T>) {
     fun encoding(
         channel: EncodingChannel,
         label: String = channel.label, // this is not the original spec!
-        axis: Axis = Axis(),
+        axis: Axis? = null,
         aggregate: Aggregate? = null,
         bin: Boolean? = null,
         extractor: PropExtractor<T>? = null

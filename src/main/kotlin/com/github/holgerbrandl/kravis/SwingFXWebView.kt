@@ -6,11 +6,17 @@ package com.github.holgerbrandl.kravis
 
 import javafx.application.Platform
 import javafx.embed.swing.JFXPanel
+import javafx.embed.swing.SwingFXUtils
+import javafx.scene.SnapshotParameters
+import javafx.scene.web.WebView
 import javafx.stage.Stage
 import tornadofx.App
 import tornadofx.FX
 import tornadofx.View
 import tornadofx.webview
+import java.io.File
+import java.io.IOException
+import javax.imageio.ImageIO
 import javax.swing.JFrame
 import javax.swing.SwingUtilities
 import javax.swing.WindowConstants
@@ -86,6 +92,17 @@ fun show(html: String) {
         webview.engine.loadContent(html)
     }
 }
+
+
+private fun WebView.saveImage(file: File) {
+    val snapshot = snapshot(SnapshotParameters(), null)
+    val renderedImage = SwingFXUtils.fromFXImage(snapshot, null)
+    try {
+        ImageIO.write(renderedImage, "png", file)
+    } catch (ex: IOException) {
+    }
+}
+
 
 fun main(args: Array<String>) {
     fxDeviceInitializer
