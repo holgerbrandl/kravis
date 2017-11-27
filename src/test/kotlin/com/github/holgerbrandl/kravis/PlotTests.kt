@@ -1,7 +1,7 @@
 package com.github.holgerbrandl.kravis
 
 import com.github.holgerbrandl.kravis.spec.xplot.plot
-import com.github.holgerbrandl.kravis.spec.xplot.plotOf
+import com.github.holgerbrandl.kravis.spec.xplot.xplotOf
 import krangl.sleepData
 import org.junit.Test
 import java.time.LocalDate
@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
         User("Anna", LocalDate.parse("1992-07-03"), "F", 1.32)
     )
 
-    plotOf(users)
+    xplotOf(users)
         .x("Year of Birth") { birthDay.year }
         .y("Height (m)") { height }
         .color { sex }
@@ -46,7 +46,7 @@ class PlotTests {
             User("Anna", LocalDate.parse("1992-07-03"), "F", 1.32)
         )
 
-        plotOf(friends)
+        xplotOf(friends)
             .x("Year of Birth") { birthDay.year } //good
             .y("Height (m)") { height } //good
             .color { sex } // for quick and directly it potentially should also work wihtout labels
@@ -81,7 +81,7 @@ class PlotTests {
 
 
         // might work but we loose vectorization, butdo we really care here?
-        plotOf(sleepData)
+        xplotOf(sleepData)
             .x { it["Species"] }
             .y { it["Sepal.Length"] }
             .color { it["Species"] }

@@ -17,9 +17,9 @@ import org.knowm.xchart.style.Styler
 fun DataFrame.plot(): PlotBuilder = PlotBuilder(this)
 
 
-fun <T> plotOf(objects: List<T>) = ObjectPlotBuilder(objects)
+fun <T> xplotOf(objects: List<T>) = ObjectPlotBuilder(objects)
 
-fun plotOf(objects: DataFrame) = plotOf(sleepData.rows.toList())
+fun xplotOf(objects: DataFrame) = xplotOf(sleepData.rows.toList())
 
 
 // todo use dedicated type for aestehtic dimension

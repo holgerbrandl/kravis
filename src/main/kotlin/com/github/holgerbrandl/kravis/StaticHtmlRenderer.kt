@@ -1,5 +1,7 @@
 package com.github.holgerbrandl.kravis
 
+import java.io.File
+
 /**
  * Adopted from vegas.render.StaticHTMLRenderer
  * @author HolgerAish Fenton.
@@ -114,7 +116,7 @@ class StaticHTMLRenderer(val specJson: String) {
 }
 
 fun main(args: Array<String>) {
-    val renderer = StaticHTMLRenderer("""
+    val vlExample = """
   {
   "width": 600,
   "autosize": {
@@ -133,7 +135,11 @@ fun main(args: Array<String>) {
     "y": {"field": "b", "type": "quantitative"}
   }
 }
-        """)
+        """
+
+    val json = File("src/test/resources/vl_regression/simple_scatter.json").readText()
+
+    val renderer = StaticHTMLRenderer(json)
 //    val pageHTML = renderer.pageHTML()
     renderer.openInChrome()
 

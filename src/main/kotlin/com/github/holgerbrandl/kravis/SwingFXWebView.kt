@@ -16,14 +16,13 @@ import javax.swing.SwingUtilities
 import javax.swing.WindowConstants
 
 
-open class MyWindowRenderer : View("My View") {
+class MyWindowRenderer : View("My View") {
     override val root = webview {
         //        me = this
         //            https@ //stackoverflow.com/questions/20149894/how-to-load-webpage-from-a-string-of-html-code-in-javafx-webviewer
         //            engine.load(TornadoFXScreencastsURI)
         //  <base> tag is the trick to load relative resources with loadContent(String)
         engine.loadContent("<html>hello, world</html>", "text/html");
-
     }
 
 
