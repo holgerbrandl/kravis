@@ -83,6 +83,7 @@ JVM vis
 * [TornadoFX](https://github.com/edvin/tornadofx/wiki/Charts) provides some Kotlin wrappers around JavaFX
 * [Jzy3d](http://www.jzy3d.org/) is an open source java library that allows to easily draw 3d scientific data: surfaces, scatter plots, bar charts
 * [plotly-scala](https://github.com/alexarchambault/plotly-scala) which provides scala bindings for plotly.js and works within jupyter
+* [grafana](https://grafana.com/) is an open platform for beautiful analytics and monitoring
 
 
 Used by kravis
