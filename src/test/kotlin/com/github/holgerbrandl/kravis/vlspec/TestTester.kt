@@ -2,6 +2,7 @@ package com.github.holgerbrandl.kravis.vlspec
 
 import com.github.holgerbrandl.kravis.StaticHTMLRenderer
 import com.github.holgerbrandl.kravis.spec.*
+import com.github.holgerbrandl.kravis.spec.MarkType.*
 
 /**
  * @author Holger Brandl
@@ -15,10 +16,10 @@ fun main(args: Array<String>) {
     //        encoding(y) { sleep_rem }
     //    }
     val plotOf = plotOf(sleepPatterns) {
-        mark = Mark.bar
+//        mark = Mark(bar) // should be optional
         title = "distribution of sleep length"
 
-        encoding(EncodingChannel.x, bin = true, axis = Axis("Total Sleep (h)")) { sleep_total }
+        encoding(EncodingChannel.x, axis = Axis("Total Sleep (h)"), bin = true) { sleep_total }
         encoding(EncodingChannel.y, aggregate = Aggregate.count)
     }
 

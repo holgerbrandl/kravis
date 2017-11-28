@@ -2,7 +2,8 @@ package com.github.holgerbrandl.kravis.spec.example
 
 import com.github.holgerbrandl.kravis.show
 import com.github.holgerbrandl.kravis.spec.EncodingChannel.*
-import com.github.holgerbrandl.kravis.spec.Mark.bar
+import com.github.holgerbrandl.kravis.spec.Mark
+import com.github.holgerbrandl.kravis.spec.MarkType.bar
 import com.github.holgerbrandl.kravis.spec.plotOf
 
 /**
@@ -24,7 +25,7 @@ fun main(args: Array<String>) {
 
     val plot = plotOf(star_wars) {
         //        mark(bar)
-        mark = bar // optional
+        mark = Mark(bar) // optional
 
         title = "foo" // optional
 

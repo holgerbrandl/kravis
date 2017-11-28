@@ -4,6 +4,7 @@ package com.github.holgerbrandl.kravis
  * @author Holger Brandl
  */
 
+import com.github.holgerbrandl.kravis.spec.VLBuilder
 import javafx.application.Platform
 import javafx.embed.swing.JFXPanel
 import javafx.embed.swing.SwingFXUtils
@@ -93,6 +94,17 @@ fun show(html: String) {
     }
 }
 
+
+@Suppress("unused")
+fun <T> VLBuilder<T>.save(file:File){
+    System.setProperty("java.awt.headless", "false")
+    fxDeviceInitializer
+
+    Platform.runLater {
+        val webview = FX.find(MyWindowRenderer::class.java).root
+        webview.saveImage(file)
+    }
+}
 
 private fun WebView.saveImage(file: File) {
     val snapshot = snapshot(SnapshotParameters(), null)

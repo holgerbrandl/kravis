@@ -72,6 +72,35 @@ class VegaLiteSpecRegression {
     }
 
     @Test
+    fun `double aggregation`() {
+        // similar to https://altair-viz.github.io/documentation/encoding.html
+
+        val plotOf = plotOf(sleepPatterns) {
+            encoding(x) { sleep_total }
+            encoding(y) { sleep_rem }
+            encoding(color) { bodywt }
+            encoding(size) { bodywt }
+        }
+
+        assertExpected(plotOf.buildJson())
+    }
+
+
+//    @Test
+    fun `gradient scatter with dynamic size`() {
+        //    fun simple_scatter() {
+
+        val plotOf = plotOf(sleepPatterns) {
+            encoding(x) { sleep_total }
+            encoding(y) { sleep_rem }
+            encoding(color) { bodywt }
+            encoding(size) { bodywt }
+        }
+
+        assertExpected(plotOf.buildJson())
+    }
+
+    @Test
     fun `simple histogram`() {
         // should be guessed correctly as histogram
         val plotOf = plotOf(sleepPatterns) {

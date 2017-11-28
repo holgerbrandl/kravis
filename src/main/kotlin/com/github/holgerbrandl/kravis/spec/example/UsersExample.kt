@@ -1,7 +1,7 @@
 package com.github.holgerbrandl.kravis.spec.example
 
 import com.github.holgerbrandl.kravis.spec.EncodingChannel.*
-import com.github.holgerbrandl.kravis.spec.Mark.guess
+import com.github.holgerbrandl.kravis.spec.guess
 import com.github.holgerbrandl.kravis.spec.plotOf
 import java.time.LocalDate
 

@@ -1,12 +1,13 @@
 package com.github.holgerbrandl.kravis.spec
 
 import com.github.holgerbrandl.kravis.SizeAdjustProxy
-import com.github.holgerbrandl.kravis.spec.Mark.guess
+import com.github.holgerbrandl.kravis.spec.MarkType.guess
 import com.github.salomonbrys.kotson.addProperty
 import com.github.salomonbrys.kotson.jsonObject
+import com.google.gson.JsonObject
 import com.squareup.moshi.Moshi
-import krangl.ArrayUtils
-import krangl.asDataFrame
+import krangl.*
+import java.awt.Color
 import java.util.*
 
 /**
@@ -16,7 +17,7 @@ import java.util.*
 // see https://medium.com/@dumazy/writing-dsls-in-kotlin-part-2-cd9dcd0c4715
 
 
-enum class Mark { bar, circle, square, tick, line, area, point, rule, text, guess;
+enum class MarkType { bar, circle, square, tick, line, area, point, rule, text, guess;
 
     fun defaultStyle(): Map<String, String> {
         return when (this) {
@@ -33,27 +34,28 @@ enum class Mark { bar, circle, square, tick, line, area, point, rule, text, gues
         }
     }
 
-    fun toJson(vlBuilder: VLBuilder<*>): String {
+    fun resolve(vlBuilder: VLBuilder<*>): MarkType {
 
         val dataTypes = vlBuilder.encodings.map { it.dataType }
 
         val actualMark = when {
             this != guess -> this
-            vlBuilder.encodings.any { it.bin != null } -> Mark.bar
-            dataTypes.take(2).all { it == Type.quantitative } -> Mark.point
-            else -> Mark.bar
+            vlBuilder.encodings.any { it.bin != null } -> MarkType.bar
+            dataTypes.take(2).all { it == Type.quantitative } -> MarkType.point
+            else -> MarkType.bar
         }
 
-        return """
-            "mark": "$actualMark"
-        """.trimIndent().trim()
+        return actualMark
     }
 }
 
 enum class EncodingChannel {
     // Position Channels
     x,
-    y, x2, y2,
+    y,
+
+    // what are those?
+    //x2, y2,
 
     // Mark Properties Channels
     color,
@@ -95,33 +97,42 @@ enum class Type { quantitative, temporal, ordinal2, nominal; }
 enum class Aggregate { mean, sum, median, min, max, count; }
 
 
-class Encoding<T>(val encoding: EncodingChannel,
-                  val data: Lazy<List<Any?>>?,  // can be null for aggregate columns
-                  val label: String = encoding.label, // this is not the original spec!
-                  val axis: Axis? = null,
-                  val bin: Boolean? = null,
-                  val aggregate: Aggregate? = null) {
+class Encoding(val encoding: EncodingChannel,
+               val data: Lazy<Iterable<Any?>>?,  // can be null for aggregate columns
+               val label: String = encoding.label, // this is not the original spec!
+               val axis: Axis? = null,
+               val bin: Boolean? = null,
+               val scale: Scale? = null,
+               val aggregate: Aggregate? = null,
+               val value: Any? = null  // can be null for aggregate columns
+) {
 
-    fun toJson(): String {
+    fun toJson(): Pair<String, JsonObject> {
 
         // render axis
 
 
         //https://stackoverflow.com/questions/41861449/kotlin-dsl-for-creating-json-objects-without-creating-garbage
-        val encProps = jsonObject(
+        val encProps = if (value == null) jsonObject(
             "field" to label,
             "type" to dataType.toString()
+        ) else jsonObject(
+            "value" to valueAsString(value)
         )
 
         if (bin != null) encProps.addProperty("bin", bin)
         if (aggregate != null) encProps.addProperty("aggregate", aggregate.toString())
         if (axis != null) encProps.addProperty("axis", jsonObject("title" to axis.title))
+        if (scale != null) encProps.addProperty("scale", scale.toJson())
 
 
-        val encBuilder = jsonObject(encoding.toString() to encProps)
+        return encoding.toString() to encProps
+//        return encBuilder.toString().run { substring(1, this.length - 1) }
+    }
 
-
-        return encBuilder.toString().run { substring(1, this.length - 1) }
+    private fun valueAsString(value: Any) = when (value) {
+        is Color -> "#" + Integer.toHexString(value.getRGB()).substring(2);
+        else -> value.toString()
     }
 
     internal val dataType: Type
@@ -139,7 +150,7 @@ class Encoding<T>(val encoding: EncodingChannel,
 }
 
 
-inline fun <reified T> isOfType(items: List<Any?>): Boolean {
+inline fun <reified T> isOfType(items: Iterable<Any?>): Boolean {
     val it = items.iterator()
 
     while (it.hasNext()) {
@@ -149,15 +160,34 @@ inline fun <reified T> isOfType(items: List<Any?>): Boolean {
     return false
 }
 
+@VegaLiteDSL
+class VLDataFrameBuilder(val dataFrame: DataFrame) : VLBuilder<DataFrameRow>(dataFrame.rows) {
+
+    // this is dataframe only, mayebe we could have a separate builder for it
+    fun encoding(
+        channel: EncodingChannel,
+        column: String,
+        axis: Axis? = null,
+        aggregate: Aggregate? = null,
+        scale: Scale? = null,
+        bin: Boolean? = null
+    ) {
+        val data = lazy { dataFrame[column].values().asIterable() }
+        //        val data = lazy { objects.map { (it as DataFrameRow)[column] } }
+        Encoding(channel, data, column, axis, bin, scale, aggregate).apply {
+            encodings.add(this)
+        }
+    }
+}
 
 @VegaLiteDSL
-class VLBuilder<T>(val objects: Iterable<T>) {
+open class VLBuilder<T>(val objects: Iterable<T>) {
 
-    var mark: Mark = guess
+    var mark: Mark = Mark(guess)
 
     var title: String = ""
 
-    val encodings = emptyList<Encoding<T>>().toMutableList()
+    val encodings = emptyList<Encoding>().toMutableList()
 
     fun axis(block: AxisBuilder.() -> Unit) = axes.add(AxisBuilder().apply(block).build())
 
@@ -169,14 +199,17 @@ class VLBuilder<T>(val objects: Iterable<T>) {
     // vega.github.io/vega-lite/docs/channel.html
     fun encoding(
         channel: EncodingChannel,
-        label: String = channel.label, // this is not the original spec!
         axis: Axis? = null,
+        label: String = channel.label, // this is not the original spec!
         aggregate: Aggregate? = null,
+        scale: Scale? = null,
         bin: Boolean? = null,
+        value: Any? = null,
         extractor: PropExtractor<T>? = null
     ) {
-        val data = if (extractor != null) lazy { objects.map { extractor(it) } } else null
-        Encoding<T>(channel, data, label, axis, bin, aggregate).apply {
+
+        val data = if (value == null && extractor != null) lazy { objects.map { extractor(it, it) } } else null
+        Encoding(channel, data, label, axis, bin, scale, aggregate, value).apply {
             encodings.add(this)
         }
     }
@@ -214,7 +247,7 @@ class VLBuilder<T>(val objects: Iterable<T>) {
         val df = encodings.filter {
             it.data != null
         }.map { enc ->
-            ArrayUtils.handleListErasure(enc.label, enc.data!!.value)
+            ArrayUtils.handleListErasure(enc.label, enc.data!!.value.toList())
         }.asDataFrame().apply {
             //            writeCSV(dataFile, CSVFormat.TDF)
         }
@@ -236,19 +269,20 @@ class VLBuilder<T>(val objects: Iterable<T>) {
         // https://github.com/square/moshi
         //        println(moshi.adapter(DataFrame::class.java).toJson(df))
 
+        val jsonSpecNew = jsonObject(
+            "${'$'}schema" to "https://vega.github.io/schema/vega-lite/v2.json",
+            "data" to jsonObject(
+                "url" to dataURL,
+                "format" to jsonObject(
+                    "type" to "json"
+                )
+            ),
+            "mark" to mark.toJson(this),
+            "encoding" to jsonObject(encodings.map { it.toJson()})
+        )
 
-        val jsonSpec = "{" + listOf(
-            """"${'$'}schema": "https://vega.github.io/schema/vega-lite/v2.json"""",
-            //            """"data": {"url": "${dataFile.toURI().toURL()}", "format" : { "type":"tsv"}}""",
-            """"data": {"url": "${dataURL}", "format" : { "type":"json"}}""",
-            mark.toJson(this),
-            """
-                "encoding": {
-                    ${encodings.map { it.toJson() }.joinToString(",\n")}
-                }
-                """.trimIndent()
-        ).joinToString(",\n") + "}"
-        return jsonSpec
+//        return encBuilder.toString().run { substring(1, this.length - 1) }
+        return jsonSpecNew.toString()
     }
 }
 
@@ -260,10 +294,10 @@ class VLBuilder<T>(val objects: Iterable<T>) {
 //}
 
 
-//https://vega.github.io/vega-lite/docs/mark.html#mark-def
-fun <T> VLBuilder<T>.mark(type: Mark, style: Map<String, String> = type.defaultStyle()) {
-    mark = type
-}
+////https://vega.github.io/vega-lite/docs/mark.html#mark-def
+//fun <T> VLBuilder<T>.mark(type: MarkType, style: Map<String, String> = type.defaultStyle()) {
+//    mark = type
+//}
 
 
 // see https://vega.github.io/vega-lite/docs/axis.html#general
@@ -290,14 +324,63 @@ class AxisBuilder {
 
 
 
-typealias PropExtractor<T> = T.() -> Any?
+typealias PropExtractor<T> = T.(T) -> Any?
 
-class Axis(val title: String? = null) {
+data class Axis(val title: String? = null) {
 
+}
+
+internal val guess = Mark(guess)
+
+
+data class Mark(val type: MarkType, val filled: Boolean? = null) {
+
+    fun toJson(vlBuilder: VLBuilder<*>): JsonObject {
+        val data = listOf<Pair<String, Any>>(
+            "type" to type.resolve(vlBuilder).toString()
+        ).toMutableList()
+
+        // override fill default
+        if (filled != null) data.add("filled" to filled)
+
+        return jsonObject(data.asSequence())
+    }
+}
+
+/** See https://vega.github.io/vega-lite/docs/scale.html#type */
+enum class ScaleType {
+    // continuous scales
+    Linear,
+    Pow, Sqrt, Log, Time, UTC, Sequential,
+    // discrete scales
+    Band,
+    Point,
+    // discretize scales
+    Ordinal
+}
+
+/** See https://vega.github.io/vega-lite/docs/scale.html */
+data class Scale(val type: ScaleType? = null, val zero: Boolean? = null) {
+
+    // use built in serialization here if possible
+
+    fun toJson(): JsonObject {
+        val data = listOf<Pair<String, Any>>().toMutableList()
+
+
+        if (type != null) data.add("type" to type.toString().toLowerCase())
+        if (zero != null) data.add("zero" to zero)
+
+        return jsonObject(data.asSequence())
+    }
 }
 
 
 // helper methods
-fun <T : Any> plotOf(objects: List<T>, op: (VLBuilder<T>.() -> Unit)? = null): VLBuilder<T> {
+fun <T : Any> plotOf(objects: Iterable<T>, op: (VLBuilder<T>.() -> Unit)? = null): VLBuilder<T> {
     return VLBuilder(objects).apply { op?.invoke(this) }
+}
+
+fun plotOf(dataFrame: DataFrame, op: (VLDataFrameBuilder.() -> Unit)? = null): VLDataFrameBuilder {
+    return VLDataFrameBuilder(dataFrame).apply { op?.invoke(this) }
 }
