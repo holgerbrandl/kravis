@@ -6,7 +6,9 @@
       "type": "json"
     }
   },
-  "mark": "point",
+  "mark": {
+    "type": "point"
+  },
   "encoding": {
     "x": {
       "field": "x",

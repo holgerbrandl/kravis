@@ -6,7 +6,9 @@
       "type": "json"
     }
   },
-  "mark": "bar",
+  "mark": {
+    "type": "bar"
+  },
   "encoding": {
     "x": {
       "field": "x",
@@ -14,8 +16,6 @@
       "bin": true
     },
     "y": {
-      "field": "y",
-      "type": "quantitative",
       "aggregate": "count"
     }
   }

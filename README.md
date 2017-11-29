@@ -88,7 +88,10 @@ JVM vis
 
 Vega-(lite) based
 * [altair](https://github.com/altair-viz/altair) provides declarative statistical visualization library for Python
-* [vega-embed](https://github.com/vega/vega-embed) to publish Vega visualizations as embedded web components with interactive parameters.
+* [vega-embed](https://github.com/vega/vega-embed) allows to publish Vega visualizations as embedded web components with interactive parameters.
+* [hrbrmstr/vegalite](https://github.com/hrbrmstr/vegalite) provides R ggplot2 "bindings" for Vega-Lite
+
+
 
 
 

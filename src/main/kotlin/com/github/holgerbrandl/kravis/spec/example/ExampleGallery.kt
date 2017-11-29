@@ -1,11 +1,12 @@
 package com.github.holgerbrandl.kravis.spec.example
 
-import com.github.holgerbrandl.kravis.StaticHTMLRenderer
 import com.github.holgerbrandl.kravis.spec.*
 import com.github.holgerbrandl.kravis.spec.EncodingChannel.*
+import com.github.holgerbrandl.kravis.spec.MarkType.circle
 import krangl.DataFrame
 import krangl.DataFrameRow
 import krangl.fromCSV
+import krangl.fromJson
 import java.awt.Color
 
 /**
@@ -14,7 +15,7 @@ import java.awt.Color
 
 
 // see https://altair-viz.github.io/gallery/bubble_health_income.html
-fun gapminderScatter(): VLBuilder<DataFrameRow> {
+fun gapminderScatterVerbose(): VLBuilder<DataFrameRow> {
     val gapminder = DataFrame.fromCSV("https://vega.github.io/vega-lite/data/gapminder-health-income.csv")
 
     val plot = plotOf(gapminder.rows) {
@@ -33,37 +34,56 @@ fun gapminderScatter(): VLBuilder<DataFrameRow> {
 
 
     return plot
-
 }
 
-fun gapminderScatter2(): VLBuilder<DataFrameRow> {
+/** see https://altair-viz.github.io/gallery/bubble_health_income.html */
+fun gapminderScatter(): VLBuilder<DataFrameRow> {
     val gapminder = DataFrame.fromCSV("https://vega.github.io/vega-lite/data/gapminder-health-income.csv")
 
     val plot = plotOf(gapminder) {
-        mark = Mark(MarkType.circle, filled = true)
+        mark = Mark(circle, filled = true)
 
         encoding(x, "income", scale = Scale(ScaleType.Log))
-        encoding(size, "population")
+        encoding(size) { "population" }
 
         // we can also mix with extractor
+        //        encoding(size) { it["population"] }
 //        encoding(y, "health")
-        encoding(y, label= "health index", scale = Scale(zero = true)){
+
+        // or spec out encoding details
+        encoding(y, label = "health index", scale = Scale(zero = true)) {
             it["health"]
         }
 
-        encoding(color, value = Color.RED){}
+        encoding(color, value = Color.RED) {}
     }
 
     return plot
 
 }
 
+/** from https://vega.github.io/vega-lite/examples/circle_binned.html */
+fun binnedScatterplot(): VLBuilder<DataFrameRow> {
+    val movies = DataFrame.fromJson("https://raw.githubusercontent.com/vega/vega/master/test/data/movies.json")
+    //        .take(100)
+
+    val plot = plotOf(movies) {
+        mark = Mark(circle)
+
+        encoding(x, "IMDB_Rating", binParams = BinParams(10))
+        encoding(y, "Rotten_Tomatoes_Rating", bin = true)
+        encoding(size, aggregate = Aggregate.count)
+    }
+
+    return plot
+}
+
 
 fun main(args: Array<String>) {
-    gapminderScatter2().apply {
+    binnedScatterplot().apply {
 
         println(buildJson())
         render()
-        StaticHTMLRenderer(buildJson()).openInChrome()
+        //        StaticHTMLRenderer(buildJson()).openInChrome()
     }
 }

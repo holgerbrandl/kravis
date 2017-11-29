@@ -6,7 +6,10 @@ import com.github.salomonbrys.kotson.addProperty
 import com.github.salomonbrys.kotson.jsonObject
 import com.google.gson.JsonObject
 import com.squareup.moshi.Moshi
-import krangl.*
+import krangl.ArrayUtils
+import krangl.DataFrame
+import krangl.DataFrameRow
+import krangl.asDataFrame
 import java.awt.Color
 import java.util.*
 
@@ -102,6 +105,7 @@ class Encoding(val encoding: EncodingChannel,
                val label: String = encoding.label, // this is not the original spec!
                val axis: Axis? = null,
                val bin: Boolean? = null,
+               val binParams: BinParams? = null,
                val scale: Scale? = null,
                val aggregate: Aggregate? = null,
                val value: Any? = null  // can be null for aggregate columns
@@ -113,21 +117,27 @@ class Encoding(val encoding: EncodingChannel,
 
 
         //https://stackoverflow.com/questions/41861449/kotlin-dsl-for-creating-json-objects-without-creating-garbage
-        val encProps = if (value == null) jsonObject(
+        val encProps = if (data != null) jsonObject(
             "field" to label,
             "type" to dataType.toString()
-        ) else jsonObject(
-            "value" to valueAsString(value)
-        )
+        ) else if (value != null) {
+            jsonObject(
+                "value" to valueAsString(value)
+            )
+        } else {
+            jsonObject()
+        }
 
-        if (bin != null) encProps.addProperty("bin", bin)
+        if (binParams != null) encProps.add("bin", binParams.toJson())
+        else if (bin != null) encProps.addProperty("bin", bin)
+
         if (aggregate != null) encProps.addProperty("aggregate", aggregate.toString())
         if (axis != null) encProps.addProperty("axis", jsonObject("title" to axis.title))
         if (scale != null) encProps.addProperty("scale", scale.toJson())
 
 
         return encoding.toString() to encProps
-//        return encBuilder.toString().run { substring(1, this.length - 1) }
+        //        return encBuilder.toString().run { substring(1, this.length - 1) }
     }
 
     private fun valueAsString(value: Any) = when (value) {
@@ -170,14 +180,31 @@ class VLDataFrameBuilder(val dataFrame: DataFrame) : VLBuilder<DataFrameRow>(dat
         axis: Axis? = null,
         aggregate: Aggregate? = null,
         scale: Scale? = null,
-        bin: Boolean? = null
+        bin: Boolean? = null,
+        binParams: BinParams? = null
     ) {
         val data = lazy { dataFrame[column].values().asIterable() }
         //        val data = lazy { objects.map { (it as DataFrameRow)[column] } }
-        Encoding(channel, data, column, axis, bin, scale, aggregate).apply {
+        Encoding(channel, data, column, axis, bin, binParams, scale, aggregate).apply {
             encodings.add(this)
         }
     }
+
+    // creates overload ambiguity
+    //    fun encoding(
+    //        channel: EncodingChannel,
+    //        axis: Axis? = null,
+    //        aggregate: Aggregate? = null,
+    //        scale: Scale? = null,
+    //        bin: Boolean? = null,
+    //        columnExtract: () -> String
+    //    ) {
+    //        val data = lazy { dataFrame[columnExtract()].values().asIterable() }
+    //        //        val data = lazy { objects.map { (it as DataFrameRow)[column] } }
+    //        Encoding(channel, data, columnExtract(), axis, bin, scale, aggregate).apply {
+    //            encodings.add(this)
+    //        }
+    //    }
 }
 
 @VegaLiteDSL
@@ -204,12 +231,13 @@ open class VLBuilder<T>(val objects: Iterable<T>) {
         aggregate: Aggregate? = null,
         scale: Scale? = null,
         bin: Boolean? = null,
+        binParams: BinParams? = null,
         value: Any? = null,
         extractor: PropExtractor<T>? = null
     ) {
 
         val data = if (value == null && extractor != null) lazy { objects.map { extractor(it, it) } } else null
-        Encoding(channel, data, label, axis, bin, scale, aggregate, value).apply {
+        Encoding(channel, data, label, axis, bin, binParams, scale, aggregate, value).apply {
             encodings.add(this)
         }
     }
@@ -278,10 +306,10 @@ open class VLBuilder<T>(val objects: Iterable<T>) {
                 )
             ),
             "mark" to mark.toJson(this),
-            "encoding" to jsonObject(encodings.map { it.toJson()})
+            "encoding" to jsonObject(encodings.map { it.toJson() })
         )
 
-//        return encBuilder.toString().run { substring(1, this.length - 1) }
+        //        return encBuilder.toString().run { substring(1, this.length - 1) }
         return jsonSpecNew.toString()
     }
 }
@@ -342,6 +370,21 @@ data class Mark(val type: MarkType, val filled: Boolean? = null) {
 
         // override fill default
         if (filled != null) data.add("filled" to filled)
+
+        return jsonObject(data.asSequence())
+    }
+}
+
+/** See https://vega.github.io/vega-lite/docs/bin.html#bin-parameters */
+data class BinParams(val maxBins: Int? = null) {
+
+    fun toJson(): JsonObject {
+        val data = listOf<Pair<String, Any>>(
+            "maxBins" to maxBins!!
+        ).toMutableList()
+
+        // override fill default
+        //        if (filled != null) data.add("filled" to filled)
 
         return jsonObject(data.asSequence())
     }

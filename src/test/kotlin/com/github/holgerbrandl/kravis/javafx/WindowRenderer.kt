@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.experimental
+package com.github.holgerbrandl.kravis.javafx
 
 import com.github.holgerbrandl.kravis.StaticHTMLRenderer
 import javafx.application.Platform

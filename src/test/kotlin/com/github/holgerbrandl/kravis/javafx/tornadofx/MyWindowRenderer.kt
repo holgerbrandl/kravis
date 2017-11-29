@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.experimental
+package com.github.holgerbrandl.kravis.javafx.tornadofx
 
 import javafx.application.Application
 import javafx.application.Platform

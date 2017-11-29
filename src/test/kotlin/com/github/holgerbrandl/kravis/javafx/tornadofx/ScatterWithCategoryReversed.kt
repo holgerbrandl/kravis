@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.tornadofx
+package com.github.holgerbrandl.kravis.javafx.tornadofx
 
 import javafx.application.Application
 import javafx.geometry.Side

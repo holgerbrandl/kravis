@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis
+package com.github.holgerbrandl.kravis.scratch
 
 import com.github.holgerbrandl.kravis.spec.xplot.plot
 import com.github.holgerbrandl.kravis.spec.xplot.xplotOf

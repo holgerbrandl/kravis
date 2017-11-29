@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.experimental
+package com.github.holgerbrandl.kravis.scratch
 
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi

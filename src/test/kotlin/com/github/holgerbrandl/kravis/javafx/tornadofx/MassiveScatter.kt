@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.tornadofx
+package com.github.holgerbrandl.kravis.javafx.tornadofx
 
 import com.github.holgerbrandl.kravis.MathUtil.Companion.multNormDist
 import javafx.application.Application

@@ -1,8 +1,11 @@
 package com.github.holgerbrandl.kravis.vlspec
 
 import com.github.holgerbrandl.kravis.StaticHTMLRenderer
-import com.github.holgerbrandl.kravis.spec.*
-import com.github.holgerbrandl.kravis.spec.MarkType.*
+import com.github.holgerbrandl.kravis.spec.Aggregate
+import com.github.holgerbrandl.kravis.spec.Axis
+import com.github.holgerbrandl.kravis.spec.EncodingChannel
+import com.github.holgerbrandl.kravis.spec.plotOf
+import krangl.util.sleepPatterns
 
 /**
  * @author Holger Brandl

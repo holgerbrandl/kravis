@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.performance
+package com.github.holgerbrandl.kravis.vlspec
 
 import com.github.holgerbrandl.kravis.spec.EncodingChannel.*
 import com.github.holgerbrandl.kravis.spec.plotOf
