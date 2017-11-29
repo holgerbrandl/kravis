@@ -223,7 +223,9 @@ open class VLBuilder<T>(val objects: Iterable<T>) {
 
 
     //https:
-    // vega.github.io/vega-lite/docs/channel.html
+    // veg
+    // a.github.io/vega-lite/docs/channel.html
+    //    @JvmOverloads
     fun encoding(
         channel: EncodingChannel,
         axis: Axis? = null,

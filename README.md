@@ -34,26 +34,35 @@ dependencies {
 }
 ```
 
-## Example
+## Idea
 
-1. Using [krangl](https://github.com/holgerbrandl/krangl) data-frame as input
+
+`kravis` implements 2 ways to do datavis within the JVM.
+
+
+### Vega-Lite Spec Builder
+
+First, it implements a DSL wrapper around [vega-lite ](https://vega.github.io/vega-lite/):
 
 ```kotlin
-import com.github.holgerbrandl.kravis.*
+val movies = DataFrame.fromJson("https://raw.githubusercontent.com/vega/vega/master/test/data/movies.json")
 
-irisData
-    .plot()
-    .x("width + 2") { it["Sepal.Width"] + 2 } 
-    .y { "Sepal.Length" }
-    .color { "Species" }
-    .title("Iris Flowers")
-    .addPoints()
-    .show()
+plotOf(movies) {
+    mark = Mark(circle)
+
+    encoding(x, "IMDB_Rating", binParams = BinParams(10))
+    encoding(y, "Rotten_Tomatoes_Rating", bin = true)
+    encoding(size, aggregate = Aggregate.count)
+}
+
 ```
 
-![](.README_images/59d702d4.png)
+![](.README_images/4f4c9880.png)
 
-2. Using list of objects as input
+
+## Flexible but more user-friendly Builder API
+
+Second, `kravis` implement a visualization API that resembled [`ggplot2`](http://ggplot2.org/). This API is more constrained compared vega-DSL the and thus easier to use. However, it lacks some of the flexibility provided by the vega-DSL wrapper. Example:
 
 ```kotlin
 data class User(val name: String, val birthDay: LocalDate, val sex: String, val height: Double) {}
@@ -71,12 +80,54 @@ plotOf(users)
     .title("user stats")
     .addPoints()
     .show()
+
 ```
 ![](.README_images/2761d77d.png)
 
+
+
+## Output Modes
+
+`kravis` autodetects the environment. It
+
+1. will use an javaFX powered graphics device for rendering when running in interactive mode.
+2. will render directly in a multi-page pdf when running in headless mode
+3. will render directly into jupyter notebooks.
+
+## Supported Data Input Formats
+
+1. It can handle any `Iterable<T>` as input and allow to build plot specs using a type-save API
+
+2. It can handle any kind of tabular data via [krangl](https://github.com/holgerbrandl/krangl) data-frames
+
+```kotlin
+import com.github.holgerbrandl.kravis.*
+
+irisData
+    .plot()
+    .x("width + 2") { it["Sepal.Width"] + 2 } 
+    .y { "Sepal.Length" }
+    .color { "Species" }
+    .title("Iris Flowers")
+    .addPoints()
+    .show()
+```
+
+![](.README_images/59d702d4.png)
+
+
+
 ## References
 
-JVM vis
+Vega-lite based
+* [Vegas](https://github.com/vegas-viz/Vegas) aims to be the missing MatPlotLib for Scala + Spark
+* [altair](https://github.com/altair-viz/altair) provides declarative statistical visualization library for Python
+* [vega-embed](https://github.com/vega/vega-embed) allows to publish Vega visualizations as embedded web components with interactive parameters.
+* [hrbrmstr/vegalite](https://github.com/hrbrmstr/vegalite) provides R ggplot2 "bindings" for Vega-Lite
+
+
+
+Other JVM visualization libraries
 * [XChart](https://github.com/timmolter/XChart) is a light-weight Java library for plotting data
 * [data2viz](https://github.com/data2viz/data2viz) is a multi platform data visualization library with comprehensive DSL
 * [Kubed](https://github.com/hudsonb/kubed/) is a Kotlin library for manipulating the JavaFX scenegraph based on data.
@@ -86,12 +137,10 @@ JVM vis
 * [grafana](https://grafana.com/) is an open platform for beautiful analytics and monitoring
 
 
-Vega-(lite) based
-* [altair](https://github.com/altair-viz/altair) provides declarative statistical visualization library for Python
-* [vega-embed](https://github.com/vega/vega-embed) allows to publish Vega visualizations as embedded web components with interactive parameters.
-* [hrbrmstr/vegalite](https://github.com/hrbrmstr/vegalite) provides R ggplot2 "bindings" for Vega-Lite
 
+## Acknowledgements
 
+Thanks to vega-lite team for making this project possile.
 
-
+Thanks to the ggplot2 team for providing the best data vis API to date.
 

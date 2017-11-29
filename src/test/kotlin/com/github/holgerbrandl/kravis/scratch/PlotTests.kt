@@ -6,8 +6,9 @@ import krangl.sleepData
 import org.junit.Test
 import java.time.LocalDate
 
+data class User(val name: String, val birthDay: LocalDate, val sex: String, val height: Double) {}
+
 fun main(args: Array<String>) {
-    data class User(val name: String, val birthDay: LocalDate, val sex: String, val height: Double) {}
 
     val users = listOf(
         User("Max", LocalDate.parse("2007-12-03"), "M", 1.89),
