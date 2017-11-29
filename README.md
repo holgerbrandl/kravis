@@ -60,9 +60,9 @@ plotOf(movies) {
 ![](.README_images/4f4c9880.png)
 
 
-## Flexible but more user-friendly Builder API
+## Simplified Builder API
 
-Second, `kravis` implement a visualization API that resembled [`ggplot2`](http://ggplot2.org/). This API is more constrained compared vega-DSL the and thus easier to use. However, it lacks some of the flexibility provided by the vega-DSL wrapper. Example:
+Second, `kravis` implements a visualization API that resembles [`ggplot2`](http://ggplot2.org/). This API is more constrained compared vega-DSL the and thus easier to use. However, it lacks some of the flexibility provided by the vega-DSL wrapper. Example:
 
 ```kotlin
 data class User(val name: String, val birthDay: LocalDate, val sex: String, val height: Double) {}
@@ -140,7 +140,7 @@ Other JVM visualization libraries
 
 ## Acknowledgements
 
-Thanks to vega-lite team for making this project possile.
+Thanks to vega-lite team for making this project possible.
 
 Thanks to the ggplot2 team for providing the best data vis API to date.
 
