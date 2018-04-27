@@ -1,4 +1,4 @@
-group 'com.github.holgerbrandl.kravis'
+group 'com.github.holgerbrandl'
 version '0.1-SNAPSHOT'
 
 apply plugin: 'java'
@@ -7,7 +7,7 @@ apply plugin: 'maven'
 
 buildscript {
 //    ext.kotlin_version = '1.1.51'
-    ext.kotlin_version = '1.2.0'
+    ext.kotlin_version = '1.2.21'
 
     repositories {
         maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
@@ -31,7 +31,7 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    compile "de.mpicbg.scicomp:krangl:0.7-SNAPSHOT"
+    compile "de.mpicbg.scicomp:krangl:0.8-SNAPSHOT"
 
     // todo remove xchart
     compile 'org.knowm.xchart:xchart:3.5.0'

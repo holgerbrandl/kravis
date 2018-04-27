@@ -7,7 +7,7 @@
 - [Api design](#api-design)
 - [Geoms](#geoms)
     - [boxplot](#boxplot)
-- [geom_raster](#geom-raster)
+- [geom_raster](#geom_raster)
     - [Scatter](#scatter)
     - [line plot with trends](#line-plot-with-trends)
 - [JavaFX API](#javafx-api)
@@ -29,6 +29,7 @@
 
 ## M1
 
+check out https://github.com/hudsonb/kubed again
 
 geom
 * barchart

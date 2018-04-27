@@ -96,7 +96,7 @@ plotOf(users)
 
 ## Supported Data Input Formats
 
-1. It can handle any `Iterable<T>` as input and allow to build plot specs using a type-save API
+1. It can handle any `Iterable<T>` as input and allows to create plots using a type-save builder DSL
 
 2. It can handle any kind of tabular data via [krangl](https://github.com/holgerbrandl/krangl) data-frames
 
@@ -135,6 +135,13 @@ Other JVM visualization libraries
 * [Jzy3d](http://www.jzy3d.org/) is an open source java library that allows to easily draw 3d scientific data: surfaces, scatter plots, bar charts
 * [plotly-scala](https://github.com/alexarchambault/plotly-scala) which provides scala bindings for plotly.js and works within jupyter
 * [grafana](https://grafana.com/) is an open platform for beautiful analytics and monitoring
+* [breeze-viz](https://github.com/scalanlp/breeze/tree/master/viz) which is a
+Visualization library backed by Breeze and JFreeChart
+
+
+Other
+* https://github.com/bloomberg/bqplot is a plotting library for IPython/Jupyter Notebooks
+
 
 
 
