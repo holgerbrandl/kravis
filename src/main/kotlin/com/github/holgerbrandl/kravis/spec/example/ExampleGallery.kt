@@ -2,21 +2,48 @@ package com.github.holgerbrandl.kravis.spec.example
 
 import com.github.holgerbrandl.kravis.spec.*
 import com.github.holgerbrandl.kravis.spec.EncodingChannel.*
-import com.github.holgerbrandl.kravis.spec.MarkType.circle
-import krangl.DataFrame
-import krangl.DataFrameRow
-import krangl.fromCSV
-import krangl.fromJson
+import com.github.holgerbrandl.kravis.spec.MarkType.*
+import krangl.*
 import java.awt.Color
+import java.net.URL
 
 /**
  * @author Holger Brandl
  */
 
+/** https://vega.github.io/vega-lite/examples/bar.html */
+fun barChart(): VLBuilder<DataFrameRow> {
+    val df = DataFrame.fromJsonString("""
+    [
+      {"a": "A","b": 28}, {"a": "B","b": 55}, {"a": "C","b": 43},
+      {"a": "D","b": 91}, {"a": "E","b": 81}, {"a": "F","b": 53},
+      {"a": "G","b": 19}, {"a": "H","b": 87}, {"a": "I","b": 52}
+    ]
+    """.trimIndent())
+
+    return plotOf(df) {
+        //        mark = Mark(bar)
+        mark(bar)
+
+        encoding(x, "a")
+        encoding(y, "b")
+    }
+}
+
+
+fun colorShapeScatterplot(): VLBuilder<SleepPattern> {
+    return plotOf(sleepPatterns) {
+        mark = Mark(point, filled = true)
+        encoding(x) { sleep_total }
+        encoding(y) { sleep_rem }
+        encoding(color) { it.order }
+        encoding(shape) { vore }
+    }
+}
 
 // see https://altair-viz.github.io/gallery/bubble_health_income.html
 fun gapminderScatterVerbose(): VLBuilder<DataFrameRow> {
-    val gapminder = DataFrame.fromCSV("https://vega.github.io/vega-lite/data/gapminder-health-income.csv")
+    val gapminder = DataFrame.readCSV("https://vega.github.io/vega-lite/data/gapminder-health-income.csv")
 
     val plot = plotOf(gapminder.rows) {
         encoding(x, scale = Scale(ScaleType.Log)) {
@@ -38,7 +65,7 @@ fun gapminderScatterVerbose(): VLBuilder<DataFrameRow> {
 
 /** see https://altair-viz.github.io/gallery/bubble_health_income.html */
 fun gapminderScatter(): VLBuilder<DataFrameRow> {
-    val gapminder = DataFrame.fromCSV("https://vega.github.io/vega-lite/data/gapminder-health-income.csv")
+    val gapminder = DataFrame.readCSV("https://vega.github.io/vega-lite/data/gapminder-health-income.csv")
 
     val plot = plotOf(gapminder) {
         mark = Mark(circle, filled = true)
@@ -48,7 +75,7 @@ fun gapminderScatter(): VLBuilder<DataFrameRow> {
 
         // we can also mix with extractor
         //        encoding(size) { it["population"] }
-//        encoding(y, "health")
+        //        encoding(y, "health")
 
         // or spec out encoding details
         encoding(y, label = "health index", scale = Scale(zero = true)) {
@@ -64,7 +91,7 @@ fun gapminderScatter(): VLBuilder<DataFrameRow> {
 
 /** from https://vega.github.io/vega-lite/examples/circle_binned.html */
 fun binnedScatterplot(): VLBuilder<DataFrameRow> {
-    val movies = DataFrame.fromJson("https://raw.githubusercontent.com/vega/vega/master/test/data/movies.json")
+    val movies = DataFrame.fromJson(URL("https://raw.githubusercontent.com/vega/vega/master/test/data/movies.json"))
     //        .take(100)
 
     val plot = plotOf(movies) {
@@ -80,7 +107,7 @@ fun binnedScatterplot(): VLBuilder<DataFrameRow> {
 
 
 fun main(args: Array<String>) {
-    binnedScatterplot().apply {
+    colorShapeScatterplot().apply {
 
         println(buildJson())
         render()

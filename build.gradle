@@ -27,11 +27,14 @@ repositories {
     maven { url 'http://clojars.org/repo/' }
 }
 
+test {
+    useJUnitPlatform()
+}
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    compile "de.mpicbg.scicomp:krangl:0.8-SNAPSHOT"
+    compile "de.mpicbg.scicomp:krangl:0.10-SNAPSHOT"
 
     // todo remove xchart
     compile 'org.knowm.xchart:xchart:3.5.0'
@@ -49,6 +52,6 @@ dependencies {
 
 //    compile 'cljsjs:vega-lite:2.0.0-0'
 
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    testCompile "io.kotlintest:kotlintest:1.1.6"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile "io.kotlintest:kotlintest-runner-junit5:3.1.0"
 }

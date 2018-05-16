@@ -123,7 +123,7 @@ class PlotBuilder(val df: DataFrame) {
 
     fun show() {
 
-        var plotDataDf = aesthetics.map { it.value.data }.asDataFrame()
+        var plotDataDf = aesthetics.map { it.value.data }.let { dataFrameOf(*it.toTypedArray()) }
 
         if (layers.any { it is PointLayer }) {
             val chart = XYChartBuilder()

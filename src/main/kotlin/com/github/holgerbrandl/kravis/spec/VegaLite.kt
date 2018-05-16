@@ -9,7 +9,7 @@ import com.squareup.moshi.Moshi
 import krangl.ArrayUtils
 import krangl.DataFrame
 import krangl.DataFrameRow
-import krangl.asDataFrame
+import krangl.dataFrameOf
 import java.awt.Color
 import java.util.*
 
@@ -20,7 +20,7 @@ import java.util.*
 // see https://medium.com/@dumazy/writing-dsls-in-kotlin-part-2-cd9dcd0c4715
 
 
-enum class MarkType { bar, circle, square, tick, line, area, point, rule, text, guess;
+enum class MarkType { bar, circle, square, tick, line, area, point, rule, text, rect, guess;
 
     fun defaultStyle(): Map<String, String> {
         return when (this) {
@@ -33,6 +33,7 @@ enum class MarkType { bar, circle, square, tick, line, area, point, rule, text, 
             point -> TODO()
             rule -> TODO()
             text -> TODO()
+            rect -> TODO()
             else -> TODO()
         }
     }
@@ -102,6 +103,7 @@ enum class Aggregate { mean, sum, median, min, max, count; }
 
 class Encoding(val encoding: EncodingChannel,
                val data: Lazy<Iterable<Any?>>?,  // can be null for aggregate columns
+               val type: Type? = null,  // can be null for aggregate columns
                val label: String = encoding.label, // this is not the original spec!
                val axis: Axis? = null,
                val bin: Boolean? = null,
@@ -145,8 +147,11 @@ class Encoding(val encoding: EncodingChannel,
         else -> value.toString()
     }
 
-    internal val dataType: Type
+
+    val dataType: Type?
         get() {
+            if (type != null) return type
+
             // if no data is there, it must be an aggregate and thus quantitative
             if (data == null) return Type.quantitative
 
@@ -177,6 +182,7 @@ class VLDataFrameBuilder(val dataFrame: DataFrame) : VLBuilder<DataFrameRow>(dat
     fun encoding(
         channel: EncodingChannel,
         column: String,
+        type: Type? = null,
         axis: Axis? = null,
         aggregate: Aggregate? = null,
         scale: Scale? = null,
@@ -185,7 +191,7 @@ class VLDataFrameBuilder(val dataFrame: DataFrame) : VLBuilder<DataFrameRow>(dat
     ) {
         val data = lazy { dataFrame[column].values().asIterable() }
         //        val data = lazy { objects.map { (it as DataFrameRow)[column] } }
-        Encoding(channel, data, column, axis, bin, binParams, scale, aggregate).apply {
+        Encoding(channel, data, type, column, axis, bin, binParams, scale, aggregate).apply {
             encodings.add(this)
         }
     }
@@ -222,6 +228,10 @@ open class VLBuilder<T>(val objects: Iterable<T>) {
     private val foo = listOf(1, 2, 3)
 
 
+    fun mark(mark: MarkType) {
+        this.mark = Mark(mark)
+    }
+
     //https:
     // veg
     // a.github.io/vega-lite/docs/channel.html
@@ -230,6 +240,7 @@ open class VLBuilder<T>(val objects: Iterable<T>) {
         channel: EncodingChannel,
         axis: Axis? = null,
         label: String = channel.label, // this is not the original spec!
+        type: Type? = null,
         aggregate: Aggregate? = null,
         scale: Scale? = null,
         bin: Boolean? = null,
@@ -239,7 +250,7 @@ open class VLBuilder<T>(val objects: Iterable<T>) {
     ) {
 
         val data = if (value == null && extractor != null) lazy { objects.map { extractor(it, it) } } else null
-        Encoding(channel, data, label, axis, bin, binParams, scale, aggregate, value).apply {
+        Encoding(channel, data, type, label, axis, bin, binParams, scale, aggregate, value).apply {
             encodings.add(this)
         }
     }
@@ -262,7 +273,7 @@ open class VLBuilder<T>(val objects: Iterable<T>) {
         //        show(StaticHTMLRenderer(jsonSpec).pageHTML())
     }
 
-    internal fun buildJson(): String {
+    fun buildJson(): String {
         //        show("hallo simonm")
         // here comes the hard part:
         // we need to write the json spec of the plot
@@ -278,7 +289,7 @@ open class VLBuilder<T>(val objects: Iterable<T>) {
             it.data != null
         }.map { enc ->
             ArrayUtils.handleListErasure(enc.label, enc.data!!.value.toList())
-        }.asDataFrame().apply {
+        }.let { dataFrameOf(*it.toTypedArray()) }.apply {
             //            writeCSV(dataFile, CSVFormat.TDF)
         }
 
@@ -401,7 +412,8 @@ enum class ScaleType {
     Band,
     Point,
     // discretize scales
-    Ordinal
+    Ordinal,
+    Nominal
 }
 
 /** See https://vega.github.io/vega-lite/docs/scale.html */

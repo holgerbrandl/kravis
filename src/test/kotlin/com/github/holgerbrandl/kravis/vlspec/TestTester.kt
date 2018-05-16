@@ -5,7 +5,7 @@ import com.github.holgerbrandl.kravis.spec.Aggregate
 import com.github.holgerbrandl.kravis.spec.Axis
 import com.github.holgerbrandl.kravis.spec.EncodingChannel
 import com.github.holgerbrandl.kravis.spec.plotOf
-import krangl.util.sleepPatterns
+import krangl.sleepPatterns
 
 /**
  * @author Holger Brandl

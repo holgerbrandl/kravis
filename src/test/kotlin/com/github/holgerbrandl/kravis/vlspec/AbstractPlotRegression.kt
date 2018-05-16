@@ -3,7 +3,6 @@ package com.github.holgerbrandl.kravis.vlspec
 import com.github.holgerbrandl.kravis.spec.VLBuilder
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
-import krangl.DataFrameRow
 import org.junit.Assert.assertEquals
 import org.junit.Assert.fail
 import org.junit.Rule
@@ -22,7 +21,7 @@ abstract class AbstractPlotRegression {
 
     abstract val testDataDir: File
 
-    fun assertExpected(obtained: VLBuilder<DataFrameRow>) {
+    fun assertExpected(obtained: VLBuilder<*>) {
         assertExpected(obtained.buildJson())
     }
 
