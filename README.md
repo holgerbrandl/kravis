@@ -20,7 +20,7 @@ The grammar implemented by `kravis` is inspired from [`ggplot2`](http://ggplot2.
 Add the following artifact to your gradle.build
 
 ```
-compile "com.github.holgerbrandl:kravis:0.1"
+compile "com.github.holgerbrandl:kravis:0.2"
 ```
 
 You can also use [JitPack with Maven or Gradle](https://jitpack.io/#holgerbrandl/kravis/-SNAPSHOT) to build the latest snapshot as a dependency in your project.
