@@ -128,7 +128,7 @@ Vega-lite based
 
 
 Other JVM visualization libraries
-* [Smile](https://haifengl.github.io/smile/visualization.html) provides data visualization tools such as plots and maps for researchers to understand information more easily and quickly.
+* [SmilePlot](https://github.com/haifengl/smile#smileplot) provides data visualization tools such as plots and maps for researchers to understand information more easily and quickly.
 * [XChart](https://github.com/timmolter/XChart) is a light-weight Java library for plotting data
 * [data2viz](https://github.com/data2viz/data2viz) is a multi platform data visualization library with comprehensive DSL
 * [Kubed](https://github.com/hudsonb/kubed/) is a Kotlin library for manipulating the JavaFX scenegraph based on data.

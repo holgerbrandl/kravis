@@ -85,11 +85,6 @@ publishing {
         maven(MavenPublication) {
             from components.java
             artifact sourcesJar { classifier "sources" }
-
-            // just needed because artifact name differs from projet name
-            version = project.version
-            artifactId = 'krangl'
-            groupId = project.group
         }
     }
 }
