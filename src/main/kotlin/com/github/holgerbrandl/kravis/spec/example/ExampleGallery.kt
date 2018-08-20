@@ -91,7 +91,7 @@ fun gapminderScatter(): VLBuilder<DataFrameRow> {
 
 /** from https://vega.github.io/vega-lite/examples/circle_binned.html */
 fun binnedScatterplot(): VLBuilder<DataFrameRow> {
-    val movies = DataFrame.fromJson(URL("https://raw.githubusercontent.com/vega/vega/master/test/data/movies.json"))
+    val movies = DataFrame.fromJson(URL("https://raw.githubusercontent.com/vega/vega/master/docs/data/movies.json"))
     //        .take(100)
 
     val plot = plotOf(movies) {
