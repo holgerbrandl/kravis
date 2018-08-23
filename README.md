@@ -76,9 +76,9 @@ plotOf(movies) {
 ![](.README_images/4f4c9880.png)
 
 
-## Simplified Builder API
+## Simplified Builder API for XCharts
 
-Second, `kravis` implements a visualization API that resembles [`ggplot2`](http://ggplot2.org/). This API is more constrained compared vega-DSL the and thus easier to use. However, it lacks some of the flexibility provided by the vega-DSL wrapper. Example:
+Finally, `kravis` implements a ore kotlinesque wrapper around [XChart](https://github.com/knowm/XChart). This API is more constrained compared vega-DSL the and thus easier to use. However, it lacks some of the flexibility provided by the vega-DSL wrapper. Example:
 
 ```kotlin
 data class User(val name: String, val birthDay: LocalDate, val sex: String, val height: Double) {}
