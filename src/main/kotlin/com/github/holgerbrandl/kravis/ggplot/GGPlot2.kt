@@ -71,6 +71,21 @@ class GGPlot(df: DataFrame? = null, aes: AES? = null) {
     }
 
 
+    // orig signature coord_flip(xlim = NULL, ylim = NULL, expand = TRUE, clip = "on")
+    /**
+     * Flip cartesian coordinates so that horizontal becomes vertical, and vertical, horizontal. This is primarily useful for converting geoms and statistics which display y conditional on x, to x conditional on y.
+     *
+     * ### Example
+     * ```
+     * ggplot(diamonds, aes(cut, price)) +
+     *   geom_boxplot() +
+     *   coord_flip()
+     * ```
+     */
+    fun coordFlip() = apply {
+        plotCmd.append("+ coord_flip()")
+    }
+
     fun title(title: String) = apply {
         plotCmd.append(""" + ggtitle("${title.replace("\"", "'")}")""")
     }
@@ -155,7 +170,7 @@ class AES(vararg val aes: Pair<String, Aesthetic>) {
 
     override fun toString(): String {
         //todo check variable persence  in df her
-        val stringified = aes.map { "${it.second}=${it.first}" }.joinToString(",")
+        val stringified = aes.map { "${it.second}=`${it.first}`" }.joinToString(",")
         return """aes($stringified)"""
     }
 }

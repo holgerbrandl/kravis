@@ -47,7 +47,7 @@ dependencies {
     compile group: 'org.json', name: 'json', version: '20171018'
 
 
-    compile group: 'no.tornado', name: 'tornadofx', version: '1.7.12'
+    compile group: 'no.tornado', name: 'tornadofx', version: '1.7.17'
     compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
 
 //    compile 'cljsjs:vega-lite:2.0.0-0'
