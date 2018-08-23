@@ -95,7 +95,8 @@ class GGPlot(df: DataFrame? = null, aes: AES? = null) {
         return ""
     }
 
-    private fun render(format: String): File {
+    // todo expose supported formats as enum
+    internal fun render(format: String = ".png"): File {
         val final = plotCmd.toString()
 
         val imageFile = createTempFile(suffix = format)
@@ -116,6 +117,7 @@ class GGPlot(df: DataFrame? = null, aes: AES? = null) {
 
                 $dataIngest
 
+set.seed(2009)
                 gg = $final
                 ggsave(filename="${imageFile.absolutePath}", plot=gg)
             """.trimIndent()
@@ -138,13 +140,12 @@ internal fun arg2string(vararg namedArgs: Pair<String, Any?>) =
 
 interface Position
 
-class PositionJitter(val height: Double? = null, val width: Double? = null) : Position {
+class PositionJitter(val height: Double? = null, val width: Double? = null, val seed: Int? = null) : Position {
     override fun toString(): String {
-        var args = ""
-
-        if (height != null) args += "height=$height"
-        if (height != null && width != null) args += ", "
-        if (width != null) args += "width=$width"
+        val args = mapOf("height" to height, "width" to width, "seed" to seed)
+            .filter { it.value != null }
+            .map { (key, value) -> "$key=$value" }
+            .joinToString(", ")
 
         return "position_jitter($args)"
     }

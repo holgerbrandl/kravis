@@ -1,13 +1,16 @@
 package com.github.holgerbrandl.kravis.ggplot
 
-import com.github.holgerbrandl.kravis.spec.VLBuilder
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonParser
 import org.junit.Assert.assertEquals
 import org.junit.Assert.fail
 import org.junit.Rule
 import org.junit.rules.TestName
 import java.io.File
+import java.io.StringReader
+import java.io.StringWriter
+import javax.xml.transform.OutputKeys
+import javax.xml.transform.TransformerFactory
+import javax.xml.transform.stream.StreamResult
+import javax.xml.transform.stream.StreamSource
 
 /**
  * @author Holger Brandl
@@ -21,15 +24,13 @@ abstract class AbstractSvgPlotRegression {
 
     abstract val testDataDir: File
 
-    fun assertExpected(obtained: VLBuilder<*>) {
-        assertExpected(obtained.buildJson())
-    }
+    protected fun assertExpected(plot: GGPlot) {
+        val render = plot.render(".svg")
 
-    protected fun assertExpected(obtained: String) {
-        @Suppress("NAME_SHADOWING")
-        val obtained = makePretty(obtained)
+        val svgDoc = render.readLines().joinToString("\n")
+        val obtained = prettyFormat(svgDoc, 4).trim()
 
-        val file = File(testDataDir, name.methodName.replace(" ", "_") + ".json")
+        val file = File(testDataDir, name.methodName.replace(" ", "_") + ".svg")
         if (!file.exists()) {
             file.writeText(obtained)
             fail("could not find expected result.")
@@ -37,7 +38,7 @@ abstract class AbstractSvgPlotRegression {
 
         // maybe https://stackoverflow.com/questions/8596161/json-string-tidy-formatter-for-java
 
-        val expected = file.readLines().joinToString("\n")
+        val expected = file.readLines().joinToString("\n").trim()
 
         assertEquals(expected, obtained)
 
@@ -45,12 +46,21 @@ abstract class AbstractSvgPlotRegression {
         //        saveImage(File(testDataDir, name.methodName.replace(" ", "_") + ".png"))
     }
 
-    fun makePretty(someJson: String): String {
-        val parser = JsonParser()
-        val gson = GsonBuilder().setPrettyPrinting().create()
+    private fun prettyFormat(input: String, indent: Int): String {
+        try {
+            val xmlInput = StreamSource(StringReader(input))
+            val stringWriter = StringWriter()
+            val xmlOutput = StreamResult(stringWriter)
+            val transformerFactory = TransformerFactory.newInstance()
+            transformerFactory.setAttribute("indent-number", indent)
+            val transformer = transformerFactory.newTransformer()
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes")
+            transformer.transform(xmlInput, xmlOutput)
+            return xmlOutput.writer.toString()
+        } catch (e: Exception) {
+            throw RuntimeException(e) // simple exception handling, please review it
+        }
 
-        val el = parser.parse(someJson)
-        return gson.toJson(el) // done
     }
 
 }
