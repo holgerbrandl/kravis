@@ -37,7 +37,23 @@ dependencies {
 ## Idea
 
 
-`kravis` implements 2 ways to do datavis within the JVM.
+`kravis` implements several ways to do datavis within the JVM.
+
+### GGplot2 Wrapper
+
+A kotlin/jvm wrapper similar to [gg4clj](https://github.com/JonyEpsilon/gg4clj). The API is bluntly copied over to allow even reusing their excellent [cheatsheet.](https://www.rstudio.com/resources/cheatsheets/#ggplot2)
+
+Example
+
+```kotlin
+irisData.ggplot("Species" to x, "Petal.Length" to y)
+    .geomBoxplot()
+    .geomPoint(position = PositionJitter(width = 0.1), alpha = 0.3)
+    .title("Petal Length by Species")
+```
+
+![](.README_images/b45a0ed9.png)
+
 
 
 ### Vega-Lite Spec Builder
