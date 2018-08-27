@@ -35,6 +35,7 @@ public class PlotResultPanel {
             }
         });
 
+        // todo implement last/next https://stackoverflow.com/questions/5654926/implementing-back-forward-buttons-in-swing
         imagePanel = new ImagePanel();
         contentPanel.add(imagePanel);
     }

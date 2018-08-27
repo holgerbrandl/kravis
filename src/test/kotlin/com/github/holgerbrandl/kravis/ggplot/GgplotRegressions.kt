@@ -1,10 +1,7 @@
 package com.github.holgerbrandl.kravis.ggplot
 
-import com.github.holgerbrandl.kravis.ggplot.Aesthetic.x
-import com.github.holgerbrandl.kravis.ggplot.Aesthetic.y
-import krangl.DataFrame
-import krangl.irisData
-import krangl.readTSV
+import com.github.holgerbrandl.kravis.ggplot.Aesthetic.*
+import krangl.*
 import org.junit.Test
 import java.io.File
 
@@ -49,12 +46,28 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
                 geom_boxplot(notch = TRUE, fill = "orchid3", colour = "#3366FF")
         """.trimIndent()
 
-        GgplotRegressions().mpgData.ggplot(aes("class", "hwy"))
+        GgplotRegressions().mpgData.ggplot(Aes("class", "hwy"))
             .geomBoxplot(notch = true, fill = RColor.orchid, color = RColor.create("#3366FF"))
             .also { println(it.toString()) }
         //            .apply { show() }
     }
 
+
+    @Test
+    fun `test different data overlays`() {
+        // we would need a summerizeEach/All here
+        val irisSummary = irisData.groupBy("Species").summarize(
+            "Petal.Length.Mean" to { it["Petal.Length"].mean() },
+            "Sepal.Length.Mean" to { it["Sepal.Length"].mean() }
+        )
+
+        irisData.ggplot("Species" to x, "Petal.Length" to y, "Species" to color)
+            .geomPoint(alpha = 0.3)
+            .geomPoint(data = irisSummary, shape = 4, size = 4)
+            .show()
+
+        Thread.sleep(10000)
+    }
 
     //
     // Later
@@ -89,7 +102,7 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
 }
 
 fun main(args: Array<String>) {
-    GgplotRegressions().mpgData.ggplot(aes("class", "hwy"))
+    GgplotRegressions().mpgData.ggplot(Aes("class", "hwy"))
         .geomBoxplot(notch = true, fill = RColor.orchid, color = RColor.create("#3366FF"))
         .show()
 }

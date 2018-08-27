@@ -5,8 +5,10 @@
 Visualizing tabular and relational data is the core of data-science. `kravis` implements a grammar to create a wide range of plots using a standardized set of verbs.
 
 
+The grammar implemented by `kravis` is inspired from [`ggplot2`](http://ggplot2.org/). The API is hightly similar to allow even reusing their excellent [cheatsheet.](https://www.rstudio.com/resources/cheatsheets/#ggplot2)
+ Internally, `ggplot2` is used as rendering engine at the moment.
 
-The grammar implemented by `kravis` is inspired from [`ggplot2`](http://ggplot2.org/)
+ R is required to used `kravis`, but to keep things simple, we provide bindings to docker and remove server instances.
 
 
 ---
@@ -38,11 +40,6 @@ dependencies {
 ## Idea
 
 
-`kravis` implements several ways to do datavis within the JVM.
-
-### GGplot2 Wrapper
-
-A kotlin/jvm wrapper similar to [gg4clj](https://github.com/JonyEpsilon/gg4clj). The API is bluntly copied over to allow even reusing their excellent [cheatsheet.](https://www.rstudio.com/resources/cheatsheets/#ggplot2)
 
 Example
 
@@ -54,52 +51,6 @@ irisData.ggplot("Species" to x, "Petal.Length" to y)
 ```
 
 ![](.README_images/b45a0ed9.png)
-
-
-
-### Vega-Lite Spec Builder
-
-First, it implements a DSL wrapper around [vega-lite ](https://vega.github.io/vega-lite/):
-
-```kotlin
-val movies = DataFrame.fromJson("https://raw.githubusercontent.com/vega/vega/master/test/data/movies.json")
-
-plotOf(movies) {
-    mark = Mark(circle)
-
-    encoding(x, "IMDB_Rating", binParams = BinParams(10))
-    encoding(y, "Rotten_Tomatoes_Rating", bin = true)
-    encoding(size, aggregate = Aggregate.count)
-}
-
-```
-
-![](.README_images/4f4c9880.png)
-
-
-## Simplified Builder API for XCharts
-
-Finally, `kravis` implements a ore kotlinesque wrapper around [XChart](https://github.com/knowm/XChart). This API is more constrained compared vega-DSL the and thus easier to use. However, it lacks some of the flexibility provided by the vega-DSL wrapper. Example:
-
-```kotlin
-data class User(val name: String, val birthDay: LocalDate, val sex: String, val height: Double) {}
-
-val users = listOf(
-    User("Max", LocalDate.parse("2007-12-03"), "M", 1.89),
-    User("Jane", LocalDate.parse("1980-07-03"), "F", 1.67),
-    User("Anna", LocalDate.parse("1992-07-03"), "F", 1.32)
-)
-
-plotOf(users)
-    .x("Year of Birth") { birthDay.year }
-    .y("Height (m)") { height }
-    .color { sex }
-    .title("user stats")
-    .addPoints()
-    .show()
-
-```
-![](.README_images/2761d77d.png)
 
 
 
@@ -133,15 +84,71 @@ irisData
 ![](.README_images/59d702d4.png)
 
 
+## Execution Engines
+
+1. Local R
+
+This is the default mode which can be configured by using
+
+```kotlin
+R_ENGINE = LocalR()
+```
+
+## Other More experimental APIs in kravis
+
+Because of its experimental nature `kravis` also implements several ways to do datavis within the JVM.
+
+### Vega-Lite Spec Builder
+
+First, it implements a DSL wrapper around [vega-lite ](https://vega.github.io/vega-lite/):
+
+```kotlin
+val movies = DataFrame.fromJson("https://raw.githubusercontent.com/vega/vega/master/test/data/movies.json")
+
+plotOf(movies) {
+    mark = Mark(circle)
+
+    encoding(x, "IMDB_Rating", binParams = BinParams(10))
+    encoding(y, "Rotten_Tomatoes_Rating", bin = true)
+    encoding(size, aggregate = Aggregate.count)
+}
+
+```
+
+![](.README_images/4f4c9880.png)
+
+
+### Simplified Builder API for XCharts
+
+Finally, `kravis` implements a ore kotlinesque wrapper around [XChart](https://github.com/knowm/XChart). This API is more constrained compared vega-DSL the and thus easier to use. However, it lacks some of the flexibility provided by the vega-DSL wrapper. Example:
+
+```kotlin
+data class User(val name: String, val birthDay: LocalDate, val sex: String, val height: Double) {}
+
+val users = listOf(
+    User("Max", LocalDate.parse("2007-12-03"), "M", 1.89),
+    User("Jane", LocalDate.parse("1980-07-03"), "F", 1.67),
+    User("Anna", LocalDate.parse("1992-07-03"), "F", 1.32)
+)
+
+plotOf(users)
+    .x("Year of Birth") { birthDay.year }
+    .y("Height (m)") { height }
+    .color { sex }
+    .title("user stats")
+    .addPoints()
+    .show()
+
+```
+![](.README_images/2761d77d.png)
+
+
 
 ## References
 
-Vega-lite based
-* [Vegas](https://github.com/vegas-viz/Vegas) aims to be the missing MatPlotLib for Scala + Spark
-* [altair](https://github.com/altair-viz/altair) provides declarative statistical visualization library for Python
-* [vega-embed](https://github.com/vega/vega-embed) allows to publish Vega visualizations as embedded web components with interactive parameters.
-* [hrbrmstr/vegalite](https://github.com/hrbrmstr/vegalite) provides R ggplot2 "bindings" for Vega-Lite
 
+GGplot Wrappers
+* [gg4clj](https://github.com/JonyEpsilon/gg4clj) Another ggplot2 wrapper written in java
 
 
 Other JVM visualization libraries
@@ -156,10 +163,15 @@ Other JVM visualization libraries
 * [breeze-viz](https://github.com/scalanlp/breeze/tree/master/viz) which is a
 Visualization library backed by Breeze and JFreeChart
 
-
 Other
 * https://github.com/bloomberg/bqplot is a plotting library for IPython/Jupyter Notebooks
 
+
+Vega-lite based
+* [Vegas](https://github.com/vegas-viz/Vegas) aims to be the missing MatPlotLib for Scala + Spark
+* [altair](https://github.com/altair-viz/altair) provides declarative statistical visualization library for Python
+* [vega-embed](https://github.com/vega/vega-embed) allows to publish Vega visualizations as embedded web components with interactive parameters.
+* [hrbrmstr/vegalite](https://github.com/hrbrmstr/vegalite) provides R ggplot2 "bindings" for Vega-Lite
 
 
 

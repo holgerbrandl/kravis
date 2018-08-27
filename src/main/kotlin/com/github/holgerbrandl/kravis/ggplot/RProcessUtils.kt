@@ -6,6 +6,20 @@ import java.io.*
  * @author Holger Brandl
  */
 
+sealed class REngine {
+    internal abstract fun runRScript(script: String)
+}
+
+class LocalR : REngine() {
+    override fun runRScript(script: String) {
+        val scriptFile = createTempFile(suffix = ".R").apply { writeText(script) }
+
+        val evalCmd = RUtils.evalCmd("/usr/local/bin/R", listOf("--vanilla", "--quiet", "--slave", "-f", scriptFile.absolutePath))
+    }
+}
+
+var R_ENGINE = LocalR()
+
 
 object RUtils {
 
