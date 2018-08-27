@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.ggplot
+package com.github.holgerbrandl.kravis.ggplot.device
 
 import javafx.application.Platform
 import javafx.beans.property.SimpleObjectProperty
@@ -7,7 +7,7 @@ import javafx.scene.image.Image
 import javafx.stage.Stage
 import tornadofx.*
 import java.io.File
-import javax.swing.JFrame
+import javax.swing.JDialog
 import javax.swing.WindowConstants
 
 
@@ -22,8 +22,8 @@ object FXPlottingDevice {
     }
 
     fun createAndShowGUI() {
-        val frame = JFrame()
-        frame.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
+        val frame = JDialog()
+        frame.defaultCloseOperation = WindowConstants.DISPOSE_ON_CLOSE
 
         val wrapper = JFXPanel()
         frame.contentPane.add(wrapper)
@@ -87,8 +87,8 @@ class HelloWorldApp : App(PlottingPanel::class, InternalWindow.Styles::class)
 fun main(args: Array<String>) {
     //    SwingUtilities.invokeLater { FXPlottingDevice.createAndShowGUI() }
 
-    Thread.sleep(3000)
+    //    Thread.sleep(3000)
 
-    FXPlottingDevice.hashCode()
+    //    FXPlottingDevice.hashCode()
     FXPlottingDevice.showImage(File("/Users/brandl/Dropbox/sharedDB/fotos/2017-07-01 14.35.05.jpg"))
 }

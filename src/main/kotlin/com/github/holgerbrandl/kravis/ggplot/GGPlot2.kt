@@ -3,6 +3,7 @@ package com.github.holgerbrandl.kravis.ggplot
 
 import com.github.holgerbrandl.kravis.ggplot.Aesthetic.x
 import com.github.holgerbrandl.kravis.ggplot.Aesthetic.y
+import com.github.holgerbrandl.kravis.ggplot.device.FXPlottingDevice
 import krangl.DataFrame
 import krangl.irisData
 import krangl.writeTSV
