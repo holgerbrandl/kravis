@@ -12,6 +12,6 @@ language: java
 jdk:
 - oraclejdk8
 
-install: gradle -q assemble
+#install: gradle -q assemble
 
 script: gradle clean check --stacktrace
