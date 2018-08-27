@@ -12,17 +12,11 @@
   "encoding": {
     "y": {
       "field": "Origin",
-      "type": "nominal",
-      "scale": {
-        "type": "ordinal"
-      }
+      "type": "nominal"
     },
     "x": {
       "field": "Cylinders",
-      "type": "quantitative",
-      "scale": {
-        "type": "ordinal"
-      }
+      "type": "ordinal"
     },
     "color": {
       "field": "Horsepower",

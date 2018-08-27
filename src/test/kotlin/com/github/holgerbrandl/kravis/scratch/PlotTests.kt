@@ -2,7 +2,7 @@ package com.github.holgerbrandl.kravis.scratch
 
 import com.github.holgerbrandl.kravis.spec.xplot.plot
 import com.github.holgerbrandl.kravis.spec.xplot.xplotOf
-import krangl.sleepData
+import krangl.irisData
 import org.junit.Test
 import java.time.LocalDate
 
@@ -66,11 +66,11 @@ class PlotTests {
     }
 
 
-    @Test
+    //    @Test // since it is not a test
     fun `iris scatter plot`() {
 
         // dedicated api for tables
-        sleepData
+        irisData
             .plot()
             .x("width plus 2") { it["Sepal.Width"] + 2 } // good: label and expression
             .x("Sepal.Length") // needs to be data-frame specific: refer to just a column
@@ -82,7 +82,7 @@ class PlotTests {
 
 
         // might work but we loose vectorization, butdo we really care here?
-        xplotOf(sleepData)
+        xplotOf(irisData)
             .x { it["Species"] }
             .y { it["Sepal.Length"] }
             .color { it["Species"] }

@@ -121,7 +121,7 @@ class Encoding(val encoding: EncodingChannel,
         //https://stackoverflow.com/questions/41861449/kotlin-dsl-for-creating-json-objects-without-creating-garbage
         val encProps = if (data != null) jsonObject(
             "field" to label,
-            "type" to dataType.toString()
+            "type" to dataType.toString().replace("2", "")
         ) else if (value != null) {
             jsonObject(
                 "value" to valueAsString(value)

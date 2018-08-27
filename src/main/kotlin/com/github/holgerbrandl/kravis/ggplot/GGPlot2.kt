@@ -12,11 +12,13 @@ import java.io.File
  * @author Holger Brandl
  */
 
-fun DataFrame.ggplot(aes: AES? = null) = GGPlot(this, aes)
+fun DataFrame.ggplot(aes: aes? = null) = GGPlot(this, aes)
 
-fun DataFrame.ggplot(vararg aes: Pair<String, Aesthetic>) = GGPlot(this, AES(*aes))
+fun DataFrame.ggplot(vararg aes: Pair<String, Aesthetic>) = GGPlot(this, aes(*aes))
 
-class GGPlot(df: DataFrame? = null, aes: AES? = null) {
+//var KRAVIS_LOG_GGPLOT_SCRIPT = false
+
+class GGPlot(df: DataFrame? = null, aes: aes? = null) {
     val plotCmd = StringBuffer()
 
     val dfs = mutableMapOf<String, DataFrame>()
@@ -34,18 +36,18 @@ class GGPlot(df: DataFrame? = null, aes: AES? = null) {
     }
 
     // todo use more constrained aestetics with just the suppored fields
-    fun geomBar(aes: AES? = null, data: DataFrame? = null, stat: String = "identity",
+    fun geomBar(mapping: aes? = null, data: DataFrame? = null, stat: String = "identity",
                 position: String = "identity", naRm: Boolean = false, showLegend: String? = null,
                 inheritAes: Boolean = true): GGPlot = apply {
         // todo make sure to forward all options
         plotCmd.append("+ geom_bar()")
     }
 
-    fun geomPoint(aes: AES? = null, data: DataFrame? = null, stat: String = "identity",
+    fun geomPoint(mapping: aes? = null, data: DataFrame? = null, stat: String = "identity",
                   position: Position? = null, naRm: Boolean = false, showLegend: String? = null,
                   inheritAes: Boolean = true,
 
-        // list all the aes it understands here for static mapping
+        // list all the mapping it understands here for static mapping
                   alpha: Double?
         //                  static: Map<Aesthetic, Any>?=null
     ): GGPlot {
@@ -66,8 +68,22 @@ class GGPlot(df: DataFrame? = null, aes: AES? = null) {
     }
 
 
-    fun geomBoxplot(position: Position? = null) = apply {
-        plotCmd.append("+ geom_boxplot(${arg2string("position" to position)})")
+    /**
+     * The boxplot compactly displays the distribution of a continuous variable. It visualises five summary
+     * statistics (the median, two hinges and two whiskers), and all "outlying" points individually.
+     *
+     * Original reference https://ggplot2.tidyverse.org/reference/geom_boxplot.html
+     */
+    fun geomBoxplot(
+        position: Position? = null,
+        // boxplot specific args
+        notch: Boolean? = null,
+        fill: RColor? = null,
+        color: RColor? = null
+    ): GGPlot = apply {
+        val arg2string = arg2string("position" to position, "notch" to notch, "fill" to fill, "color" to color)
+
+        plotCmd.append("+ geom_boxplot($arg2string)")
     }
 
 
@@ -147,10 +163,17 @@ set.seed(2009)
 
 }
 
+internal fun Any.toStringAndQuote() = when (this) {
+    is String -> "'${this}'"
+    is Boolean -> this.toString().toUpperCase()
+    is RColor -> "'${this}'"
+    else -> this
+}
+
 internal fun arg2string(vararg namedArgs: Pair<String, Any?>) =
     namedArgs.toMap()
         .filterValues { it != null }
-        .map { "${it.key}=${it.value.toString()}" }
+        .map { "${it.key}=${it.value!!.toStringAndQuote()}" }
         .joinToString(", ")
 
 interface Position
@@ -166,7 +189,11 @@ class PositionJitter(val height: Double? = null, val width: Double? = null, val 
     }
 }
 
-class AES(vararg val aes: Pair<String, Aesthetic>) {
+
+class aes(vararg val aes: Pair<String, Aesthetic>) {
+
+    constructor(x: String, y: String, vararg aes: Pair<String, Aesthetic>) : this(*(aes.toList() + Pair(x, Aesthetic.x) + Pair(y, Aesthetic.y)).toTypedArray()) {
+    }
 
     override fun toString(): String {
         //todo check variable persence  in df her
@@ -181,6 +208,6 @@ enum class Aesthetic {
 
 fun main(args: Array<String>) {
     //    ggplot(irisData, Aestethics("R" to x)).geomBar().show()
-    GGPlot(irisData, AES("Sepal.Length" to x, "Petal.Width" to y)).geomPoint(alpha = 0.1).title("Cool plot").show()
+    GGPlot(irisData, aes("Sepal.Length" to x, "Petal.Width" to y)).geomPoint(alpha = 0.1).title("Cool plot").show()
 
 }

@@ -82,19 +82,20 @@ class VegaLiteSpecRegression : AbstractPlotRegression() {
 
             mark = Mark(MarkType.rect)
 
-            encoding(y, "Origin", scale = Scale(ScaleType.Ordinal))
+            encoding(y, "Origin")
             //            encoding(x, "Cylinders", scale = Scale(ScaleType.Ordinal))
-            encoding(x, "Cylinders")
+            encoding(x, "Cylinders", type = Type.ordinal2)
             encoding(color, "Horsepower", aggregate = Aggregate.mean)
         }
 
         //        println(heatmap.buildJson())
-        heatmap.render()
+        //        heatmap.render()
+        //        Thread.sleep(10000)
         assertExpected(heatmap.buildJson())
     }
 }
 
-fun main(args: Array<String>) {
-    VegaLiteSpecRegression().`cars heatmap`()
-}
+//fun main(args: Array<String>) {
+//    VegaLiteSpecRegression().`cars heatmap`()
+//}
 
