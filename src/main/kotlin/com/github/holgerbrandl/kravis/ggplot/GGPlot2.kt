@@ -17,6 +17,7 @@ fun DataFrame.ggplot(aes: Aes? = null) = GGPlot(this, aes)
 
 fun DataFrame.ggplot(vararg aes: Pair<String, Aesthetic>) = GGPlot(this, Aes(*aes))
 
+
 //var KRAVIS_LOG_GGPLOT_SCRIPT = false
 
 class GGPlot(
@@ -59,24 +60,7 @@ class GGPlot(
     }
 
 
-    // orig signature coord_flip(xlim = NULL, ylim = NULL, expand = TRUE, clip = "on")
-    /**
-     * Flip cartesian coordinates so that horizontal becomes vertical, and vertical, horizontal. This is primarily useful for converting geoms and statistics which display y conditional on x, to x conditional on y.
-     *
-     * ### Example
-     * ```
-     * ggplot(diamonds, aes(cut, price)) +
-     *   geom_boxplot() +
-     *   coord_flip()
-     * ```
-     */
-    fun coordFlip() = apply {
-        addLayer("coord_flip()")
-    }
 
-    fun title(title: String) = apply {
-        addLayer("""ggtitle("${title.replace("\"", "'")}")""")
-    }
 
     /** Add a custom command which is not yet supported by the wrapper API.  Example `gg.addCustom("+stat_bin()")*/
     fun addCustom(cmd: String) = apply {
@@ -136,6 +120,27 @@ ggsave(filename="${imageFile.absolutePath}", plot=gg)
         require(imageFile.exists()) { System.err.println("Image generation failed") }
         return imageFile
     }
+
+    // various helper methods (which could all be extensions for simplicity)
+    // orig signature coord_flip(xlim = NULL, ylim = NULL, expand = TRUE, clip = "on")
+    /**
+     * Flip cartesian coordinates so that horizontal becomes vertical, and vertical, horizontal. This is primarily useful for converting geoms and statistics which display y conditional on x, to x conditional on y.
+     *
+     * ### Example
+     * ```
+     * ggplot(diamonds, aes(cut, price)) +
+     *   geom_boxplot() +
+     *   coord_flip()
+     * ```
+     */
+    fun coordFlip() = apply {
+        addLayer("coord_flip()")
+    }
+
+    fun title(title: String) = apply {
+        addLayer("""ggtitle("${title.replace("\"", "'")}")""")
+    }
+
 }
 
 class VarName(val name: String) {
@@ -186,6 +191,7 @@ enum class Aesthetic {
 }
 
 interface Position
+
 
 class PositionJitter(val height: Double? = null, val width: Double? = null, val seed: Int? = null) : Position {
     override fun toString(): String {

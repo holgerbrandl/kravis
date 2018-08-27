@@ -1,6 +1,9 @@
 package com.github.holgerbrandl.kravis.ggplot
 
 import com.github.holgerbrandl.kravis.ggplot.Aesthetic.*
+import com.github.holgerbrandl.kravis.ggplot.GgplotRegressions.IrisData.SepalLength
+import com.github.holgerbrandl.kravis.ggplot.GgplotRegressions.IrisData.SepalWidth
+import com.github.holgerbrandl.kravis.ggplot.nshelper.*
 import krangl.*
 import org.junit.Test
 import java.io.File
@@ -66,6 +69,20 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
     //
 
 
+    enum class IrisData {
+        SepalLength, SepalWidth, PetalLength, PetalWidth;
+
+        override fun toString(): String {
+            return super.toString().replace("(.)([A-Z])".toRegex()) {
+                it.groupValues[1] + "." + it.groupValues[2]
+            }
+        }
+    }
+
+    fun testFixedTheme() {
+        irisData.ggplot(SepalLength to x, SepalWidth to y).themeBW().show()
+    }
+
     fun testThemes() {
         """
             require(ggplot2)
@@ -94,8 +111,6 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
 }
 
 fun main(args: Array<String>) {
-    GgplotRegressions().`custom boxplot`()
-    //    GgplotRegressions().mpgData.ggplot(Aes("class", "hwy"))
-    //        .geomBoxplot(notch = true, fill = RColor.orchid, color = RColor.create("#3366FF"))
-    //        .show()
+    //    println(GgplotRegressions.IrisData.SepalWidth)
+    irisData.ggplot(SepalLength to x, SepalWidth to y).themeBW().show()
 }
