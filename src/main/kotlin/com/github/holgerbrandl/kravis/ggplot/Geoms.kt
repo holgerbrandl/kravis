@@ -56,7 +56,7 @@ fun GGPlot.geomPoint(
     val dataVar: VarName? = registerDataset(data)
 
     val args = arg2string(
-        "mapping" to mapping,
+        "mapping" to mapping?.stringify(),
         "data" to dataVar,
         "stat" to stat,
         "position" to position,

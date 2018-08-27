@@ -1,7 +1,6 @@
 package com.github.holgerbrandl.kravis.ggplot
 
-import org.junit.Assert.assertEquals
-import org.junit.Assert.fail
+import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.rules.TestName
 import java.io.File
@@ -26,6 +25,8 @@ abstract class AbstractSvgPlotRegression {
 
     protected fun assertExpected(plot: GGPlot) {
         val render = plot.render(".svg")
+
+        assertTrue(render.exists() && render.length() > 0)
 
         val svgDoc = render.readLines().joinToString("\n")
         val obtained = prettyFormat(svgDoc, 4).trim()

@@ -146,6 +146,7 @@ internal fun Any.toStringAndQuote() = when (this) {
     is String -> "'${this}'"
     //    is VarName -> this.toString()
     is Aes -> this.toString().nullIfEmpty()
+    is Boolean -> this.toString().toUpperCase()
     is RColor -> "'${this}'"
     else -> this
 }

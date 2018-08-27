@@ -17,14 +17,6 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `boxplot with overlay`() {
-        """
-           require(ggplot2)
-           iris %>% ggplot(aes(x=Species)) +
-               geom_boxplot()+
-           geom_point(position=position_jitter(width=0.1, seed=1), alpha=.3) +
-           ggtitle("Petal Length by Species")
-        """
-
         irisData.ggplot("Species" to x, "Petal.Length" to y)
             .geomBoxplot(notch = null, fill = RColor.orchid, color = RColor.create("#3366FF"))
             .geomPoint(position = PositionJitter(width = 0.1, seed = 1), alpha = 0.3)
@@ -40,33 +32,33 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `custom boxplot`() {
-        """
-            require(ggplot2)
-            ggplot(mpg, aes(class, hwy)) +
-                geom_boxplot(notch = TRUE, fill = "orchid3", colour = "#3366FF")
-        """.trimIndent()
+        val data = GgplotRegressions().mpgData
 
-        GgplotRegressions().mpgData.ggplot(Aes("class", "hwy"))
+        val plot = data.ggplot(Aes("class", "hwy"))
             .geomBoxplot(notch = true, fill = RColor.orchid, color = RColor.create("#3366FF"))
-            .also { println(it.toString()) }
-        //            .apply { show() }
+
+
+        //        plot.also { println(it.toString()) }
+        //        plot.show()
+        assertExpected(plot)
     }
 
 
     @Test
-    fun `test different data overlays`() {
+    fun `different data overlays`() {
         // we would need a summerizeEach/All here
         val irisSummary = irisData.groupBy("Species").summarize(
             "Petal.Length.Mean" to { it["Petal.Length"].mean() },
             "Sepal.Length.Mean" to { it["Sepal.Length"].mean() }
         )
 
-        irisData.ggplot("Species" to x, "Petal.Length" to y, "Species" to color)
+        val plot = irisData.ggplot("Sepal.Length" to x, "Petal.Length" to y, "Species" to color)
             .geomPoint(alpha = 0.3)
-            .geomPoint(data = irisSummary, shape = 4, size = 4)
-            .show()
+            .geomPoint(data = irisSummary, mapping = Aes("Sepal.Length.Mean", "Petal.Length.Mean"), shape = 4, stroke = 4)
 
-        Thread.sleep(10000)
+        //        plot.show()
+        assertExpected(plot)
+        //        Thread.sleep(10000)
     }
 
     //
@@ -102,7 +94,8 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
 }
 
 fun main(args: Array<String>) {
-    GgplotRegressions().mpgData.ggplot(Aes("class", "hwy"))
-        .geomBoxplot(notch = true, fill = RColor.orchid, color = RColor.create("#3366FF"))
-        .show()
+    GgplotRegressions().`custom boxplot`()
+    //    GgplotRegressions().mpgData.ggplot(Aes("class", "hwy"))
+    //        .geomBoxplot(notch = true, fill = RColor.orchid, color = RColor.create("#3366FF"))
+    //        .show()
 }
