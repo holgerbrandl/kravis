@@ -21,7 +21,7 @@ fun GGPlot.geomBoxplot(
 ): GGPlot = apply {
     val arg2string = arg2string("position" to position, "notch" to notch, "fill" to fill, "color" to color)
 
-    addLayer("geom_boxplot($arg2string)")
+    addSpec("geom_boxplot($arg2string)")
 }
 
 /**
@@ -74,7 +74,7 @@ fun GGPlot.geomPoint(
         "stroke" to stroke
     )
 
-    addLayer("geom_point(${args})")
+    addSpec("geom_point(${args})")
 }
 
 
@@ -109,5 +109,5 @@ fun GGPlot.geomBar(
     //        inheritAes: Boolean = true
 ): GGPlot = apply {
     // todo make sure to forward all options
-    addLayer("geom_bar()")
+    addSpec("geom_bar()")
 }

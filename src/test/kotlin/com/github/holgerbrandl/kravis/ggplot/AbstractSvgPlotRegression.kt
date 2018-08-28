@@ -23,7 +23,7 @@ abstract class AbstractSvgPlotRegression {
 
     abstract val testDataDir: File
 
-    protected fun assertExpected(plot: GGPlot) {
+    protected fun assertExpected(plot: GGPlot, subtest: String? = null) {
         val render = plot.render(".svg")
 
         assertTrue(render.exists() && render.length() > 0)
@@ -31,7 +31,11 @@ abstract class AbstractSvgPlotRegression {
         val svgDoc = render.readLines().joinToString("\n")
         val obtained = prettyFormat(svgDoc, 4).trim()
 
-        val file = File(testDataDir, name.methodName.replace(" ", "_") + ".svg")
+        val methodName = name.methodName
+
+        if (methodName == null) return // because we're running not in test mode
+
+        val file = File(testDataDir, methodName.replace(" ", "_") + "${subtest?.also { "." + it }}.svg")
         if (!file.exists()) {
             file.writeText(obtained)
             fail("could not find expected result.")

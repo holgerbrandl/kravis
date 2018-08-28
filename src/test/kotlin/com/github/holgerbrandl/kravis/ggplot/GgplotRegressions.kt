@@ -6,7 +6,9 @@ import com.github.holgerbrandl.kravis.ggplot.GgplotRegressions.IrisData.SepalWid
 import com.github.holgerbrandl.kravis.ggplot.nshelper.*
 import krangl.*
 import org.junit.Test
+import java.awt.Desktop
 import java.io.File
+
 
 @Suppress("UNUSED_EXPRESSION")
 /**
@@ -83,34 +85,46 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
         irisData.ggplot(SepalLength to x, SepalWidth to y).themeBW().show()
     }
 
-    fun testThemes() {
+    @Test
+    fun `theme adjustments`() {
+
         """
-            require(ggplot2)
+        plot <- ggplot(mpg, aes(displ, hwy)) + geom_point()
 
-            ggplot(data.frame(x = c(0, 1)), aes(x = x)) +
-                    stat_function(fun = dnorm, args = list(0.2, 0.1), aes(colour = "Group 1"), size = 1.5) +
-                    stat_function(fun = dnorm, args = list(0.7, 0.05), aes(colour = "Group 2"), size = 1.5) +
-                    scale_x_continuous(name = "Probability", breaks = seq(0, 1, 0.2), limits=c(0, 1)) +
-                    scale_y_continuous(name = "Frequency") +
-                    ggtitle("Normal function curves of probabilities") +
-                    scale_colour_brewer(palette="Set1") +
-                    labs(colour = "Groups") +
-                    theme(axis.line = element_line(size=1, colour = "black"),
-                          panel.grid.major = element_blank(),
-                          panel.grid.minor = element_blank(),
-                          panel.border = element_blank(),
-                          panel.background = element_blank(),
-                          axis.text.x=element_text(colour="black", size = 12),
-                          axis.text.y=element_text(colour="black", size = 12))
-        """.trimIndent()
+        plot + theme(
+            panel.background = element_blank(),
+            axis.title.y = element_blank(),
+            axis.text = element_text(size=20, color="red")
+        """
 
-        //        dataFrameOf("x"){ 0.0, 1 }
+        val basePlot = mpgData.ggplot("displ" to x, "hwy" to y).geomPoint()
+
+        val plot = basePlot
+            .theme(panelBackground = ElementTextBlank(), axisText = ElementText("size=20, color='red'"))
+
+        assertExpected(plot, "axis")
+
+        //        Desktop.getDesktop().open(plot.render())
 
 
+        """
+        plot + theme(
+        axis.line = element_line(arrow = arrow())
+        )
+        """
+
+        val plot2 = basePlot.theme(axisLine = ElementLine("arrow=arrow()"))
+        plot.open()
     }
 }
 
+fun GGPlot.open() = Desktop.getDesktop().open(render())
+
 fun main(args: Array<String>) {
-    //    println(GgplotRegressions.IrisData.SepalWidth)
-    irisData.ggplot(SepalLength to x, SepalWidth to y).themeBW().show()
+    GgplotRegressions().`theme adjustments`()
+    //        println(GgplotRegressions.IrisData.SepalWidth)
+    //    irisData.ggplot(SepalLength to x, SepalWidth to y)
+    //        .geomPoint()
+    //        .themeBW()
+    //        .show()
 }

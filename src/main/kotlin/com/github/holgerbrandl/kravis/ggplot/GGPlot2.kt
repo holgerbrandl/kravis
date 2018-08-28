@@ -42,7 +42,7 @@ class GGPlot(
         plotCmd.add("ggplot(${args})")
     }
 
-    fun addLayer(layerSpec: String) {
+    fun addSpec(layerSpec: String) {
         plotCmd.add("${layerSpec}")
     }
 
@@ -64,7 +64,7 @@ class GGPlot(
 
     /** Add a custom command which is not yet supported by the wrapper API.  Example `gg.addCustom("+stat_bin()")*/
     fun addCustom(cmd: String) = apply {
-        addLayer(cmd)
+        addSpec(cmd)
     }
 
 
@@ -134,11 +134,11 @@ ggsave(filename="${imageFile.absolutePath}", plot=gg)
      * ```
      */
     fun coordFlip() = apply {
-        addLayer("coord_flip()")
+        addSpec("coord_flip()")
     }
 
     fun title(title: String) = apply {
-        addLayer("""ggtitle("${title.replace("\"", "'")}")""")
+        addSpec("""ggtitle("${title.replace("\"", "'")}")""")
     }
 
 }
