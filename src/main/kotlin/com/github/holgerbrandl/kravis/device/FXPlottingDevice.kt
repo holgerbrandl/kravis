@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.ggplot.device
+package com.github.holgerbrandl.kravis.device
 
 import javafx.application.Platform
 import javafx.beans.property.SimpleObjectProperty

@@ -1,9 +1,10 @@
 package com.github.holgerbrandl.kravis.ggplot
 
-import com.github.holgerbrandl.kravis.ggplot.Aesthetic.*
+import com.github.holgerbrandl.kravis.*
+import com.github.holgerbrandl.kravis.Aesthetic.*
 import com.github.holgerbrandl.kravis.ggplot.GgplotRegressions.IrisData.SepalLength
 import com.github.holgerbrandl.kravis.ggplot.GgplotRegressions.IrisData.SepalWidth
-import com.github.holgerbrandl.kravis.ggplot.nshelper.*
+import com.github.holgerbrandl.kravis.nshelper.*
 import krangl.*
 import org.junit.Test
 import java.awt.Desktop
@@ -114,6 +115,7 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
         """
 
         val plot2 = basePlot.theme(axisLine = ElementLine("arrow=arrow()"))
+        plot2.open()
         plot.open()
     }
 }

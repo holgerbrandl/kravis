@@ -1,8 +1,8 @@
-package com.github.holgerbrandl.kravis.ggplot.nshelper
+package com.github.holgerbrandl.kravis.nshelper
 
-import com.github.holgerbrandl.kravis.ggplot.Aes
-import com.github.holgerbrandl.kravis.ggplot.Aesthetic
-import com.github.holgerbrandl.kravis.ggplot.GGPlot
+import com.github.holgerbrandl.kravis.Aes
+import com.github.holgerbrandl.kravis.Aesthetic
+import com.github.holgerbrandl.kravis.GGPlot
 import krangl.DataFrame
 
 /**

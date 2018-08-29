@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.ggplot
+package com.github.holgerbrandl.kravis
 
 import krangl.DataFrame
 
@@ -51,7 +51,7 @@ fun GGPlot.geomPoint(
     shape: Int? = null,
     size: Int? = null,
     stroke: Int? = null // Use the stroke aesthetic to modify the width of the border
-): GGPlot = apply {
+): GGPlot = appendSpec {
 
     val dataVar: VarName? = registerDataset(data)
 

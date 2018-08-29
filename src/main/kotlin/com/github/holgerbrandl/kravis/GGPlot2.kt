@@ -1,9 +1,9 @@
-package com.github.holgerbrandl.kravis.ggplot
+package com.github.holgerbrandl.kravis
 
 
-import com.github.holgerbrandl.kravis.ggplot.Aesthetic.x
-import com.github.holgerbrandl.kravis.ggplot.Aesthetic.y
-import com.github.holgerbrandl.kravis.ggplot.device.SwingPlottingDevice
+import com.github.holgerbrandl.kravis.Aesthetic.x
+import com.github.holgerbrandl.kravis.Aesthetic.y
+import com.github.holgerbrandl.kravis.device.SwingPlottingDevice
 import krangl.DataFrame
 import krangl.irisData
 import krangl.writeTSV
@@ -41,6 +41,21 @@ class GGPlot(
 
         plotCmd.add("ggplot(${args})")
     }
+
+    internal fun appendSpec(block: GGPlot.() -> Unit): GGPlot {
+        val newPlot = GGPlot()
+
+        // clone the current state
+        newPlot.plotCmd.apply { clear(); addAll(plotCmd) }
+        newPlot.dataRegistry.apply { putAll(dataRegistry) }
+
+
+        // apply the changes
+        newPlot.block()
+
+        return newPlot
+    }
+
 
     fun addSpec(layerSpec: String) {
         plotCmd.add("${layerSpec}")

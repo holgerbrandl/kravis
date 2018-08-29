@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.ggplot
+package com.github.holgerbrandl.kravis
 
 import java.io.*
 

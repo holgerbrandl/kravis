@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.ggplot.device;
+package com.github.holgerbrandl.kravis.device;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

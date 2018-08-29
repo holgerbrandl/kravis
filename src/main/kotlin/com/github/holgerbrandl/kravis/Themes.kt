@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.ggplot
+package com.github.holgerbrandl.kravis
 
 import kotlin.math.roundToInt
 
@@ -292,7 +292,7 @@ fun GGPlot.theme(
     stripSwitchPadWrap: ElementText? = null,
     complete: Boolean? = null,
     other: String? = null
-) = apply {
+) = appendSpec {
 
     val args = arg2string(
         "line" to line,

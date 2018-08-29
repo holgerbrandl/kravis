@@ -1,5 +1,6 @@
 package com.github.holgerbrandl.kravis.ggplot
 
+import com.github.holgerbrandl.kravis.GGPlot
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.rules.TestName

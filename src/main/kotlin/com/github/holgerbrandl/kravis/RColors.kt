@@ -1,4 +1,4 @@
-package com.github.holgerbrandl.kravis.ggplot
+package com.github.holgerbrandl.kravis
 
 /**
 ,*,Colors,from,https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/colors.html
@@ -18,7 +18,7 @@ enum class RColor {
     companion object {
         val hexPatten = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$".toRegex()
 
-        fun create(hexcode: String) = RColor.white.apply {
+        fun create(hexcode: String) = white.apply {
 
             require(hexPatten.matches(hexcode)) {
                 "$hexcode is not a valid hexcode"
