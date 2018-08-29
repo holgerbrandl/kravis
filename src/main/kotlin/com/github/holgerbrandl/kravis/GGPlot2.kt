@@ -78,7 +78,7 @@ class GGPlot(
 
 
     /** Add a custom command which is not yet supported by the wrapper API.  Example `gg.addCustom("+stat_bin()")*/
-    fun addCustom(cmd: String) = apply {
+    fun addCustom(cmd: String) = appendSpec {
         addSpec(cmd)
     }
 
@@ -148,11 +148,11 @@ ggsave(filename="${imageFile.absolutePath}", plot=gg)
      *   coord_flip()
      * ```
      */
-    fun coordFlip() = apply {
+    fun coordFlip() = appendSpec {
         addSpec("coord_flip()")
     }
 
-    fun title(title: String) = apply {
+    fun title(title: String) = appendSpec {
         addSpec("""ggtitle("${title.replace("\"", "'")}")""")
     }
 

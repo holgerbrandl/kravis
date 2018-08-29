@@ -18,7 +18,7 @@ fun GGPlot.geomBoxplot(
     notch: Boolean? = null,
     fill: RColor? = null,
     color: RColor? = null
-): GGPlot = apply {
+): GGPlot = appendSpec {
     val arg2string = arg2string("position" to position, "notch" to notch, "fill" to fill, "color" to color)
 
     addSpec("geom_boxplot($arg2string)")
@@ -93,7 +93,7 @@ fun GGPlot.geomLine(
     // group, // todo
     linetype: Int? = null,
     size: Int? = null
-): GGPlot = apply {
+): GGPlot = appendSpec {
 
 }
 
@@ -107,7 +107,7 @@ fun GGPlot.geomBar(
     naRm: Boolean = false,
     showLegend: Boolean? = null
     //        inheritAes: Boolean = true
-): GGPlot = apply {
+): GGPlot = appendSpec {
     // todo make sure to forward all options
     addSpec("geom_bar()")
 }

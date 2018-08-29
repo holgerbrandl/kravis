@@ -35,7 +35,7 @@ internal abstract class ThemeBuilder(
  *
  * Use theme() if you just need to tweak the display of an existing theme.
  */
-fun GGPlot.themeBW(base_size: Int = 11, base_family: String = "") = apply {
+fun GGPlot.themeBW(base_size: Int = 11, base_family: String = "") = appendSpec {
     addSpec(object : ThemeBuilder("bw", base_size, base_family) {}.toString())
 }
 
@@ -44,7 +44,7 @@ fun GGPlot.themeBW(base_size: Int = 11, base_family: String = "") = apply {
  *
  * Use theme() if you just need to tweak the display of an existing theme.
  */
-fun GGPlot.themeGray(base_size: Int = 11, base_family: String = "") = apply {
+fun GGPlot.themeGray(base_size: Int = 11, base_family: String = "") = appendSpec {
     addSpec(object : ThemeBuilder("gray", base_size, base_family) {}.toString())
 }
 
@@ -54,7 +54,7 @@ fun GGPlot.themeGray(base_size: Int = 11, base_family: String = "") = apply {
  *
  * Use theme() if you just need to tweak the display of an existing theme.
  */
-fun GGPlot.themeLight(base_size: Int = 11, base_family: String = "") = apply {
+fun GGPlot.themeLight(base_size: Int = 11, base_family: String = "") = appendSpec {
     addSpec(object : ThemeBuilder("light", base_size, base_family) {}.toString())
 }
 
@@ -64,7 +64,7 @@ fun GGPlot.themeLight(base_size: Int = 11, base_family: String = "") = apply {
  *
  * Use theme() if you just need to tweak the display of an existing theme.
  */
-fun GGPlot.themeDark(base_size: Int = 11, base_family: String = "") = apply {
+fun GGPlot.themeDark(base_size: Int = 11, base_family: String = "") = appendSpec {
     addSpec(object : ThemeBuilder("dark", base_size, base_family) {}.toString())
 }
 
@@ -73,7 +73,7 @@ fun GGPlot.themeDark(base_size: Int = 11, base_family: String = "") = apply {
  *
  * Use theme() if you just need to tweak the display of an existing theme.
  */
-fun GGPlot.themeMinimal(base_size: Int = 11, base_family: String = "") = apply {
+fun GGPlot.themeMinimal(base_size: Int = 11, base_family: String = "") = appendSpec {
     addSpec(object : ThemeBuilder("minimal", base_size, base_family) {}.toString())
 }
 
@@ -83,7 +83,7 @@ fun GGPlot.themeMinimal(base_size: Int = 11, base_family: String = "") = apply {
  *
  * Use theme() if you just need to tweak the display of an existing theme.
  */
-fun GGPlot.themeClassic(base_size: Int = 11, base_family: String = "") = apply {
+fun GGPlot.themeClassic(base_size: Int = 11, base_family: String = "") = appendSpec {
     addSpec(object : ThemeBuilder("classic", base_size, base_family) {}.toString())
 }
 
@@ -92,7 +92,7 @@ fun GGPlot.themeClassic(base_size: Int = 11, base_family: String = "") = apply {
  *
  * Use theme() if you just need to tweak the display of an existing theme.
  */
-fun GGPlot.themeVoid(base_size: Int = 11, base_family: String = "") = apply {
+fun GGPlot.themeVoid(base_size: Int = 11, base_family: String = "") = appendSpec {
     addSpec(object : ThemeBuilder("void", base_size, base_family) {}.toString())
 }
 
