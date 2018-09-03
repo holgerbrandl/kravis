@@ -30,11 +30,10 @@ object RUtils {
         fun serr() = stderr.joinToString("\n").trim()
     }
 
-    fun runRScript(script: String) {
+    fun runRScript(script: String): CmdResult {
         val scriptFile = createTempFile(suffix = ".R").apply { writeText(script) }
 
-        val evalCmd = evalCmd("/usr/local/bin/R", listOf("--vanilla", "--quiet", "--slave", "-f", scriptFile.absolutePath))
-        println(evalCmd)
+        return evalCmd("/usr/local/bin/R", listOf("--vanilla", "--quiet", "--slave", "-f", scriptFile.absolutePath))
     }
 
 

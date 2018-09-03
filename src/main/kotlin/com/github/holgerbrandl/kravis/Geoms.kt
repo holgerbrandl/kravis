@@ -66,7 +66,7 @@ fun GGPlot.geomPoint(
 
 
         "position" to position,
-        "alpha" to alpha,
+        "alpha" to requireZeroOne(alpha),
         "color" to color,
         "fill" to fill,
         "shape" to shape,
@@ -76,6 +76,9 @@ fun GGPlot.geomPoint(
 
     addSpec("geom_point(${args})")
 }
+
+
+private fun requireZeroOne(d: Double?) = d?.also { require(it >= 0 && it <= 1) { "alpha must be [0,1] but was $it." } }
 
 
 /**

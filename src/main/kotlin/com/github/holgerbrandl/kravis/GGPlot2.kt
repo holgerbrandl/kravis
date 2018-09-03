@@ -155,7 +155,6 @@ ggsave(filename="${imageFile.absolutePath}", plot=gg)
     fun title(title: String) = appendSpec {
         addSpec("""ggtitle("${title.replace("\"", "'")}")""")
     }
-
 }
 
 class VarName(val name: String) {
@@ -163,7 +162,7 @@ class VarName(val name: String) {
 }
 
 internal fun Any.toStringAndQuote() = when (this) {
-    is String -> "'${this}'"
+    //    is String -> "'${this}'"
     //    is VarName -> this.toString()
     is Aes -> this.toString().nullIfEmpty()
     is Boolean -> this.toString().toUpperCase()
@@ -232,6 +231,10 @@ class StatIdentity : Stat {
 class StatCustom(val custom: String) : Stat {
     override fun toString() = custom
 }
+
+private val String.quoted: String
+    get() = "'" + this + "'"
+
 
 
 fun main(args: Array<String>) {

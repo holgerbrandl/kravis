@@ -7,6 +7,8 @@ import com.github.holgerbrandl.kravis.ggplot.GgplotRegressions.IrisData.SepalWid
 import com.github.holgerbrandl.kravis.nshelper.*
 import krangl.*
 import org.junit.Test
+import scaleXLog10
+import scaleYLog10
 import java.awt.Desktop
 import java.io.File
 
@@ -18,7 +20,7 @@ import java.io.File
 class GgplotRegressions : AbstractSvgPlotRegression() {
 
     override val testDataDir: File
-        get() = File("src/test/resources/com/github/holgerbrandl/kravis/ggplot")
+        get() = File("src/test/resources/com/github/holgerbrandl/kravis")
 
 
     @Test
@@ -120,13 +122,20 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
     }
 }
 
-fun GGPlot.open() = Desktop.getDesktop().open(render())
+class ScaleRegressions {
 
-fun main(args: Array<String>) {
-    GgplotRegressions().`theme adjustments`()
-    //        println(GgplotRegressions.IrisData.SepalWidth)
-    //    irisData.ggplot(SepalLength to x, SepalWidth to y)
-    //        .geomPoint()
-    //        .themeBW()
-    //        .show()
+    @Test
+    fun `it should deparse collections and allow for custom options`() {
+        sleepPatterns.ggplot(
+            x to { brainwt },
+            y to { it -> it.bodywt },
+            alpha to { sleep_total }
+        ).geomPoint()
+            .scaleXLog10()
+            .scaleYLog10("labels" to "comma")
+            .show()
+    }
 }
+
+
+fun GGPlot.open() = Desktop.getDesktop().open(render())
