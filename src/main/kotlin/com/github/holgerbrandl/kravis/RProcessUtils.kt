@@ -6,6 +6,7 @@ import java.io.*
  * @author Holger Brandl
  */
 
+
 sealed class REngine {
     internal abstract fun runRScript(script: String)
 }
@@ -18,7 +19,15 @@ class LocalR : REngine() {
     }
 }
 
-var R_ENGINE = LocalR()
+
+internal object EngineAutodetect {
+
+    val R_ENGINE_DEFAULT by lazy {
+        // todo autodetect environment and inform user about choide
+        LocalR()
+    }
+
+}
 
 
 object RUtils {

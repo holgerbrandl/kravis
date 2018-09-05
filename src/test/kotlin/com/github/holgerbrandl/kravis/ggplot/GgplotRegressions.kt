@@ -126,11 +126,14 @@ class ScaleRegressions {
 
     @Test
     fun `it should deparse collections and allow for custom options`() {
-        sleepPatterns.ggplot(
+        val basePlot = sleepPatterns.ggplot(
             x to { brainwt },
-            y to { it -> it.bodywt },
+            y to { bodywt },
             alpha to { sleep_total }
-        ).geomPoint()
+        )
+
+        // add layers
+        basePlot.geomPoint()
             .scaleXLog10()
             .scaleYLog10("labels" to "comma")
             .show()

@@ -3,7 +3,8 @@ package com.github.holgerbrandl.kravis
 
 import com.github.holgerbrandl.kravis.Aesthetic.x
 import com.github.holgerbrandl.kravis.Aesthetic.y
-import com.github.holgerbrandl.kravis.device.SwingPlottingDevice
+import com.github.holgerbrandl.kravis.device.DeviceAutodetect
+import com.github.holgerbrandl.kravis.device.OutputDevice
 import krangl.DataFrame
 import krangl.irisData
 import krangl.writeTSV
@@ -12,6 +13,11 @@ import java.io.File
 /**
  * @author Holger Brandl
  */
+
+// session preferences
+// should we encapsulate them into a namespace??
+var OUTPUT_DEVICE: OutputDevice = DeviceAutodetect.OUTPUT_DEVICE_DEFAULT
+var R_ENGINE: REngine = EngineAutodetect.R_ENGINE_DEFAULT
 
 fun DataFrame.ggplot(aes: Aes? = null) = GGPlot(this, aes)
 
@@ -86,17 +92,12 @@ class GGPlot(
     fun save(file: File) = render(file.extension).copyTo(file)
 
 
-    fun show() {
-        val imageFile = render(".png")
-
-        require(imageFile.exists()) { "Visualization Failed. Could not render image." }
-
-        //        FXPlottingDevice.showImage(imageFile)
-        SwingPlottingDevice.showImage(imageFile)
+    fun show(): Any {
+        return OUTPUT_DEVICE.show(this)
     }
 
     override fun toString(): String {
-        show()
+        show() // this should just apply to a terminal setting. in jupypter we actually need to return a value
         return ""
     }
 
