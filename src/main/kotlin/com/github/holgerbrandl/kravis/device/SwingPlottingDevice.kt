@@ -1,6 +1,6 @@
 package com.github.holgerbrandl.kravis.device
 
-import com.github.holgerbrandl.kravis.GGPlot
+import com.github.holgerbrandl.kravis.render.PlotFormat
 import java.io.File
 import javax.imageio.ImageIO
 import javax.swing.JDialog
@@ -28,18 +28,19 @@ internal object DeviceAutodetect {
 
 
 abstract class OutputDevice {
-    abstract fun show(script: GGPlot): Any
+    abstract fun getPreferredFormat(): PlotFormat
+
+    abstract fun show(imageFile: File): Any
 }
 
 
 class SwingPlottingDevice : OutputDevice() {
-    override fun show(script: GGPlot) {
-        val imageFile = script.render(".png")
+    override fun getPreferredFormat() = PlotFormat.PNG
 
-        require(imageFile.exists()) { "Visualization Failed. Could not render image." }
-
+    override fun show(imageFile: File) {
         //        FXPlottingDevice.showImage(imageFile)
-        showImage(imageFile)
+        val img = ImageIO.read(imageFile)
+        panel.imagePanel.setImage(img)
     }
 
     val panel by lazy {

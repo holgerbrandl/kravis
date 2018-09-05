@@ -1,10 +1,10 @@
 package com.github.holgerbrandl.kravis.device
 
 import com.github.holgerbrandl.kravis.Aesthetic
-import com.github.holgerbrandl.kravis.GGPlot
 import com.github.holgerbrandl.kravis.OUTPUT_DEVICE
 import com.github.holgerbrandl.kravis.geomPoint
 import com.github.holgerbrandl.kravis.nshelper.ggplot
+import com.github.holgerbrandl.kravis.render.PlotFormat
 import jupyter.kotlin.MimeTypedResult
 import jupyter.kotlin.resultOf
 import krangl.irisData
@@ -17,12 +17,20 @@ import javax.imageio.ImageIO
 /**
  * @author Holger Brandl
  */
-class JupyterDevice : OutputDevice() {
-    override fun show(script: GGPlot): MimeTypedResult {
+class JupyterDevice(val renderSVG: Boolean = false) : OutputDevice() {
+    override fun getPreferredFormat() = if (renderSVG) PlotFormat.SVG else PlotFormat.PNG
 
-        val pathToFile = File("/Users/brandl/Downloads/Clipboard.png")
+    override fun show(imageFile: File): MimeTypedResult = if (renderSVG) renderAsSVG(imageFile) else renderAsImage(imageFile)
 
-        val imageF = ImageIO.read(pathToFile)
+    internal fun renderAsSVG(imageFile: File): MimeTypedResult {
+        TODO()
+    }
+
+    internal fun renderAsImage(imageFile: File): MimeTypedResult {
+        // testing
+        // val imageFile = File("/Users/brandl/Downloads/Clipboard.png")
+
+        val imageF = ImageIO.read(imageFile)
 
         // Draw the image on to the buffered image
         val bimage = BufferedImage(imageF.getWidth(null), imageF.getHeight(null), BufferedImage.TYPE_INT_RGB)
@@ -52,7 +60,8 @@ val testPlot by lazy {
 fun main(args: Array<String>) {
     OUTPUT_DEVICE = JupyterDevice()
 
-    println(testPlot.show())
+    val result = testPlot.show()
+    println(result)
 }
 
 //fun resultOf(vararg mimeToData: Pair<String, Any>): MimeTypedResult = MimeTypedResult(mapOf(*mimeToData))

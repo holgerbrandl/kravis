@@ -1,24 +1,32 @@
-package com.github.holgerbrandl.kravis
+package com.github.holgerbrandl.kravis.render
 
+import com.github.holgerbrandl.kravis.GGPlot
+import krangl.writeTSV
 import java.io.*
 
 /**
  * @author Holger Brandl
  */
 
+enum class PlotFormat {
+    PNG, SVG, EPS, JPG, PDF;
 
-sealed class REngine {
-    internal abstract fun runRScript(script: String)
-}
+    override fun toString(): String {
+        return "." + super.toString().toLowerCase()
+    }
 
-class LocalR : REngine() {
-    override fun runRScript(script: String) {
-        val scriptFile = createTempFile(suffix = ".R").apply { writeText(script) }
-
-        val evalCmd = RUtils.evalCmd("/usr/local/bin/R", listOf("--vanilla", "--quiet", "--slave", "-f", scriptFile.absolutePath))
+    companion object {
+        @Suppress("SENSELESS_COMPARISON")
+        fun isSupported(extension: String): Boolean = valueOf(extension.toUpperCase()) != null
     }
 }
 
+
+abstract class REngine {
+    internal abstract fun runRScript(script: String)
+
+    internal abstract fun render(plot: GGPlot, outputFile: File): File
+}
 
 internal object EngineAutodetect {
 
@@ -26,18 +34,61 @@ internal object EngineAutodetect {
         // todo autodetect environment and inform user about choide
         LocalR()
     }
+}
 
+abstract class AbstractLocalREngine : REngine() {
+
+    override fun render(plot: GGPlot, outputFile: File): File {
+        val final = plot.plotCmd.joinToString("+\n")
+
+        // save all the data
+        // todo hash dfs where possible to avoid IO
+        val dataIngest = plot.dataRegistry.mapValues {
+            createTempFile(".txt").apply { it.value.writeTSV(this) }
+        }.map { (dataVar, file) ->
+            """${dataVar} = read_tsv("${file}")"""
+        }.joinToString("\n")
+
+
+        val rScript = """
+                library(ggplot2)
+                library(dplyr)
+                library(readr)
+
+                $dataIngest
+
+                set.seed(2009)
+                gg = $final
+
+                ggsave(filename="${outputFile.absolutePath}", plot=gg)
+            """.trimIndent()
+
+        runRScript(rScript)
+
+        require(outputFile.exists()) { System.err.println("Image generation failed") }
+        return outputFile
+    }
+}
+
+
+class LocalR : AbstractLocalREngine() {
+
+    override fun runRScript(script: String) {
+        val result = RUtils.runRScript(script)
+        if (result.exitCode != 0) {
+            throw LocalRenderingFailedException(result)
+        }
+    }
 }
 
 
 object RUtils {
-
-
     data class CmdResult(val exitCode: Int, val stdout: Iterable<String>, val stderr: Iterable<String>) {
         fun sout() = stdout.joinToString("\n").trim()
 
         fun serr() = stderr.joinToString("\n").trim()
     }
+
 
     fun runRScript(script: String): CmdResult {
         val scriptFile = createTempFile(suffix = ".R").apply { writeText(script) }
@@ -50,9 +101,9 @@ object RUtils {
                 redirectStdout: File? = null, redirectStderr: File? = null): CmdResult {
 
         try {
-            var pb = ProcessBuilder(*(arrayOf(executable) + args)) //.inheritIO();
+            val pb = ProcessBuilder(*(arrayOf(executable) + args)) //.inheritIO();
             pb.directory(File("."));
-            var p = pb.start();
+            val p = pb.start();
 
             val outputGobbler = StreamGobbler(p.getInputStream(), if (showOutput) System.out else null)
             val errorGobbler = StreamGobbler(p.getErrorStream(), if (showOutput) System.err else null)
@@ -92,4 +143,11 @@ object RUtils {
         val output: String get() = sb.toString()
     }
 
+}
+
+
+open class RenderingFailedException : java.lang.RuntimeException()
+
+class LocalRenderingFailedException(val result: RUtils.CmdResult) : RenderingFailedException() {
+    override fun toString(): String = result.toString()
 }

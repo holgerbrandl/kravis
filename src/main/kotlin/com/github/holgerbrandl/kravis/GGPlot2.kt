@@ -5,9 +5,11 @@ import com.github.holgerbrandl.kravis.Aesthetic.x
 import com.github.holgerbrandl.kravis.Aesthetic.y
 import com.github.holgerbrandl.kravis.device.DeviceAutodetect
 import com.github.holgerbrandl.kravis.device.OutputDevice
+import com.github.holgerbrandl.kravis.render.EngineAutodetect
+import com.github.holgerbrandl.kravis.render.PlotFormat
+import com.github.holgerbrandl.kravis.render.REngine
 import krangl.DataFrame
 import krangl.irisData
-import krangl.writeTSV
 import java.io.File
 
 /**
@@ -31,9 +33,9 @@ class GGPlot(
     mapping: Aes? = null,
     environment: String? = null
 ) {
-    private val plotCmd = emptyList<String>().toMutableList()
+    internal val plotCmd = emptyList<String>().toMutableList()
 
-    private val dataRegistry = mapOf<String, DataFrame>().toMutableMap()
+    internal val dataRegistry = mapOf<String, DataFrame>().toMutableMap()
 
     init {
         //todo check variable persence  in df her
@@ -89,52 +91,24 @@ class GGPlot(
     }
 
 
-    fun save(file: File) = render(file.extension).copyTo(file)
+    /** Return the file to which the plot was saved. */
+    fun save(file: File): File {
+        require(PlotFormat.isSupported(file.extension)) { "Unsupported image format" }
+        return R_ENGINE.render(this, file)
+    }
 
 
     fun show(): Any {
-        return OUTPUT_DEVICE.show(this)
+        val imageFile = save(createTempFile(suffix = OUTPUT_DEVICE.getPreferredFormat().toString()))
+        require(imageFile.exists()) { "Visualization Failed. Could not render image." }
+
+        return OUTPUT_DEVICE.show(imageFile)
     }
 
     override fun toString(): String {
-        show() // this should just apply to a terminal setting. in jupypter we actually need to return a value
-        return ""
-    }
-
-    // todo expose supported formats as enum
-    internal fun render(format: String = ".png"): File {
-        val final = plotCmd.joinToString("+\n")
-
-        val imageFile = createTempFile(suffix = format)
-
-        // save all the data
-        // todo hash dfs where possible to avoid IO
-        val dataIngest = dataRegistry.mapValues {
-            createTempFile(".txt").apply { it.value.writeTSV(this) }
-        }.map { (dataVar, file) ->
-            """${dataVar} = read_tsv("${file}")"""
-        }.joinToString("\n")
-
-
-        val rScript = """
-library(ggplot2)
-library(dplyr)
-library(readr)
-
-$dataIngest
-
-set.seed(2009)
-gg = $final
-
-ggsave(filename="${imageFile.absolutePath}", plot=gg)
-            """.trimIndent()
-
-        RUtils.runRScript(script = rScript)
-
-        println(rScript)
-
-        require(imageFile.exists()) { System.err.println("Image generation failed") }
-        return imageFile
+        //        show() // this should just apply to a terminal setting. in jupypter we actually need to return a value
+        return plotCmd.joinToString("+\n")
+        //        return ""
     }
 
     // various helper methods (which could all be extensions for simplicity)

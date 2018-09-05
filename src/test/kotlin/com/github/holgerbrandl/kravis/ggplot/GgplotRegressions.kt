@@ -5,6 +5,7 @@ import com.github.holgerbrandl.kravis.Aesthetic.*
 import com.github.holgerbrandl.kravis.ggplot.GgplotRegressions.IrisData.SepalLength
 import com.github.holgerbrandl.kravis.ggplot.GgplotRegressions.IrisData.SepalWidth
 import com.github.holgerbrandl.kravis.nshelper.*
+import com.github.holgerbrandl.kravis.render.saveTempFile
 import krangl.*
 import org.junit.Test
 import scaleXLog10
@@ -141,4 +142,5 @@ class ScaleRegressions {
 }
 
 
-fun GGPlot.open() = Desktop.getDesktop().open(render())
+fun GGPlot.open() = Desktop.getDesktop().open(saveTempFile())
+
