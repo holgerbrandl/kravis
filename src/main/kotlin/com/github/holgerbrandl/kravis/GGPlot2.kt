@@ -7,7 +7,7 @@ import com.github.holgerbrandl.kravis.device.DeviceAutodetect
 import com.github.holgerbrandl.kravis.device.OutputDevice
 import com.github.holgerbrandl.kravis.render.EngineAutodetect
 import com.github.holgerbrandl.kravis.render.PlotFormat
-import com.github.holgerbrandl.kravis.render.REngine
+import com.github.holgerbrandl.kravis.render.RenderEngine
 import krangl.DataFrame
 import krangl.irisData
 import java.io.File
@@ -19,9 +19,35 @@ import java.io.File
 // session preferences
 // should we encapsulate them into a namespace??
 var OUTPUT_DEVICE: OutputDevice = DeviceAutodetect.OUTPUT_DEVICE_DEFAULT
-var R_ENGINE: REngine = EngineAutodetect.R_ENGINE_DEFAULT
+var RENDER_BACKEND: RenderEngine = EngineAutodetect.R_ENGINE_DEFAULT
 
 fun DataFrame.ggplot(aes: Aes? = null) = GGPlot(this, aes)
+
+fun DataFrame.ggplot(
+    x: String? = null,
+    y: String? = null,
+    alpha: String? = null,
+    color: String? = null,
+    fill: String? = null,
+    shape: String? = null,
+    size: String? = null,
+    stroke: String? = null
+
+): GGPlot {
+    val mapping = listOf<Pair<String, Aesthetic>>()
+        .addNonNull(x, Aesthetic.x)
+        .addNonNull(y, Aesthetic.y)
+        .addNonNull(alpha, Aesthetic.alpha)
+        .addNonNull(color, Aesthetic.color)
+        .addNonNull(fill, Aesthetic.fill)
+        .addNonNull(shape, Aesthetic.shape)
+        .addNonNull(size, Aesthetic.size)
+        .addNonNull(stroke, Aesthetic.stroke)
+
+    val aes = Aes(*mapping.toTypedArray()
+    )
+    return GGPlot(this, aes)
+}
 
 fun DataFrame.ggplot(vararg aes: Pair<String, Aesthetic>) = GGPlot(this, Aes(*aes))
 
@@ -83,8 +109,6 @@ class GGPlot(
     }
 
 
-
-
     /** Add a custom command which is not yet supported by the wrapper API.  Example `gg.addCustom("+stat_bin()")*/
     fun addCustom(cmd: String) = appendSpec {
         addSpec(cmd)
@@ -94,7 +118,7 @@ class GGPlot(
     /** Return the file to which the plot was saved. */
     fun save(file: File): File {
         require(PlotFormat.isSupported(file.extension)) { "Unsupported image format" }
-        return R_ENGINE.render(this, file)
+        return RENDER_BACKEND.render(this, file)
     }
 
 
@@ -176,7 +200,7 @@ private fun List<Pair<String, Aesthetic>>.addNonNull(x: String?, aes: Aesthetic)
 }
 
 enum class Aesthetic {
-    x, y, color, fill, yintercept, xintercept, size, alpha
+    x, y, color, fill, yintercept, xintercept, size, alpha, shape, stroke
 }
 
 interface Position
@@ -209,7 +233,6 @@ class StatCustom(val custom: String) : Stat {
 
 private val String.quoted: String
     get() = "'" + this + "'"
-
 
 
 fun main(args: Array<String>) {

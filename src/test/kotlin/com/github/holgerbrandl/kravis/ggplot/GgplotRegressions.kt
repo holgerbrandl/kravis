@@ -8,8 +8,6 @@ import com.github.holgerbrandl.kravis.nshelper.*
 import com.github.holgerbrandl.kravis.render.saveTempFile
 import krangl.*
 import org.junit.Test
-import scaleXLog10
-import scaleYLog10
 import java.awt.Desktop
 import java.io.File
 
@@ -30,8 +28,8 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
             .geomBoxplot(notch = null, fill = RColor.orchid, color = RColor.create("#3366FF"))
             .geomPoint(position = PositionJitter(width = 0.1, seed = 1), alpha = 0.3)
             .title("Petal Length by Species")
+            .apply { open() }
             .apply { assertExpected(this) }
-        //            .also { it.toString() }
     }
 
 

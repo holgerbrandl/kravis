@@ -1,5 +1,5 @@
-import com.github.holgerbrandl.kravis.GGPlot
-import com.github.holgerbrandl.kravis.arg2string
+package com.github.holgerbrandl.kravis
+
 
 fun GGPlot.scaleXLog10(vararg dotdotdot: Pair<String, String>): GGPlot = appendSpec {
     addSpec("""scale_x_log10(${arg2string(*dotdotdot.asList().toTypedArray())})""")

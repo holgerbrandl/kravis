@@ -25,7 +25,7 @@ abstract class AbstractSvgPlotRegression {
     abstract val testDataDir: File
 
     protected fun assertExpected(plot: GGPlot, subtest: String? = null) {
-        val render = plot.save(createTempFile(".svg"))
+        val render = plot.save(createTempFile(suffix = ".svg"))
 
         assertTrue(render.exists() && render.length() > 0)
 

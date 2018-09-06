@@ -1,7 +1,6 @@
 package com.github.holgerbrandl.kravis.render
 
 import com.github.holgerbrandl.kravis.GGPlot
-import krangl.writeTSV
 import java.io.*
 
 /**
@@ -22,9 +21,7 @@ enum class PlotFormat {
 }
 
 
-abstract class REngine {
-    internal abstract fun runRScript(script: String)
-
+abstract class RenderEngine {
     internal abstract fun render(plot: GGPlot, outputFile: File): File
 }
 
@@ -32,52 +29,33 @@ internal object EngineAutodetect {
 
     val R_ENGINE_DEFAULT by lazy {
         // todo autodetect environment and inform user about choide
+
+        // todo make sure that required packages are installed and stop if not
         LocalR()
     }
 }
 
-abstract class AbstractLocalREngine : REngine() {
+abstract class AbstractLocalRenderEngine : RenderEngine() {
 
-    override fun render(plot: GGPlot, outputFile: File): File {
+
+    fun compileScript(plot: GGPlot, dataIngest: String, savePath: String): String {
         val final = plot.plotCmd.joinToString("+\n")
 
-        // save all the data
-        // todo hash dfs where possible to avoid IO
-        val dataIngest = plot.dataRegistry.mapValues {
-            createTempFile(".txt").apply { it.value.writeTSV(this) }
-        }.map { (dataVar, file) ->
-            """${dataVar} = read_tsv("${file}")"""
-        }.joinToString("\n")
-
-
         val rScript = """
-                library(ggplot2)
-                library(dplyr)
-                library(readr)
+                    library(ggplot2)
+                    library(dplyr)
+                    library(readr)
+                    library(scales)
 
-                $dataIngest
+                    $dataIngest
 
-                set.seed(2009)
-                gg = $final
+                    set.seed(2009)
+                    gg = $final
 
-                ggsave(filename="${outputFile.absolutePath}", plot=gg)
-            """.trimIndent()
+                    ggsave(filename="$savePath", plot=gg)
+                """.trim().trimIndent()
 
-        runRScript(rScript)
-
-        require(outputFile.exists()) { System.err.println("Image generation failed") }
-        return outputFile
-    }
-}
-
-
-class LocalR : AbstractLocalREngine() {
-
-    override fun runRScript(script: String) {
-        val result = RUtils.runRScript(script)
-        if (result.exitCode != 0) {
-            throw LocalRenderingFailedException(result)
-        }
+        return rScript
     }
 }
 
@@ -95,6 +73,8 @@ object RUtils {
 
         return evalCmd("/usr/local/bin/R", listOf("--vanilla", "--quiet", "--slave", "-f", scriptFile.absolutePath))
     }
+
+    fun evalBash(cmd: String): CmdResult = evalCmd("bash", listOf("-c", cmd))
 
 
     fun evalCmd(executable: String, args: List<String>, showOutput: Boolean = false,

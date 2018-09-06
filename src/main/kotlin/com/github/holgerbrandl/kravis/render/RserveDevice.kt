@@ -6,12 +6,8 @@ import java.io.File
 /**
  * @author Holger Brandl
  */
-class RserveDevice : REngine() {
+class RserveDevice : RenderEngine() {
     override fun render(plot: GGPlot, format: File): File {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun runRScript(script: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
