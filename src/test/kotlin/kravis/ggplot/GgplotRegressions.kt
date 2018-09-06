@@ -20,7 +20,7 @@ import java.io.File
 class GgplotRegressions : AbstractSvgPlotRegression() {
 
     override val testDataDir: File
-        get() = File("src/kravis")
+        get() = File("src/test/resources/kravis")
 
 
     @Test
@@ -84,8 +84,10 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
         }
     }
 
+    @Test
     fun testFixedTheme() {
-        irisData.ggplot(SepalLength to x, SepalWidth to y).themeBW().show()
+        val plot = irisData.ggplot(SepalLength to x, SepalWidth to y).themeBW() //.show()
+        assertExpected(plot)
     }
 
     @Test
@@ -136,7 +138,7 @@ class ScaleRegressions {
         basePlot.geomPoint()
             .scaleXLog10()
             .scaleYLog10("labels" to "comma")
-            .show()
+        //            .show()
     }
 }
 

@@ -29,7 +29,7 @@ abstract class AbstractSvgPlotRegression {
 
         assertTrue(render.exists() && render.length() > 0)
 
-        val svgDoc = render.readLines().joinToString("\n")
+        val svgDoc = render.readLines().joinToString("\n").let { prettyFormat(it, 4) }
         val obtained = prettyFormat(svgDoc, 4).trim()
 
         val methodName = name.methodName
