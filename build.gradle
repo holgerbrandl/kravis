@@ -21,6 +21,9 @@ apply plugin: 'application'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
+// not neeeded but does not work without
+mainClassName = "foo.Bar" // not needed but does not work without
+
 
 repositories {
     mavenCentral()
@@ -63,8 +66,8 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 group 'com.github.holgerbrandl'
-//version '0.4-SNAPSHOT'
-version '0.3'
+version '0.4-SNAPSHOT'
+//version '0.3'
 
 
 

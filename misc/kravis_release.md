@@ -50,10 +50,10 @@ github-release info -u holgerbrandl -r krangl
 # create a formal release
 github-release release \
     --user holgerbrandl \
-    --repo krangl \
+    --repo kravis \
     --tag "v${kravis_version}" \
     --name "v${kravis_version}" \
-    --description "See [CHANGES.md](https://github.com/holgerbrandl/krangl/blob/master/CHANGES.md) for changes." 
+    --description "See [CHANGES.md](https://github.com/holgerbrandl/kravis/blob/master/CHANGES.md) for changes." 
 #    --pre-release
 
 
