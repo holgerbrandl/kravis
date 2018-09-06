@@ -11,6 +11,21 @@ The grammar implemented by `kravis` is inspired from [`ggplot2`](http://ggplot2.
  R is required to used `kravis`, but to keep things simple, we provide bindings to docker and remove server instances.
 
 
+[TOC levels=3]: # " "
+
+- [Setup](#setup)
+- [Examples](#examples)
+- [The Grammar of Graphics](#the-grammar-of-graphics)
+    - [Rendering and Display Modes](#rendering-and-display-modes)
+    - [Plot Immutablity.](#plot-immutablity)
+- [Output Modes](#output-modes)
+- [Supported Data Input Formats](#supported-data-input-formats)
+- [Execution Engines](#execution-engines)
+    - [Iterator API](#iterator-api)
+- [References](#references)
+- [Acknowledgements](#acknowledgements)
+
+
 ---
 
 **This is an experimental API and is subject to breaking changes until a first major release**
@@ -37,13 +52,13 @@ dependencies {
 }
 ```
 
-## Idea
 
-
-
-Example
+## Examples
 
 ```kotlin
+import kravis.* 
+import krangl.irisData 
+
 irisData.ggplot("Species" to x, "Petal.Length" to y)
     .geomBoxplot()
     .geomPoint(position = PositionJitter(width = 0.1), alpha = 0.3)
@@ -53,6 +68,39 @@ irisData.ggplot("Species" to x, "Petal.Length" to y)
 ![](.README_images/b45a0ed9.png)
 
 
+Or lets do a slightly more custom boxplot:
+```kotlin
+irisData.ggplot("Species" to x, "Petal.Length" to y)
+        .geomBoxplot(notch = null, fill = RColor.lightblue, color = RColor.create("#3366FF"))
+        .geomPoint(position = PositionJitter(width = 0.1, seed = 1), alpha = 0.3)
+        .title("Petal Length by Species")
+```
+![](.README_images/boxplot.png)
+
+Find more examples in our gallery **{comding soon}**.
+
+
+## The Grammar of Graphics
+
+`ggplot2` and thus `kravis` implement a **grammar for graphics** to build plots with
+
+> `layers` + `aesthetics` + `coordinates system` + `transformations` + ` facets`
+
+Which reads as `one or more layers` + `map variables from data space to visual space` + `coordinates system` + `statistical transformations` + `optional facets`. That's the way.
+
+
+### Rendering and Display Modes
+
+`kravis` builds on top of `krangl` and `ggplot2` from R. The latter it will access via different backends like a local installation, docker or Rserve.
+
+
+### Plot Immutablity.
+
+Plots are -- similar to krangl data-frames -- immutable.
+
+```
+
+```
 
 ## Output Modes
 
@@ -68,21 +116,6 @@ irisData.ggplot("Species" to x, "Petal.Length" to y)
 
 2. It can handle any kind of tabular data via [krangl](https://github.com/holgerbrandl/krangl) data-frames
 
-```kotlin
-import com.github.holgerbrandl.kravis.*
-
-irisData
-    .plot()
-    .x("width + 2") { it["Sepal.Width"] + 2 } 
-    .y { "Sepal.Length" }
-    .color { "Species" }
-    .title("Iris Flowers")
-    .addPoints()
-    .show()
-```
-
-![](.README_images/59d702d4.png)
-
 
 ## Execution Engines
 
@@ -94,74 +127,50 @@ This is the default mode which can be configured by using
 R_ENGINE = LocalR()
 ```
 
-## Other More experimental APIs in kravis
+### Iterator API
 
-Because of its experimental nature `kravis` also implements several ways to do datavis within the JVM.
-
-### Vega-Lite Spec Builder
-
-First, it implements a DSL wrapper around [vega-lite ](https://vega.github.io/vega-lite/):
+Instead of using `krangl` data-frames, it is also possible to use any `Iterable<T>` to create plots. Essentially we first digest it into a table and use it as data source for visualization Here's an example:
 
 ```kotlin
-val movies = DataFrame.fromJson("https://raw.githubusercontent.com/vega/vega/master/test/data/movies.json")
-
-plotOf(movies) {
-    mark = Mark(circle)
-
-    encoding(x, "IMDB_Rating", binParams = BinParams(10))
-    encoding(y, "Rotten_Tomatoes_Rating", bin = true)
-    encoding(size, aggregate = Aggregate.count)
-}
-
-```
-
-![](.README_images/4f4c9880.png)
-
-
-### Simplified Builder API for XCharts
-
-Finally, `kravis` implements a ore kotlinesque wrapper around [XChart](https://github.com/knowm/XChart). This API is more constrained compared vega-DSL the and thus easier to use. However, it lacks some of the flexibility provided by the vega-DSL wrapper. Example:
-
-```kotlin
-data class User(val name: String, val birthDay: LocalDate, val sex: String, val height: Double) {}
-
-val users = listOf(
-    User("Max", LocalDate.parse("2007-12-03"), "M", 1.89),
-    User("Jane", LocalDate.parse("1980-07-03"), "F", 1.67),
-    User("Anna", LocalDate.parse("1992-07-03"), "F", 1.32)
+ val basePlot = sleepPatterns.ggplot(
+    x to { brainwt },
+    y to { bodywt },
+    alpha to { sleep_total }
 )
 
-plotOf(users)
-    .x("Year of Birth") { birthDay.year }
-    .y("Height (m)") { height }
-    .color { sex }
-    .title("user stats")
-    .addPoints()
+// add layers
+basePlot.geomPoint()
+    .scaleXLog10()
+    .scaleYLog10("labels" to "comma")
+    .title("Correlation of body and brain weight")
     .show()
-
 ```
-![](.README_images/2761d77d.png)
+![](.README_images/scatter_example.png)
+
 
 
 
 ## References
 
+You don't like it? Here are some other projects which may better suit your purpose. Before you leave, consider dropping us a [#ticket](https://github.com/holgerbrandl/krangl/issues/ticket) with some comments about whats missing, badly designed or simply broken in `kravis`.
 
 GGplot Wrappers
+
 * [gg4clj](https://github.com/JonyEpsilon/gg4clj) Another ggplot2 wrapper written in java
 
 
-Other JVM visualization libraries
+Other JVM visualization libraries ordered by -- personally biased -- usefullness
+
 * [SmilePlot](https://github.com/haifengl/smile#smileplot) provides data visualization tools such as plots and maps for researchers to understand information more easily and quickly.
 * [XChart](https://github.com/timmolter/XChart) is a light-weight Java library for plotting data
 * [data2viz](https://github.com/data2viz/data2viz) is a multi platform data visualization library with comprehensive DSL
 * [Kubed](https://github.com/hudsonb/kubed/) is a Kotlin library for manipulating the JavaFX scenegraph based on data.
 * [TornadoFX](https://github.com/edvin/tornadofx/wiki/Charts) provides some Kotlin wrappers around JavaFX
-* [Jzy3d](http://www.jzy3d.org/) is an open source java library that allows to easily draw 3d scientific data: surfaces, scatter plots, bar charts
 * [plotly-scala](https://github.com/alexarchambault/plotly-scala) which provides scala bindings for plotly.js and works within jupyter
-* [grafana](https://grafana.com/) is an open platform for beautiful analytics and monitoring
 * [breeze-viz](https://github.com/scalanlp/breeze/tree/master/viz) which is a
 Visualization library backed by Breeze and JFreeChart
+* [grafana](https://grafana.com/) is an open platform for beautiful analytics and monitoring
+* [Jzy3d](http://www.jzy3d.org/) is an open source java library that allows to easily draw 3d scientific data: surfaces, scatter plots, bar charts
 
 Other
 * https://github.com/bloomberg/bqplot is a plotting library for IPython/Jupyter Notebooks
