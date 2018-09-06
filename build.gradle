@@ -63,8 +63,8 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 group 'com.github.holgerbrandl'
-version '0.3-SNAPSHOT'
-//version '0.2'
+//version '0.4-SNAPSHOT'
+version '0.3'
 
 
 
