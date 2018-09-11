@@ -1,11 +1,9 @@
 package kravis.dokka
 
 import krangl.sleepData
-import kravis.geomPoint
-import kravis.ggplot
+import krangl.sleepPatterns
+import kravis.*
 import kravis.ggplot.open
-import kravis.scaleXLog10
-import kravis.scaleYLog10
 
 
 /**
@@ -41,7 +39,13 @@ fun doScatter() {
         .open()
 }
 
+fun iteratorAPI() {
+    sleepPatterns.ggplot(x = { sleep_total }, y = { sleep_cycle }).geomBar()
+
+}
+
 fun main(args: Array<String>) {
     //    doBarChart()
     doScatter()
 }
+

@@ -10,6 +10,7 @@ infix fun <T> Aesthetic.to(any: PropExtractor<T>): Pair<Aesthetic, PropExtractor
 typealias PropExtractor<T> = T.(T) -> Any?
 
 
+@Deprecated("use with dedicated nullable parameters instead")
 inline fun <reified T> Iterable<T>.ggplot(vararg aes2data: Pair<Aesthetic, PropExtractor<T>>): GGPlot {
     //fun <T : Any> Iterable<T>.ggplot(vararg data: Pair<PropExtractor<T>, Aesthetic>): GGPlot {
 
@@ -24,6 +25,42 @@ inline fun <reified T> Iterable<T>.ggplot(vararg aes2data: Pair<Aesthetic, PropE
 
 
     return GGPlot(data = df, mapping = Aes(*aes.toTypedArray()))
+}
+
+/**
+ * Start a plot from any type of `Iterable` using a typed expression based builder to map data attributes to visual aesthetics.
+ *
+ * @sample kravis.dokka.iteratorAPI
+ */
+inline fun <reified T> Iterable<T>.ggplot(
+    noinline x: PropExtractor<T>? = null,
+    noinline y: PropExtractor<T>? = null,
+    noinline alpha: PropExtractor<T>? = null,
+    noinline color: PropExtractor<T>? = null,
+    noinline fill: PropExtractor<T>? = null,
+    noinline shape: PropExtractor<T>? = null,
+    noinline size: PropExtractor<T>? = null,
+    noinline stroke: PropExtractor<T>? = null
+
+): GGPlot {
+    // build df from data
+    val mapping = listOf<Pair<Aesthetic, PropExtractor<T>>>()
+        .skipNull(x, Aesthetic.x)
+        .skipNull(y, Aesthetic.y)
+        .skipNull(alpha, Aesthetic.alpha)
+        .skipNull(color, Aesthetic.color)
+        .skipNull(fill, Aesthetic.fill)
+        .skipNull(shape, Aesthetic.shape)
+        .skipNull(size, Aesthetic.size)
+        .skipNull(stroke, Aesthetic.stroke)
+
+    return ggplot(*mapping.toTypedArray())
+}
+
+
+// todo hide this from public namespace
+fun <T> List<Pair<Aesthetic, T>>.skipNull(x: T?, aes: Aesthetic): List<Pair<Aesthetic, T>> {
+    return if (x != null) this + Pair(aes, x) else this
 }
 
 
