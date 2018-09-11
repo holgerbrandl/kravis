@@ -35,13 +35,11 @@ fun GGPlot.geomPoint(
     // generic options to all geoms
     mapping: Aes? = null,
     data: DataFrame? = null,
-    stat: Stat? = null,
-    position: Position? = null,
+    stat: Stat = StatIdentity(),
+    position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
-
-    // geom specific options
-    removeNAs: Boolean? = null,
-    inheritAes: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
 
     // list all the aesthetics it understands
     alpha: Double? = null,
@@ -81,6 +79,100 @@ fun GGPlot.geomPoint(
 private fun requireZeroOne(d: Double?) = d?.also { require(it >= 0 && it <= 1) { "alpha must be [0,1] but was $it." } }
 
 
+enum class BarStat {
+    count, identity
+}
+// todo use more constrained aestetics with just the suppored fields or validate supported aestehtics
+/**
+ * There are two types of bar charts: `geom_bar` makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use `geom_col` instead. `geom_bar` uses `stat_count` by default: it counts the number of cases at each x position. `geom_col` uses `stat_identity`: it leaves the data as is.
+ */
+fun GGPlot.geomBar(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: BarStat = BarStat.count,
+    position: Position = PositionIdentity(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    fill: RColor? = null,
+    // group, // todo, unclear usage
+    linetype: LineType? = null,
+    size: Int? = null
+): GGPlot = appendSpec {
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "fill" to fill,
+        "linetype" to linetype,
+        "size" to size
+    )
+
+    addSpec("geom_bar(${args})")
+}
+
+/**
+ * A geom that draws error bars, defined by an upper and lower value. This is useful e.g., to draw confidence intervals.
+ * See https://ggplot2.tidyverse.org/reference/geom_linerange.html
+ */
+fun GGPlot.geomErrorBar(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: BarStat = BarStat.identity,
+    position: Position = PositionIdentity(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    fill: RColor? = null,
+    linetype: LineType? = null,
+    size: Int? = null,
+    width: Double? = null
+): GGPlot = appendSpec {
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+
+        "alpha" to requireZeroOne(alpha),
+        "width" to width,
+        "color" to color,
+        "fill" to fill,
+        "linetype" to linetype,
+        "size" to size,
+        "width" to width
+    )
+
+    addSpec("geom_errorbar(${args})")
+}
+
+
 /**
  * @linetype For options see http://sape.inf.usi.ch/quick-reference/ggplot2/linetype
  */
@@ -98,19 +190,4 @@ fun GGPlot.geomLine(
     size: Int? = null
 ): GGPlot = appendSpec {
 
-}
-
-// todo use more constrained aestetics with just the suppored fields
-fun GGPlot.geomBar(
-    mapping: Aes? = null,
-    data: DataFrame? = null,
-    stat: Stat? = null,
-    position: String = "identity",
-
-    naRm: Boolean = false,
-    showLegend: Boolean? = null
-    //        inheritAes: Boolean = true
-): GGPlot = appendSpec {
-    // todo make sure to forward all options
-    addSpec("geom_bar()")
 }

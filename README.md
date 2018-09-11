@@ -132,10 +132,11 @@ R_ENGINE = LocalR()
 Instead of using `krangl` data-frames, it is also possible to use any `Iterable<T>` to create plots. Essentially we first digest it into a table and use it as data source for visualization Here's an example:
 
 ```kotlin
+// map data attributes to aesthetics 
  val basePlot = sleepPatterns.ggplot(
-    x to { brainwt },
-    y to { bodywt },
-    alpha to { sleep_total }
+    x = { brainwt },
+    y = { bodywt },
+    alpha = { sleep_total }
 )
 
 // add layers

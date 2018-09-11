@@ -1,6 +1,8 @@
 package kravis.ggplot
 
 import krangl.*
+import krangl.SumFuns.mean
+import krangl.SumFuns.sd
 import kravis.*
 import kravis.Aesthetic.*
 import kravis.ggplot
@@ -122,6 +124,18 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
         //        plot2.open()
         //        plot.open()
     }
+
+    @Test
+    fun `create factor ordered barchart with errorbars`() {
+        irisData.groupBy("Species")
+            .summarizeAt({ listOf("Sepal.Length") }, mean, sd)
+            .addColumn("ymax") { it["Sepal.Length.mean"] + it["Sepal.Length.sd"] }
+            .addColumn("ymin") { it["Sepal.Length.mean"] - it["Sepal.Length.sd"] }
+            .ggplot(x = "Species", y = "Sepal.Length.mean", fill = "Species")
+            .geomBar(stat = BarStat.identity)
+            .geomErrorBar(Aes(ymin = "ymin", ymax = "ymax"), width = .3)
+            .show()
+    }
 }
 
 class ScaleRegressions {
@@ -129,9 +143,9 @@ class ScaleRegressions {
     @Test
     fun `it should deparse collections and allow for custom options`() {
         val basePlot = sleepPatterns.ggplot(
-            x to { brainwt },
-            y to { bodywt },
-            alpha to { sleep_total }
+            x = { brainwt },
+            y = { bodywt },
+            alpha = { sleep_total }
         )
 
         // add layers

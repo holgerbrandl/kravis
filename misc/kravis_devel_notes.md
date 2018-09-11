@@ -4,6 +4,7 @@
 - [Milestoness](#milestoness)
     - [M1](#m1)
     - [M2](#m2)
+    - [later](#later)
 - [Api design](#api-design)
 - [Geoms](#geoms)
     - [boxplot](#boxplot)
@@ -29,7 +30,11 @@
 
 ## M1
 
-check out https://github.com/hudsonb/kubed again
+Replicate more examples from library https://www.r-graph-gallery.com/
+
+
+remap vega errors to throwables
+https://stackoverflow.com/questions/15522315/how-to-get-the-javafx-webengine-to-report-errors-in-detail
 
 geom
 * barchart
@@ -47,7 +52,22 @@ infrastrcuture
 
 ## M2
 
+check out https://github.com/hudsonb/kubed again
 
+* cover most examples from altair/vega-lite
+* git rid of pointless jframe dummy
+* duplicated encoding channels should throw exception
+
+
+
+
+## later
+
+should pca and/or tSNE go into kravis or other artifact
+
+for nice impl see https://github.com/lejon/T-SNE-Java
+
+other impl https://deeplearning4j.org/doc/org/d
 
 ---
 https://lankydanblog.com/2017/01/29/javafx-graphs-look-pretty-good/

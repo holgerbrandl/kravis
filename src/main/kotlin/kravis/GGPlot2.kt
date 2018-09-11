@@ -31,7 +31,9 @@ fun DataFrame.ggplot(
     fill: String? = null,
     shape: String? = null,
     size: String? = null,
-    stroke: String? = null
+    stroke: String? = null,
+    ymin: String? = null,
+    ymax: String? = null
 
 ): GGPlot {
     val mapping = listOf<Pair<String, Aesthetic>>()
@@ -42,7 +44,8 @@ fun DataFrame.ggplot(
         .addNonNull(fill, Aesthetic.fill)
         .addNonNull(shape, Aesthetic.shape)
         .addNonNull(size, Aesthetic.size)
-        .addNonNull(stroke, Aesthetic.stroke)
+        .addNonNull(ymin, Aesthetic.ymin)
+        .addNonNull(ymax, Aesthetic.ymax)
 
     val aes = Aes(*mapping.toTypedArray()
     )
@@ -166,6 +169,7 @@ internal fun Any.toStringAndQuote() = when (this) {
     is Aes -> this.toString().nullIfEmpty()
     is Boolean -> this.toString().toUpperCase()
     is RColor -> "'${this}'"
+    is BarStat -> "'${this}'"
     else -> this
 }
 
@@ -183,8 +187,33 @@ internal fun arg2string(vararg namedArgs: Pair<String, Any?>) =
 
 class Aes(vararg val aes: Pair<String, Aesthetic>) {
 
-    constructor(x: String? = null, y: String? = null, vararg aes: Pair<String, Aesthetic>) :
-        this(*(aes.toList().addNonNull(x, Aesthetic.x).addNonNull(y, Aesthetic.y)).toTypedArray())
+    //    constructor(x: String? = null, y: String? = null, vararg aes: Pair<String, Aesthetic>) :
+    //        this(*(aes.toList().addNonNull(x, Aesthetic.x).addNonNull(y, Aesthetic.y)).toTypedArray())
+
+
+    constructor(
+        x: String? = null,
+        y: String? = null,
+        alpha: String? = null,
+        color: String? = null,
+        fill: String? = null,
+        shape: String? = null,
+        size: String? = null,
+        stroke: String? = null,
+        ymin: String? = null,
+        ymax: String? = null
+    ) :
+        this(*listOf<Pair<String, Aesthetic>>()
+            .addNonNull(x, Aesthetic.x)
+            .addNonNull(y, Aesthetic.y)
+            .addNonNull(alpha, Aesthetic.alpha)
+            .addNonNull(color, Aesthetic.color)
+            .addNonNull(fill, Aesthetic.fill)
+            .addNonNull(shape, Aesthetic.shape)
+            .addNonNull(size, Aesthetic.size)
+            .addNonNull(ymin, Aesthetic.ymin)
+            .addNonNull(ymax, Aesthetic.ymax).toTypedArray()
+        )
 
     fun stringify(): VarName? {
         if (aes.isEmpty()) return null
@@ -200,7 +229,11 @@ private fun List<Pair<String, Aesthetic>>.addNonNull(x: String?, aes: Aesthetic)
 }
 
 enum class Aesthetic {
-    x, y, color, fill, yintercept, xintercept, size, alpha, shape, stroke
+    x, y, color, fill, yintercept, xintercept, size, alpha, shape, stroke,
+
+    ymin,
+
+    ymax
 }
 
 interface Position
@@ -215,6 +248,10 @@ class PositionJitter(val height: Double? = null, val width: Double? = null, val 
 
         return "position_jitter($args)"
     }
+}
+
+class PositionIdentity() : Position {
+    override fun toString() = "position_identity()"
 }
 
 
@@ -239,4 +276,12 @@ fun main(args: Array<String>) {
     //    ggplot(irisData, Aestethics("R" to x)).geomBar().show()
     GGPlot(irisData, Aes("Sepal.Length" to x, "Petal.Width" to y)).geomPoint(alpha = 0.1).title("Cool plot").show()
 
+}
+
+/** Geoms that draw lines have a "linetype" parameter.
+ *
+ * See http://sape.inf.usi.ch/quick-reference/ggplot2/linetype
+ */
+enum class LineType {
+    blank, solid, dashed, dotted, dotdash, longdash, twodash
 }
