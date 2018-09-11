@@ -30,9 +30,12 @@
               <text value="Clear History"/>
             </properties>
           </component>
-          <hspacer id="d7b3d">
+          <grid id="aa257" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints/>
-          </hspacer>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
           <component id="da887" class="javax.swing.JButton" binding="exportButton" default-binding="true">
             <constraints/>
             <properties>
@@ -49,7 +52,9 @@
       </toolbar>
       <grid id="61135" binding="contentPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="Center"/>
-        <properties/>
+        <properties>
+          <enabled value="true"/>
+        </properties>
         <border type="none"/>
         <children/>
       </grid>
