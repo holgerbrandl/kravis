@@ -46,6 +46,7 @@ abstract class AbstractLocalRenderEngine : RenderEngine() {
                     library(dplyr)
                     library(readr)
                     library(scales)
+                    library(forcats)
 
                     $dataIngest
 

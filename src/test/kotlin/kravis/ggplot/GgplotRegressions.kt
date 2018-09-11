@@ -5,6 +5,7 @@ import krangl.SumFuns.mean
 import krangl.SumFuns.sd
 import kravis.*
 import kravis.Aesthetic.*
+import kravis.OrderUtils.reorder
 import kravis.ggplot
 import kravis.ggplot.GgplotRegressions.IrisData.SepalLength
 import kravis.ggplot.GgplotRegressions.IrisData.SepalWidth
@@ -127,18 +128,24 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `create factor ordered barchart with errorbars`() {
-        irisData.groupBy("Species")
+        val plot = irisData.groupBy("Species")
             .summarizeAt({ listOf("Sepal.Length") }, mean, sd)
             .addColumn("ymax") { it["Sepal.Length.mean"] + it["Sepal.Length.sd"] }
             .addColumn("ymin") { it["Sepal.Length.mean"] - it["Sepal.Length.sd"] }
-            .ggplot(x = "Species", y = "Sepal.Length.mean", fill = "Species")
+            .ggplot(x = reorder("Species", "Sepal.Length.mean", ascending = false), y = "Sepal.Length.mean", fill = "Species")
             .geomBar(stat = BarStat.identity)
             .geomErrorBar(Aes(ymin = "ymin", ymax = "ymax"), width = .3)
-            .show()
+            .xLabel("Species")
+            .yLabel("Sepal.Length")
+
+        assertExpected(plot)
     }
+
 }
 
+
 class ScaleRegressions {
+
 
     @Test
     fun `it should deparse collections and allow for custom options`() {
