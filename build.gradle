@@ -30,7 +30,9 @@ repositories {
     mavenLocal()
     jcenter()
 //    maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
-    maven { url 'http://clojars.org/repo/' }
+//    maven { url 'http://clojars.org/repo/' }
+
+//    maven { url 'https://jitpack.io' }
 }
 
 
@@ -39,6 +41,8 @@ dependencies {
 
 //    compile "de.mpicbg.scicomp:krangl:0.10.1"
     compile "de.mpicbg.scicomp:krangl:0.11-SNAPSHOT"
+//    compile 'de.mpicbg.scicomp:krangl:master-SNAPSHOT'
+
 
     // todo remove for major release
     compile group: 'no.tornado', name: 'tornadofx', version: '1.7.17'

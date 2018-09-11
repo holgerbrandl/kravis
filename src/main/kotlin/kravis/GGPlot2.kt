@@ -157,6 +157,14 @@ class GGPlot(
     fun title(title: String) = appendSpec {
         addSpec("""ggtitle("${title.replace("\"", "'")}")""")
     }
+
+    fun xLabel(label: String) = appendSpec {
+        addSpec("""xlab("${label}")""")
+    }
+
+    fun yLabel(label: String) = appendSpec {
+        addSpec("""ylab("${label}")""")
+    }
 }
 
 class VarName(val name: String) {
@@ -218,7 +226,10 @@ class Aes(vararg val aes: Pair<String, Aesthetic>) {
     fun stringify(): VarName? {
         if (aes.isEmpty()) return null
 
-        val map = aes.map { "${it.second}=`${it.first}`" }
+        val map = aes.map { (expr, aesthetic) ->
+            val  quoted = if(expr.startsWith("fct")) {expr} else {"`$expr`" }
+            "${aesthetic}=$quoted"
+            }
         val stringified = map.joinToString(",")
         return VarName("""aes($stringified)""")
     }
@@ -260,7 +271,7 @@ interface Stat
 
 /** The identity statistic leaves the data unchanged. */
 class StatIdentity : Stat {
-    override fun toString(): String = "stat_identity()"
+    override fun toString(): String = "identity".quoted
 }
 
 
@@ -284,4 +295,24 @@ fun main(args: Array<String>) {
  */
 enum class LineType {
     blank, solid, dashed, dotted, dotdash, longdash, twodash
+}
+
+
+object OrderUtils {
+
+    enum class OrderFun {
+        mean, median
+    }
+
+    /**
+     * fct_reorder() is useful for 1d displays where the factor is mapped to position
+     *
+     * The levels of `f` are reordered so that the values of `fun(orderAttribute)` (for fct_reorder()) are in ascending order.
+     */
+    fun reorder(f: String, orderAttribute: String, orderFun: OrderFun = OrderFun.mean, ascending:Boolean = true): String {
+        return if (ascending) "fct_reorder($f, $orderAttribute, fun=$orderFun)"
+        else "fct_rev(fct_reorder($f, $orderAttribute, fun=$orderFun))"
+    }
+
+
 }
