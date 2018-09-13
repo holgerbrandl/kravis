@@ -25,6 +25,17 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
     override val testDataDir: File
         get() = File("src/test/resources/kravis")
 
+    @Test
+    fun `emtpty plot without axes`() {
+        irisData.ggplot().apply { assertExpected(this) }
+    }
+
+
+    @Test
+    fun `emtpty plot with axes`() {
+        irisData.ggplot(x = "Species", y = "Petal.Length").apply { assertExpected(this) }
+    }
+
 
     @Test
     fun `boxplot with overlay`() {
