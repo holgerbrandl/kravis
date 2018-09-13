@@ -23,6 +23,9 @@
 - [Next steps](#next-steps)
     - [stats utils](#stats-utils)
     - [Reading List](#reading-list)
+- [Backlog](#backlog)
+    - [rserve backend](#rserve-backend)
+- [R packaging](#r-packaging)
 
 
 
@@ -31,6 +34,12 @@
 ## M1
 
 Replicate more examples from library https://www.r-graph-gallery.com/
+
+* Complete cheatsheet commands
+* Render with current panel size
+
+* add basic usage example to all geoms
+* Support alternative rendering engine (docker, rserve)
 
 
 remap vega errors to throwables
@@ -292,3 +301,36 @@ https://github.com/jfree/jfreesvgO
 https://jtablesaw.wordpress.com/tag/visualization/
 
 histogram, boxplots
+
+
+# Backlog
+
+* render svg
+  * https://stackoverflow.com/questions/12436274/svg-image-in-javafx-2-2
+  * https://stackoverflow.com/questions/20664107/draw-svg-images-on-a-jpanel
+
+
+###  rserve backend
+
+See https://www.rforge.net/Rserve/
+
+Use existing docker https://github.com/stevenpollack/docker-rserve
+
+Rserve examples
+* https://stackoverflow.com/questions/17395651/calling-ggplot-from-rserve-blank-png-image-of-1kb
+* Pushing data into rserve seems reasonably easy https://github.com/knime-mpicbg/knime-scripting/blob/84693d96ff8d3282d0477432fe5435ae1cca3ebe/de.mpicbg.knime.scripting.r/src/de/mpicbg/knime/scripting/r/AbstractRScriptingNodeModel.java#L295
+
+# R packaging
+
+Seems possible for windows https://sourceforge.net/projects/rportable/
+
+Seems possible for macos
+* https://superuser.com/questions/939070/a-self-contained-r-in-os-x
+* https://superuser.com/questions/946083/will-my-portable-app-portable-r-work-on-both-my-pc-and-mac
+
+Not feasible for
+https://stackoverflow.com/questions/11871394/create-r-binary-packages-for-linux-that-can-be-installed-on-different-machines
+
+Maybe usefful:
+* https://github.com/r-hub/homebrew-cran building statically linked R binary packages for MacOS based on homebrew
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 504.00 504.00">
+<defs>
+  <style type="text/css"><![CDATA[
+    line, polyline, path, rect, circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width="100%" height="100%" style="stroke: none; fill: #FFFFFF;"/>
+<rect x="0.00" y="0.00" width="504.00" height="504.00" style="stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;"/>
+<defs>
+  <clipPath id="cpNS40Nzk0NXw0OTguNTIxfDQ5OC41MjF8NS40Nzk0NQ==">
+    <rect x="5.48" y="5.48" width="493.04" height="493.04"/>
+  </clipPath>
+</defs>
+<rect x="5.48" y="5.48" width="493.04" height="493.04" style="stroke-width: 1.07; stroke: none; fill: #EBEBEB;" clip-path="url(#cpNS40Nzk0NXw0OTguNTIxfDQ5OC41MjF8NS40Nzk0NQ==)"/>
+<defs>
+  <clipPath id="cpMHw1MDR8NTA0fDA=">
+    <rect x="0.00" y="0.00" width="504.00" height="504.00"/>
+  </clipPath>
+</defs>
+</svg>
