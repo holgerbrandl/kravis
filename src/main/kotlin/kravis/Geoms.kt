@@ -75,6 +75,62 @@ fun GGPlot.geomPoint(
     addSpec("geom_point(${args})")
 }
 
+/**
+ * In a dot plot, the width of a dot corresponds to the bin width (or maximum width, depending on the binning algorithm), and dots are stacked, with each dot representing one observation.
+ *
+ * Official reference [geom_dotplot](https://ggplot2.tidyverse.org/reference/geom_dotplot.html)
+ */
+fun GGPlot.geomDotplot(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: Stat = StatIdentity(),
+    position: Position = PositionIdentity(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    fill: RColor? = null,
+    binaxis: String = "x",
+    method: String = "dotdensity",
+    binpositions: String = "bygroup",
+    stackdir: String = "up",
+    stackratio: Double = 1.0,
+    dotsize: Double = 1.0,
+    binwidth: Double
+): GGPlot = appendSpec {
+
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+
+        "position" to position,
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "fill" to fill,
+
+        "binaxis" to binaxis,
+        "method" to method,
+        "binpositions" to binpositions,
+        "stackdir" to stackdir,
+        "stackratio" to stackratio,
+        "dotsize" to dotsize
+    )
+
+    addSpec("geom_dotplot(${args})")
+}
+
 
 private fun requireZeroOne(d: Double?) = d?.also { require(it >= 0 && it <= 1) { "alpha must be [0,1] but was $it." } }
 

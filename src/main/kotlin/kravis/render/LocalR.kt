@@ -19,8 +19,7 @@ class LocalR : AbstractLocalRenderEngine() {
 
         val result = RUtils.runRScript(rScript)
         if (result.exitCode != 0) {
-            println(rScript)
-            throw LocalRenderingFailedException(result)
+            throw LocalRenderingFailedException(rScript, result)
         }
 
         require(outputFile.exists()) { System.err.println("Image generation failed") }

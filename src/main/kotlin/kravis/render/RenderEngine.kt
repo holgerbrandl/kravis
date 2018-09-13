@@ -41,20 +41,25 @@ abstract class AbstractLocalRenderEngine : RenderEngine() {
     fun compileScript(plot: GGPlot, dataIngest: String, savePath: String): String {
         val final = plot.plotCmd.joinToString("+\n")
 
+        val preamble = plot.preambble.joinToString("\n")
+
         val rScript = """
-                    library(ggplot2)
-                    library(dplyr)
-                    library(readr)
-                    library(scales)
-                    library(forcats)
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(scales)
+library(forcats)
 
-                    $dataIngest
+$preamble
 
-                    set.seed(2009)
-                    gg = $final
+$dataIngest
 
-                    ggsave(filename="$savePath", plot=gg)
-                """.trim().trimIndent()
+set.seed(2009)
+
+gg = $final
+
+ggsave(filename="$savePath", plot=gg)
+                """.trimIndent()
 
         return rScript
     }
@@ -129,6 +134,6 @@ object RUtils {
 
 open class RenderingFailedException : java.lang.RuntimeException()
 
-class LocalRenderingFailedException(val result: RUtils.CmdResult) : RenderingFailedException() {
-    override fun toString(): String = result.toString()
+class LocalRenderingFailedException(val script: String, val invokeResult: RUtils.CmdResult) : RenderingFailedException() {
+    override fun toString(): String = "Script:\n" + script + "\n\n" + invokeResult.serr()
 }

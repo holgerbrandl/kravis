@@ -54,7 +54,7 @@ class Docker(var image: String = "rocker/tidyverse:3.5.1") : AbstractLocalRender
 
         val result = dockerRun(plotDir, KRAVIS_DOCKER_DATA_CACHE_DIR)
         if (result.exitCode != 0) {
-            throw LocalRenderingFailedException(result)
+            throw LocalRenderingFailedException(rScript, result)
         }
 
         val tmpOutputFile = File(plotDir, File(plotOutputName).name)

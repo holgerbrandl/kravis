@@ -253,7 +253,7 @@ fun GGPlot.theme(
     legendTextAlign: Double? = null,
     legendTitle: ElementText? = null,
     legendTitleAlign: ElementText? = null,
-    legendPosition: String? = null,
+    legendPosition: String? = null, // todo add enum for ("none", "left", "right", "bottom", "top")
     legendDirection: ElementText? = null, // ("horizontal" or "vertical")
     legendJustification: ElementText? = null,
     legendBox: ElementText? = null,
@@ -294,6 +294,7 @@ fun GGPlot.theme(
     other: String? = null
 ) = appendSpec {
 
+    //todo add .quoted for all string arguments for come up with better default mechanism
     val args = arg2string(
         "line" to line,
         "rect" to rect,

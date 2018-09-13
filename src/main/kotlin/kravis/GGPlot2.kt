@@ -62,6 +62,8 @@ class GGPlot(
     mapping: Aes? = null,
     environment: String? = null
 ) {
+    internal val preambble = emptyList<String>().toMutableList()
+
     internal val plotCmd = emptyList<String>().toMutableList()
 
     internal val dataRegistry = mapOf<String, DataFrame>().toMutableMap()
@@ -79,11 +81,15 @@ class GGPlot(
         plotCmd.add("ggplot(${args})")
     }
 
+    fun addPreamble(preAmble: String) = apply { preambble.add(preAmble) }
+
     internal fun appendSpec(block: GGPlot.() -> Unit): GGPlot {
         val newPlot = GGPlot()
 
         // clone the current state
         newPlot.plotCmd.apply { clear(); addAll(plotCmd) }
+
+        newPlot.preambble.apply { addAll(preambble) }
         newPlot.dataRegistry.apply { putAll(dataRegistry) }
 
 
@@ -165,6 +171,23 @@ class GGPlot(
     fun yLabel(label: String) = appendSpec {
         addSpec("""ylab("${label}")""")
     }
+
+    /**
+     * Good labels are critical for making your plots accessible to a wider audience. Ensure the axis and legend
+     * labels display the full variable name. Use the plot title and subtitle to explain the main findings.
+     * It's common to use the caption to provide information about the data source. tag can be used for adding identification tags.
+     */
+    fun labs(title: String? = null, caption: String? = null, x: String? = null, y: String? = null, tag: String? = null) = appendSpec {
+        val args = arg2string(
+            "title" to title,
+            "caption" to caption,
+            "x" to x,
+            "y" to y,
+            "tag" to tag
+        )
+
+        addSpec("""labs("${args}")""")
+    }
 }
 
 class VarName(val name: String) {
@@ -172,7 +195,7 @@ class VarName(val name: String) {
 }
 
 internal fun Any.toStringAndQuote() = when (this) {
-    //    is String -> "'${this}'"
+    is String -> "'${this}'"
     //    is VarName -> this.toString()
     is Aes -> this.toString().nullIfEmpty()
     is Boolean -> this.toString().toUpperCase()
@@ -227,9 +250,13 @@ class Aes(vararg val aes: Pair<String, Aesthetic>) {
         if (aes.isEmpty()) return null
 
         val map = aes.map { (expr, aesthetic) ->
-            val  quoted = if(expr.startsWith("fct")) {expr} else {"`$expr`" }
-            "${aesthetic}=$quoted"
+            val quoted = if (expr.startsWith("fct")) {
+                expr
+            } else {
+                "`$expr`"
             }
+            "${aesthetic}=$quoted"
+        }
         val stringified = map.joinToString(",")
         return VarName("""aes($stringified)""")
     }
@@ -265,6 +292,15 @@ class PositionIdentity() : Position {
     override fun toString() = "position_identity()"
 }
 
+/**
+ * `position_nudge` is generally useful for adjusting the position of items on discrete scales by a small amount.
+ * Nudging is built in to geom_text() because it's so useful for moving labels a small distance from what they're labelling.
+ */
+class PositionNudge(val x: Double = 0.0, val y: Double = 0.0) : Position {
+
+    override fun toString(): String = "position_nudge(${x}, ${y})"
+}
+
 
 interface Stat
 
@@ -279,7 +315,7 @@ class StatCustom(val custom: String) : Stat {
     override fun toString() = custom
 }
 
-private val String.quoted: String
+internal val String.quoted: String
     get() = "'" + this + "'"
 
 
@@ -309,7 +345,7 @@ object OrderUtils {
      *
      * The levels of `f` are reordered so that the values of `fun(orderAttribute)` (for fct_reorder()) are in ascending order.
      */
-    fun reorder(f: String, orderAttribute: String, orderFun: OrderFun = OrderFun.mean, ascending:Boolean = true): String {
+    fun reorder(f: String, orderAttribute: String, orderFun: OrderFun = OrderFun.mean, ascending: Boolean = true): String {
         return if (ascending) "fct_reorder($f, $orderAttribute, fun=$orderFun)"
         else "fct_rev(fct_reorder($f, $orderAttribute, fun=$orderFun))"
     }

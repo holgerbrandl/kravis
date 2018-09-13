@@ -22,6 +22,7 @@ The grammar implemented by `kravis` is inspired from [`ggplot2`](http://ggplot2.
 - [Supported Data Input Formats](#supported-data-input-formats)
 - [Execution Engines](#execution-engines)
     - [Iterator API](#iterator-api)
+- [Custom Plots](#custom-plots)
 - [References](#references)
 - [Acknowledgements](#acknowledgements)
 
@@ -148,8 +149,22 @@ basePlot.geomPoint()
 ```
 ![](.README_images/scatter_example.png)
 
+## Custom Plots
 
+Since `kravis` just mimics some parts of `ggplot2`, and because user may want to create more custom plots we do support preambles (e.g. to define new geoms and custom layer spec.
 
+Example
+
+```kotlin
+irisData.ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
+    .addPreamble("""devtools::source_url("https://git.io/fAiQN")""")
+    .addCustom("""geom_flat_violin(scale = "count", trim = FALSE)""")
+    .geomDotplot(binaxis = "y", dotsize = 0.5, stackdir = "down", binwidth = 0.1, position = PositionNudge(-0.025))
+    .theme(legendPosition = "none")
+    .labs(x = "Species", y = "Sepal length (cm)")
+```
+
+![](.README_images/dot_violion.png)
 
 ## References
 

@@ -26,16 +26,35 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
         get() = File("src/test/resources/kravis")
 
     @Test
-    fun `emtpty plot without axes`() {
+    fun `empty plot without axes`() {
         irisData.ggplot().apply { assertExpected(this) }
     }
 
 
     @Test
-    fun `emtpty plot with axes`() {
+    fun `empty plot with axes`() {
         irisData.ggplot(x = "Species", y = "Petal.Length").apply { assertExpected(this) }
     }
 
+    @Test
+    fun `support custom r preamble for rendering`() {
+        val preabmle = """
+        devtools::source_url("https://git.io/fAiQN")
+        """
+
+        irisData.ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
+            .addPreamble(preabmle)
+            .addCustom("""geom_flat_violin(scale = "count", trim = FALSE)""")
+            // todo
+            //            .stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1), geom = "pointrange", position = position_nudge(0.05)) +
+            .geomDotplot(binaxis = "y", dotsize = 0.5, stackdir = "down", binwidth = 0.1, position = PositionNudge(-0.025))
+            //            .geomPoint()
+            .theme(legendPosition = "none")
+            .labs(x = "Species", y = "Sepal length (cm)")
+
+            //            .show()
+            .apply { assertExpected(this) }
+    }
 
     @Test
     fun `boxplot with overlay`() {
