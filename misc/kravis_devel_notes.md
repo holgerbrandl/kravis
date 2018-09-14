@@ -4,6 +4,7 @@
 - [Milestoness](#milestoness)
     - [M1](#m1)
     - [M2](#m2)
+    - [M3](#m3)
     - [later](#later)
 - [Api design](#api-design)
 - [Geoms](#geoms)
@@ -35,11 +36,11 @@
 
 Replicate more examples from library https://www.r-graph-gallery.com/
 
-* Complete cheatsheet commands
 * Render with current panel size
 
+* Complete cheatsheet commands
+
 * add basic usage example to all geoms
-* Support alternative rendering engine (docker, rserve)
 
 
 remap vega errors to throwables
@@ -68,6 +69,9 @@ check out https://github.com/hudsonb/kubed again
 * duplicated encoding channels should throw exception
 
 
+## M3
+
+* Support `rserve` as alternative rendering engine
 
 
 ## later

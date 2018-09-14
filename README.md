@@ -151,7 +151,7 @@ basePlot.geomPoint()
 
 ## Custom Plots
 
-Since `kravis` just mimics some parts of `ggplot2`, and because user may want to create more custom plots we do support preambles (e.g. to define new geoms and custom layer spec.
+Since `kravis` just mimics some parts of `ggplot2`, and because user may want to create more custom plots we do support preambles (e.g. to define new geoms) and custom layer specs.
 
 Example
 

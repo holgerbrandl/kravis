@@ -44,6 +44,7 @@ fun DataFrame.ggplot(
         .addNonNull(fill, Aesthetic.fill)
         .addNonNull(shape, Aesthetic.shape)
         .addNonNull(size, Aesthetic.size)
+        .addNonNull(size, Aesthetic.stroke)
         .addNonNull(ymin, Aesthetic.ymin)
         .addNonNull(ymax, Aesthetic.ymax)
 
@@ -250,8 +251,8 @@ class Aes(vararg val aes: Pair<String, Aesthetic>) {
         if (aes.isEmpty()) return null
 
         val map = aes.map { (expr, aesthetic) ->
-            val quoted = if (expr.startsWith("fct")) {
-                expr
+            val quoted = if (expr.isRExpression) {
+                expr.removePrefix(EXPRESSION_PREFIX)
             } else {
                 "`$expr`"
             }
@@ -347,8 +348,20 @@ object OrderUtils {
      */
     fun reorder(f: String, orderAttribute: String, orderFun: OrderFun = OrderFun.mean, ascending: Boolean = true): String {
         return if (ascending) "fct_reorder($f, $orderAttribute, fun=$orderFun)"
-        else "fct_rev(fct_reorder($f, $orderAttribute, fun=$orderFun))"
+        else "fct_rev(fct_reorder($f, $orderAttribute, fun=$orderFun))".asRExpression
     }
 
-
 }
+
+// note we should rather use some receive context if possible here
+val String.asDiscreteVariable: String
+    get() = "as.factor($this)".asRExpression
+
+internal val EXPRESSION_PREFIX = ".r_expression."
+
+internal val String.asRExpression: String
+    get() = EXPRESSION_PREFIX + this
+
+internal val String.isRExpression: Boolean
+    get() = startsWith(EXPRESSION_PREFIX)
+

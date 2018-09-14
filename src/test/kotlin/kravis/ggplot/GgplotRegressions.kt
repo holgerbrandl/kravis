@@ -14,6 +14,7 @@ import kravis.render.saveTempFile
 import org.junit.Test
 import java.awt.Desktop
 import java.io.File
+import kotlin.math.roundToInt
 
 
 @Suppress("UNUSED_EXPRESSION")
@@ -168,6 +169,18 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
             .xLabel("Species")
             .yLabel("Sepal.Length")
 
+        plot.show()
+        assertExpected(plot)
+    }
+
+
+    @Test
+    fun `convert continues variable to discrete`() {
+        val plot = irisData.addColumn("Approx.SL") { it["Sepal.Length"].map<Double> { it.roundToInt() } }
+            .ggplot(x = "Approx.SL".asDiscreteVariable, y = "Sepal.Width", color = "Species", size = "Petal.Width")
+            .geomPoint(alpha = .4)
+
+        //        plot.show()
         assertExpected(plot)
     }
 
