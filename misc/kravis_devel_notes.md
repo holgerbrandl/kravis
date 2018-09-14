@@ -37,13 +37,10 @@
 Replicate more examples from library https://www.r-graph-gallery.com/
 
 * Render with current panel size
+* Add swing/fx svg renderer
+* Fix FX renderer
 
-* Complete cheatsheet commands
-
-* add basic usage example to all geoms
-
-
-remap vega errors to throwables
+* remap vega errors to throwables
 https://stackoverflow.com/questions/15522315/how-to-get-the-javafx-webengine-to-report-errors-in-detail
 
 geom

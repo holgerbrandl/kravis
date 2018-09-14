@@ -7,48 +7,40 @@ import javafx.scene.image.Image
 import javafx.stage.Stage
 import tornadofx.*
 import java.io.File
-import javax.swing.JDialog
-import javax.swing.WindowConstants
+import javax.swing.SwingUtilities
 
 
 /**
  * @author Holger Brandl
  */
 
-object FXPlottingDevice {
+object FxPngDevice {
 
     init {
-        createAndShowGUI()
-    }
+        SwingUtilities.invokeLater {
 
-    fun createAndShowGUI() {
-        val frame = JDialog()
-        frame.defaultCloseOperation = WindowConstants.DISPOSE_ON_CLOSE
+            val wrapper = JFXPanel()
 
-        val wrapper = JFXPanel()
-        frame.contentPane.add(wrapper)
-        frame.pack()
-        frame.isVisible = true
-
-        // Init TornadoFX Application
-        Platform.runLater {
-            val stage = Stage()
-            stage.width = 1000.0
-            stage.height = 800.0
-            val app = HelloWorldApp()
-            app.start(stage)
+            // Init TornadoFX Application
+            Platform.runLater {
+                val stage = Stage()
+                stage.width = 1000.0
+                stage.height = 800.0
+                val app = FxPngApp()
+                app.start(stage)
+            }
         }
     }
 
 
     fun showImage(imageFile: File) {
-        val imView = FX.find(PlottingPanel::class.java)
+        val imView = FX.find(PngViewPanel::class.java)
         imView.imageProperty.set(Image(imageFile.toURI().toURL().toString()))
         //        imView.imageProperty.set(Image("file:///Users/brandl/Dropbox/sharedDB/fotos/2017-07-01 14.35.05.jpg"))
     }
 }
 
-class PlottingPanel : View() {
+class PngViewPanel : View() {
 
     val imageProperty = SimpleObjectProperty<javafx.scene.image.Image>()
 
@@ -81,14 +73,19 @@ class PlottingPanel : View() {
     }
 }
 
-class HelloWorldApp : App(PlottingPanel::class, InternalWindow.Styles::class)
+class FxPngApp : App(PngViewPanel::class, InternalWindow.Styles::class)
 
 
 fun main(args: Array<String>) {
     //    SwingUtilities.invokeLater { FXPlottingDevice.createAndShowGUI() }
 
-    //    Thread.sleep(3000)
 
-    //    FXPlottingDevice.hashCode()
-    FXPlottingDevice.showImage(File("/Users/brandl/Dropbox/sharedDB/fotos/2017-07-01 14.35.05.jpg"))
+    FxPngDevice.showImage(File("/Users/brandl/Dropbox/sharedDB/fotos/2017-07-01 14.35.05.jpg"))
+
+    // requires     compile 'de.codecentric.centerdevice:javafxsvg:1.3.0'
+    //    SvgImageLoaderFactory.install(PrimitiveDimensionProvider())
+    //    SvgImageLoaderFactory.install()
+    //    PngFxDevice.showImage(File("/Users/brandl/projects/kotlin/kravis/src/test/resources/kravis/boxplot_with_overlay.svg"))
+
+    Thread.sleep(10000)
 }
