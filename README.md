@@ -164,7 +164,7 @@ irisData.ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
     .labs(x = "Species", y = "Sepal length (cm)")
 ```
 
-![](.README_images/dot_violion.png)
+![](.README_images/dot_violin.png)
 
 ## References
 
