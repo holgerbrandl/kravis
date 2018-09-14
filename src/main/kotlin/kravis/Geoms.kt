@@ -13,13 +13,72 @@ import krangl.DataFrame
  * Original reference https://ggplot2.tidyverse.org/reference/geom_boxplot.html
  */
 fun GGPlot.geomBoxplot(
-    position: Position? = null,
-    // boxplot specific args
-    notch: Boolean? = null,
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: Stat = StatBxoplot(),
+    position: Position = PositionDodge2(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    outlierColour: RColor? = null,
+    outlierColor: RColor? = null,
+    outlierFill: RColor? = null,
+    outlierShape: Int = 19,
+    outlierSize: Double = 1.5,
+    outlierStroke: Double = .5,
+    outlierAlpha: Double? = null,
+    notch: Boolean = false,
+    notchwidth: Double = .5,
+    varwidth: Boolean = false,
+
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
     fill: RColor? = null,
-    color: RColor? = null
+    // group, // todo, unclear usage
+    linetype: LineType? = null,
+    shape: Int? = null,
+    size: Int? = null,
+    weight: Double? = null
+
 ): GGPlot = appendSpec {
-    val arg2string = arg2string("position" to position, "notch" to notch, "fill" to fill, "color" to color)
+
+    val dataVar: VarName? = registerDataset(data)
+
+    val arg2string = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+        // other options
+        "outlier.colour" to outlierColour,
+        "outlier.color" to outlierColor,
+        "outlier.fill" to outlierFill,
+        "outlier.shape" to outlierShape,
+        "outlier.size" to outlierSize,
+        "outlier.stroke" to outlierStroke,
+        "outlier.alpha" to outlierAlpha,
+        "notch" to notch,
+        "notchwidth" to notchwidth,
+        "varwidth" to varwidth,
+
+        // list all the aesthetics it understands
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "fill" to fill,
+        "shape" to shape,
+        "linetype" to linetype,
+        "size" to size,
+        "weight" to weight
+    )
+
 
     addSpec("geom_boxplot($arg2string)")
 }

@@ -60,7 +60,7 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `boxplot with overlay`() {
         irisData.ggplot("Species" to x, "Petal.Length" to y)
-            .geomBoxplot(notch = null, fill = RColor.orchid, color = RColor.create("#3366FF"))
+            .geomBoxplot(fill = RColor.orchid, color = RColor.create("#3366FF"))
             .geomPoint(position = PositionJitter(width = 0.1, seed = 1), alpha = 0.3)
             .title("Petal Length by Species")
             //            .apply { open() }
@@ -81,7 +81,7 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
 
 
         //        plot.also { println(it.toString()) }
-        //        plot.show()
+        //                plot.show()
         assertExpected(plot)
     }
 
@@ -169,7 +169,7 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
             .xLabel("Species")
             .yLabel("Sepal.Length")
 
-        plot.show()
+        //        plot.show()
         assertExpected(plot)
     }
 

@@ -296,8 +296,25 @@ class PositionIdentity() : Position {
  * Nudging is built in to geom_text() because it's so useful for moving labels a small distance from what they're labelling.
  */
 class PositionNudge(val x: Double = 0.0, val y: Double = 0.0) : Position {
-
     override fun toString(): String = "position_nudge(${x}, ${y})"
+}
+
+class PositionDodge2(
+    val width: Double? = null,
+    val preserve: String = "total",
+    val padding: Double = 0.1,
+    val reverse: Boolean = false
+) : Position {
+    override fun toString(): String {
+        val arg2string = arg2string(
+            "width" to width,
+            "preserve" to preserve,
+            "padding" to padding,
+            "reverse" to reverse
+        )
+
+        return "position_dodge2($arg2string)"
+    }
 }
 
 
@@ -312,6 +329,10 @@ class StatIdentity : Stat {
 
 class StatCustom(val custom: String) : Stat {
     override fun toString() = custom
+}
+
+class StatBxoplot() : Stat {
+    override fun toString(): String = "boxplot".quoted
 }
 
 internal val String.quoted: String

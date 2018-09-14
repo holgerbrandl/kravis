@@ -29,8 +29,8 @@ abstract class AbstractSvgPlotRegression {
 
         assertTrue(render.exists() && render.length() > 0)
 
-        val svgDoc = render.readLines().joinToString("\n").let { prettyFormat(it, 4) }
-        val obtained = prettyFormat(svgDoc, 4).trim()
+        val svgDoc = render.readText().run { prettyFormat(this, 4) }.trim()
+        //        val obtained = prettyFormat(svgDoc, 4).trim()
 
         val methodName = name.methodName
 
@@ -38,15 +38,15 @@ abstract class AbstractSvgPlotRegression {
 
         val file = File(testDataDir, methodName.replace(" ", "_") + "${subtest?.let { "." + it } ?: ""}.svg")
         if (!file.exists()) {
-            file.writeText(obtained)
+            file.writeText(svgDoc)
             fail("could not find expected result.")
         }
 
         // maybe https://stackoverflow.com/questions/8596161/json-string-tidy-formatter-for-java
 
-        val expected = file.readLines().joinToString("\n").trim()
+        val expected = file.readText().trim() //.run { prettyFormat(this, 4) }
 
-        assertEquals(expected, obtained)
+        assertEquals(expected, svgDoc)
 
         // compare actual images
         //        saveImage(File(testDataDir, name.methodName.replace(" ", "_") + ".png"))
