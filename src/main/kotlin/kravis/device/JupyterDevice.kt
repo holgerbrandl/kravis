@@ -4,6 +4,7 @@ import jupyter.kotlin.MimeTypedResult
 import jupyter.kotlin.resultOf
 import krangl.irisData
 import kravis.Aesthetic
+import kravis.GGPlot
 import kravis.OUTPUT_DEVICE
 import kravis.geomPoint
 import kravis.nshelper.ggplot
@@ -18,9 +19,15 @@ import javax.imageio.ImageIO
  * @author Holger Brandl
  */
 class JupyterDevice(val renderSVG: Boolean = false) : OutputDevice() {
+
     override fun getPreferredFormat() = if (renderSVG) PlotFormat.SVG else PlotFormat.PNG
 
-    override fun show(imageFile: File): MimeTypedResult = if (renderSVG) renderAsSVG(imageFile) else renderAsImage(imageFile)
+    override fun show(plot: GGPlot): MimeTypedResult {
+        val imageFile = plot.save(createTempFile(suffix = getPreferredFormat().toString()), getPreferredSize())
+        require(imageFile.exists()) { "Visualization Failed. Could not render image." }
+
+        return if (renderSVG) renderAsSVG(imageFile) else renderAsImage(imageFile)
+    }
 
     internal fun renderAsSVG(imageFile: File): MimeTypedResult {
         TODO()

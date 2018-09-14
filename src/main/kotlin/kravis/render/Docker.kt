@@ -3,6 +3,7 @@ package kravis.render
 import krangl.writeTSV
 import kravis.GGPlot
 import kravis.RENDER_BACKEND
+import java.awt.Dimension
 import java.io.File
 import java.util.*
 
@@ -15,7 +16,7 @@ class Docker(var image: String = "rocker/tidyverse:3.5.1") : AbstractLocalRender
     private val DOCKER_PLOT_MNT = """/plot"""
     private val DOCKER_DATA_MNT = """/data"""
 
-    override fun render(plot: GGPlot, outputFile: File): File {
+    override fun render(plot: GGPlot, outputFile: File, preferredSize: Dimension?): File {
         // save all the data
         // todo hash dfs where possible to avoid IO
 
@@ -47,7 +48,7 @@ class Docker(var image: String = "rocker/tidyverse:3.5.1") : AbstractLocalRender
         // in theory we could try to bind the output-path directly in the container, but this may file depending on the fs
         // that's why we render into a file we can certainly write to and copy it to the destination
         val plotOutputName = "$DOCKER_PLOT_MNT/plot." + outputFile.extension
-        val rScript = compileScript(plot, dataIngest, plotOutputName)
+        val rScript = compileScript(plot, dataIngest, plotOutputName, preferredSize)
 
         File(plotDir, "plot.R").writeText(rScript)
 

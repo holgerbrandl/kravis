@@ -1,6 +1,7 @@
 package kravis.render
 
 import kravis.GGPlot
+import java.awt.Dimension
 import java.io.*
 
 /**
@@ -22,7 +23,7 @@ enum class PlotFormat {
 
 
 abstract class RenderEngine {
-    internal abstract fun render(plot: GGPlot, outputFile: File): File
+    internal abstract fun render(plot: GGPlot, outputFile: File, preferredSize: Dimension?): File
 }
 
 internal object EngineAutodetect {
@@ -38,10 +39,25 @@ internal object EngineAutodetect {
 abstract class AbstractLocalRenderEngine : RenderEngine() {
 
 
-    fun compileScript(plot: GGPlot, dataIngest: String, savePath: String): String {
+    fun compileScript(plot: GGPlot, dataIngest: String, savePath: String, preferredSize: Dimension?): String {
         val final = plot.plotCmd.joinToString("+\n")
 
         val preamble = plot.preambble.joinToString("\n")
+
+
+        val optionalSizeConfig = preferredSize?.let {
+            //https://graphicdesign.stackexchange.com/questions/71797/how-do-i-convert-the-width-from-pixels-to-inches-at-300-dpi
+            //        You have an image that is 1,200x1,200 pixels.
+            //        1,200 / 300 = 4
+            //        So if you are printing at 300PPI, your image will be 4x4".
+
+            val resulution = 150
+            if (it.width / resulution < 0.1) {
+                null
+            } else {
+                """ , width = ${it.width / resulution}, height = ${it.height / resulution}, units = "in""""
+            }
+        }
 
         val rScript = """
 library(ggplot2)
@@ -58,7 +74,7 @@ set.seed(2009)
 
 gg = $final
 
-ggsave(filename="$savePath", plot=gg)
+ggsave(filename="$savePath", plot=gg${optionalSizeConfig ?: ""})
                 """.trimIndent()
 
         return rScript

@@ -10,6 +10,7 @@ import kravis.device.OutputDevice
 import kravis.render.EngineAutodetect
 import kravis.render.PlotFormat
 import kravis.render.RenderEngine
+import java.awt.Dimension
 import java.io.File
 
 /**
@@ -126,17 +127,14 @@ class GGPlot(
 
 
     /** Return the file to which the plot was saved. */
-    fun save(file: File): File {
+    fun save(file: File, preferredSize: Dimension? = null): File {
         require(PlotFormat.isSupported(file.extension)) { "Unsupported image format" }
-        return RENDER_BACKEND.render(this, file)
+        return RENDER_BACKEND.render(this, file, preferredSize)
     }
 
 
     fun show(): Any {
-        val imageFile = save(createTempFile(suffix = OUTPUT_DEVICE.getPreferredFormat().toString()))
-        require(imageFile.exists()) { "Visualization Failed. Could not render image." }
-
-        return OUTPUT_DEVICE.show(imageFile)
+        return OUTPUT_DEVICE.show(this)
     }
 
     override fun toString(): String {
@@ -322,7 +320,7 @@ internal val String.quoted: String
 
 fun main(args: Array<String>) {
     //    ggplot(irisData, Aestethics("R" to x)).geomBar().show()
-    GGPlot(irisData, Aes("Sepal.Length" to x, "Petal.Width" to y)).geomPoint(alpha = 0.1).title("Cool plot").show()
+    GGPlot(irisData, Aes("Sepal.Length" to x, "Petal.Width" to y)).geomPoint(alpha = 0.1).title("Cool Plot").show()
 
 }
 

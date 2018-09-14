@@ -36,12 +36,6 @@
 
 Replicate more examples from library https://www.r-graph-gallery.com/
 
-* Render with current panel size
-* Add swing/fx svg renderer
-* Fix FX renderer
-
-* remap vega errors to throwables
-https://stackoverflow.com/questions/15522315/how-to-get-the-javafx-webengine-to-report-errors-in-detail
 
 geom
 * barchart
@@ -69,6 +63,8 @@ check out https://github.com/hudsonb/kubed again
 ## M3
 
 * Support `rserve` as alternative rendering engine
+* remap vega errors to throwables
+https://stackoverflow.com/questions/15522315/how-to-get-the-javafx-webengine-to-report-errors-in-detail
 
 
 ## later

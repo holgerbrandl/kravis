@@ -5,7 +5,10 @@ import javafx.beans.property.SimpleObjectProperty
 import javafx.embed.swing.JFXPanel
 import javafx.scene.image.Image
 import javafx.stage.Stage
+import kravis.GGPlot
+import kravis.render.PlotFormat
 import tornadofx.*
+import java.awt.Dimension
 import java.io.File
 import javax.swing.SwingUtilities
 
@@ -14,7 +17,7 @@ import javax.swing.SwingUtilities
  * @author Holger Brandl
  */
 
-object FxPngDevice {
+object FxPngDevice : OutputDevice() {
 
     init {
         SwingUtilities.invokeLater {
@@ -32,11 +35,28 @@ object FxPngDevice {
         }
     }
 
+    override fun getPreferredFormat() = PlotFormat.PNG
+
+
+    override fun getPreferredSize(): Dimension? {
+        //        val imView = FX.find(PngViewPanel::class.java)
+        //        imView.imageProperty
+        //        ???
+        return null
+    }
+
+
+    override fun show(plot: GGPlot) {
+        val imageFile = plot.save(createTempFile(suffix = getPreferredFormat().toString()), getPreferredSize())
+        require(imageFile.exists()) { "Visualization Failed. Could not render image." }
+
+        showImage(imageFile)
+        //        imView.imageProperty.set(Image("file:///Users/brandl/Dropbox/sharedDB/fotos/2017-07-01 14.35.05.jpg"))
+    }
 
     fun showImage(imageFile: File) {
         val imView = FX.find(PngViewPanel::class.java)
         imView.imageProperty.set(Image(imageFile.toURI().toURL().toString()))
-        //        imView.imageProperty.set(Image("file:///Users/brandl/Dropbox/sharedDB/fotos/2017-07-01 14.35.05.jpg"))
     }
 }
 
