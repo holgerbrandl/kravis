@@ -321,6 +321,8 @@ internal val String.quoted: String
 fun main(args: Array<String>) {
     //    ggplot(irisData, Aestethics("R" to x)).geomBar().show()
     GGPlot(irisData, Aes("Sepal.Length" to x, "Petal.Width" to y)).geomPoint(alpha = 0.1).title("Cool Plot").show()
+    GGPlot(irisData, Aes("Sepal.Length" to x, "Petal.Width" to y)).geomPoint(alpha = 0.1).title("Another Cool Plot").show()
+    GGPlot(irisData, Aes("Sepal.Length" to x, "Petal.Width" to y)).geomPoint(alpha = 0.1).title("Yet Another Cool Plot").show()
 
 }
 

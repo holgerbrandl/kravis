@@ -21,9 +21,9 @@ public class PlotResultPanel {
 
     public PlotResultPanel() {
         $$$setupUI$$$();
-        lastButton.addActionListener(e -> System.out.println("clicked next"));
-
-        nextButton.addActionListener(e -> System.out.println("clicked next"));
+//        lastButton.addActionListener(e -> System.out.println("clicked next"));
+//
+//        nextButton.addActionListener(e -> System.out.println("clicked next"));
 
         // todo implement last/next https://stackoverflow.com/questions/5654926/implementing-back-forward-buttons-in-swing
         imagePanel = new ImagePanel();
@@ -33,6 +33,16 @@ public class PlotResultPanel {
 
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+
+    public JButton getLastButton() {
+        return lastButton;
+    }
+
+
+    public JButton getNextButton() {
+        return nextButton;
     }
 
 

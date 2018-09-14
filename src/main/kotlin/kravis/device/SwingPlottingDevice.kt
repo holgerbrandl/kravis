@@ -44,23 +44,40 @@ abstract class OutputDevice {
 
 class SwingPlottingDevice : OutputDevice() {
 
-    var lastPlot: GGPlot? = null
+    val history = listOf<GGPlot>().toMutableList()
+
+    var curPlot: GGPlot? = null
 
     override fun getPreferredSize(): Dimension? = with(panel.imagePanel) { Dimension(width, height) }
 
     override fun getPreferredFormat() = PlotFormat.PNG
 
     override fun show(plot: GGPlot) {
+        history.apply { add(plot); while (size > 10) removeAt(0) }
+
+        renderInternally(plot)
+    }
+
+    fun renderInternally(plot: GGPlot) {
+        curPlot = plot
+
         val imageFile = plot.save(createTempFile(suffix = getPreferredFormat().toString()), getPreferredSize())
         require(imageFile.exists()) { "Visualization Failed. Could not render image." }
-
-        lastPlot = plot
 
         showImage(imageFile)
     }
 
     val panel by lazy {
         val plotResultPanel = PlotResultPanel()
+
+        plotResultPanel.nextButton.addActionListener {
+            renderInternally(history[Math.min(history.size - 1, history.indexOf(curPlot) + 1)])
+        }
+
+        plotResultPanel.lastButton.addActionListener {
+            renderInternally(history[Math.max(0, history.indexOf(curPlot) - 1)])
+        }
+
 
         // https://stackoverflow.com/questions/1281582/how-to-find-out-the-instance-when-component-resize-is-complete
         plotResultPanel.imagePanel.addComponentListener(object : ComponentAdapter() {
@@ -89,7 +106,7 @@ class SwingPlottingDevice : OutputDevice() {
              * Actual resize method
              */
             fun applyResize() {
-                if (lastPlot != null) show(lastPlot!!)
+                if (curPlot != null) renderInternally(curPlot!!)
             }
 
             /**
