@@ -184,6 +184,24 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
         assertExpected(plot)
     }
 
+    @Test
+    fun `grouped line plot`() {
+        // create random time series
+
+        val flightsSummary = flightsData
+            .groupBy("carrier", "day")
+            .summarize("mean_dep_delay") { it["dep_delay"].mean(removeNA = true) }
+
+        flightsSummary.head().print()
+
+        val basePlot = flightsSummary.ggplot(x = "day", y = "mean_dep_delay", color = "carrier")
+
+
+        //        plot.show()
+        assertExpected(basePlot.geomLine(), "line")
+        assertExpected(basePlot.geomStep(color = RColor.darkgoldenrod), "step")
+    }
+
 }
 
 

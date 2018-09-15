@@ -197,7 +197,7 @@ private fun requireZeroOne(d: Double?) = d?.also { require(it >= 0 && it <= 1) {
 enum class BarStat {
     count, identity
 }
-// todo use more constrained aestetics with just the suppored fields or validate supported aestehtics
+// todo use more constrained aestetics with just the supported fields or validate supported aestehtics
 /**
  * There are two types of bar charts: `geom_bar` makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use `geom_col` instead. `geom_bar` uses `stat_count` by default: it counts the number of cases at each x position. `geom_col` uses `stat_identity`: it leaves the data as is.
  */
@@ -288,21 +288,157 @@ fun GGPlot.geomErrorBar(
 }
 
 
+//
 /**
+ * geom_path() connects the observations in the order in which they appear in the data. geom_line() connects them in order of the variable on the x axis. geom_step() creates a stairstep plot, highlighting exactly when changes occur. The group aesthetic determines which cases are connected together.
+ *
+ * @linetype For options see http://sape.inf.usi.ch/quick-reference/ggplot2/linetype
+ */
+fun GGPlot.geomPath(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: BarStat = BarStat.identity,
+    position: Position = PositionIdentity(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    lineend: String = "butt",
+    linejoin: String = "round",
+    linemitre: Int = 10,
+    arrow: String? = null,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    linetype: LineType? = null,
+    size: Int? = null
+): GGPlot = appendSpec {
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+        "lineend" to lineend,
+        "linejoin" to linejoin,
+        "linemitre" to linemitre,
+        "arrow" to arrow,
+
+
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "linetype" to linetype,
+        "size" to size
+    )
+
+    addSpec("geom_path(${args})")
+}
+
+//
+/**
+ * geom_path() connects the observations in the order in which they appear in the data. geom_line() connects them in order of the variable on the x axis. geom_step() creates a stairstep plot, highlighting exactly when changes occur. The group aesthetic determines which cases are connected together.
+ *
  * @linetype For options see http://sape.inf.usi.ch/quick-reference/ggplot2/linetype
  */
 fun GGPlot.geomLine(
+    // generic options to all geoms
     mapping: Aes? = null,
     data: DataFrame? = null,
-    stat: Stat? = null,
-    position: Position? = null,
+    stat: BarStat = BarStat.identity,
+    position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
 
+    // list all the aesthetics it understands
     alpha: Double? = null,
     color: RColor? = null,
-    // group, // todo
-    linetype: Int? = null,
+    linetype: LineType? = null,
     size: Int? = null
 ): GGPlot = appendSpec {
+    val dataVar: VarName? = registerDataset(data)
 
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "linetype" to linetype,
+        "size" to size
+    )
+
+    addSpec("geom_line(${args})")
+}
+
+/**
+ * geom_path() connects the observations in the order in which they appear in the data. geom_line() connects them in order of the variable on the x axis. geom_step() creates a stairstep plot, highlighting exactly when changes occur. The group aesthetic determines which cases are connected together.
+ *
+ * @linetype For options see http://sape.inf.usi.ch/quick-reference/ggplot2/linetype
+ */
+
+enum class StepDirection {
+    /** horizontal then vertical */
+    hv,
+    /**  vertical then horizontal*/
+    vh;
+
+    override fun toString(): String {
+        return super.toString().quoted
+    }
+}
+
+fun GGPlot.geomStep(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: BarStat = BarStat.identity,
+    position: Position = PositionIdentity(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    direction: StepDirection = StepDirection.hv,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    linetype: LineType? = null,
+    size: Int? = null
+): GGPlot = appendSpec {
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+
+        "direction" to direction,
+
+
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "linetype" to linetype,
+        "size" to size
+    )
+
+    addSpec("geom_step(${args})")
 }

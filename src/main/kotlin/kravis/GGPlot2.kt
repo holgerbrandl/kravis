@@ -2,9 +2,6 @@ package kravis
 
 
 import krangl.DataFrame
-import krangl.irisData
-import kravis.Aesthetic.x
-import kravis.Aesthetic.y
 import kravis.device.DeviceAutodetect
 import kravis.device.OutputDevice
 import kravis.render.EngineAutodetect
@@ -189,31 +186,6 @@ class GGPlot(
     }
 }
 
-class VarName(val name: String) {
-    override fun toString() = name
-}
-
-internal fun Any.toStringAndQuote() = when (this) {
-    is String -> "'${this}'"
-    //    is VarName -> this.toString()
-    is Aes -> this.toString().nullIfEmpty()
-    is Boolean -> this.toString().toUpperCase()
-    is RColor -> "'${this}'"
-    is BarStat -> "'${this}'"
-    else -> this
-}
-
-private fun String.nullIfEmpty(): String? {
-    if (isEmpty()) return null else return this
-}
-
-/** Concatenates string-value pairs for which the value is not null*/
-internal fun arg2string(vararg namedArgs: Pair<String, Any?>) =
-    namedArgs.toMap()
-        .filterValues { it != null }
-        .map { "${it.key}=${it.value!!.toStringAndQuote()}" }
-        .joinToString(", ")
-
 
 class Aes(vararg val aes: Pair<String, Aesthetic>) {
 
@@ -273,79 +245,6 @@ enum class Aesthetic {
     ymax
 }
 
-interface Position
-
-
-class PositionJitter(val height: Double? = null, val width: Double? = null, val seed: Int? = null) : Position {
-    override fun toString(): String {
-        val args = mapOf("height" to height, "width" to width, "seed" to seed)
-            .filter { it.value != null }
-            .map { (key, value) -> "$key=$value" }
-            .joinToString(", ")
-
-        return "position_jitter($args)"
-    }
-}
-
-class PositionIdentity() : Position {
-    override fun toString() = "position_identity()"
-}
-
-/**
- * `position_nudge` is generally useful for adjusting the position of items on discrete scales by a small amount.
- * Nudging is built in to geom_text() because it's so useful for moving labels a small distance from what they're labelling.
- */
-class PositionNudge(val x: Double = 0.0, val y: Double = 0.0) : Position {
-    override fun toString(): String = "position_nudge(${x}, ${y})"
-}
-
-class PositionDodge2(
-    val width: Double? = null,
-    val preserve: String = "total",
-    val padding: Double = 0.1,
-    val reverse: Boolean = false
-) : Position {
-    override fun toString(): String {
-        val arg2string = arg2string(
-            "width" to width,
-            "preserve" to preserve,
-            "padding" to padding,
-            "reverse" to reverse
-        )
-
-        return "position_dodge2($arg2string)"
-    }
-}
-
-
-interface Stat
-
-
-/** The identity statistic leaves the data unchanged. */
-class StatIdentity : Stat {
-    override fun toString(): String = "identity".quoted
-}
-
-
-class StatCustom(val custom: String) : Stat {
-    override fun toString() = custom
-}
-
-class StatBxoplot() : Stat {
-    override fun toString(): String = "boxplot".quoted
-}
-
-internal val String.quoted: String
-    get() = "'" + this + "'"
-
-
-fun main(args: Array<String>) {
-    //    ggplot(irisData, Aestethics("R" to x)).geomBar().show()
-    GGPlot(irisData, Aes("Sepal.Length" to x, "Petal.Width" to y)).geomPoint(alpha = 0.1).title("Cool Plot").show()
-    GGPlot(irisData, Aes("Sepal.Length" to x, "Petal.Width" to y)).geomPoint(alpha = 0.1).title("Another Cool Plot").show()
-    GGPlot(irisData, Aes("Sepal.Length" to x, "Petal.Width" to y)).geomPoint(alpha = 0.1).title("Yet Another Cool Plot").show()
-
-}
 
 /** Geoms that draw lines have a "linetype" parameter.
  *
@@ -373,16 +272,4 @@ object OrderUtils {
     }
 
 }
-
-// note we should rather use some receive context if possible here
-val String.asDiscreteVariable: String
-    get() = "as.factor($this)".asRExpression
-
-internal val EXPRESSION_PREFIX = ".r_expression."
-
-internal val String.asRExpression: String
-    get() = EXPRESSION_PREFIX + this
-
-internal val String.isRExpression: Boolean
-    get() = startsWith(EXPRESSION_PREFIX)
 
