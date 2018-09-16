@@ -78,14 +78,13 @@ Or let's peek into the famous iris data-set
 import kravis.* 
 import krangl.irisData 
 
-irisData.ggplot("Species" to x, "Petal.Length" to y)
+irisData.ggplot(x="Species" , y="Petal.Length" )
     .geomBoxplot()
     .geomPoint(position = PositionJitter(width = 0.1), alpha = 0.3)
     .title("Petal Length by Species")
 ```
 
-![](.README_images/sleep_correlation.png)
-
+![](.README_images/boxplot.png)
 
 
 Find more examples in our gallery **{comding soon}**.
