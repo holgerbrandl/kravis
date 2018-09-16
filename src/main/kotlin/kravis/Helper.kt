@@ -6,14 +6,19 @@ class VarName(val name: String) {
     override fun toString() = name
 }
 
-internal fun Any.toStringAndQuote() = when (this) {
-    is String -> "'${this}'"
-    //    is VarName -> this.toString()
-    is Aes -> this.toString().nullIfEmpty()
-    is Boolean -> this.toString().toUpperCase()
-    is RColor -> "'${this}'"
-    is BarStat -> "'${this}'"
-    else -> this
+internal fun Any.toStringAndQuote(): Any? {
+    val isRExpression = toString().isRExpression
+    return when {
+        isRExpression -> toString().removePrefix(EXPRESSION_PREFIX)
+        //    is VarName -> this.toString()
+        this is Aes -> this.toString().nullIfEmpty()
+        this is Boolean -> this.toString().toUpperCase()
+        this is RColor -> "'${this}'"
+        this is BarStat -> "'${this}'"
+        this is String -> "'${this}'"
+
+        else -> this
+    }
 }
 
 private fun String.nullIfEmpty(): String? {
@@ -41,8 +46,21 @@ fun main(args: Array<String>) {
 // note we should rather use some receive context if possible here
 val String.asDiscreteVariable: String
     get() = "as.factor($this)".asRExpression
+
 internal val EXPRESSION_PREFIX = ".r_expression."
+
 internal val String.asRExpression: String
     get() = EXPRESSION_PREFIX + this
+
 internal val String.isRExpression: Boolean
     get() = startsWith(EXPRESSION_PREFIX)
+
+
+
+fun infoMsg(msg: String) = System.err.println("[kravis] " + msg)
+
+
+fun warnMsg(msg: String) = System.err.println("[kravis] [WARN] " + msg)
+
+
+fun errorMsg(msg: String) = System.err.println("[kravis] [ERROR] " + msg)

@@ -2,8 +2,11 @@ package kravis
 
 
 import krangl.DataFrame
-import kravis.device.DeviceAutodetect
+import kravis.SessionPrefs.OUTPUT_DEVICE
+import kravis.SessionPrefs.RENDER_BACKEND
+import kravis.device.JupyterDevice
 import kravis.device.OutputDevice
+import kravis.device.SwingPlottingDevice
 import kravis.render.EngineAutodetect
 import kravis.render.PlotFormat
 import kravis.render.RenderEngine
@@ -11,13 +14,32 @@ import java.awt.Dimension
 import java.io.File
 
 /**
- * @author Holger Brandl
+ * Various Settings to finetune rendering and behavior of kravis. Those settins are not persisted and need to be configured on a per session basis
  */
+object SessionPrefs{
 
-// session preferences
-// should we encapsulate them into a namespace??
-var OUTPUT_DEVICE: OutputDevice = DeviceAutodetect.OUTPUT_DEVICE_DEFAULT
-var RENDER_BACKEND: RenderEngine = EngineAutodetect.R_ENGINE_DEFAULT
+
+    private val AUTO_DETECT_DEVICE by lazy {
+        try {
+            Class.forName("org.jetbrains.kotlin.jupyter.KernelConfig")
+            infoMsg("Using jupyter device")
+            JupyterDevice()
+        } catch (e: ClassNotFoundException) {
+            // it's not jupyter so default back to swing
+            SwingPlottingDevice()
+        }
+    }
+
+    var OUTPUT_DEVICE: OutputDevice = AUTO_DETECT_DEVICE
+
+    /** Render plots when toString is invoked. This makes it more convenient in a termimal setting. */
+
+    var RENDER_BACKEND: RenderEngine = EngineAutodetect.R_ENGINE_DEFAULT
+
+    /** Render plots when toString is invoked. This makes it more convenient in a termimal setting. */
+    var SHOW_TO_STRING = !(OUTPUT_DEVICE is JupyterDevice)
+}
+
 
 fun DataFrame.ggplot(aes: Aes? = null) = GGPlot(this, aes)
 
@@ -42,7 +64,7 @@ fun DataFrame.ggplot(
         .addNonNull(fill, Aesthetic.fill)
         .addNonNull(shape, Aesthetic.shape)
         .addNonNull(size, Aesthetic.size)
-        .addNonNull(size, Aesthetic.stroke)
+        .addNonNull(stroke, Aesthetic.stroke)
         .addNonNull(ymin, Aesthetic.ymin)
         .addNonNull(ymax, Aesthetic.ymax)
 
@@ -135,10 +157,16 @@ class GGPlot(
     }
 
     override fun toString(): String {
+        if(SessionPrefs.SHOW_TO_STRING){
+            show()
+        }
         //        show() // this should just apply to a terminal setting. in jupypter we actually need to return a value
-        return plotCmd.joinToString("+\n")
+        return spec
         //        return ""
     }
+
+    val spec: String get() = plotCmd.joinToString(" + \n\t")
+
 
     // various helper methods (which could all be extensions for simplicity)
     // orig signature coord_flip(xlim = NULL, ylim = NULL, expand = TRUE, clip = "on")
