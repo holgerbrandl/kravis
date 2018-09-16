@@ -112,7 +112,7 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
 
 
     enum class IrisData {
-        SepalLength, SepalWidth, PetalLength, PetalWidth;
+        SepalLength, SepalWidth, PetalLength, PetalWidth, Species;
 
         override fun toString(): String {
             return super.toString().replace("(.)([A-Z])".toRegex()) {

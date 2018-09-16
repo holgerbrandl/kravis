@@ -4,7 +4,7 @@ import kravis.asRExpression
 
 typealias Limits = Pair<Double, Double>
 
-private fun  Limits.toVector(): String = "c($first, $second)"
+private fun Limits.toVector(): String = "c($first, $second)"
 
 /**
  *The Cartesian coordinate system is the most familiar, and common, type of coordinate system. Setting limits on the coordinate system will zoom the plot (like you're looking at it with a magnifying glass), and will not change the underlying data like setting limits on a scale will.
@@ -32,6 +32,21 @@ fun GGPlot.coordCartesian(
     addSpec("""coord_cartesian($args)""")
 }
 
+
+/**
+ *  Supply the limits argument to the x scale. Note that, by default, any values outside the limits will be replaced with NA.
+ */
+fun GGPlot.xlim(limits: Limits): GGPlot = appendSpec {
+    addSpec("""coord_cartesian(${limits.toVector()})""")
+}
+
+
+/**
+ *  Supply the limits argument to the y scale. Note that, by default, any values outside the limits will be replaced with NA.
+ */
+fun GGPlot.ylim(limits: Limits): GGPlot = appendSpec {
+    addSpec("""coord_cartesian(${limits.toVector()})""")
+}
 
 
 /**
