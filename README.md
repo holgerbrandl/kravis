@@ -64,10 +64,14 @@ import kravis.*
 sleepData
     .addColumn("rem_proportion") { it["sleep_rem"] / it["sleep_total"] }
         // Analyze correlation
-.ggplot(x = "sleep_total", y = "rem_proportion", color = "vore", size = "brainwt")
+    .ggplot(x = "sleep_total", y = "rem_proportion", color = "vore", size = "brainwt")
         .geomPoint(alpha = 0.7)
         .guides(size = LegendType.none)
+        .title("Correlation between dream and total sleep time")
 ```
+
+
+![](.README_images/sleep_correlation.png)
 
 Or let's peek into the famous iris data-set
 ```kotlin
@@ -80,17 +84,9 @@ irisData.ggplot("Species" to x, "Petal.Length" to y)
     .title("Petal Length by Species")
 ```
 
-![](.README_images/b45a0ed9.png)
+![](.README_images/sleep_correlation.png)
 
 
-Or lets do a slightly more custom boxplot:
-```kotlin
-irisData.ggplot("Species" to x, "Petal.Length" to y)
-        .geomBoxplot(notch = null, fill = RColor.lightblue, color = RColor.create("#3366FF"))
-        .geomPoint(position = PositionJitter(width = 0.1, seed = 1), alpha = 0.3)
-        .title("Petal Length by Species")
-```
-![](.README_images/boxplot.png)
 
 Find more examples in our gallery **{comding soon}**.
 
