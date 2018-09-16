@@ -13,26 +13,6 @@ import javax.swing.Timer
 import javax.swing.WindowConstants
 
 
-internal object DeviceAutodetect {
-
-    val OUTPUT_DEVICE_DEFAULT by lazy {
-        // todo autodetect environment and inform user about choide
-        SwingPlottingDevice()
-
-        try {
-            Class.forName("org.jetbrains.kotlin.jupyter.KernelConfig")
-            println("using jupyter device")
-            JupyterDevice()
-        } catch (e: ClassNotFoundException) {
-            // it's not jupyter so default back to swing
-            SwingPlottingDevice()
-
-            // todo check if javafx is avaialable
-        }
-    }
-}
-
-
 abstract class OutputDevice {
     protected abstract fun getPreferredFormat(): PlotFormat
 

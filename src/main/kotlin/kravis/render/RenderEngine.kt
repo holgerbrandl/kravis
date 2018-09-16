@@ -40,7 +40,7 @@ abstract class AbstractLocalRenderEngine : RenderEngine() {
 
 
     fun compileScript(plot: GGPlot, dataIngest: String, savePath: String, preferredSize: Dimension?): String {
-        val final = plot.plotCmd.joinToString("+\n")
+        val final = plot.spec
 
         val preamble = plot.preambble.joinToString("\n")
 

@@ -2,7 +2,7 @@ package kravis.render
 
 import krangl.writeTSV
 import kravis.GGPlot
-import kravis.RENDER_BACKEND
+import kravis.SessionPrefs
 import java.awt.Dimension
 import java.io.File
 import java.util.*
@@ -83,7 +83,7 @@ class Docker(var image: String = "rocker/tidyverse:3.5.1") : AbstractLocalRender
 
 fun main(args: Array<String>) {
     //    Docker().runRScript("cat(1+1)").apply { println(this) }
-    RENDER_BACKEND = Docker()
+    SessionPrefs.RENDER_BACKEND = Docker()
 
 }
 

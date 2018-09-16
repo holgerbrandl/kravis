@@ -56,6 +56,20 @@ dependencies {
 
 ## Examples
 
+Let's start by analyzing mamalian [sleep patterns](https://ggplot2.tidyverse.org/reference/msleep.html)
+```kotlin
+import krangl.*
+import kravis.*
+
+sleepData
+    .addColumn("rem_proportion") { it["sleep_rem"] / it["sleep_total"] }
+        // Analyze correlation
+.ggplot(x = "sleep_total", y = "rem_proportion", color = "vore", size = "brainwt")
+        .geomPoint(alpha = 0.7)
+        .guides(size = LegendType.none)
+```
+
+Or let's peek into the famous iris data-set
 ```kotlin
 import kravis.* 
 import krangl.irisData 

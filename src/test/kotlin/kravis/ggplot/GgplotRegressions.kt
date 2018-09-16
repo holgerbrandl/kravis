@@ -1,5 +1,8 @@
 package kravis.ggplot
 
+import coordCartesian
+import coordFixed
+import guides
 import krangl.*
 import krangl.SumFuns.mean
 import krangl.SumFuns.sd
@@ -184,6 +187,7 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
         assertExpected(plot)
     }
 
+
     @Test
     fun `grouped line plot`() {
         // create random time series
@@ -200,6 +204,31 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
         //        plot.show()
         assertExpected(basePlot.geomLine(), "line")
         assertExpected(basePlot.geomStep(color = RColor.darkgoldenrod), "step")
+    }
+
+
+    @Test
+    fun `manipulate legends`(){
+        val mssleep = sleepData.addColumn("rem_proportion") { it["sleep_rem"] / it["sleep_total"] }
+        // Analyze correlation
+
+        val plot = mssleep.ggplot(x = "sleep_total", y = "rem_proportion", color = "vore", size = "brainwt")
+            .geomPoint(alpha = 0.7)
+            .guides(size = LegendType.none)
+
+//        plot.show()
+        assertExpected(plot)
+    }
+
+
+    @Test
+    fun `allow to change coordinate system`(){
+        val plot = irisData.ggplot(SepalLength to x, SepalWidth to y)
+            .geomPoint()
+
+        assertExpected(plot.coordFlip(), "flip")
+        assertExpected(plot.coordFixed(0.5), "fixed")
+        assertExpected(plot.coordCartesian(xlim = 5.5 to 7.1), "cartesian")
     }
 
 }

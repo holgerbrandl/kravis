@@ -5,7 +5,7 @@ import jupyter.kotlin.resultOf
 import krangl.irisData
 import kravis.Aesthetic
 import kravis.GGPlot
-import kravis.OUTPUT_DEVICE
+import kravis.SessionPrefs
 import kravis.geomPoint
 import kravis.nshelper.ggplot
 import kravis.render.PlotFormat
@@ -65,7 +65,8 @@ val testPlot by lazy {
 }
 
 fun main(args: Array<String>) {
-    OUTPUT_DEVICE = JupyterDevice()
+    SessionPrefs.OUTPUT_DEVICE = JupyterDevice()
+    SessionPrefs.SHOW_TO_STRING = true
 
     val result = testPlot.show()
     println(result)
