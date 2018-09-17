@@ -1,7 +1,4 @@
-import kravis.Aesthetic
-import kravis.GGPlot
-import kravis.arg2string
-import kravis.quoted
+package kravis
 
 /**
  * Guides for each scale can be set scale-by-scale with the guide argument, or en masse with guides().

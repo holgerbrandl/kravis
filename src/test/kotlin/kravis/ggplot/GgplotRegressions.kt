@@ -1,8 +1,5 @@
 package kravis.ggplot
 
-import coordCartesian
-import coordFixed
-import guides
 import krangl.*
 import krangl.SumFuns.mean
 import krangl.SumFuns.sd
@@ -231,6 +228,27 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
         assertExpected(plot.coordCartesian(xlim = 5.5 to 7.1), "cartesian")
     }
 
+
+    @Test
+    fun `facet by wrap`() {
+        val plot = sleepData.ggplot(x = "sleep_total", y = "brainwt", color = "vore")
+            .geomPoint(alpha = 0.7)
+            .guides(size = LegendType.none)
+            .facetWrap("vore")
+
+        assertExpected(plot)
+
+    }
+
+    @Test
+    fun `facet by grid`() {
+        val plot = sleepData.ggplot(x = "sleep_total", y = "brainwt")
+            .geomPoint(alpha = 0.7)
+            .guides(size = LegendType.none)
+            .facetGrid(rows = "vore", cols = "conservation")
+
+        assertExpected(plot)
+    }
 }
 
 
