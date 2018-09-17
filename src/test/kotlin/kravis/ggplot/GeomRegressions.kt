@@ -21,7 +21,6 @@ class GeomRegressions : AbstractSvgPlotRegression() {
         get() = File("src/test/resources/kravis")
 
 
-
     @Test
     fun `boxplot with overlay`() {
         irisData.ggplot("Species" to x, "Petal.Length" to y)
@@ -33,15 +32,13 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     }
 
     @Test
-    fun `custom boxplot`() {
-        val data = CoreRegressions().mpgData
+    fun `simple heatmap`() {
 
-        val plot = data.ggplot(Aes("class", "hwy"))
-            .geomBoxplot(notch = true, fill = RColor.orchid, color = RColor.create("#3366FF"))
+        val plot = faithfuld.ggplot(Aes("eruptions", "waiting", fill = "density"))
+            .geomTile()
+            .scaleXDiscrete(expand = listOf(0.0, 0.0))
+            .scaleYDiscrete(expand = listOf(0.0, 0.0))
 
-
-        //        plot.also { println(it.toString()) }
-        //                plot.show()
         assertExpected(plot)
     }
 
@@ -79,7 +76,5 @@ class GeomRegressions : AbstractSvgPlotRegression() {
         assertExpected(basePlot.geomLine(), "line")
         assertExpected(basePlot.geomStep(color = RColor.darkgoldenrod), "step")
     }
-
-
 
 }

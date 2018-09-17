@@ -493,3 +493,55 @@ fun GGPlot.geomHistogram(
 }
 
 
+/**
+ * Visualize heatmaps. geom_tile uses the center of the tile and its size (x, y, width, height)
+ *
+ * For a complete reference of the underlying method see https://ggplot2.tidyverse.org/reference/geom_tile.html
+ *
+ * @param binwidth The width of the bins. Can be specified as a numeric value, or a function that calculates width from x. The default is to use bins bins that cover the range of the data. You should always override this value, exploring multiple widths to find the best to illustrate the stories in your data. The bin width of a date variable is the number of days in each time; the bin width of a time variable is the number of seconds.
+ *
+ * @param bins Number of bins. Overridden by binwidth. Defaults to 30.
+ *
+ */
+fun GGPlot.geomTile(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: Stat = Stat.identity,
+    position: Position = PositionIdentity(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    fill: RColor? = null,
+    height: RColor? = null,
+    width: RColor? = null,
+    size: Int? = null
+): GGPlot = appendSpec {
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "fill" to fill,
+        "height" to height,
+        "width" to width,
+        "size" to size
+    )
+
+    addSpec("geom_tile(${args})")
+}
+
+

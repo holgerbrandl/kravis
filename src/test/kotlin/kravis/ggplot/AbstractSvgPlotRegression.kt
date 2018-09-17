@@ -94,3 +94,8 @@ enum class IrisData {
 val mpgData by lazy {
     DataFrame.readTSV("https://git.io/fAqWh")
 }
+
+
+val faithfuld by lazy {
+    DataFrame.readTSV("src/test/resources/kravis/data/faithfuld.txt")
+}

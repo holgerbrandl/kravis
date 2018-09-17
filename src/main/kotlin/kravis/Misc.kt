@@ -27,7 +27,6 @@ fun GGPlot.guides(
 enum class LegendType{
     none, colorbar, legend;
 
-    override fun toString(): String {
-        return super.toString().quoted
-    }}
+    override fun toString() = super.toString().quoted
+}
 
