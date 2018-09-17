@@ -82,10 +82,15 @@ class SwingPlottingDevice : OutputDevice() {
                 }
             }
 
+            var ignoredFirst = false
             /**
              * Actual resize method
              */
             fun applyResize() {
+                if(!ignoredFirst){
+                    ignoredFirst = true
+                    return
+                }
                 if (curPlot != null) renderInternally(curPlot!!)
             }
 
