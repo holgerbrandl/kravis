@@ -16,7 +16,7 @@ fun GGPlot.geomBoxplot(
     // generic options to all geoms
     mapping: Aes? = null,
     data: DataFrame? = null,
-    stat: Stat = StatBxoplot(),
+    stat: Stat = Stat.boxplot,
     position: Position = PositionDodge2(),
     showLegend: Boolean? = null,
     removeNAs: Boolean = false,
@@ -94,7 +94,7 @@ fun GGPlot.geomPoint(
     // generic options to all geoms
     mapping: Aes? = null,
     data: DataFrame? = null,
-    stat: Stat = StatIdentity(),
+    stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
     removeNAs: Boolean = false,
@@ -143,7 +143,7 @@ fun GGPlot.geomDotplot(
     // generic options to all geoms
     mapping: Aes? = null,
     data: DataFrame? = null,
-    stat: Stat = StatIdentity(),
+    stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
     removeNAs: Boolean = false,
@@ -193,10 +193,6 @@ fun GGPlot.geomDotplot(
 
 private fun requireZeroOne(d: Double?) = d?.also { require(it >= 0 && it <= 1) { "alpha must be [0,1] but was $it." } }
 
-
-enum class BarStat {
-    count, identity
-}
 // todo use more constrained aestetics with just the supported fields or validate supported aestehtics
 /**
  * There are two types of bar charts: `geom_bar` makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use `geom_col` instead. `geom_bar` uses `stat_count` by default: it counts the number of cases at each x position. `geom_col` uses `stat_identity`: it leaves the data as is.
@@ -205,7 +201,7 @@ fun GGPlot.geomBar(
     // generic options to all geoms
     mapping: Aes? = null,
     data: DataFrame? = null,
-    stat: BarStat = BarStat.count,
+    stat: Stat = Stat.count,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
     removeNAs: Boolean = false,
@@ -249,7 +245,7 @@ fun GGPlot.geomErrorBar(
     // generic options to all geoms
     mapping: Aes? = null,
     data: DataFrame? = null,
-    stat: BarStat = BarStat.identity,
+    stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
     removeNAs: Boolean = false,
@@ -298,7 +294,7 @@ fun GGPlot.geomPath(
     // generic options to all geoms
     mapping: Aes? = null,
     data: DataFrame? = null,
-    stat: BarStat = BarStat.identity,
+    stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
     removeNAs: Boolean = false,
@@ -351,7 +347,7 @@ fun GGPlot.geomLine(
     // generic options to all geoms
     mapping: Aes? = null,
     data: DataFrame? = null,
-    stat: BarStat = BarStat.identity,
+    stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
     removeNAs: Boolean = false,
@@ -405,7 +401,7 @@ fun GGPlot.geomStep(
     // generic options to all geoms
     mapping: Aes? = null,
     data: DataFrame? = null,
-    stat: BarStat = BarStat.identity,
+    stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
     removeNAs: Boolean = false,
@@ -442,3 +438,58 @@ fun GGPlot.geomStep(
 
     addSpec("geom_step(${args})")
 }
+
+/**
+ * Visualise the distribution of a single continuous variable by dividing the x axis into bins and counting the number of observations in each bin. Histograms (geom_histogram) display the count with bars
+ *
+ * For a complete reference of the underlying method see https://ggplot2.tidyverse.org/reference/geom_histogram.html
+ *
+ * @param binwidth The width of the bins. Can be specified as a numeric value, or a function that calculates width from x. The default is to use bins bins that cover the range of the data. You should always override this value, exploring multiple widths to find the best to illustrate the stories in your data. The bin width of a date variable is the number of days in each time; the bin width of a time variable is the number of seconds.
+ *
+ * @param bins Number of bins. Overridden by binwidth. Defaults to 30.
+ *
+ */
+fun GGPlot.geomHistogram(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: Stat = Stat.identity,
+    position: Position = PositionIdentity(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    binWidth:Double? = null,
+    bins:Int = 30,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    linetype: LineType? = null,
+    size: Int? = null
+): GGPlot = appendSpec {
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+
+        "binwidth" to binWidth,
+        "bins" to bins,
+
+
+        "color" to color,
+        "linetype" to linetype,
+        "size" to size
+    )
+
+    addSpec("geom_step(${args})")
+}
+
+

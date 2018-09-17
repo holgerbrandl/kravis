@@ -164,7 +164,7 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
             .addColumn("ymax") { it["Sepal.Length.mean"] + it["Sepal.Length.sd"] }
             .addColumn("ymin") { it["Sepal.Length.mean"] - it["Sepal.Length.sd"] }
             .ggplot(x = reorder("Species", "Sepal.Length.mean", ascending = false), y = "Sepal.Length.mean", fill = "Species")
-            .geomBar(stat = BarStat.identity)
+            .geomBar(stat = Stat.identity)
             .geomErrorBar(Aes(ymin = "ymin", ymax = "ymax"), width = .3)
             .xLabel("Species")
             .yLabel("Sepal.Length")

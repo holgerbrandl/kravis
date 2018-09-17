@@ -14,7 +14,7 @@ internal fun Any.toStringAndQuote(): Any? {
         this is Aes -> this.toString().nullIfEmpty()
         this is Boolean -> this.toString().toUpperCase()
         this is RColor -> "'${this}'"
-        this is BarStat -> "'${this}'"
+        this is Stat -> "'${this}'"
         this is String -> "'${this}'"
 
         else -> this
