@@ -1,9 +1,13 @@
 package kravis.ggplot
 
+import krangl.DataFrame
+import krangl.readTSV
 import kravis.GGPlot
+import kravis.render.saveTempFile
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.rules.TestName
+import java.awt.Desktop
 import java.io.File
 import java.io.StringReader
 import java.io.StringWriter
@@ -69,4 +73,24 @@ abstract class AbstractSvgPlotRegression {
 
     }
 
+}
+
+fun GGPlot.open() = Desktop.getDesktop().open(saveTempFile())
+
+
+
+enum class IrisData {
+    SepalLength, SepalWidth, PetalLength, PetalWidth, Species;
+
+    override fun toString(): String {
+        return super.toString().replace("(.)([A-Z])".toRegex()) {
+            it.groupValues[1] + "." + it.groupValues[2]
+        }
+    }
+}
+
+
+
+val mpgData by lazy {
+    DataFrame.readTSV("https://git.io/fAqWh")
 }
