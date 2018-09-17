@@ -205,7 +205,7 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
 
 
     @Test
-    fun `manipulate legends`(){
+    fun `manipulate legends`() {
         val mssleep = sleepData.addColumn("rem_proportion") { it["sleep_rem"] / it["sleep_total"] }
         // Analyze correlation
 
@@ -219,7 +219,7 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
 
 
     @Test
-    fun `allow to change coordinate system`(){
+    fun `allow to change coordinate system`() {
         val plot = irisData.ggplot(SepalLength to x, SepalWidth to y)
             .geomPoint()
 
@@ -252,11 +252,13 @@ class GgplotRegressions : AbstractSvgPlotRegression() {
 }
 
 
-class ScaleRegressions {
+class ScaleRegressions : AbstractSvgPlotRegression() {
 
+    override val testDataDir: File
+        get() = File("src/test/resources/kravis")
 
     @Test
-    fun `it should deparse collections and allow for custom options`() {
+    fun `it should deparse collections and allow for axis options`() {
         val basePlot = sleepPatterns.ggplot(
             x = { brainwt },
             y = { bodywt },
@@ -266,7 +268,8 @@ class ScaleRegressions {
         // add layers
         basePlot.geomPoint()
             .scaleXLog10()
-            .scaleYLog10("labels" to "comma")
+            .scaleYLog10("labels" to "comma".asRExpression)
+            .apply { assertExpected(this) }
         //            .show()
     }
 }

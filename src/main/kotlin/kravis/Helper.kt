@@ -49,7 +49,7 @@ val String.asDiscreteVariable: String
 
 internal val EXPRESSION_PREFIX = ".r_expression."
 
-internal val String.asRExpression: String
+val String.asRExpression: String
     get() = EXPRESSION_PREFIX + this
 
 internal val String.isRExpression: Boolean

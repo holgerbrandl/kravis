@@ -69,8 +69,9 @@ class Docker(var image: String = "rocker/tidyverse:3.5.1") : AbstractLocalRender
 
 
     fun dockerRun(plotDirWithScript: File, dataCacheDir: File): RUtils.CmdResult {
-        require(RUtils.evalBash("docker images -q $image").sout().isNotBlank()) {
-            "image '$image' is not yet present. Use `docker pull $image`"
+        if(RUtils.evalBash("docker images -q $image").sout().isBlank()) {
+            System.err.println("image '$image' is not yet present. Pulling image with `docker pull $image`...")
+            RUtils.evalCmd("docker", listOf("pull", "rocker/tidyverse:3.5.0"), showOutput = true)
         }
 
         val dockerCmd = """run -v ${plotDirWithScript}:$DOCKER_PLOT_MNT -v ${dataCacheDir}:$DOCKER_DATA_MNT --rm ${image} R -f $DOCKER_PLOT_MNT/plot.R"""

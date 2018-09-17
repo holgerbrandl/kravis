@@ -134,8 +134,16 @@ Plots are -- similar to krangl data-frames -- immutable.
 This is the default mode which can be configured by using
 
 ```kotlin
-R_ENGINE = LocalR()
+SessionPrefs.RENDER_BACKEND = LocalR()
+
 ```
+
+2. Dockerized R. This will pull and use by default the container [`rocker/tidyverse:3.5.1`](https://hub.docker.com/r/rocker/tidyverse/).
+
+```kotlin
+SessionPrefs.RENDER_BACKEND = Docker()
+```
+
 
 ### Iterator API
 
@@ -174,6 +182,20 @@ irisData.ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
 ```
 
 ![](.README_images/dot_violin.png)
+
+
+## API Coverage
+
+Currently we just map a subset of the `ggplot2` API.
+
+![](docs/data-visualization-2.1_p1.jpg)
+![](docs/data-visualization-2.1_p2.jpg)
+
+* Checks - implemented already
+* Crosses - Planned but not yet done
+
+Feel welcome to submit a ticket or PR if some important usecase is missing.
+
 
 ## References
 
