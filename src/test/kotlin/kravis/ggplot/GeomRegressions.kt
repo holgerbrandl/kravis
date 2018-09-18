@@ -4,9 +4,9 @@ import krangl.*
 import krangl.SumFuns.mean
 import krangl.SumFuns.sd
 import kravis.*
-import kravis.Aesthetic.*
+import kravis.Aesthetic.x
+import kravis.Aesthetic.y
 import kravis.OrderUtils.reorder
-import kravis.ggplot
 import org.junit.Test
 import java.io.File
 
@@ -78,12 +78,27 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     }
 
 
-//    @Test
+    @Test
+    fun `text labels in plot`() {
+        // todo use custom trafo here to convert to metric units on the fly
+        val plot = mtcars
+            .ggplot(x = "wt", y = "mpg", label = "model", color = "cyl").geomText(hjust = .0, nudgeX = 0.05)
+            .scaleXContinuous(expand = listOf(.3, .1))
+            .scaleYContinuous(limits = Limits(5.0, 30.0))
+
+//        println(plot.spec)
+//        plot.show()
+
+        assertExpected(plot)
+    }
+
+
+    //    @Test
     //todo
     fun `enforce mandatory aestetics`() {
         // create random time series
         shouldThrow<MissingAestheticsMapping> {
-            faithfuld.ggplot(x="eruptions").geomTile().show()
+            faithfuld.ggplot(x = "eruptions").geomTile().show()
         }
     }
 

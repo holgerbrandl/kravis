@@ -16,7 +16,7 @@ import java.io.File
 /**
  * Various Settings to finetune rendering and behavior of kravis. Those settins are not persisted and need to be configured on a per session basis
  */
-object SessionPrefs{
+object SessionPrefs {
 
 
     private val AUTO_DETECT_DEVICE by lazy {
@@ -53,7 +53,8 @@ fun DataFrame.ggplot(
     size: String? = null,
     stroke: String? = null,
     ymin: String? = null,
-    ymax: String? = null
+    ymax: String? = null,
+    label: String? = null
 
 ): GGPlot {
     val mapping = listOf<Pair<String, Aesthetic>>()
@@ -67,6 +68,7 @@ fun DataFrame.ggplot(
         .addNonNull(stroke, Aesthetic.stroke)
         .addNonNull(ymin, Aesthetic.ymin)
         .addNonNull(ymax, Aesthetic.ymax)
+        .addNonNull(label, Aesthetic.label)
 
     val aes = Aes(*mapping.toTypedArray()
     )
@@ -157,7 +159,7 @@ class GGPlot(
     }
 
     override fun toString(): String {
-        if(SessionPrefs.SHOW_TO_STRING){
+        if (SessionPrefs.SHOW_TO_STRING) {
             show()
         }
         //        show() // this should just apply to a terminal setting. in jupypter we actually need to return a value
@@ -231,7 +233,8 @@ class Aes(vararg val aes: Pair<String, Aesthetic>) {
         size: String? = null,
         stroke: String? = null,
         ymin: String? = null,
-        ymax: String? = null
+        ymax: String? = null,
+        label: String? = null
     ) :
         this(*listOf<Pair<String, Aesthetic>>()
             .addNonNull(x, Aesthetic.x)
@@ -241,8 +244,11 @@ class Aes(vararg val aes: Pair<String, Aesthetic>) {
             .addNonNull(fill, Aesthetic.fill)
             .addNonNull(shape, Aesthetic.shape)
             .addNonNull(size, Aesthetic.size)
+            .addNonNull(stroke, Aesthetic.size)
             .addNonNull(ymin, Aesthetic.ymin)
-            .addNonNull(ymax, Aesthetic.ymax).toTypedArray()
+            .addNonNull(ymax, Aesthetic.ymax)
+            .addNonNull(label, Aesthetic.label)
+            .toTypedArray()
         )
 
     fun stringify(): VarName? {
@@ -270,7 +276,9 @@ enum class Aesthetic {
 
     ymin,
 
-    ymax
+    ymax,
+
+    label
 }
 
 

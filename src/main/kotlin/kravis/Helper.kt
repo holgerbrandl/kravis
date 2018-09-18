@@ -1,17 +1,22 @@
 package kravis
 
 import krangl.irisData
-import java.lang.RuntimeException
 
 class VarName(val name: String) {
     override fun toString() = name
 }
 
 
+typealias Limits = Pair<Double, Double>
+
+internal fun Limits.toRVector(rExpr: Boolean = true): String = "c($first, $second)".run { if (rExpr) asRExpression else this }
+
+
 internal fun Iterable<Any>.toRVector(): String = map { it.toStringAndQuote() }.joinToString(", ").run { "c($this)" }.asRExpression
 
-internal  fun <K,V> Map<K, V>.toRNamedVector(): String = map { (key, value) ->
-    key!!.toStringAndQuote() + " = " +value!!.toStringAndQuote()
+
+internal fun <K, V> Map<K, V>.toRNamedVector(): String = map { (key, value) ->
+    key!!.toStringAndQuote() + " = " + value!!.toStringAndQuote()
 }.joinToString(", ").run { "c($this)" }.asRExpression
 
 internal fun Iterable<Any>.toVars(): String = joinToString(", ").run { "vars($this)" }.asRExpression
@@ -67,7 +72,6 @@ internal val String.isRExpression: Boolean
     get() = startsWith(EXPRESSION_PREFIX)
 
 
-
 fun infoMsg(msg: String) = System.err.println("[kravis] " + msg)
 
 
@@ -77,5 +81,4 @@ fun warnMsg(msg: String) = System.err.println("[kravis] [WARN] " + msg)
 fun errorMsg(msg: String) = System.err.println("[kravis] [ERROR] " + msg)
 
 
-
-class MissingAestheticsMapping: RuntimeException(){}
+class MissingAestheticsMapping : RuntimeException() {}

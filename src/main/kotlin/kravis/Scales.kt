@@ -23,9 +23,11 @@ fun GGPlot.scaleYLog10(vararg dotdotdot: Pair<String, String>): GGPlot = appendS
  * If you want to remove missing values from a discrete scale, specify na.translate = FALSE.
  * @param naValue If na.translate = TRUE, what value aesthetic value should missing be displayed as? Does not apply to
  * position scales where NA is always placed at the far right.
+ * @param expand Vector of range expansion constants used to add some padding around the data, to ensure that they are
+ * placed some distance away from the axes.
  */
 fun GGPlot.scaleXDiscrete(
-    breaks: List<String>? = null,
+    breaks: List<Any>? = null,
     limits: List<String>? = null,
     drop: Boolean = true,
     naTranslate: Boolean = true,
@@ -59,10 +61,12 @@ fun GGPlot.scaleXDiscrete(
  * If you want to remove missing values from a discrete scale, specify na.translate = FALSE.
  * @param naValue If na.translate = TRUE, what value aesthetic value should missing be displayed as? Does not apply to
  * position scales where NA is always placed at the far right.
+ * @param expand Vector of range expansion constants used to add some padding around the data, to ensure that they are
+ * placed some distance away from the axes.
  */
 fun GGPlot.scaleYDiscrete(
-    breaks: List<String>? = null,
-    limits: List<String>? = null,
+    breaks: List<Any>? = null,
+    limits: List<Any>? = null,
     drop: Boolean = true,
     naTranslate: Boolean = true,
     naValue: String? = null,
@@ -84,6 +88,77 @@ fun GGPlot.scaleYDiscrete(
 }
 
 
+/**
+ * Modifies a continuous x axis' appearance, limits, and rendering.
+ *
+ * @param breaks A character vector of breaks
+ * @param limits A character vector that defines possible values of the scale and their order.
+ * @param naValue If na.translate = TRUE, what value aesthetic value should missing be displayed as? Does not apply to
+ * position scales where NA is always placed at the far right.
+ * @param expand Vector of range expansion constants used to add some padding around the data, to ensure that they are
+ * placed some distance away from the axes.
+ * @param trans The name of a transformation object. Built-in transformations include "asn", "atanh", "boxcox", "exp",
+ * "identity", "log", "log10", "log1p", "log2", "logit", "probability", "probit", "reciprocal", "reverse" and "sqrt".
+ */
+fun GGPlot.scaleXContinuous(
+    breaks: List<Double>? = null,
+    limits: List<Double>? = null,
+    naValue: Double? = null,
+    trans: ScaleTrans = ScaleTrans.identity,
+    expand: List<Double>? = null,
+    position: XScalePosition = XScalePosition.bottom,
+    vararg dotdotdot: Pair<String, String>
+) = appendSpec {
+    val args = arg2string(
+//        *dotdotdot.asList().toTypedArray()
+        "breaks" to breaks?.toRVector(),
+        "limits" to limits?.toRVector(),
+        "na.value" to naValue,
+        "trans" to trans,
+        "expand" to expand?.toRVector(),
+        "position" to position,
+        *dotdotdot.asList().toTypedArray()
+    )
+
+    addSpec("""scale_x_continuous($args)""")
+}
+
+/**
+ * Modifies a continuous y axis' appearance, limits, and rendering.
+ *
+ * @param breaks A character vector of breaks
+ * @param limits A character vector that defines possible values of the scale and their order.
+ * @param naValue If na.translate = TRUE, what value aesthetic value should missing be displayed as? Does not apply to
+ * position scales where NA is always placed at the far right.
+ * @param expand Vector of range expansion constants used to add some padding around the data, to ensure that they are
+ * placed some distance away from the axes.
+ * @param trans The name of a transformation object. Built-in transformations include "asn", "atanh", "boxcox", "exp",
+ * "identity", "log", "log10", "log1p", "log2", "logit", "probability", "probit", "reciprocal", "reverse" and "sqrt".
+ */
+fun GGPlot.scaleYContinuous(
+    breaks: List<Double>? = null,
+    limits: Limits? = null,
+    naValue: Double? = null,
+    trans: ScaleTrans = ScaleTrans.identity,
+    expand: List<Double>? = null,
+    position: YScalePosition = YScalePosition.left,
+
+    vararg dotdotdot: Pair<String, String>
+) = appendSpec {
+    val args = arg2string(
+        "breaks" to breaks?.toRVector(),
+        "limits" to limits?.toRVector(),
+        "na.value" to naValue,
+        "trans" to trans,
+        "expand" to expand?.toRVector(),
+        "position" to position,
+        *dotdotdot.asList().toTypedArray()
+    )
+
+    addSpec("""scale_y_continuous($args)""")
+}
+
+
 enum class XScalePosition {
     bottom, center;
 
@@ -96,6 +171,13 @@ enum class YScalePosition {
     override fun toString() = super.toString().quoted
 }
 
+
+enum class ScaleTrans {
+    asn, atanh, boxcox, exp, identity, log, log10, log1p, log2, logit, probability, probit, reciprocal, reverse, sqrt;
+
+    override fun toString() = super.toString().quoted
+
+}
 
 //
 // MANUAL SCALES
@@ -123,6 +205,7 @@ fun GGPlot.scaleColorManual(
     naTranslate: Boolean = true,
     naValue: String? = null,
     name: String? = null,
+
     vararg dotdotdot: Pair<String, String>
 ) = appendSpec {
 

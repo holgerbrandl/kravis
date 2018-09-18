@@ -100,6 +100,29 @@ val faithfuld by lazy {
     DataFrame.readTSV("src/test/resources/kravis/data/faithfuld.txt")
 }
 
+/**
+ * A data frame with 32 observations on 11 (numeric) variables.
+ *
+ * * `mpg` - Miles/(US) gallon
+ * * `cyl` - Number of cylinders
+ * * `disp` - Displacement (cu.in.)
+ * * `hp` - Gross horsepower
+ * * `drat` - Rear axle ratio
+ * * `wt` - Weight (1000 lbs)
+ * * `qsec` - 1/4 mile time
+ * * `vs` - Engine (0 = V-shaped, 1 = straight)
+ * * `am` - Transmission (0 = automatic, 1 = manual)
+ * * `gear` - Number of forward gears
+ * * `carb` - Number of carburetors
+ *
+ *
+ * Source
+ * Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411.
+ */
+val mtcars by lazy {
+    DataFrame.readTSV("src/test/resources/kravis/data/mtcars.txt")
+}
+
 
 
 internal inline fun <reified T> shouldThrow(thunk: () -> Any): T {

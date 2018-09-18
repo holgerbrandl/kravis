@@ -122,7 +122,6 @@ fun GGPlot.geomPoint(
         "inherit.aes" to inheritAes,
 
 
-        "position" to position,
         "alpha" to requireZeroOne(alpha),
         "color" to color,
         "fill" to fill,
@@ -132,6 +131,69 @@ fun GGPlot.geomPoint(
     )
 
     addSpec("geom_point(${args})")
+}
+
+/**
+ * Adds text directly to the plot.
+ *
+ * Official reference [geom_text](https://ggplot2.tidyverse.org/reference/geom_text.html)
+ *
+ * @param parse If TRUE, the labels will be parsed into expressions and displayed as described in ?plotmath
+ */
+fun GGPlot.geomText(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: Stat = Stat.identity,
+    position: Position? = null,
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    // custom options
+    parse: Boolean = false,
+    nudgeX: Double = .0,
+    nudgeY: Double = .0,
+    checkOverlap: Boolean = false,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    // group, // todo, unclear usage
+    size: Int? = null,
+    hjust: Double? = null,
+    vjust: Double? = null,
+
+    vararg dotdotdot: Pair<String, String>
+
+): GGPlot = appendSpec {
+
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+        "parse" to parse,
+        "nudge_x" to nudgeX,
+        "nudge_y" to nudgeY,
+        "check_overlap" to checkOverlap,
+
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "size" to size,
+        "hjust" to hjust,
+        "vjust" to hjust,
+
+        *dotdotdot.asList().toTypedArray()
+    )
+
+    addSpec("geom_text(${args})")
 }
 
 /**
@@ -153,13 +215,15 @@ fun GGPlot.geomDotplot(
     alpha: Double? = null,
     color: RColor? = null,
     fill: RColor? = null,
+    binWidth: Double? = null,
+
+    // specific options
     binaxis: String = "x",
     method: String = "dotdensity",
     binpositions: String = "bygroup",
     stackdir: String = "up",
     stackratio: Double = 1.0,
-    dotsize: Double = 1.0,
-    binwidth: Double
+    dotsize: Double = 1.0
 ): GGPlot = appendSpec {
 
     val dataVar: VarName? = registerDataset(data)
@@ -178,6 +242,7 @@ fun GGPlot.geomDotplot(
         "alpha" to requireZeroOne(alpha),
         "color" to color,
         "fill" to fill,
+        "binwidth" to binWidth,
 
         "binaxis" to binaxis,
         "method" to method,
@@ -459,8 +524,8 @@ fun GGPlot.geomHistogram(
     removeNAs: Boolean = false,
     inheritAes: Boolean = true,
 
-    binWidth:Double? = null,
-    bins:Int = 30,
+    binWidth: Double? = null,
+    bins: Int = 30,
 
     // list all the aesthetics it understands
     alpha: Double? = null,

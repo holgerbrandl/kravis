@@ -4,7 +4,8 @@ import krangl.*
 import kravis.*
 import kravis.Aesthetic.*
 import kravis.ggplot
-import kravis.ggplot.IrisData.*
+import kravis.ggplot.IrisData.SepalLength
+import kravis.ggplot.IrisData.SepalWidth
 import kravis.nshelper.ggplot
 import org.junit.Test
 import java.io.File
@@ -59,7 +60,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
             .addCustom("""geom_flat_violin(scale = "count", trim = FALSE)""")
             // todo
             //            .stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1), geom = "pointrange", position = position_nudge(0.05)) +
-            .geomDotplot(binaxis = "y", dotsize = 0.5, stackdir = "down", binwidth = 0.1, position = PositionNudge(-0.025))
+            .geomDotplot(binaxis = "y", dotsize = 0.5, stackdir = "down", binWidth = 0.1, position = PositionNudge(-0.025))
             //            .geomPoint()
             .theme(legendPosition = "none")
             .labs(x = "Species", y = "Sepal length (cm)")
