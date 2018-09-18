@@ -1,6 +1,7 @@
 package kravis
 
 import krangl.irisData
+import java.lang.RuntimeException
 
 class VarName(val name: String) {
     override fun toString() = name
@@ -64,3 +65,7 @@ fun warnMsg(msg: String) = System.err.println("[kravis] [WARN] " + msg)
 
 
 fun errorMsg(msg: String) = System.err.println("[kravis] [ERROR] " + msg)
+
+
+
+class MissingAestheticsMapping: RuntimeException(){}

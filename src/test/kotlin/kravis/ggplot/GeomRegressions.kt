@@ -77,4 +77,14 @@ class GeomRegressions : AbstractSvgPlotRegression() {
         assertExpected(basePlot.geomStep(color = RColor.darkgoldenrod), "step")
     }
 
+
+//    @Test
+    //todo
+    fun `enforce mandatory aestetics`() {
+        // create random time series
+        shouldThrow<MissingAestheticsMapping> {
+            faithfuld.ggplot(x="eruptions").geomTile().show()
+        }
+    }
+
 }

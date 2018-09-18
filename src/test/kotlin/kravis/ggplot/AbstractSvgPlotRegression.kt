@@ -99,3 +99,22 @@ val mpgData by lazy {
 val faithfuld by lazy {
     DataFrame.readTSV("src/test/resources/kravis/data/faithfuld.txt")
 }
+
+
+
+internal inline fun <reified T> shouldThrow(thunk: () -> Any): T {
+    val e = try {
+        thunk()
+        null
+    } catch (e: Exception) {
+        e
+    }
+
+    if (e == null)
+        io.kotlintest.fail("Expected exception ${T::class.qualifiedName} but no exception was thrown")
+    else if (e.javaClass.name != T::class.qualifiedName) {
+        e.printStackTrace()
+        io.kotlintest.fail("Expected exception ${T::class.qualifiedName} but ${e.javaClass.name} was thrown")
+    } else
+        return e as T
+}
