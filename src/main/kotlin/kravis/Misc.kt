@@ -13,20 +13,44 @@ fun GGPlot.guides(
 ) = appendSpec {
 
     val args = mapOf(
-        "alpha" to  alpha,
-        "color" to  color,
-        "fill" to  fill,
-        "shape" to  shape,
-        "size" to  size
-    ).filterValues { it!=null }.toList().run{arg2string(*this.toTypedArray())}
+        "alpha" to alpha,
+        "color" to color,
+        "fill" to fill,
+        "shape" to shape,
+        "size" to size
+    ).filterValues { it != null }.toList().run { arg2string(*this.toTypedArray()) }
 
 
     addSpec("""guides($args)""")
 }
 
-enum class LegendType{
+enum class LegendType {
     none, colorbar, legend;
 
     override fun toString() = super.toString().quoted
 }
 
+
+//@Suppress("EnumEntryName", "SpellCheckingInspection")
+//enum class Shape(code: Int) {
+//
+//    black_square(15), black_circle(16), black_triangle(12);
+//
+//    internal var code = 1
+//
+//    override fun toString(): String {
+//        return code.toString()
+//    }
+//
+//    companion object {
+//
+//        fun create(shapeCode: Int) = black_circle.apply {
+//
+//            require(shapeCode in 0..25 || shapeCode in 32..127) {
+//                "$shapeCode is not a valid shape code"
+//            }
+//
+//            return Shape(shapeCode)
+//        }
+//    }
+//}

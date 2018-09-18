@@ -7,7 +7,17 @@ class VarName(val name: String) {
     override fun toString() = name
 }
 
-internal fun Any.toStringAndQuote(): Any? {
+
+internal fun Iterable<Any>.toRVector(): String = map { it.toStringAndQuote() }.joinToString(", ").run { "c($this)" }.asRExpression
+
+internal  fun <K,V> Map<K, V>.toRNamedVector(): String = map { (key, value) ->
+    key!!.toStringAndQuote() + " = " +value!!.toStringAndQuote()
+}.joinToString(", ").run { "c($this)" }.asRExpression
+
+internal fun Iterable<Any>.toVars(): String = joinToString(", ").run { "vars($this)" }.asRExpression
+
+
+internal fun Any.toStringAndQuote(): String? {
     val isRExpression = toString().isRExpression
     return when {
         isRExpression -> toString().removePrefix(EXPRESSION_PREFIX)
@@ -18,7 +28,7 @@ internal fun Any.toStringAndQuote(): Any? {
         this is Stat -> "'${this}'"
         this is String -> "'${this}'"
 
-        else -> this
+        else -> this.toString()
     }
 }
 
