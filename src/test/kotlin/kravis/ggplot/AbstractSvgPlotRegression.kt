@@ -79,16 +79,6 @@ fun GGPlot.open() = Desktop.getDesktop().open(saveTempFile())
 
 
 
-enum class IrisData {
-    SepalLength, SepalWidth, PetalLength, PetalWidth, Species;
-
-    override fun toString(): String {
-        return super.toString().replace("(.)([A-Z])".toRegex()) {
-            it.groupValues[1] + "." + it.groupValues[2]
-        }
-    }
-}
-
 
 
 val mpgData by lazy {

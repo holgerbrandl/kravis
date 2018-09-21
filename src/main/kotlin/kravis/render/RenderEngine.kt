@@ -45,19 +45,7 @@ abstract class AbstractLocalRenderEngine : RenderEngine() {
         val preamble = plot.preambble.joinToString("\n")
 
 
-        val optionalSizeConfig = preferredSize?.let {
-            //https://graphicdesign.stackexchange.com/questions/71797/how-do-i-convert-the-width-from-pixels-to-inches-at-300-dpi
-            //        You have an image that is 1,200x1,200 pixels.
-            //        1,200 / 300 = 4
-            //        So if you are printing at 300PPI, your image will be 4x4".
-
-            val resulution = 150
-            if (it.width / resulution < 0.1) {
-                null
-            } else {
-                """ , width = ${it.width / resulution}, height = ${it.height / resulution}, units = "in""""
-            }
-        }
+        val optionalSizeConfig = preferredSize.adjustSize()
 
         val rScript = """
 library(ggplot2)
@@ -79,6 +67,25 @@ ggsave(filename="$savePath", plot=gg${optionalSizeConfig ?: ""})
 
         return rScript
     }
+
+}
+
+
+fun Dimension?.adjustSize(): String? {
+    val optionalSizeConfig = this?.let {
+        //https://graphicdesign.stackexchange.com/questions/71797/how-do-i-convert-the-width-from-pixels-to-inches-at-300-dpi
+        //        You have an image that is 1,200x1,200 pixels.
+        //        1,200 / 300 = 4
+        //        So if you are printing at 300PPI, your image will be 4x4".
+
+        val resulution = 150
+        if (it.width / resulution < 0.1) {
+            null
+        } else {
+            """ , width = ${it.width / resulution}, height = ${it.height / resulution}, units = "in""""
+        }
+    }
+    return optionalSizeConfig
 }
 
 

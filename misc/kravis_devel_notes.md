@@ -1,32 +1,24 @@
 [TOC]: # " Contents"
 
 # Contents
-- [Milestoness](#milestoness)
-    - [M1](#m1)
-    - [M2](#m2)
-    - [M3](#m3)
-    - [later](#later)
-- [Api design](#api-design)
-- [Geoms](#geoms)
-    - [boxplot](#boxplot)
-- [geom_raster](#geom_raster)
-    - [Scatter](#scatter)
-    - [line plot with trends](#line-plot-with-trends)
-- [JavaFX API](#javafx-api)
-    - [legends](#legends)
-    - [Theming](#theming)
-    - [Rendering](#rendering)
-        - [render in jupyter](#render-in-jupyter)
-        - [basic reusable rendering device for kotlin repl](#basic-reusable-rendering-device-for-kotlin-repl)
-        - [offscreen pdf renderin](#offscreen-pdf-renderin)
-    - [svg output](#svg-output)
-    - [misc](#misc)
-- [Next steps](#next-steps)
-    - [stats utils](#stats-utils)
-    - [Reading List](#reading-list)
-- [Backlog](#backlog)
+- [M1](#m1)
+- [M2](#m2)
+- [M3](#m3)
+- [later](#later)
+- [boxplot](#boxplot)
+- [Scatter](#scatter)
+- [line plot with trends](#line-plot-with-trends)
+- [legends](#legends)
+- [Theming](#theming)
+- [Rendering](#rendering)
+    - [render in jupyter](#render-in-jupyter)
+    - [basic reusable rendering device for kotlin repl](#basic-reusable-rendering-device-for-kotlin-repl)
+    - [offscreen pdf renderin](#offscreen-pdf-renderin)
+- [svg output](#svg-output)
+- [misc](#misc)
+- [stats utils](#stats-utils)
+- [Reading List](#reading-list)
     - [rserve backend](#rserve-backend)
-- [R packaging](#r-packaging)
 
 
 
@@ -48,7 +40,6 @@ infrastrcuture
 * render in jupyter
     * see https://stackoverflow.com/questions/39739476/use-javafx-chart-api-to-draw-chart-image
 * 
-* basic reusable rendering device for kotlin repl
 * offscreen pdf renderin
 
 ## M2
@@ -63,6 +54,7 @@ check out https://github.com/hudsonb/kubed again
 ## M3
 
 * Support `rserve` as alternative rendering engine
+* 
 * remap vega errors to throwables
 https://stackoverflow.com/questions/15522315/how-to-get-the-javafx-webengine-to-report-errors-in-detail
 

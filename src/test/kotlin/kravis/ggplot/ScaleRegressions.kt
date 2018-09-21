@@ -1,10 +1,9 @@
 package kravis.ggplot
 
-import io.kotlintest.shouldBe
 import krangl.irisData
 import kravis.*
 import kravis.Aesthetic.*
-import kravis.ggplot.IrisData.*
+import kravis.demo.IrisData.*
 import kravis.nshelper.ggplot
 import org.junit.Test
 import java.io.File

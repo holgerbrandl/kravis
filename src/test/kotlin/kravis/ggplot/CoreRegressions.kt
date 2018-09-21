@@ -3,9 +3,9 @@ package kravis.ggplot
 import krangl.*
 import kravis.*
 import kravis.Aesthetic.*
+import kravis.demo.IrisData.SepalLength
+import kravis.demo.IrisData.SepalWidth
 import kravis.ggplot
-import kravis.ggplot.IrisData.SepalLength
-import kravis.ggplot.IrisData.SepalWidth
 import kravis.nshelper.ggplot
 import org.junit.Test
 import java.io.File
