@@ -1,5 +1,7 @@
 ## Release Checklist
 
+0. Make sure to refernce just public artificats in `gralde.build`
+
 1. Increment version in `README.md`, `gradle.build`
 
 2. Rebuild the javadoc

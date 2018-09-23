@@ -1,14 +1,14 @@
-# A Kotlin grammar for scientific data visualization
+# `kravis` - A Kotlin {gra}mmar for scientific data {vis}ualization
+
  [ ![Download](https://api.bintray.com/packages/holgerbrandl/github/kravis/images/download.svg) ](https://bintray.com/holgerbrandl/github/kravis/_latestVersion)
 [![Build Status](https://travis-ci.org/holgerbrandl/kravis.svg?branch=master)](https://travis-ci.org/holgerbrandl/kravis)
 
 Visualizing tabular and relational data is the core of data-science. `kravis` implements a grammar to create a wide range of plots using a standardized set of verbs.
 
 
-The grammar implemented by `kravis` is inspired from [`ggplot2`](http://ggplot2.org/). The API is hightly similar to allow even reusing their excellent [cheatsheet.](https://www.rstudio.com/resources/cheatsheets/#ggplot2)
- Internally, `ggplot2` is used as rendering engine at the moment.
+The grammar implemented by `kravis` is inspired from [`ggplot2`](http://ggplot2.org/). In fact, all it provides is a more typesafe wrapper around it.  Internally, `ggplot2` is used as rendering engine. The API of `kravis` is highly similar to allow even reusing their excellent [cheatsheet](https://www.rstudio.com/resources/cheatsheets/#ggplot2).
 
- R is required to used `kravis`, but to keep things simple, we provide bindings to docker and remove server instances.
+R is required to use `ggplot`. However, `kravis` works with various integration backend ranging such as docker or remote webservices.
 
 
 [TOC levels=3]: # " "
@@ -36,7 +36,7 @@ The grammar implemented by `kravis` is inspired from [`ggplot2`](http://ggplot2.
 ## Setup
 
 
-Add the following artifact to your gradle.build
+Add the following artifact to your `gradle.build`
 
 ```
 compile "com.github.holgerbrandl:kravis:0.3"
@@ -51,6 +51,11 @@ repositories {
 dependencies {
         compile 'com.github.holgerbrandl:kravis:-SNAPSHOT'
 }
+```
+
+To build and install it into your local maven cache, simply clone the repo and run
+```bash
+./gradlew install
 ```
 
 
