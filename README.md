@@ -11,18 +11,23 @@ The grammar implemented by `kravis` is inspired from [`ggplot2`](http://ggplot2.
 R is required to use `ggplot`. However, `kravis` works with various integration backend ranging such as docker or remote webservices.
 
 
-[TOC levels=3]: # " "
+[TOC]: # " "
 
 - [Setup](#setup)
 - [Examples](#examples)
 - [The Grammar of Graphics](#the-grammar-of-graphics)
-    - [Rendering and Display Modes](#rendering-and-display-modes)
-    - [Plot Immutablity.](#plot-immutablity)
-- [Output Modes](#output-modes)
 - [Supported Data Input Formats](#supported-data-input-formats)
+    - [Iterators](#iterators)
+    - [Tables](#tables)
+- [Rendering and Display Modes](#rendering-and-display-modes)
+- [Output Devices](#output-devices)
 - [Execution Engines](#execution-engines)
-    - [Iterator API](#iterator-api)
+    - [(1) Local R](#1-local-r)
+    - [(2) Dockerized R.](#2-dockerized-r)
+    - [(3) Rserve](#3-rserve)
 - [Custom Plots](#custom-plots)
+    - [Plot Immutability.](#plot-immutablity)
+- [API Coverage](#api-coverage)
 - [References](#references)
 - [Acknowledgements](#acknowledgements)
 
@@ -99,11 +104,9 @@ Find more examples in our gallery **{comding soon}**.
 
 `ggplot2` and thus `kravis` implement a **grammar for graphics** to build plots with
 
-> `layers` + `aesthetics` + `coordinates system` + `transformations` + ` facets`
+> `aesthetics` + `layers`  + `coordinates system` + `transformations` + ` facets`
 
-Which reads as `one or more layers` + `map variables from data space to visual space` + `coordinates system` + `statistical transformations` + `optional facets`. That's the way.
-
-
+Which reads as `map variables from data space to visual space` + `add one or more layers`  + `configure the coordinates system` + ` optionally apply statistical transformations` + `optionally add facets`. That's the way!
 
 
 ## Supported Data Input Formats
@@ -194,13 +197,14 @@ This is the default mode which can be configured by using
 SessionPrefs.RENDER_BACKEND = LocalR()
 ```
 
-### (2) Dockerized R. This will pull and use by default the container [`rocker/tidyverse:3.5.1`](https://hub.docker.com/r/rocker/tidyverse/).
+### (2) Dockerized R.
+
 
 ```kotlin
 SessionPrefs.RENDER_BACKEND = Docker()
 ```
 
-This is using [`rocker/tidyverse:3.5.1`](https://hub.docker.com/r/rocker/tidyverse/) as default image, but can be configured to use more custom images as needed.
+This will pull and use by default the container [`rocker/tidyverse:3.5.1`](https://hub.docker.com/r/rocker/tidyverse/), but can be configured to use more custom images as needed.
 
 ### (3) Rserve
 
@@ -218,7 +222,7 @@ For configuration details see https://www.rforge.net/Rserve/doc.html
 Alternatively, in case you don't have or want a local R installation, you can also run it dockerized locally or remotly with
 ```
 # docker run -p <public_port>:<private_port> -d <image>  
-docker run -dp 6302:6311 holgerbrandl/kravis_rserve 
+docker run -dp 6311:6311 holgerbrandl/kravis_rserve 
 ```
 See [Dockerfile](misc/docker_rserve/Dockerfile) for the spec of this image.
 
@@ -246,7 +250,7 @@ irisData.ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
 ![](.README_images/dot_violin.png)
 
 
-### Plot Immutablity.
+## Plot Immutability
 
 Plots are -- similar to [`krangl`](https://github.com/holgerbrandl/krangl) data-frames -- immutable.
 
