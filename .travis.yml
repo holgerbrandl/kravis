@@ -14,4 +14,10 @@ jdk:
 
 #install: gradle -q assemble
 
+install:
+- sudo apt-get install -y r-base
+- sudo chmod -R ugo+w /usr/local/lib/R/site-library
+- R -e "install.packages("devtools")
+- R -e "install.packages("tidyverse")
+
 script: gradle clean check --stacktrace
