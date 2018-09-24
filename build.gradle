@@ -63,6 +63,11 @@ dependencies {
 //    useJUnitPlatform()
 //}
 
+//task javadoc(type: Javadoc) {
+javadoc {
+    exclude '**/PlotResultPanel.java'
+}
+
 // http://stackoverflow.com/questions/11474729/how-to-build-sources-jar-with-gradle
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'

@@ -1,4 +1,4 @@
-# `kravis` - A Kotlin {gra}mmar for scientific data {vis}ualization
+# `kravis` - A {k}otlin {gra}mmar for data {vis}ualization
 
  [ ![Download](https://api.bintray.com/packages/holgerbrandl/github/kravis/images/download.svg) ](https://bintray.com/holgerbrandl/github/kravis/_latestVersion)
 [![Build Status](https://travis-ci.org/holgerbrandl/kravis.svg?branch=master)](https://travis-ci.org/holgerbrandl/kravis)
@@ -273,7 +273,7 @@ irisData.ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
 
 ## References
 
-You don't like it? Here are some other projects which may better suit your purpose. Before you leave, consider dropping us a [#ticket](https://github.com/holgerbrandl/krangl/issues/ticket) with some comments about whats missing, badly designed or simply broken in `kravis`.
+You don't like it? Here are some other projects which may better suit your purpose. Before you leave, consider dropping us a [ticket](https://github.com/holgerbrandl/kravis/issues/ticket) with some comments about whats missing, badly designed or simply broken in `kravis`.
 
 GGplot Wrappers
 
