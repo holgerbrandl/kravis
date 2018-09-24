@@ -14,20 +14,19 @@ R is required to use `ggplot`. However, `kravis` works with various integration 
 [TOC]: # " "
 
 - [Setup](#setup)
-- [Examples](#examples)
+- [First Examples](#first-examples)
 - [The Grammar of Graphics](#the-grammar-of-graphics)
 - [Supported Data Input Formats](#supported-data-input-formats)
     - [Iterators](#iterators)
     - [Tables](#tables)
-- [Rendering and Display Modes](#rendering-and-display-modes)
 - [Output Devices](#output-devices)
-- [Execution Engines](#execution-engines)
+- [Rendering](#rendering)
     - [(1) Local R](#1-local-r)
     - [(2) Dockerized R.](#2-dockerized-r)
     - [(3) Rserve](#3-rserve)
-- [Custom Plots](#custom-plots)
-    - [Plot Immutability.](#plot-immutablity)
+- [Plot Immutability](#plot-immutability)
 - [API Coverage](#api-coverage)
+    - [How to use missing API elements from ggplot2?](#how-to-use-missing-api-elements-from-ggplot2)
 - [References](#references)
 - [Acknowledgements](#acknowledgements)
 
@@ -64,7 +63,7 @@ To build and install it into your local maven cache, simply clone the repo and r
 ```
 
 
-## Examples
+## First Examples
 
 Let's start by analyzing mamalian [sleep patterns](https://ggplot2.tidyverse.org/reference/msleep.html)
 ```kotlin
@@ -161,12 +160,6 @@ irisData
     .geomPoint(alpha=0.3, size=7)
 ```
 
-
-## Rendering and Display Modes
-
-`kravis` is built on top of `krangl` and `ggplot2` from R. The latter it will access via different backends like a local installation, docker or Rserve.
-
-
 ## Output Devices
 
 
@@ -185,9 +178,10 @@ The preferred output can be configured using the `SessionPrefs` object
 ```kotlin
 SessionPrefs.OUTPUT_DEVICE = SwingPlottingDevice()
 ```
-## Execution Engines
 
-Currently `kravis` provided 3 different options to bind an R engine.
+## Rendering
+
+Currently `kravis` provided 3 different options to bind an R engine which is required to render plots.
 
 ### (1) Local R
 
@@ -231,25 +225,6 @@ To use the Rserve backend, configure the kravis `SessionPrefs` accordingly by po
 SessionPrefs.RENDER_BACKEND = RserveEngine(host="localhost", port=6302)
 ```
 
-
-## Custom Plots
-
-Since `kravis` just mimics some parts of `ggplot2`, and because user may want to create more custom plots we do support preambles (e.g. to define new geoms) and custom layer specs.
-
-Example
-
-```kotlin
-irisData.ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
-    .addPreamble("""devtools::source_url("https://git.io/fAiQN")""")
-    .addCustom("""geom_flat_violin(scale = "count", trim = FALSE)""")
-    .geomDotplot(binaxis = "y", dotsize = 0.5, stackdir = "down", binwidth = 0.1, position = PositionNudge(-0.025))
-    .theme(legendPosition = "none")
-    .labs(x = "Species", y = "Sepal length (cm)")
-```
-
-![](.README_images/dot_violin.png)
-
-
 ## Plot Immutability
 
 Plots are -- similar to [`krangl`](https://github.com/holgerbrandl/krangl) data-frames -- immutable.
@@ -276,6 +251,24 @@ Currently we just map a subset of the `ggplot2` API.
 * Crosses - Planned but not yet done
 
 Feel welcome to submit a ticket or PR if some important usecase is missing.
+
+
+### How to use missing API elements from ggplot2?
+
+Since `kravis` just mimics some parts of `ggplot2`, and because user may want to create more custom plots we do support preambles (e.g. to define new geoms) and custom layer specs.
+
+Example
+
+```kotlin
+irisData.ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
+    .addPreamble("""devtools::source_url("https://git.io/fAiQN")""")
+    .addCustom("""geom_flat_violin(scale = "count", trim = FALSE)""")
+    .geomDotplot(binaxis = "y", dotsize = 0.5, stackdir = "down", binwidth = 0.1, position = PositionNudge(-0.025))
+    .theme(legendPosition = "none")
+    .labs(x = "Species", y = "Sepal length (cm)")
+```
+
+![](.README_images/dot_violin.png)
 
 
 ## References
