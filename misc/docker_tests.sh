@@ -40,6 +40,9 @@ docker run \
     R -f /scripts/test_calc.R
 
 
+docker run --rm -it rocker/tidyverse:3.5.1 /bin/bash --login
+
+
 ########################################################################################################################
 ## check presence of required docker image
 

@@ -15,32 +15,19 @@ import java.nio.charset.StandardCharsets
 import javax.imageio.ImageIO
 
 /**
+ * A rendering engine that uses a remote Rserve instance to build the plot. See https://www.rforge.net/Rserve/
  * @author Holger Brandl
  */
-class RserveEngine : RenderEngine() {
+class RserveEngine(val host: String = "localhost", val port: Int = 6311) : RenderEngine() {
 
     override fun render(plot: GGPlot, outputFile: File, preferredSize: Dimension?): File {
 
 
-        val connection = RConnection()
-
-
-//        val data = irisData.remove("Species")
+        val connection = RConnection(host, port)
 
         plot.dataRegistry.forEach { (varName, df) ->
             connection.setTable(varName, df)
         }
-
-//        var preferredSize = if (preferredSize == null || preferredSize.height < 0) {
-//            Dimension(400, 400)
-//        } else preferredSize
-//
-//        // scale it gently for high-dpi devices
-//        preferredSize = with(preferredSize){
-//            val scaleFac = 1.0
-//            Dimension((width* scaleFac).roundToInt(), (height* scaleFac).roundToInt())
-//        }
-
 
         val rScript = compileScript(plot, preferredSize)
 //        val rScript = """plot(1:10)"""
@@ -141,7 +128,8 @@ fun fixEncoding(stringValue: String): String {
 object RserveDeviceTester {
     @JvmStatic
     fun main(args: Array<String>) {
-        SessionPrefs.RENDER_BACKEND = RserveEngine()
+        SessionPrefs.RENDER_BACKEND = RserveEngine(host = "localhost", port = 6302)
+//        SessionPrefs.RENDER_BACKEND = RserveEngine()
 
         irisScatter.show()
     }

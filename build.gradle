@@ -54,6 +54,8 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 //    testCompile "io.kotlintest:kotlintest-runner-junit5:3.1.9"
     testCompile 'io.kotlintest:kotlintest-assertions:3.1.6'
+
+    // testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.16'
 }
 
 
