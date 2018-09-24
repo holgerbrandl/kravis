@@ -113,7 +113,8 @@ class CoreRegressions : AbstractSvgPlotRegression() {
         val basePlot = mpgData.ggplot("displ" to x, "hwy" to y).geomPoint()
 
         val plot = basePlot
-            .theme(panelBackground = ElementTextBlank(), axisText = ElementText("size=20, color='red'"))
+//            .theme(panelBackground = ElementTextBlank(), axisText = ElementText("size=20, color='red'"))
+            .theme(panelBackground = ElementTextBlank(), axisText = ElementText(size = 20, color = RColor.red))
 
         assertExpected(plot, "axis")
 

@@ -96,11 +96,46 @@ fun GGPlot.themeVoid(base_size: Int = 11, base_family: String = "") = appendSpec
     addSpec(object : ThemeBuilder("void", base_size, base_family) {}.toString())
 }
 
-open class ElementText(val args: String) {
+/**
+ * In conjunction with the theme system, the element_ functions specify the display of how non-data components of the plot are a drawn.
+ *
+
+ *
+ * Example:
+ * ```
+ * val basePlot = mpgData
+ *      .ggplot("displ" to x, "hwy" to y)
+ *      .geomPoint()
+ *      .theme(axisText = ElementText(size = 20, color = RColor.red))
+ * ```
+ *
+ * @param color Line/border colour. Color is an alias for colour.
+ * @param size Line/border size in mm; text size in pts.
+ * @param face Font face ("plain", "italic", "bold", "bold.italic") Line/border size in mm; text size in pts.
+ * @param fill Fill colour.
+ */
+open class ElementText(
+    val family: String? = null,
+    val face: String? = null,
+    val color: RColor? = null,
+    val size: Int? = null,
+
+    vararg dotdotdot: Pair<String, String>
+) {
+
+    var args: String = arg2string(
+        "family" to family,
+        "face" to face,
+        "color" to color,
+        "size" to size,
+
+        *dotdotdot.asList().toTypedArray()
+    )
+
     override fun toString() = "element_text($args)"
 }
 
-class ElementTextBlank : ElementText("") {
+class ElementTextBlank : ElementText() {
     override fun toString() = "element_blank()"
 }
 

@@ -40,12 +40,25 @@ fun doScatter() {
 }
 
 fun iteratorAPI() {
+    // using the famous sleep patterns dataset
     sleepPatterns.ggplot(x = { sleep_total }, y = { sleep_cycle }).geomBar()
+
+    // using a custom data class
+    data class Person(val name: String, val male: Boolean, val heightCm: Int, val weightKg: Double)
+
+    val persons = listOf(
+        Person("Max", true, 192, 80.3),
+        Person("Anna", false, 162, 56.3),
+        Person("Maria", false, 172, 66.3)
+    )
+
+    persons.ggplot(x = { heightCm }, y = { weightKg }, color = { male }).geomPoint().show()
 
 }
 
 fun main(args: Array<String>) {
     //    doBarChart()
-    doScatter()
+//    doScatter()
+    iteratorAPI()
 }
 
