@@ -14,10 +14,20 @@ jdk:
 
 #install: gradle -q assemble
 
+sudo: required
+
+services:
+- docker
+
 install:
-- sudo apt-get install -y r-base
-- sudo chmod -R ugo+w /usr/local/lib/R/site-library
-- R -e "install.packages('devtools', repos = 'http://cran.us.r-project.org')"
-- R -e "install.packages('tidyverse', repos = 'http://cran.us.r-project.org')"
+- docker pull holgerbrandl/kravis_rserve
+- docker run -dp 127.0.0.1:6311:6311 holgerbrandl/kravis_rserve
+- docker ps -a
+
+
+#- sudo apt-get install -y r-base
+#- sudo chmod -R ugo+w /usr/local/lib/R/site-library
+#- R -e "install.packages('devtools', repos = 'http://cran.us.r-project.org')"
+#- R -e "install.packages('tidyverse', repos = 'http://cran.us.r-project.org')"
 
 script: gradle clean check --stacktrace
