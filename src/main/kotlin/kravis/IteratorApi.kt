@@ -10,7 +10,7 @@ infix fun <T> Aesthetic.to(any: PropExtractor<T>): Pair<Aesthetic, PropExtractor
 typealias PropExtractor<T> = T.(T) -> Any?
 
 
-@Deprecated("use with dedicated nullable parameters instead")
+//@Deprecated("use with dedicated nullable parameters instead")
 inline fun <reified T> Iterable<T>.ggplot(vararg aes2data: Pair<Aesthetic, PropExtractor<T>>): GGPlot {
     //fun <T : Any> Iterable<T>.ggplot(vararg data: Pair<PropExtractor<T>, Aesthetic>): GGPlot {
 
