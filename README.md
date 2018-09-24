@@ -104,55 +104,13 @@ Find more examples in our gallery **{comding soon}**.
 Which reads as `one or more layers` + `map variables from data space to visual space` + `coordinates system` + `statistical transformations` + `optional facets`. That's the way.
 
 
-### Rendering and Display Modes
 
-`kravis` builds on top of `krangl` and `ggplot2` from R. The latter it will access via different backends like a local installation, docker or Rserve.
-
-
-### Plot Immutablity.
-
-Plots are -- similar to krangl data-frames -- immutable.
-
-```
-
-```
-
-## Output Modes
-
-`kravis` autodetects the environment. It
-
-1. will use an javaFX powered graphics device for rendering when running in interactive mode.
-2. will render directly in a multi-page pdf when running in headless mode
-3. will render directly into jupyter notebooks.
 
 ## Supported Data Input Formats
 
-1. It can handle any `Iterable<T>` as input and allows to create plots using a type-save builder DSL
+### Iterators
 
-2. It can handle any kind of tabular data via [krangl](https://github.com/holgerbrandl/krangl) data-frames
-
-
-## Execution Engines
-
-1. Local R
-
-This is the default mode which can be configured by using
-
-```kotlin
-SessionPrefs.RENDER_BACKEND = LocalR()
-
-```
-
-2. Dockerized R. This will pull and use by default the container [`rocker/tidyverse:3.5.1`](https://hub.docker.com/r/rocker/tidyverse/).
-
-```kotlin
-SessionPrefs.RENDER_BACKEND = Docker()
-```
-
-
-### Iterator API
-
-Instead of using `krangl` data-frames, it is also possible to use any `Iterable<T>` to create plots. Essentially we first digest it into a table and use it as data source for visualization Here's an example:
+Every `Iterable<T>` is a valid data source for `kravis`, which allows to create plots using a type-save builder DSL. Essentially we first digest it into a table and use it as data source for visualization. Here's an example:
 
 ```kotlin
 // map data attributes to aesthetics 
@@ -171,6 +129,105 @@ basePlot.geomPoint()
 ```
 ![](.README_images/scatter_example.png)
 
+Another example with a custom [data class](https://kotlinlang.org/docs/reference/data-classes.html).
+
+```kotlin
+   data class Person(val name: String, val male: Boolean, val heightCm: Int, val weightKg: Double)
+
+    val persons = listOf(
+        Person("Max", true, 192, 80.3),
+        Person("Anna", false, 162, 56.3),
+        Person("Maria", false, 172, 66.3)
+    )
+
+    persons.ggplot(x = { heightCm }, y = { weightKg }, color = { male })
+        .geomPoint()
+```
+
+### Tables
+
+`kravis` can handle any kind of tabular data via [krangl](https://github.com/holgerbrandl/krangl) data-frames
+
+```kotlin
+import krangl.*
+import kravis.*
+
+val irisData = DataFrame.readCSV("iris_data.txt")
+irisData
+    .ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
+    .geomPoint(alpha=0.3, size=7)
+```
+
+
+## Rendering and Display Modes
+
+`kravis` is built on top of `krangl` and `ggplot2` from R. The latter it will access via different backends like a local installation, docker or Rserve.
+
+
+## Output Devices
+
+
+`kravis` auto-detects the environment, and will try to guess the most reasonable output device to show your plots. The following output devices are available.
+
+1. A swing graphics device for rendering when running in interactive mode.
+1. A javaFX  graphics device for rendering when running in interactive mode.
+3. It can render directly into files
+4. will render directly into jupyter notebooks.
+
+By default `kravis` will render as `png` on all devices, but it also supports vector rendering using `svg` as output format.
+
+
+The preferred output can be configured using the `SessionPrefs` object
+
+```kotlin
+SessionPrefs.OUTPUT_DEVICE = SwingPlottingDevice()
+```
+## Execution Engines
+
+Currently `kravis` provided 3 different options to bind an R engine.
+
+### (1) Local R
+
+This is the default mode which can be configured by using
+
+```kotlin
+SessionPrefs.RENDER_BACKEND = LocalR()
+```
+
+### (2) Dockerized R. This will pull and use by default the container [`rocker/tidyverse:3.5.1`](https://hub.docker.com/r/rocker/tidyverse/).
+
+```kotlin
+SessionPrefs.RENDER_BACKEND = Docker()
+```
+
+This is using [`rocker/tidyverse:3.5.1`](https://hub.docker.com/r/rocker/tidyverse/) as default image, but can be configured to use more custom images as needed.
+
+### (3) Rserve
+
+An (optionally) remote backend based using [Rserve](https://www.rforge.net/Rserve/)
+
+Simply install the corresponding R package and start the daemon with
+
+```bash
+R -e "install.packages('Rserve',,'http://rforge.net/',type='source')"
+R CMD Rserve
+```
+
+For configuration details see https://www.rforge.net/Rserve/doc.html
+
+Alternatively, in case you don't have or want a local R installation, you can also run it dockerized locally or remotly with
+```
+# docker run -p <public_port>:<private_port> -d <image>  
+docker run -dp 6302:6311 holgerbrandl/kravis_rserve 
+```
+See [Dockerfile](misc/docker_rserve/Dockerfile) for the spec of this image.
+
+To use the Rserve backend, configure the kravis `SessionPrefs` accordingly by pointing to the correct host and port.
+```kotlin
+SessionPrefs.RENDER_BACKEND = RserveEngine(host="localhost", port=6302)
+```
+
+
 ## Custom Plots
 
 Since `kravis` just mimics some parts of `ggplot2`, and because user may want to create more custom plots we do support preambles (e.g. to define new geoms) and custom layer specs.
@@ -188,6 +245,21 @@ irisData.ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
 
 ![](.README_images/dot_violin.png)
 
+
+### Plot Immutablity.
+
+Plots are -- similar to [`krangl`](https://github.com/holgerbrandl/krangl) data-frames -- immutable.
+
+```kotlin
+val basePlot = mpgData.ggplot("displ" to x, "hwy" to y).geomPoint()
+
+// create one version with adjusted axis text size
+basePlot.theme(axisText = ElementText(size = 20, color = RColor.red))
+
+// create another version with unchanged axis labels but using a log scale instead
+basePlot.scaleXLog10()
+
+```
 
 ## API Coverage
 
