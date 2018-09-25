@@ -25,7 +25,7 @@ mainClassName = "foo.Bar" // not needed but does not work without
 
 
 repositories {
-//    mavenCentral()
+    mavenCentral()
 //    mavenLocal()
 
     jcenter()
