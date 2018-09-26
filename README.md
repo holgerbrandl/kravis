@@ -14,7 +14,7 @@ R is required to use `ggplot`. However, `kravis` works with various integration 
 [TOC]: # " "
 
 - [Setup](#setup)
-- [First Examples](#first-examples)
+- [First Example](#first-example)
 - [The Grammar of Graphics](#the-grammar-of-graphics)
 - [Supported Data Input Formats](#supported-data-input-formats)
     - [Iterators](#iterators)
@@ -63,7 +63,7 @@ To build and install it into your local maven cache, simply clone the repo and r
 ```
 
 
-## First Examples
+## First Example
 
 Let's start by analyzing mamalian [sleep patterns](https://ggplot2.tidyverse.org/reference/msleep.html)
 ```kotlin
@@ -81,20 +81,6 @@ sleepData
 
 
 ![](.README_images/sleep_correlation.png)
-
-Or let's peek into the famous iris data-set
-```kotlin
-import kravis.* 
-import krangl.irisData 
-
-irisData.ggplot(x="Species" , y="Petal.Length" )
-    .geomBoxplot()
-    .geomPoint(position = PositionJitter(width = 0.1), alpha = 0.3)
-    .title("Petal Length by Species")
-```
-
-![](.README_images/boxplot.png)
-
 
 Find more examples in our gallery **{comding soon}**.
 
@@ -167,14 +153,17 @@ And here's another example using a custom [data class](https://kotlinlang.org/do
 `kravis` can handle any kind of tabular data via [krangl](https://github.com/holgerbrandl/krangl) data-frames
 
 ```kotlin
-import krangl.*
-import kravis.*
+import kravis.* 
+import krangl.irisData 
 
-val irisData = DataFrame.readCSV("iris_data.txt")
-irisData
-    .ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
-    .geomPoint(alpha=0.3, size=7)
+irisData.ggplot(x="Species" , y="Petal.Length" )
+    .geomBoxplot()
+    .geomPoint(position = PositionJitter(width = 0.1), alpha = 0.3)
+    .title("Petal Length by Species")
 ```
+
+![](.README_images/boxplot.png)
+
 
 ## Output Devices
 

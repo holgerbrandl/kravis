@@ -36,8 +36,19 @@ object SessionPrefs {
 
     var RENDER_BACKEND: RenderEngine = EngineAutodetect.R_ENGINE_DEFAULT
 
+    // we need to detect if we're in a debug session, because if so the debugger will call `toString` all the time
+    // and we do not want to render on `toString` in that context.
+    internal val isDebugSession by lazy {
+        try {
+            this.javaClass.classLoader.loadClass("FormPreviewFrame") != null
+            true
+        } catch (e: ClassNotFoundException) {
+            false
+        }
+    }
+
     /** Render plots when toString is invoked. This makes it more convenient in a termimal setting. */
-    var SHOW_TO_STRING = !(OUTPUT_DEVICE is JupyterDevice)
+    var SHOW_TO_STRING = !(OUTPUT_DEVICE is JupyterDevice) && !isDebugSession
 }
 
 

@@ -3,8 +3,11 @@ package kravis.ggplot
 import krangl.DataFrame
 import krangl.readTSV
 import kravis.GGPlot
+import kravis.SessionPrefs
+import kravis.render.RserveEngine
 import kravis.render.saveTempFile
 import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.TestName
 import java.awt.Desktop
@@ -29,11 +32,11 @@ abstract class AbstractSvgPlotRegression {
     abstract val testDataDir: File
 
     protected fun assertExpected(plot: GGPlot, subtest: String? = null) {
-        val render = plot.save(createTempFile(suffix = ".svg"))
+        val plotFile = plot.save(createTempFile(suffix = ".svg"))
 
-        assertTrue(render.exists() && render.length() > 0)
+        assertTrue(plotFile.exists() && plotFile.length() > 0)
 
-        val svgDoc = render.readText().run { prettyFormat(this, 4) }.trim()
+        val svgDoc = plotFile.readText().run { prettyFormat(this, 4) }.trim()
         //        val obtained = prettyFormat(svgDoc, 4).trim()
 
         val methodName = name.methodName
@@ -73,6 +76,11 @@ abstract class AbstractSvgPlotRegression {
 
     }
 
+
+    @Before
+    fun setup() {
+        SessionPrefs.RENDER_BACKEND = RserveEngine()
+    }
 }
 
 fun GGPlot.open() = Desktop.getDesktop().open(saveTempFile())
