@@ -1,6 +1,10 @@
 Kravis Release History
 ======================
 
+v0.4
+----
+
+API redesign to use ggplot2 as backend
 
 v0.3
 ----

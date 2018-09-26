@@ -115,23 +115,34 @@ Which reads as `map variables from data space to visual space` + `add one or mor
 Every `Iterable<T>` is a valid data source for `kravis`, which allows to create plots using a type-save builder DSL. Essentially we first digest it into a table and use it as data source for visualization. Here's an example:
 
 ```kotlin
-// map data attributes to aesthetics 
- val basePlot = sleepPatterns.ggplot(
-    x = { brainwt },
-    y = { bodywt },
-    alpha = { sleep_total }
-)
-
-// add layers
-basePlot.geomPoint()
-    .scaleXLog10()
-    .scaleYLog10("labels" to "comma")
-    .title("Correlation of body and brain weight")
+//  deparse records using property references (which will allow to infer variable names via reflection)
+val basePlot = sleepPatterns.ggplot(
+        x = SleepPattern::sleep_rem,
+        y = SleepPattern::sleep_total,
+        color = SleepPattern::vore,
+        size = SleepPattern::brainwt
+    )
+            
+basePlot
+    .geomPoint()
+    .title("Correlation of total sleep and and rem sleep by food preference")
     .show()
 ```
+
 ![](.README_images/scatter_example.png)
 
-Another example with a custom [data class](https://kotlinlang.org/docs/reference/data-classes.html).
+In the previous example  we have used property references. `kravis` also supports an extractor lambda function syntax, which allow for on-the-fly data transformations when deparsing an `Iterable<T>`. The ([not yet](https://github.com/holgerbrandl/kravis/issues/14) solved) disadvantage is that we need to assign axis labels manually
+
+```kotlin
+sleepPatterns
+    .ggplot(x = { sleep_total/60 })
+    .geomHistogram()
+    .xLabel("sleep[h]")
+```
+![](.README_images/extractor_histogram.png)
+
+And here's another example using a custom [data class](https://kotlinlang.org/docs/reference/data-classes.html):
+
 
 ```kotlin
    data class Person(val name: String, val male: Boolean, val heightCm: Int, val weightKg: Double)
@@ -142,9 +153,14 @@ Another example with a custom [data class](https://kotlinlang.org/docs/reference
         Person("Maria", false, 172, 66.3)
     )
 
-    persons.ggplot(x = { heightCm }, y = { weightKg }, color = { male })
+    persons.ggplot(x = { heightCm/100 }, y = { weightKg }, color = { male })
         .geomPoint()
+        .xLabel("height [m]")
+        .yLabel("weight [kg]")
+        
 ```
+
+![](.README_images/persons.png)
 
 ### Tables
 
