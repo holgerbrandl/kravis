@@ -18,7 +18,7 @@ Or reroute exposed port to a different port as needed.
 ## Deployment
 
 ```bash
-#cd /Users/brandl/projects/kotlin/kravis/misc/docker_rserve
+#cd /Users/brandl/projects/kotlin/kravis/misc/docker/kravis_rserve
 
 docker build -t kravis_rserve .
 

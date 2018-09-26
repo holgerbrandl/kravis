@@ -22,25 +22,37 @@ class RserveEngine(val host: String = "localhost", val port: Int = 6311) : Rende
 
     override fun render(plot: GGPlot, outputFile: File, preferredSize: Dimension?): File {
 
-
         val connection = RConnection(host, port)
 
         plot.dataRegistry.forEach { (varName, df) ->
             connection.setTable(varName, df)
         }
 
-        val rScript = compileScript(plot, preferredSize)
+        val plotFormat = PlotFormat.valueOf(outputFile.extension.toUpperCase())
+        val rScript = compileScript(plot, preferredSize, plotFormat)
 //        val rScript = """plot(1:10)"""
 
+        val resultData = connection.evalAndFetchResult(rScript)
 
-        val bufImage = connection.readImage(rScript)
 
-        // todo reenable
+        if (plotFormat == PlotFormat.SVG) {
+            outputFile.writeText(String(resultData))
+
+        } else {
+            val img: BufferedImage? = try {
+                ImageIO.read(ByteArrayInputStream(resultData))
+            } catch (e: IOException) {
+                throw RServeExceptionException(e.message ?: "")
+            }
+
+            // todo reenable
 //        if (result.exitCode != 0) {
 //            throw LocalRenderingFailedException(rScript, result)
 //        }
 
-        ImageIO.write(bufImage, outputFile.extension, outputFile)
+            ImageIO.write(img, outputFile.extension, outputFile)
+        }
+
 
         require(outputFile.exists()) { System.err.println("Image generation failed") }
 
@@ -48,7 +60,7 @@ class RserveEngine(val host: String = "localhost", val port: Int = 6311) : Rende
     }
 
 
-    fun compileScript(plot: GGPlot, preferredSize: Dimension?): String {
+    fun compileScript(plot: GGPlot, preferredSize: Dimension?, plotFormat: PlotFormat): String {
         val final = plot.spec
 
         val preamble = plot.preambble.joinToString("\n")
@@ -69,7 +81,7 @@ set.seed(2009)
 
 gg = $final
 
-plotFile = tempfile(fileext='.png')
+plotFile = tempfile(fileext='.${plotFormat}')
 ggsave(filename=plotFile, plot=gg${optionalSizeConfig ?: ""})
 
                 """.trimIndent()
@@ -82,37 +94,38 @@ ggsave(filename=plotFile, plot=gg${optionalSizeConfig ?: ""})
 
 internal fun RConnection.readImage(script: String): BufferedImage? {
 
+    val resultData = evalAndFetchResult(script)
+
+    //        } catch (REXPMismatchException e) {
+    //            throw new KnimeScriptingException("Failed to close image device and to read in plot as binary:+\n" + e.getMessage());
+    //        }
+
+    return try {
+        ImageIO.read(ByteArrayInputStream(resultData))
+    } catch (e: IOException) {
+        throw RServeExceptionException(e.message ?: "")
+    }
+}
+
+private fun RConnection.evalAndFetchResult(script: String): ByteArray {
     val fixedScript = fixEncoding(script)
 
     voidEval("try({\n$fixedScript\n}, silent = FALSE)")
 
     // close the image
-    var image: ByteArray? = null
     // check if the plot file has been written
     val tempFileName = eval("plotFile").asString()
     val xpInt = eval("file.access('$tempFileName',0)").asInteger()
     if (xpInt == -1) throw RServeExceptionException("Plot could not be created. Please check your script or submit a ticket to https://github.com/holgerbrandl/kravis")
 
     // we limit the file size to 1MB which should be sufficient and we delete the file as well
-    val imagesBytes = eval("try({ binImage <- readBin('$tempFileName','raw',2024*2024); unlink('$tempFileName'); binImage })")
+    val resultData = eval("try({ fileBytes <- readBin('$tempFileName','raw',2024*2024); unlink('$tempFileName'); fileBytes })")
 
     //            if (xp.inherits("try-error")) { // if the result is of the class try-error then there was a problem
     //                throw new KnimeScriptingException(xp.asString());
     //            }
-    image = imagesBytes.asBytes()
 
-    //        } catch (REXPMismatchException e) {
-    //            throw new KnimeScriptingException("Failed to close image device and to read in plot as binary:+\n" + e.getMessage());
-    //        }
-
-    val img: BufferedImage?
-    try {
-        img = ImageIO.read(ByteArrayInputStream(image))
-    } catch (e: IOException) {
-        throw RServeExceptionException(e.message ?: "")
-    }
-
-    return img
+    return resultData.asBytes()
 }
 
 

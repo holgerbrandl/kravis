@@ -20,9 +20,11 @@ services:
 - docker
 
 install:
-- docker pull holgerbrandl/kravis_rserve
-- docker run -dp 127.0.0.1:6311:6311 holgerbrandl/kravis_rserve
-- docker ps -a
+- docker pull holgerbrandl/kravis_core:3.5.1
+
+#- docker pull holgerbrandl/kravis_rserve
+#- docker run -dp 127.0.0.1:6311:6311 holgerbrandl/kravis_rserve
+#- docker ps -a
 
 
 #- sudo apt-get install -y r-base

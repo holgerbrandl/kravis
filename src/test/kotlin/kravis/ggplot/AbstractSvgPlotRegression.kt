@@ -4,6 +4,7 @@ import krangl.DataFrame
 import krangl.readTSV
 import kravis.GGPlot
 import kravis.SessionPrefs
+import kravis.render.Docker
 import kravis.render.RserveEngine
 import kravis.render.saveTempFile
 import org.junit.Assert.*
@@ -79,7 +80,8 @@ abstract class AbstractSvgPlotRegression {
 
     @Before
     fun setup() {
-        SessionPrefs.RENDER_BACKEND = RserveEngine()
+//        SessionPrefs.RENDER_BACKEND = RserveEngine()
+        SessionPrefs.RENDER_BACKEND = Docker("holgerbrandl/kravis_core:3.5.1")
     }
 }
 
