@@ -28,6 +28,8 @@
 
 Replicate more examples from library https://www.r-graph-gallery.com/
 
+fix CI
+* https://docs.travis-ci.com/user/docker/
 
 geom
 * barchart
@@ -53,8 +55,7 @@ check out https://github.com/hudsonb/kubed again
 
 ## M3
 
-* Support `rserve` as alternative rendering engine
-* 
+* support for multiplot (see https://www.kaggle.com/headsortails/nyc-taxi-eda-update-the-fast-the-curious/ for a nice example)
 * remap vega errors to throwables
 https://stackoverflow.com/questions/15522315/how-to-get-the-javafx-webengine-to-report-errors-in-detail
 
