@@ -54,7 +54,10 @@ abstract class AbstractSvgPlotRegression {
 
         val expected = file.readText().trim() //.run { prettyFormat(this, 4) }
 
-        assertEquals(expected, svgDoc)
+        // note assertEquals would be cleaner but since its printing the complete diff, it's polluting the travis logs
+        //        assertEquals(expected, svgDoc)
+        val failMsg = "svg mismatch got:\n${svgDoc.lines().take(30).joinToString("\n")}"
+        assertTrue(failMsg, expected.equals(svgDoc))
 
         // compare actual images
         //        saveImage(File(testDataDir, name.methodName.replace(" ", "_") + ".png"))
