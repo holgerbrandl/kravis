@@ -28,6 +28,10 @@ docker login
 
 #https://stackoverflow.com/questions/41984399/denied-requested-access-to-the-resource-is-denied-docker
 docker push holgerbrandl/kravis_rserve:3.5.1
+
+## create latest tag
+docker tag kravis_rserve holgerbrandl/kravis_rserve
+docker push holgerbrandl/kravis_rserve
 ```
 
 ## Misc
