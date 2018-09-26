@@ -160,7 +160,11 @@ class GGPlot(
 
     override fun toString(): String {
         if (SessionPrefs.SHOW_TO_STRING) {
-            show()
+            try {
+                show()
+            } catch (e: Exception) {
+                System.err.println("Plot pendering failed with " + e)
+            }
         }
         //        show() // this should just apply to a terminal setting. in jupypter we actually need to return a value
         return spec
