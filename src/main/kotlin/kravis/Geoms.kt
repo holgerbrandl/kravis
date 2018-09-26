@@ -267,7 +267,7 @@ fun GGPlot.geomBar(
     mapping: Aes? = null,
     data: DataFrame? = null,
     stat: Stat = Stat.count,
-    position: Position = PositionIdentity(),
+    position: Position = PositionStack(),
     showLegend: Boolean? = null,
     removeNAs: Boolean = false,
     inheritAes: Boolean = true,
@@ -518,7 +518,7 @@ fun GGPlot.geomHistogram(
     // generic options to all geoms
     mapping: Aes? = null,
     data: DataFrame? = null,
-    stat: Stat = Stat.identity,
+    stat: Stat = Stat.bin,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
     removeNAs: Boolean = false,
@@ -554,7 +554,7 @@ fun GGPlot.geomHistogram(
         "size" to size
     )
 
-    addSpec("geom_step(${args})")
+    addSpec("geom_histogram(${args})")
 }
 
 
