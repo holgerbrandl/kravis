@@ -28,7 +28,7 @@ internal fun Any.toStringAndQuote(): String? {
         isRExpression -> toString().removePrefix(EXPRESSION_PREFIX)
         //    is VarName -> this.toString()
         this is Aes -> this.toString().nullIfEmpty()
-        this is Boolean -> this.toString().toUpperCase()
+        this is Boolean -> toRString()
         this is RColor -> "'${this}'"
         this is Stat -> "'${this}'"
         this is String -> "'${this}'"
@@ -36,6 +36,8 @@ internal fun Any.toStringAndQuote(): String? {
         else -> this.toString()
     }
 }
+
+internal fun Boolean.toRString() = this.toString().toUpperCase()
 
 private fun String.nullIfEmpty(): String? {
     if (isEmpty()) return null else return this
