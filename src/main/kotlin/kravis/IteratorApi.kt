@@ -12,7 +12,7 @@ typealias PropExtractor<T> = T.(T) -> Any?
 
 
 //@Deprecated("use with dedicated nullable parameters instead")
-inline fun <reified T> Iterable<T>.ggplot(vararg aes2data: Pair<Aesthetic, PropExtractor<T>>): GGPlot {
+inline fun <reified T> Iterable<T>.plot(vararg aes2data: Pair<Aesthetic, PropExtractor<T>>): GGPlot {
     //fun <T : Any> Iterable<T>.ggplot(vararg data: Pair<PropExtractor<T>, Aesthetic>): GGPlot {
 
     //todo use reflection to get sensible names for variables
@@ -33,7 +33,7 @@ inline fun <reified T> Iterable<T>.ggplot(vararg aes2data: Pair<Aesthetic, PropE
  *
  * @sample kravis.dokka.iteratorAPI
  */
-inline fun <reified T> Iterable<T>.ggplot(
+inline fun <reified T> Iterable<T>.plot(
     noinline x: PropExtractor<T>? = null,
     noinline y: PropExtractor<T>? = null,
     noinline alpha: PropExtractor<T>? = null,
@@ -55,7 +55,7 @@ inline fun <reified T> Iterable<T>.ggplot(
         .skipNull(Aesthetic.size, size)
         .skipNull(Aesthetic.stroke, stroke)
 
-    return ggplot(*mapping.toTypedArray())
+    return plot(*mapping.toTypedArray())
 }
 
 
@@ -67,7 +67,7 @@ internal object ExtractorPlots {
         "to" to { it: SleepPattern -> it.awake }
         sleepPatterns.deparseRecords { mapOf("awake" to it.awake, "genus" to it.genus) }
 
-        sleepPatterns.asDataFrame().ggplot()
+        sleepPatterns.asDataFrame().plot()
 
 
         krangl.sleepPatterns.deparseRecords(
@@ -79,7 +79,7 @@ internal object ExtractorPlots {
 
 
 /** Construct a plot by simply providing references to properties. This will allow to name visual axes correctly. */
-inline fun <reified T> Iterable<T>.ggplot(
+inline fun <reified T> Iterable<T>.plot(
     x: KProperty1<T, *>? = null,
     y: KProperty1<T, *>? = null,
     alpha: KProperty1<T, *>? = null,
@@ -117,7 +117,7 @@ inline fun <reified T> Iterable<T>.ggplot(
         formuale.first to aes2prop.first
     }
 
-    return deparsedReceiver.ggplot(*col2aes.toTypedArray())
+    return deparsedReceiver.plot(*col2aes.toTypedArray())
 }
 
 
@@ -147,13 +147,13 @@ internal object KProperty0Plot {
 
 
         // extractor lambda
-        sleepPatterns.ggplot(
+        sleepPatterns.plot(
             x = { conservation },
             y = { bodywt }
         )
 
         // KProperty1
-        sleepPatterns.ggplot(
+        sleepPatterns.plot(
             x = SleepPattern::sleep_rem,
             y = SleepPattern::sleep_total,
             color = SleepPattern::vore,

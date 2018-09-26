@@ -5,7 +5,7 @@ import kravis.*
 import kravis.Aesthetic.*
 import kravis.demo.IrisData.SepalLength
 import kravis.demo.IrisData.SepalWidth
-import kravis.ggplot
+import kravis.plot
 import kravis.nshelper.ggplot
 import org.junit.Test
 import java.io.File
@@ -24,18 +24,18 @@ class CoreRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `empty plot without axes`() {
-        irisData.ggplot().apply { assertExpected(this) }
+        irisData.plot().apply { assertExpected(this) }
     }
 
 
     @Test
     fun `empty plot with axes`() {
-        irisData.ggplot(x = "Species", y = "Petal.Length").apply { assertExpected(this) }
+        irisData.plot(x = "Species", y = "Petal.Length").apply { assertExpected(this) }
     }
 
     @Test
     fun `it should deparse collections and allow for axis options`() {
-        val basePlot = sleepPatterns.ggplot(
+        val basePlot = sleepPatterns.plot(
             x = { brainwt },
             y = { bodywt },
             alpha = { sleep_total }
@@ -55,7 +55,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
         devtools::source_url("https://git.io/fAiQN")
         """
 
-        irisData.ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
+        irisData.plot(x = "Species", y = "Sepal.Length", fill = "Species")
             .addPreamble(preabmle)
             .addCustom("""geom_flat_violin(scale = "count", trim = FALSE)""")
             // todo
@@ -78,7 +78,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
             "Sepal.Length.Mean" to { it["Sepal.Length"].mean() }
         )
 
-        val plot = irisData.ggplot("Sepal.Length" to x, "Petal.Length" to y, "Species" to color)
+        val plot = irisData.plot("Sepal.Length" to x, "Petal.Length" to y, "Species" to color)
             .geomPoint(alpha = 0.3)
             .geomPoint(data = irisSummary, mapping = Aes("Sepal.Length.Mean", "Petal.Length.Mean"), shape = 4, stroke = 4)
 
@@ -110,7 +110,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
             axis.text = element_text(size=20, color="red")
         """
 
-        val basePlot = mpgData.ggplot("displ" to x, "hwy" to y).geomPoint()
+        val basePlot = mpgData.plot("displ" to x, "hwy" to y).geomPoint()
 
         val plot = basePlot
 //            .theme(panelBackground = ElementTextBlank(), axisText = ElementText("size=20, color='red'"))
@@ -136,7 +136,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `convert continues variable to discrete`() {
         val plot = irisData.addColumn("Approx.SL") { it["Sepal.Length"].map<Double> { it.roundToInt() } }
-            .ggplot(x = "Approx.SL".asDiscreteVariable, y = "Sepal.Width", color = "Species", size = "Petal.Width")
+            .plot(x = "Approx.SL".asDiscreteVariable, y = "Sepal.Width", color = "Species", size = "Petal.Width")
             .geomPoint(alpha = .4)
 
         //        plot.show()
@@ -149,7 +149,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
         val mssleep = sleepData.addColumn("rem_proportion") { it["sleep_rem"] / it["sleep_total"] }
         // Analyze correlation
 
-        val plot = mssleep.ggplot(x = "sleep_total", y = "rem_proportion", color = "vore", size = "brainwt")
+        val plot = mssleep.plot(x = "sleep_total", y = "rem_proportion", color = "vore", size = "brainwt")
             .geomPoint(alpha = 0.7)
             .guides(size = LegendType.none)
 
@@ -159,7 +159,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `facet by wrap`() {
-        val plot = sleepData.ggplot(x = "sleep_total", y = "brainwt", color = "vore")
+        val plot = sleepData.plot(x = "sleep_total", y = "brainwt", color = "vore")
             .geomPoint(alpha = 0.7)
             .guides(size = LegendType.none)
             .facetWrap("vore")
@@ -170,7 +170,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `facet by grid`() {
-        val plot = sleepData.ggplot(x = "sleep_total", y = "brainwt")
+        val plot = sleepData.plot(x = "sleep_total", y = "brainwt")
             .geomPoint(alpha = 0.7)
             .guides(size = LegendType.none)
             .facetGrid(rows = "vore", cols = "conservation")

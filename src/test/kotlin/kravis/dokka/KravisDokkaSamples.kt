@@ -31,7 +31,7 @@ fun doBarChart() {
 fun doScatter() {
 
     // add layers
-    sleepData.ggplot(x = "brainwt", y = "bodywt", alpha = "sleep_total")
+    sleepData.plot(x = "brainwt", y = "bodywt", alpha = "sleep_total")
         .geomPoint()
         .scaleXLog10()
         .scaleYLog10("labels" to "comma")
@@ -41,7 +41,7 @@ fun doScatter() {
 
 fun iteratorAPI() {
     // using the famous sleep patterns dataset
-    sleepPatterns.ggplot(x = { sleep_total }, y = { sleep_cycle }).geomBar()
+    sleepPatterns.plot(x = { sleep_total }, y = { sleep_cycle }).geomBar()
 
     // using a custom data class
     data class Person(val name: String, val male: Boolean, val heightCm: Int, val weightKg: Double)
@@ -52,7 +52,7 @@ fun iteratorAPI() {
         Person("Maria", false, 172, 66.3)
     )
 
-    persons.ggplot(x = { heightCm }, y = { weightKg }, color = { male }).geomPoint().show()
+    persons.plot(x = { heightCm }, y = { weightKg }, color = { male }).geomPoint().show()
 
 }
 

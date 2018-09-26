@@ -52,9 +52,9 @@ object SessionPrefs {
 }
 
 
-fun DataFrame.ggplot(aes: Aes? = null) = GGPlot(this, aes)
+fun DataFrame.plot(aes: Aes? = null) = GGPlot(this, aes)
 
-fun DataFrame.ggplot(
+fun DataFrame.plot(
     x: String? = null,
     y: String? = null,
     alpha: String? = null,
@@ -86,7 +86,7 @@ fun DataFrame.ggplot(
     return GGPlot(this, aes)
 }
 
-fun DataFrame.ggplot(vararg aes: Pair<String, Aesthetic>) = GGPlot(this, Aes(*aes))
+fun DataFrame.plot(vararg aes: Pair<String, Aesthetic>) = GGPlot(this, Aes(*aes))
 
 
 //var KRAVIS_LOG_GGPLOT_SCRIPT = false

@@ -23,7 +23,7 @@ class GeomRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `boxplot with overlay`() {
-        irisData.ggplot("Species" to x, "Petal.Length" to y)
+        irisData.plot("Species" to x, "Petal.Length" to y)
             .geomBoxplot(fill = RColor.orchid, color = RColor.create("#3366FF"))
             .geomPoint(position = PositionJitter(width = 0.1, seed = 1), alpha = 0.3)
             .title("Petal Length by Species")
@@ -34,7 +34,7 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `simple heatmap`() {
 
-        val plot = faithfuld.ggplot(Aes("eruptions", "waiting", fill = "density"))
+        val plot = faithfuld.plot(Aes("eruptions", "waiting", fill = "density"))
             .geomTile()
             .scaleXDiscrete(expand = listOf(0.0, 0.0))
             .scaleYDiscrete(expand = listOf(0.0, 0.0))
@@ -49,7 +49,7 @@ class GeomRegressions : AbstractSvgPlotRegression() {
             .summarizeAt({ listOf("Sepal.Length") }, mean, sd)
             .addColumn("ymax") { it["Sepal.Length.mean"] + it["Sepal.Length.sd"] }
             .addColumn("ymin") { it["Sepal.Length.mean"] - it["Sepal.Length.sd"] }
-            .ggplot(x = reorder("Species", "Sepal.Length.mean", ascending = false), y = "Sepal.Length.mean", fill = "Species")
+            .plot(x = reorder("Species", "Sepal.Length.mean", ascending = false), y = "Sepal.Length.mean", fill = "Species")
             .geomBar(stat = Stat.identity)
             .geomErrorBar(Aes(ymin = "ymin", ymax = "ymax"), width = .3)
             .xLabel("Species")
@@ -69,7 +69,7 @@ class GeomRegressions : AbstractSvgPlotRegression() {
 
         flightsSummary.head().print()
 
-        val basePlot = flightsSummary.ggplot(x = "day", y = "mean_dep_delay", color = "carrier")
+        val basePlot = flightsSummary.plot(x = "day", y = "mean_dep_delay", color = "carrier")
 
 
         //        plot.show()
@@ -82,7 +82,7 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     fun `text labels in plot`() {
         // todo use custom trafo here to convert to metric units on the fly
         val plot = mtcars
-            .ggplot(x = "wt", y = "mpg", label = "model", color = "cyl").geomText(hjust = .0, nudgeX = 0.05)
+            .plot(x = "wt", y = "mpg", label = "model", color = "cyl").geomText(hjust = .0, nudgeX = 0.05)
             .scaleXContinuous(expand = listOf(.3, .1))
             .scaleYContinuous(limits = Limits(5.0, 30.0))
 
@@ -98,7 +98,7 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     fun `enforce mandatory aestetics`() {
         // create random time series
         shouldThrow<MissingAestheticsMapping> {
-            faithfuld.ggplot(x = "eruptions").geomTile().show()
+            faithfuld.plot(x = "eruptions").geomTile().show()
         }
     }
 

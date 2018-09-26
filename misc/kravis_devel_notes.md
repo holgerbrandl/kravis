@@ -62,6 +62,8 @@ https://stackoverflow.com/questions/15522315/how-to-get-the-javafx-webengine-to-
 
 ## later
 
+consider to use https://github.com/xmlunit/xmlunit to simplify tests
+
 should pca and/or tSNE go into kravis or other artifact
 
 for nice impl see https://github.com/lejon/T-SNE-Java
