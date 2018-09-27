@@ -12,6 +12,11 @@ typealias PropExtractor<T> = T.(T) -> Any?
 
 
 //@Deprecated("use with dedicated nullable parameters instead")
+/**
+ * Create a plot by providing a mapping between visual dimensions called `Aesthetic`s and decomposing lambda function
+ * that extract data properties from each `T` in the `Iterable`.
+ * @sample kravis.samples.iteratorAPI
+ */
 inline fun <reified T> Iterable<T>.plot(vararg aes2data: Pair<Aesthetic, PropExtractor<T>>): GGPlot {
     //fun <T : Any> Iterable<T>.ggplot(vararg data: Pair<PropExtractor<T>, Aesthetic>): GGPlot {
 
@@ -31,7 +36,7 @@ inline fun <reified T> Iterable<T>.plot(vararg aes2data: Pair<Aesthetic, PropExt
 /**
  * Start a plot from any type of `Iterable` using a typed expression based builder to map data attributes to visual aesthetics.
  *
- * @sample kravis.dokka.iteratorAPI
+ * @sample kravis.samples.iteratorAPI
  */
 inline fun <reified T> Iterable<T>.plot(
     noinline x: PropExtractor<T>? = null,
@@ -78,7 +83,12 @@ internal object ExtractorPlots {
 }
 
 
-/** Construct a plot by simply providing references to properties. This will allow to name visual axes correctly. */
+/**
+ * Construct a plot by simply providing references to properties. This will allow to name visual axes correctly.
+ *
+ * @sample kravis.samples.iteratorAPI
+ *
+ * */
 inline fun <reified T> Iterable<T>.plot(
     x: KProperty1<T, *>? = null,
     y: KProperty1<T, *>? = null,
@@ -121,7 +131,11 @@ inline fun <reified T> Iterable<T>.plot(
 }
 
 
-/** Construct a plot by simply providing references to properties.*/
+/**
+ * Construct a plot by simply providing references to properties.
+ *
+ * @sample kravis.samples.iteratorAPI
+ */
 // note this internalize for now becaus it's too similar to the extractor api. It would still allow to extract correct column names
 internal inline fun <reified T> Iterable<T>.ggplot3(
     x: T.() -> KProperty0<*>,

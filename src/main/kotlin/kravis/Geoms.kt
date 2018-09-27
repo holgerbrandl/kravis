@@ -89,6 +89,8 @@ fun GGPlot.geomBoxplot(
  * two categorical variables.
  *
  * Official reference [geom_point](https://ggplot2.tidyverse.org/reference/geom_point.html)
+ *
+ * @sample kravis.samples.doScatter
  */
 fun GGPlot.geomPoint(
     // generic options to all geoms
@@ -261,6 +263,9 @@ private fun requireZeroOne(d: Double?) = d?.also { require(it >= 0 && it <= 1) {
 // todo use more constrained aestetics with just the supported fields or validate supported aestehtics
 /**
  * There are two types of bar charts: `geom_bar` makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use `geom_col` instead. `geom_bar` uses `stat_count` by default: it counts the number of cases at each x position. `geom_col` uses `stat_identity`: it leaves the data as is.
+ *
+ * @sample kravis.samples.doBarChart
+
  */
 fun GGPlot.geomBar(
     // generic options to all geoms

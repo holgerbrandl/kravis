@@ -1,11 +1,14 @@
 buildscript {
     ext.kotlin_version = '1.2.70'
+    ext.dokka_version = '0.9.17'
 
     repositories {
+        maven { url 'https://dl.bintray.com/kotlin/dokka' }
         mavenCentral()
     }
 
     dependencies {
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -16,6 +19,7 @@ plugins { id "com.jfrog.bintray" version "1.2" }
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
+apply plugin: 'org.jetbrains.dokka'
 apply plugin: 'application'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
@@ -41,7 +45,6 @@ dependencies {
     compile 'com.github.holgerbrandl:krangl:master-SNAPSHOT'
 
 
-    // todo remove for major release
     compile group: 'no.tornado', name: 'tornadofx', version: '1.7.17'
     compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
 
@@ -55,13 +58,36 @@ dependencies {
 //    testCompile "io.kotlintest:kotlintest-runner-junit5:3.1.9"
     testCompile 'io.kotlintest:kotlintest-assertions:3.1.6'
 
+
+    // needed to work around https://youtrack.jetbrains.com/issue/KT-15064
+    compileOnly "org.jetbrains.kotlin:kotlin-script-runtime:$kotlin_version"
+//    testCompile "org.jetbrains.kotlin:kotlin-script-runtime:$kotlin_version"
+
     // testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.16'
 }
 
 
+// disabled because would require to inherit StringSpec in all test classes
 //test {
 //    useJUnitPlatform()
 //}
+
+
+//Minimal dokka configuration:
+dokka {
+    outputFormat = 'html'
+//    outputDirectory = "$buildDir/javadoc"
+    outputDirectory = "$projectDir/docs/javadoc"
+
+//    sourceDirs = files('src/test/kotlin')
+    samples = ['src/test/kotlin/kravis/samples/']
+
+    // Emit warnings about not documented members. Applies globally, also can be overridden by packageOptions
+    reportUndocumented = false
+
+//    http://kotlinlang.org/docs/reference/kotlin-doc.html#module-and-package-documentation
+    includes = ['docs/packages_info.md']
+}
 
 //task javadoc(type: Javadoc) {
 javadoc {
@@ -74,7 +100,23 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+
+// see https://github.com/Kotlin/dokka/issues/42
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = javadoc.destinationDir
+
+    reportUndocumented = false
+    samples = ['src/test/kotlin/krangl/samples']
+    
+    inputs.dir 'src/main/kotlin'
+}
+
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
@@ -95,6 +137,7 @@ publishing {
         maven(MavenPublication) {
             from components.java
             artifact sourcesJar { classifier "sources" }
+            artifact javadocJar
         }
     }
 }
@@ -116,7 +159,7 @@ if (hasProperty('bintray_user') && hasProperty('bintray_key')) {
             name = 'kravis'
             vcsUrl = 'https://github.com/holgerbrandl/kravis'
 
-            licenses = ['BSD']
+            licenses = ['MIT']
             publicDownloadNumbers = true
 
             //Optional version descriptor
