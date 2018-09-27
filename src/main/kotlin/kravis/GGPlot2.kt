@@ -318,8 +318,11 @@ object OrderUtils {
      * The levels of `f` are reordered so that the values of `fun(orderAttribute)` (for fct_reorder()) are in ascending order.
      */
     fun reorder(f: String, orderAttribute: String, orderFun: OrderFun = OrderFun.mean, ascending: Boolean = true): String {
-        return if (ascending) "fct_reorder($f, $orderAttribute, fun=$orderFun)"
-        else "fct_rev(fct_reorder($f, $orderAttribute, fun=$orderFun))".asRExpression
+        return (if (ascending) {
+            "fct_reorder($f, $orderAttribute, fun=$orderFun)"
+        } else {
+            "fct_rev(fct_reorder($f, $orderAttribute, fun=$orderFun))"
+        }).asRExpression
     }
 
 }

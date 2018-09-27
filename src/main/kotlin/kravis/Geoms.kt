@@ -302,6 +302,48 @@ fun GGPlot.geomBar(
     addSpec("geom_bar(${args})")
 }
 
+
+/**
+ * There are two types of bar charts: `geom_bar` makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use `geom_col` instead. `geom_bar` uses `stat_count` by default: it counts the number of cases at each x position. `geom_col` uses `stat_identity`: it leaves the data as is.
+ */
+fun GGPlot.geomCol(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    position: Position = PositionStack(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    fill: RColor? = null,
+    // group, // todo, unclear usage
+    linetype: LineType? = null,
+    size: Int? = null
+): GGPlot = appendSpec {
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "fill" to fill,
+        "linetype" to linetype,
+        "size" to size
+    )
+
+    addSpec("geom_col(${args})")
+}
+
 /**
  * A geom that draws error bars, defined by an upper and lower value. This is useful e.g., to draw confidence intervals.
  * See https://ggplot2.tidyverse.org/reference/geom_linerange.html

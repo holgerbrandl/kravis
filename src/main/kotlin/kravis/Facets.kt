@@ -91,8 +91,8 @@ fun GGPlot.facetWrap(
  * "right")
  */
 fun GGPlot.facetGrid(
-    rows: Any,
-    cols: Any,
+    rows: Any? = null,
+    cols: Any? = null,
     scales: FacetScales = FacetScales.fixed,
     space: FacetScales = FacetScales.fixed,
     shrink: Boolean = true,
@@ -103,8 +103,8 @@ fun GGPlot.facetGrid(
     margins: Boolean = false
 ) = appendSpec {
     val args = arg2string(
-        "rows" to rows.toStringList().toVars(),
-        "cols" to cols.toStringList().toVars(),
+        "rows" to rows?.toStringList()?.toVars(),
+        "cols" to cols?.toStringList()?.toVars(),
         "scales" to scales,
         "space" to scales,
         "shrink" to shrink,
