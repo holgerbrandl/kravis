@@ -111,7 +111,7 @@ task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
     outputDirectory = javadoc.destinationDir
 
     reportUndocumented = false
-    samples = ['src/test/kotlin/krangl/samples']
+    samples = ['src/test/kotlin/kravis/samples']
     
     inputs.dir 'src/main/kotlin'
 }
