@@ -6,7 +6,7 @@ import kravis.Aesthetic.*
 import kravis.demo.IrisData.SepalLength
 import kravis.demo.IrisData.SepalWidth
 import kravis.plot
-import kravis.nshelper.ggplot
+import kravis.nshelper.plot
 import org.junit.Test
 import java.io.File
 import kotlin.math.roundToInt
@@ -94,7 +94,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun testFixedTheme() {
-        val plot = irisData.ggplot(SepalLength to x, SepalWidth to y).themeBW() //.show()
+        val plot = irisData.plot(SepalLength to x, SepalWidth to y).themeBW() //.show()
         assertExpected(plot)
     }
 
@@ -102,7 +102,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
     fun `theme adjustments`() {
 
         """
-        plot <- ggplot(mpg, aes(displ, hwy)) + geom_point()
+        plot <- plot(mpg, aes(displ, hwy)) + geom_point()
 
         plot + theme(
             panel.background = element_blank(),

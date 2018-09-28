@@ -18,7 +18,7 @@ typealias PropExtractor<T> = T.(T) -> Any?
  * @sample kravis.samples.iteratorAPI
  */
 inline fun <reified T> Iterable<T>.plot(vararg aes2data: Pair<Aesthetic, PropExtractor<T>>): GGPlot {
-    //fun <T : Any> Iterable<T>.ggplot(vararg data: Pair<PropExtractor<T>, Aesthetic>): GGPlot {
+    //fun <T : Any> Iterable<T>.plot(vararg data: Pair<PropExtractor<T>, Aesthetic>): GGPlot {
 
     //todo use reflection to get sensible names for variables
     val rulez = aes2data.toMap()
@@ -150,7 +150,7 @@ internal inline fun <reified T> Iterable<T>.ggplot3(
     // later convert data to actual plot
     TODO()
 
-//    return ggplot()
+//    return plot()
 }
 
 

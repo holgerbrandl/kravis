@@ -54,7 +54,7 @@ internal val String.quoted: String
     get() = "'" + this + "'"
 
 fun main(args: Array<String>) {
-    //    ggplot(irisData, Aestethics("R" to x)).geomBar().show()
+    //    plot(irisData, Aestethics("R" to x)).geomBar().show()
     GGPlot(irisData, Aes("Sepal.Length" to Aesthetic.x, "Petal.Width" to Aesthetic.y)).geomPoint(alpha = 0.1).title("Cool Plot").show()
     GGPlot(irisData, Aes("Sepal.Length" to Aesthetic.x, "Petal.Width" to Aesthetic.y)).geomPoint(alpha = 0.1).title("Another Cool Plot").show()
     GGPlot(irisData, Aes("Sepal.Length" to Aesthetic.x, "Petal.Width" to Aesthetic.y)).geomPoint(alpha = 0.1).title("Yet Another Cool Plot").show()

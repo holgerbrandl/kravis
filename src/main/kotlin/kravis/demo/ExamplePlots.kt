@@ -4,7 +4,7 @@ import krangl.irisData
 import kravis.Aesthetic
 import kravis.demo.IrisData.*
 import kravis.geomPoint
-import kravis.nshelper.ggplot
+import kravis.nshelper.plot
 
 /**
  * @author Holger Brandl
@@ -21,4 +21,4 @@ enum class IrisData {
 }
 
 
-val irisScatter by lazy { irisData.ggplot(PetalLength to Aesthetic.x, PetalWidth to Aesthetic.y, Species to Aesthetic.color).geomPoint() }
+val irisScatter by lazy { irisData.plot(PetalLength to Aesthetic.x, PetalWidth to Aesthetic.y, Species to Aesthetic.color).geomPoint() }

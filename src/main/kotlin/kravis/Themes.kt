@@ -104,7 +104,7 @@ fun GGPlot.themeVoid(base_size: Int = 11, base_family: String = "") = appendSpec
  * Example:
  * ```
  * val basePlot = mpgData
- *      .ggplot("displ" to x, "hwy" to y)
+ *      .plot("displ" to x, "hwy" to y)
  *      .geomPoint()
  *      .theme(axisText = ElementText(size = 20, color = RColor.red))
  * ```

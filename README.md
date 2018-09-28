@@ -73,7 +73,7 @@ import kravis.*
 sleepData
     .addColumn("rem_proportion") { it["sleep_rem"] / it["sleep_total"] }
         // Analyze correlation
-    .ggplot(x = "sleep_total", y = "rem_proportion", color = "vore", size = "brainwt")
+    .plot(x = "sleep_total", y = "rem_proportion", color = "vore", size = "brainwt")
         .geomPoint(alpha = 0.7)
         .guides(size = LegendType.none)
         .title("Correlation between dream and total sleep time")
@@ -102,7 +102,7 @@ Every `Iterable<T>` is a valid data source for `kravis`, which allows to create 
 
 ```kotlin
 //  deparse records using property references (which will allow to infer variable names via reflection)
-val basePlot = sleepPatterns.ggplot(
+val basePlot = sleepPatterns.plot(
         x = SleepPattern::sleep_rem,
         y = SleepPattern::sleep_total,
         color = SleepPattern::vore,
@@ -121,7 +121,7 @@ In the previous example  we have used property references. `kravis` also support
 
 ```kotlin
 sleepPatterns
-    .ggplot(x = { sleep_total/60 })
+    .plot(x = { sleep_total/60 })
     .geomHistogram()
     .xLabel("sleep[h]")
 ```
@@ -139,7 +139,7 @@ And here's another example using a custom [data class](https://kotlinlang.org/do
         Person("Maria", false, 172, 66.3)
     )
 
-    persons.ggplot(x = { heightCm/100 }, y = { weightKg }, color = { male })
+    persons.plot(x = { heightCm/100 }, y = { weightKg }, color = { male })
         .geomPoint()
         .xLabel("height [m]")
         .yLabel("weight [kg]")
@@ -156,7 +156,7 @@ And here's another example using a custom [data class](https://kotlinlang.org/do
 import kravis.* 
 import krangl.irisData 
 
-irisData.ggplot(x="Species" , y="Petal.Length" )
+irisData.plot(x="Species" , y="Petal.Length" )
     .geomBoxplot()
     .geomPoint(position = PositionJitter(width = 0.1), alpha = 0.3)
     .title("Petal Length by Species")
@@ -235,7 +235,7 @@ SessionPrefs.RENDER_BACKEND = RserveEngine(host="localhost", port=6302)
 Plots are -- similar to [`krangl`](https://github.com/holgerbrandl/krangl) data-frames -- immutable.
 
 ```kotlin
-val basePlot = mpgData.ggplot("displ" to x, "hwy" to y).geomPoint()
+val basePlot = mpgData.plot("displ" to x, "hwy" to y).geomPoint()
 
 // create one version with adjusted axis text size
 basePlot.theme(axisText = ElementText(size = 20, color = RColor.red))
@@ -265,7 +265,7 @@ Since `kravis` just mimics some parts of `ggplot2`, and because user may want to
 Example
 
 ```kotlin
-irisData.ggplot(x = "Species", y = "Sepal.Length", fill = "Species")
+irisData.plot(x = "Species", y = "Sepal.Length", fill = "Species")
     .addPreamble("""devtools::source_url("https://git.io/fAiQN")""")
     .addCustom("""geom_flat_violin(scale = "count", trim = FALSE)""")
     .geomDotplot(binaxis = "y", dotsize = 0.5, stackdir = "down", binwidth = 0.1, position = PositionNudge(-0.025))

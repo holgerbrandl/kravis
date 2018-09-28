@@ -7,7 +7,7 @@ import kravis.Aesthetic
 import kravis.GGPlot
 import kravis.SessionPrefs
 import kravis.geomPoint
-import kravis.nshelper.ggplot
+import kravis.nshelper.plot
 import kravis.render.PlotFormat
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
@@ -60,7 +60,7 @@ class JupyterDevice(val renderSVG: Boolean = false) : OutputDevice() {
 
 val testPlot by lazy {
     irisData
-        .ggplot("Petal.Length" to Aesthetic.x, "Petal.Width" to Aesthetic.y)
+        .plot("Petal.Length" to Aesthetic.x, "Petal.Width" to Aesthetic.y)
         .geomPoint(alpha = .4)
 }
 

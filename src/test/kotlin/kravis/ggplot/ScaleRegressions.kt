@@ -4,7 +4,7 @@ import krangl.irisData
 import kravis.*
 import kravis.Aesthetic.*
 import kravis.demo.IrisData.*
-import kravis.nshelper.ggplot
+import kravis.nshelper.plot
 import org.junit.Test
 import java.io.File
 
@@ -16,7 +16,7 @@ class ScaleRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `allow to change coordinate system`() {
-        val plot = irisData.ggplot(SepalLength to x, SepalWidth to y)
+        val plot = irisData.plot(SepalLength to x, SepalWidth to y)
             .geomPoint()
 
         assertExpected(plot.coordFlip(), "flip")
@@ -26,7 +26,7 @@ class ScaleRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `allow for custom colors`() {
-        val plot = irisData.ggplot(SepalLength to x, SepalWidth to y, Species to color)
+        val plot = irisData.plot(SepalLength to x, SepalWidth to y, Species to color)
             .geomPoint()
             .scaleColorManual(values = mapOf(
                 "setosa" to RColor.black,
