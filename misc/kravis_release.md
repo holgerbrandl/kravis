@@ -1,6 +1,6 @@
 ## Release Checklist
 
-0. Make sure to reference just public artifacts in `gralde.build`
+0. Make sure to reference just public artifacts in `gradle.build`
 
 1. Increment version in `README.md`, `gradle.build`
 

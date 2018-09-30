@@ -40,7 +40,9 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib"
 
-//    compile "de.mpicbg.scicomp:krangl:0.10.1"
+    // tagged version for release
+    compile "de.mpicbg.scicomp:krangl:0.10.2"
+    // local snapshot build
 //    compile "de.mpicbg.scicomp:krangl:0.11-SNAPSHOT"
     compile 'com.github.holgerbrandl:krangl:master-SNAPSHOT'
 
@@ -122,8 +124,8 @@ task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
 }
 
 group 'com.github.holgerbrandl'
-version '0.4-SNAPSHOT'
-//version '0.3'
+//version '0.4-SNAPSHOT'
+version '0.4'
 
 
 
