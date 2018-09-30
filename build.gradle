@@ -31,10 +31,10 @@ mainClassName = "foo.Bar" // not needed but does not work without
 repositories {
     mavenCentral()
 
-//    mavenLocal() //todo disable for release
-
     jcenter()
-    maven { url 'https://jitpack.io' }
+
+    //    mavenLocal() //todo disable for release
+    //    maven { url 'https://jitpack.io' }
 }
 
 
