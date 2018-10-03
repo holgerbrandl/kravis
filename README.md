@@ -131,19 +131,23 @@ And here's another example using a custom [data class](https://kotlinlang.org/do
 
 
 ```kotlin
-   data class Person(val name: String, val male: Boolean, val heightCm: Int, val weightKg: Double)
+enum class Gender { male, female }
 
-    val persons = listOf(
-        Person("Max", true, 192, 80.3),
-        Person("Anna", false, 162, 56.3),
-        Person("Maria", false, 172, 66.3)
-    )
+data class Person(val name: String, val gender: Gender, val heightCm: Int, val weightKg: Double)
 
-    persons.plot(x = { heightCm/100 }, y = { weightKg }, color = { male })
-        .geomPoint()
-        .xLabel("height [m]")
-        .yLabel("weight [kg]")
-        
+// define some persons
+val persons = listOf(
+    Person("Max", Gender.male, 192, 80.3),
+    Person("Anna", Gender.female, 162, 56.3),
+    Person("Maria", Gender.female, 172, 66.3)
+)
+
+// visualize sizes by gender
+persons.plot(x = {name}, y = { weightKg }, fill = { gender.toString() })
+    .geomCol()
+    .xLabel("height [m]")
+    .yLabel("weight [kg]")
+    .title("Body Size Distribution")
 ```
 
 ![](.README_images/persons.png)
