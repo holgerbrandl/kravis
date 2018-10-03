@@ -105,6 +105,9 @@ object RUtils {
 
     fun evalBash(cmd: String): CmdResult = evalCmd("bash", listOf("-c", cmd))
 
+    fun isInPath(tool: String) = evalBash("which $tool").sout().trim().isNotBlank()
+
+    fun requireInPath(tool: String) = require(isInPath(tool)) { "$tool is required but not in PATH" }
 
     fun evalCmd(executable: String, args: List<String>, showOutput: Boolean = false,
                 redirectStdout: File? = null, redirectStderr: File? = null): CmdResult {

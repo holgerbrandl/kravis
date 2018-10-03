@@ -72,11 +72,13 @@ class Docker(var image: String = "rocker/tidyverse:3.5.1") : AbstractLocalRender
 
 
     fun dockerRun(plotDirWithScript: File, dataCacheDir: File): RUtils.CmdResult {
-        //todo is this really  necessary? Won't docker do this automatcially
-//        if(RUtils.evalBash("docker images -q $image").sout().isBlank()) {
-//            System.err.println("image '$image' is not yet present. Pulling image with `docker pull $image`...")
-//            RUtils.evalCmd("docker", listOf("pull", image), showOutput = true)
-//        }
+       RUtils.requireInPath("docker")
+
+        //not really  necessary, because would docker do this automatcially, but since this will take a while we want to log it
+        if(RUtils.evalBash("docker images -q $image").sout().isBlank()) {
+            System.err.println("image '$image' is not yet present on your machine. Pulling image with `docker pull $image`...")
+            RUtils.evalCmd("docker", listOf("pull", image), showOutput = true)
+        }
 
         val dockerCmd = """run -v ${plotDirWithScript}:$DOCKER_PLOT_MNT -v ${dataCacheDir}:$DOCKER_DATA_MNT --rm ${image} R -f $DOCKER_PLOT_MNT/plot.R"""
 
