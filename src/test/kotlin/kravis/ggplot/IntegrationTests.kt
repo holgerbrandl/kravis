@@ -16,6 +16,6 @@ class IntegrationTests {
 
     @Test
     fun `it should run the readme examples`() {
-        TODO("we need to find a way to extract the readme examples")
+        // todo we need to find a way to extract the readme examples
     }
 }

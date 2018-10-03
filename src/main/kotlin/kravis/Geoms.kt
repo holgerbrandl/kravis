@@ -41,7 +41,7 @@ fun GGPlot.geomBoxplot(
     // group, // todo, unclear usage
     linetype: LineType? = null,
     shape: Int? = null,
-    size: Int? = null,
+    size: Double? = null,
     weight: Double? = null
 
 ): GGPlot = appendSpec {
@@ -108,7 +108,7 @@ fun GGPlot.geomPoint(
     fill: RColor? = null,
     // group, // todo, unclear usage
     shape: Int? = null,
-    size: Int? = null,
+    size: Double? = null,
     stroke: Int? = null // Use the stroke aesthetic to modify the width of the border
 ): GGPlot = appendSpec {
 
@@ -162,7 +162,7 @@ fun GGPlot.geomText(
     alpha: Double? = null,
     color: RColor? = null,
     // group, // todo, unclear usage
-    size: Int? = null,
+    size: Double? = null,
     hjust: Double? = null,
     vjust: Double? = null,
 
@@ -283,7 +283,7 @@ fun GGPlot.geomBar(
     fill: RColor? = null,
     // group, // todo, unclear usage
     linetype: LineType? = null,
-    size: Int? = null
+    size: Double? = null
 ): GGPlot = appendSpec {
     val dataVar: VarName? = registerDataset(data)
 
@@ -326,7 +326,7 @@ fun GGPlot.geomCol(
     fill: RColor? = null,
     // group, // todo, unclear usage
     linetype: LineType? = null,
-    size: Int? = null
+    size: Double? = null
 ): GGPlot = appendSpec {
     val dataVar: VarName? = registerDataset(data)
 
@@ -368,7 +368,7 @@ fun GGPlot.geomErrorBar(
     color: RColor? = null,
     fill: RColor? = null,
     linetype: LineType? = null,
-    size: Int? = null,
+    size: Double? = null,
     width: Double? = null
 ): GGPlot = appendSpec {
     val dataVar: VarName? = registerDataset(data)
@@ -421,7 +421,7 @@ fun GGPlot.geomPath(
     alpha: Double? = null,
     color: RColor? = null,
     linetype: LineType? = null,
-    size: Int? = null
+    size: Double? = null
 ): GGPlot = appendSpec {
     val dataVar: VarName? = registerDataset(data)
 
@@ -469,7 +469,7 @@ fun GGPlot.geomLine(
     alpha: Double? = null,
     color: RColor? = null,
     linetype: LineType? = null,
-    size: Int? = null
+    size: Double? = null
 ): GGPlot = appendSpec {
     val dataVar: VarName? = registerDataset(data)
 
@@ -525,7 +525,7 @@ fun GGPlot.geomStep(
     alpha: Double? = null,
     color: RColor? = null,
     linetype: LineType? = null,
-    size: Int? = null
+    size: Double? = null
 ): GGPlot = appendSpec {
     val dataVar: VarName? = registerDataset(data)
 
@@ -578,7 +578,7 @@ fun GGPlot.geomHistogram(
     alpha: Double? = null,
     color: RColor? = null,
     linetype: LineType? = null,
-    size: Int? = null
+    size: Double? = null
 ): GGPlot = appendSpec {
     val dataVar: VarName? = registerDataset(data)
 
@@ -631,7 +631,7 @@ fun GGPlot.geomTile(
     fill: RColor? = null,
     height: RColor? = null,
     width: RColor? = null,
-    size: Int? = null
+    size: Double? = null
 ): GGPlot = appendSpec {
     val dataVar: VarName? = registerDataset(data)
 

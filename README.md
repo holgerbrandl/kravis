@@ -247,7 +247,7 @@ Plots are -- similar to [`krangl`](https://github.com/holgerbrandl/krangl) data-
 val basePlot = mpgData.plot("displ" to x, "hwy" to y).geomPoint()
 
 // create one version with adjusted axis text size
-basePlot.theme(axisText = ElementText(size = 20, color = RColor.red))
+basePlot.theme(axisText = ElementText(size = 20.0, color = RColor.red))
 
 // create another version with unchanged axis labels but using a log scale instead
 basePlot.scaleXLog10()

@@ -4,6 +4,7 @@ import krangl.sleepData
 import krangl.sleepPatterns
 import kravis.*
 import kravis.ggplot.open
+import java.io.File
 
 
 /**
@@ -26,7 +27,9 @@ fun doScatter() {
         .scaleXLog10()
         .scaleYLog10("labels" to "comma")
         .title("Correlation of body and brain weight")
-        .open()
+
+        .save(File.createTempFile("kravis","png"))
+//        .open()
 }
 
 fun iteratorAPI() {
