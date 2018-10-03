@@ -227,7 +227,7 @@ class GGPlot(
             "tag" to tag
         )
 
-        addSpec("""labs("${args}")""")
+        addSpec("""labs(${args})""")
     }
 }
 
