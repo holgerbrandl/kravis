@@ -577,6 +577,7 @@ fun GGPlot.geomHistogram(
     // list all the aesthetics it understands
     alpha: Double? = null,
     color: RColor? = null,
+    fill: RColor? = null,
     linetype: LineType? = null,
     size: Double? = null
 ): GGPlot = appendSpec {
@@ -597,6 +598,7 @@ fun GGPlot.geomHistogram(
 
 
         "color" to color,
+        "fill" to fill,
         "linetype" to linetype,
         "size" to size
     )
@@ -656,4 +658,47 @@ fun GGPlot.geomTile(
     addSpec("geom_tile(${args})")
 }
 
+/**
+ * Divides the plane into rectangles, counts the number of cases in each rectangle, and then (by default) maps the number of cases to the rectangle's fill. This is a useful alternative to geom_point() in the presence of overplotting.
+ *
+ * Official Reference https://ggplot2.tidyverse.org/reference/geom_bin2d.html
+ *
+ * @param bins Number of bins. Overridden by binwidth. Defaults to 30.
+ * @param binwdith Numeric vector giving bin width in both vertical and horizontal directions. Overrides bins if both set.
 
+ */
+fun GGPlot.geomBin2D(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: Stat = Stat.bin2d,
+    position: Position = PositionIdentity(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    bins: Int = 30,
+    binwidth: List<Double>? = null,
+
+    // list all the aesthetics it understands
+    fill: RColor? = null
+): GGPlot = appendSpec {
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+        "bins" to bins,
+        "binwidth" to binwidth?.toRVector(),
+
+        "fill" to fill
+    )
+
+    addSpec("geom_bin2d(${args})")
+}
