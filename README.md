@@ -16,6 +16,7 @@ R is required to use `ggplot`. However, `kravis` works with various integration 
 - [Setup](#setup)
 - [First Example](#first-example)
 - [The Grammar of Graphics](#the-grammar-of-graphics)
+- [Module Architecture](#module-architecture)
 - [Supported Data Input Formats](#supported-data-input-formats)
     - [Iterators](#iterators)
     - [Tables](#tables)
@@ -93,6 +94,10 @@ Find more examples in our gallery **{comding soon}**.
 
 Which reads as `map variables from data space to visual space` + `add one or more layers`  + `configure the coordinates system` + ` optionally apply statistical transformations` + `optionally add facets`. That's the way!
 
+
+## Module Architecture
+
+![](.README_images/module_architecture.jpg)
 
 ## Supported Data Input Formats
 
