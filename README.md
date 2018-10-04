@@ -44,7 +44,7 @@ R is required to use `ggplot`. However, `kravis` works with various integration 
 Add the following artifact to your `gradle.build`
 
 ```
-compile "com.github.holgerbrandl:kravis:0.4"
+compile "com.github.holgerbrandl:kravis:0.5"
 ```
 
 You can also use [JitPack with Maven or Gradle](https://jitpack.io/#holgerbrandl/kravis/-SNAPSHOT) to build the latest snapshot as a dependency in your project.

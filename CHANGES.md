@@ -1,6 +1,11 @@
 Kravis Release History
 ======================
 
+v0.5
+----
+
+Many new API elements and numerous bug-fixes
+
 v0.4
 ----
 
