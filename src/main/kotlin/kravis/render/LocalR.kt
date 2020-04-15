@@ -13,10 +13,10 @@ class LocalR : AbstractLocalRenderEngine() {
         val dataIngest = plot.dataRegistry.mapValues {
             createTempFile(".txt").apply { it.value.writeTSV(this) }
         }.map { (dataVar, file) ->
-            """${dataVar} = read_tsv("${file}")"""
+            """${dataVar} = read_tsv("${file.invariantSeparatorsPath}")"""
         }.joinToString("\n")
 
-        val rScript = compileScript(plot, dataIngest, outputFile.absolutePath, preferredSize)
+        val rScript = compileScript(plot, dataIngest, outputFile.invariantSeparatorsPath, preferredSize)
 
         val result = RUtils.runRScript(rScript)
         if (result.exitCode != 0) {
