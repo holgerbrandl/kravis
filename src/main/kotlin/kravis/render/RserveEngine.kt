@@ -149,7 +149,7 @@ object RserveDeviceTester {
 
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val connection = RConnection()
 //    val connection = RConnection("localhost", 6311)
 

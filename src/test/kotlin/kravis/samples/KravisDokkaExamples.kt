@@ -49,7 +49,7 @@ fun iteratorAPI() {
 
 }
 
-fun main(args: Array<String>) {
+fun main() {
     //    doBarChart()
 //    doScatter()
     iteratorAPI()

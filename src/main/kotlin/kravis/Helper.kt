@@ -53,7 +53,7 @@ internal fun arg2string(vararg namedArgs: Pair<String, Any?>) =
 internal val String.quoted: String
     get() = "'" + this + "'"
 
-fun main(args: Array<String>) {
+fun main() {
     //    plot(irisData, Aestethics("R" to x)).geomBar().show()
     GGPlot(irisData, Aes("Sepal.Length" to Aesthetic.x, "Petal.Width" to Aesthetic.y)).geomPoint(alpha = 0.1).title("Cool Plot").show()
     GGPlot(irisData, Aes("Sepal.Length" to Aesthetic.x, "Petal.Width" to Aesthetic.y)).geomPoint(alpha = 0.1).title("Another Cool Plot").show()

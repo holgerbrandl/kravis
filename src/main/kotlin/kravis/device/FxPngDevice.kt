@@ -96,7 +96,7 @@ class PngViewPanel : View() {
 class FxPngApp : App(PngViewPanel::class, InternalWindow.Styles::class)
 
 
-fun main(args: Array<String>) {
+fun main() {
     //    SwingUtilities.invokeLater { FXPlottingDevice.createAndShowGUI() }
 
 

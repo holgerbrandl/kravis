@@ -88,7 +88,7 @@ class Docker(var image: String = "rocker/tidyverse:3.5.1") : AbstractLocalRender
 }
 
 
-fun main(args: Array<String>) {
+fun main() {
     //    Docker().runRScript("cat(1+1)").apply { println(this) }
     SessionPrefs.RENDER_BACKEND = Docker()
 

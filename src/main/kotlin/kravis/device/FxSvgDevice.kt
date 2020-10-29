@@ -72,7 +72,7 @@ internal class SvgViewPanel : View() {
 class FxSvgApp : App(SvgViewPanel::class, InternalWindow.Styles::class)
 
 
-fun main(args: Array<String>) {
+fun main() {
     //    SwingUtilities.invokeLater { FXPlottingDevice.createAndShowGUI() }
 
     //    Thread.sleep(3000)

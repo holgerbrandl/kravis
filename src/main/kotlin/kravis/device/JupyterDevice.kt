@@ -64,7 +64,7 @@ val testPlot by lazy {
         .geomPoint(alpha = .4)
 }
 
-fun main(args: Array<String>) {
+fun main() {
     SessionPrefs.OUTPUT_DEVICE = JupyterDevice()
     SessionPrefs.SHOW_TO_STRING = true
 

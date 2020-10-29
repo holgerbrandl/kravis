@@ -128,6 +128,6 @@ class SwingPlottingDevice : OutputDevice() {
 }
 
 
-fun main(args: Array<String>) {
+fun main() {
     SwingPlottingDevice().showImage(File("/Users/brandl/Dropbox/sharedDB/fotos/2017-07-01 14.35.05.jpg"))
 }

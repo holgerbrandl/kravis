@@ -30,7 +30,7 @@ enum class RColor {
 }
 
 
-fun main(args: Array<String>) {
+fun main() {
     val aliceblue = RColor.aliceblue
     val custom = RColor.valueOf("#232323")
 
