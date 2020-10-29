@@ -1,5 +1,7 @@
 package kravis.ggplot
 
+import io.kotest.assertions.fail
+import junit.framework.Assert.assertTrue
 import krangl.DataFrame
 import krangl.readTSV
 import kravis.GGPlot
@@ -7,7 +9,6 @@ import kravis.SessionPrefs
 import kravis.render.Docker
 import kravis.render.RserveEngine
 import kravis.render.saveTempFile
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.TestName
@@ -137,10 +138,10 @@ internal inline fun <reified T> shouldThrow(thunk: () -> Any): T {
     }
 
     if (e == null)
-        io.kotlintest.fail("Expected exception ${T::class.qualifiedName} but no exception was thrown")
+        fail("Expected exception ${T::class.qualifiedName} but no exception was thrown")
     else if (e.javaClass.name != T::class.qualifiedName) {
         e.printStackTrace()
-        io.kotlintest.fail("Expected exception ${T::class.qualifiedName} but ${e.javaClass.name} was thrown")
+        fail("Expected exception ${T::class.qualifiedName} but ${e.javaClass.name} was thrown")
     } else
         return e as T
 }

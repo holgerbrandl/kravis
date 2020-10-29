@@ -1,6 +1,6 @@
 buildscript {
-    ext.kotlin_version = '1.2.70'
-    ext.dokka_version = '0.9.17'
+    ext.dokka_version = '0.10.0' // see https://github.com/Kotlin/dokka/issues/656
+    ext.kotlin_version = '1.4.10' // see https://github.com/Kotlin/dokka/issues/656
 
     repositories {
         maven { url 'https://dl.bintray.com/kotlin/dokka' }
@@ -15,17 +15,20 @@ buildscript {
 
 
 
-plugins { id "com.jfrog.bintray" version "1.8.1" }
+plugins { 
+    id "com.jfrog.bintray" version "1.8.1"
+    id "org.jetbrains.kotlin.jvm" version "1.4.10"
+}
 
 apply plugin: 'java'
-apply plugin: 'kotlin'
 apply plugin: 'org.jetbrains.dokka'
 apply plugin: 'application'
-apply plugin: 'maven'
+//apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 // not neeeded but does not work without
 mainClassName = "foo.Bar" // not needed but does not work without
+
 
 
 repositories {
@@ -33,38 +36,40 @@ repositories {
 
     jcenter()
 
-//        mavenLocal() //todo disable for release
+        mavenLocal() //todo disable for release
     //    maven { url 'https://jitpack.io' }
 }
 
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib"
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    compileOnly "org.jetbrains.kotlin:kotlin-reflect"
 
     // tagged version for release
-    compile "de.mpicbg.scicomp:krangl:0.10.3"
+    compile "de.mpicbg.scicomp:krangl:0.14.1"
     // local snapshot build
 //    compile "de.mpicbg.scicomp:krangl:0.11-SNAPSHOT"
     // when using jitpack
 //    compile 'com.github.holgerbrandl:krangl:master-SNAPSHOT'
+    implementation "ml.dmlc:xgboost4j:0.80"
 
+    implementation group: 'no.tornado', name: 'tornadofx', version: '1.7.20'
+    implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
 
-    compile group: 'no.tornado', name: 'tornadofx', version: '1.7.17'
-    compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
-
-    compile 'org.rosuda.REngine:REngine:2.1.0'
-    compile 'org.rosuda.REngine:Rserve:1.8.1'
+    implementation 'org.rosuda.REngine:REngine:2.1.0'
+    implementation 'org.rosuda.REngine:Rserve:1.8.1'
 
     // see https://github.com/codecentric/javafxsvg
 //    compile 'de.codecentric.centerdevice:javafxsvg:1.3.0'
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 //    testCompile "io.kotlintest:kotlintest-runner-junit5:3.1.9"
-    testCompile 'io.kotlintest:kotlintest-assertions:3.1.6'
+    testImplementation 'io.kotest:kotest-assertions-core:4.2.6'
 
 
     // needed to work around https://youtrack.jetbrains.com/issue/KT-15064
-    compileOnly "org.jetbrains.kotlin:kotlin-script-runtime:$kotlin_version"
+//    compileOnly "org.jetbrains.kotlin:kotlin-script-runtime:$kotlin_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-script-runtime:1.4.10"
 //    testCompile "org.jetbrains.kotlin:kotlin-script-runtime:$kotlin_version"
 
     // testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.16'
@@ -83,14 +88,17 @@ dokka {
 //    outputDirectory = "$buildDir/javadoc"
     outputDirectory = "$projectDir/docs/javadoc"
 
-//    sourceDirs = files('src/test/kotlin')
-    samples = ['src/test/kotlin/kravis/samples/']
 
-    // Emit warnings about not documented members. Applies globally, also can be overridden by packageOptions
-    reportUndocumented = false
+    configuration {
+//    sourceDirs = files('src/test/kotlin')
+        samples = ['src/test/kotlin/kravis/samples/']
+
+        // Emit warnings about not documented members. Applies globally, also can be overridden by packageOptions
+        reportUndocumented = false
 
 //    http://kotlinlang.org/docs/reference/kotlin-doc.html#module-and-package-documentation
-    includes = ['docs/packages_info.md']
+        includes = ['docs/packages_info.md']
+    }
 }
 
 //task javadoc(type: Javadoc) {
@@ -114,9 +122,10 @@ task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
     outputFormat = 'javadoc'
     outputDirectory = javadoc.destinationDir
 
-    reportUndocumented = false
-    samples = ['src/test/kotlin/kravis/samples']
-    
+    configuration {
+        reportUndocumented = false
+        samples = ['src/test/kotlin/kravis/samples']
+    }
     inputs.dir 'src/main/kotlin'
 }
 
@@ -127,7 +136,7 @@ task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
 
 group 'com.github.holgerbrandl'
 //version '0.5-SNAPSHOT'
-version '0.5'
+version '0.5.1'
 
 
 
