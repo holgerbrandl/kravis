@@ -97,10 +97,10 @@ object RUtils {
     }
 
 
-    fun runRScript(script: String): CmdResult {
+    fun runRScript(script: String, r: File? = null): CmdResult {
         val scriptFile = createTempFile(suffix = ".R").apply { writeText(script) }
 
-        return evalCmd("R", listOf("--vanilla", "--quiet", "--slave", "-f", scriptFile.absolutePath))
+        return evalCmd( r?.absolutePath ?: "R", listOf("--vanilla", "--quiet", "--slave", "-f", scriptFile.absolutePath))
     }
 
     fun evalBash(cmd: String): CmdResult = evalCmd("bash", listOf("-c", cmd))

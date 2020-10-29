@@ -5,7 +5,10 @@ import kravis.GGPlot
 import java.awt.Dimension
 import java.io.File
 
-class LocalR : AbstractLocalRenderEngine() {
+/**
+ * @param path Path to R executable. If not set it will be inferred from PATH/environment settings.
+ */
+class LocalR(val r:File?= null) : AbstractLocalRenderEngine() {
 
     override fun render(plot: GGPlot, outputFile: File, preferredSize: Dimension?): File {
         // save all the data
@@ -18,7 +21,7 @@ class LocalR : AbstractLocalRenderEngine() {
 
         val rScript = compileScript(plot, dataIngest, outputFile.invariantSeparatorsPath, preferredSize)
 
-        val result = RUtils.runRScript(rScript)
+        val result = RUtils.runRScript(rScript, r)
         if (result.exitCode != 0) {
             throw LocalRenderingFailedException(rScript, result)
         }
