@@ -13,23 +13,24 @@ R is required to use `ggplot`. However, `kravis` works with various integration 
 
 [TOC]: # " "
 
-- [Setup](#setup)
-- [First Example](#first-example)
-- [The Grammar of Graphics](#the-grammar-of-graphics)
-- [Module Architecture](#module-architecture)
-- [Supported Data Input Formats](#supported-data-input-formats)
+- [`kravis` - A {k}otlin {gra}mmar for data {vis}ualization](#kravis---a-kotlin-grammar-for-data-visualization)
+  - [Setup](#setup)
+  - [First Example](#first-example)
+  - [The Grammar of Graphics](#the-grammar-of-graphics)
+  - [Module Architecture](#module-architecture)
+  - [Supported Data Input Formats](#supported-data-input-formats)
     - [Iterators](#iterators)
     - [Tables](#tables)
-- [Output Devices](#output-devices)
-- [Rendering](#rendering)
+  - [Output Devices](#output-devices)
+  - [Rendering](#rendering)
     - [(1) Local R](#1-local-r)
     - [(2) Dockerized R.](#2-dockerized-r)
     - [(3) Rserve](#3-rserve)
-- [Plot Immutability](#plot-immutability)
-- [API Coverage](#api-coverage)
+  - [Plot Immutability](#plot-immutability)
+  - [API Coverage](#api-coverage)
     - [How to use missing API elements from ggplot2?](#how-to-use-missing-api-elements-from-ggplot2)
-- [References](#references)
-- [Acknowledgements](#acknowledgements)
+  - [References](#references)
+  - [Acknowledgements](#acknowledgements)
 
 
 ---
@@ -44,7 +45,7 @@ R is required to use `ggplot`. However, `kravis` works with various integration 
 Add the following artifact to your `gradle.build`
 
 ```
-compile "com.github.holgerbrandl:kravis:0.5"
+compile "com.github.holgerbrandl:kravis:0.5.1"
 ```
 
 You can also use [JitPack with Maven or Gradle](https://jitpack.io/#holgerbrandl/kravis/-SNAPSHOT) to build the latest snapshot as a dependency in your project.
