@@ -36,7 +36,7 @@ repositories {
 
     jcenter()
 
-        mavenLocal() //todo disable for release
+//        mavenLocal() //todo disable for release
     //    maven { url 'https://jitpack.io' }
 }
 
