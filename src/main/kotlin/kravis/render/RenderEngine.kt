@@ -100,12 +100,18 @@ object RUtils {
     fun runRScript(script: String, r: File? = null): CmdResult {
         val scriptFile = createTempFile(suffix = ".R").apply { writeText(script) }
 
-        return evalCmd( r?.absolutePath ?: "R", listOf("--vanilla", "--quiet", "--slave", "-f", scriptFile.absolutePath))
+        return evalCmd(r?.absolutePath ?: "R", listOf("--vanilla", "--quiet", "--slave", "-f", scriptFile.absolutePath))
     }
 
     fun evalBash(cmd: String): CmdResult = evalCmd("bash", listOf("-c", cmd))
 
-    fun isInPath(tool: String) = evalBash("which $tool").sout().trim().isNotBlank()
+    //    fun isInPath(tool: String) = evalBash("which $tool").sout().trim().isNotBlank()
+    fun isInPath(tool: String, helpCmd: String = "--help"): Boolean {
+        val rt = Runtime.getRuntime()
+        val proc = rt.exec("$tool $helpCmd")
+        proc.waitFor()
+        return proc.exitValue() == 0
+    }
 
     fun requireInPath(tool: String) = require(isInPath(tool)) { "$tool is required but not in PATH" }
 
