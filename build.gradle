@@ -136,7 +136,7 @@ task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
 
 group 'com.github.holgerbrandl'
 //version '0.6-SNAPSHOT'
-version '0.6.0'
+version '0.6'
 
 
 

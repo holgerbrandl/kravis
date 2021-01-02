@@ -45,7 +45,7 @@ R is required to use `ggplot`. However, `kravis` works with various integration 
 Add the following artifact to your `gradle.build`
 
 ```
-compile "com.github.holgerbrandl:kravis:0.5.2"
+compile "com.github.holgerbrandl:kravis:0.6"
 ```
 
 You can also use [JitPack with Maven or Gradle](https://jitpack.io/#holgerbrandl/kravis/-SNAPSHOT) to build the latest snapshot as a dependency in your project.
@@ -233,7 +233,7 @@ Alternatively, in case you don't have or want a local R installation, you can al
 # docker run -p <public_port>:<private_port> -d <image>  
 docker run -dp 6311:6311 holgerbrandl/kravis_rserve 
 ```
-See [Dockerfile](misc/docker_rserve/Dockerfile) for the spec of this image.
+See [Dockerfile](misc/docker/kravis_core/Dockerfile) for the spec of this image.
 
 To use the Rserve backend, configure the kravis `SessionPrefs` accordingly by pointing to the correct host and port.
 ```kotlin
