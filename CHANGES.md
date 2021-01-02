@@ -1,6 +1,11 @@
 Kravis Release History
 ======================
 
+v0.6 (in progress)
+------------------
+
+* Added `geomSegment`
+
 v0.5
 ----
 
