@@ -49,6 +49,8 @@ inline fun <reified T> Iterable<T>.plot(
     noinline stroke: PropExtractor<T>? = null,
     noinline ymin: PropExtractor<T>? = null,
     noinline ymax: PropExtractor<T>? = null,
+    noinline xend: PropExtractor<T>? = null,
+    noinline yend: PropExtractor<T>? = null,
     noinline label: PropExtractor<T>? = null
 
 ): GGPlot {
@@ -64,6 +66,8 @@ inline fun <reified T> Iterable<T>.plot(
         .skipNull(Aesthetic.stroke, stroke)
         .skipNull(Aesthetic.ymin, ymin)
         .skipNull(Aesthetic.ymax, ymax)
+        .skipNull(Aesthetic.xend, xend)
+        .skipNull(Aesthetic.yend, yend)
         .skipNull(Aesthetic.label, label)
 
     return plot(*mapping.toTypedArray())
@@ -106,6 +110,8 @@ inline fun <reified T> Iterable<T>.plot(
     stroke: KProperty1<T, *>? = null,
     ymin: KProperty1<T, *>? = null,
     ymax: KProperty1<T, *>? = null,
+    xend: KProperty1<T, *>? = null,
+    yend: KProperty1<T, *>? = null,
     label: KProperty1<T, *>? = null
 ): GGPlot {
     // build df from data
@@ -122,6 +128,8 @@ inline fun <reified T> Iterable<T>.plot(
         .skipNull(Aesthetic.stroke, stroke)
         .skipNull(Aesthetic.ymin, ymin)
         .skipNull(Aesthetic.ymax, ymax)
+        .skipNull(Aesthetic.xend, xend)
+        .skipNull(Aesthetic.yend, yend)
         .skipNull(Aesthetic.label, label)
 
     val deparseFormulae = mapping.map { (_, kprop) ->
