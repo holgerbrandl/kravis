@@ -65,6 +65,8 @@ fun DataFrame.plot(
     stroke: String? = null,
     ymin: String? = null,
     ymax: String? = null,
+    xend: String? = null,
+    yend: String? = null,
     label: String? = null
 
 ): GGPlot {
@@ -79,6 +81,8 @@ fun DataFrame.plot(
         .addNonNull(stroke, Aesthetic.stroke)
         .addNonNull(ymin, Aesthetic.ymin)
         .addNonNull(ymax, Aesthetic.ymax)
+        .addNonNull(xend, Aesthetic.xend)
+        .addNonNull(yend, Aesthetic.yend)
         .addNonNull(label, Aesthetic.label)
 
     val aes = Aes(*mapping.toTypedArray()
@@ -293,12 +297,12 @@ private fun List<Pair<String, Aesthetic>>.addNonNull(x: String?, aes: Aesthetic)
 enum class Aesthetic {
     x, y, color, fill, yintercept, xintercept, size, alpha, shape, stroke,
 
-    xend,
-    yend,
-
     ymin,
 
     ymax,
+
+    xend,
+    yend,
 
     label
 }
