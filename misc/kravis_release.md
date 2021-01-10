@@ -18,45 +18,67 @@ gradle clean dokka
 5. Do the release
 
 ```bash
-
-
-export KRAVIS_HOME="/Users/brandl/projects/kotlin/kravis";
+export KRAVIS_HOME="/c/brandl_data/private/projects/kotlin/kravis";
 
 trim() { while read -r line; do echo "$line"; done; }
 kravis_version=$(grep '^version' ${KRAVIS_HOME}/build.gradle | cut -f2 -d' ' | tr -d "'" | trim)
 
 echo "new version is $kravis_version"
 
-### Do the github release
-## see https://github.com/aktau/github-release
 
-## create tag on github 
-#github-release --help
+if [[ $kravis_version == *"-SNAPSHOT" ]]; then
+  echo "ERROR: Won't publish snapshot build $kravis_version}!" 1>&2
+  exit 1
+fi
 
-source /Users/brandl/archive/gh_token.sh
-export GITHUB_TOKEN=${GH_TOKEN}
-#echo $GITHUB_TOKEN
 
-# make your tag and upload
-cd ${KRAVIS_HOME}
+git status
+git commit -am "${kalasim_version} release"
+#git diff --exit-code  || echo "There are uncomitted changes"
 
-#git tag v${kravis_version} && git push --tags
-(git diff --ignore-submodules --exit-code && git tag "v${kravis_version}")  || echo "could not tag current branch"
+git tag "${kalasim_version}"
 
-git push --tags
+git push origin 
+git push origin --tags
 
-# check the current tags and existing releases of the repo
-# binaries are located under $GOPATH/bin
-github-release info -u holgerbrandl -r krangl
 
-# create a formal release
-github-release release \
-    --user holgerbrandl \
-    --repo kravis \
-    --tag "v${kravis_version}" \
-    --name "v${kravis_version}" \
-    --description "See [CHANGES.md](https://github.com/holgerbrandl/kravis/blob/master/CHANGES.md) for changes." 
-#    --pre-release
+### Build and publish the binary release to jcenter
+gradle install
+
+# careful with this one!
+gradle bintrayUpload
+
+## release is now done with action
+#### Do the github release
+### see https://github.com/aktau/github-release
+#
+### create tag on github 
+##github-release --help
+#
+#source /Users/brandl/archive/gh_token.sh
+#export GITHUB_TOKEN=${GH_TOKEN}
+##echo $GITHUB_TOKEN
+#
+## make your tag and upload
+#cd ${KRAVIS_HOME}
+#
+##git tag v${kravis_version} && git push --tags
+#(git diff --ignore-submodules --exit-code && git tag "v${kravis_version}")  || echo "could not tag current branch"
+#
+#git push --tags
+#
+## check the current tags and existing releases of the repo
+## binaries are located under $GOPATH/bin
+#github-release info -u holgerbrandl -r krangl
+#
+## create a formal release
+#github-release release \
+#    --user holgerbrandl \
+#    --repo kravis \
+#    --tag "v${kravis_version}" \
+#    --name "v${kravis_version}" \
+#    --description "See [CHANGES.md](https://github.com/holgerbrandl/kravis/blob/master/CHANGES.md) for changes." 
+##    --pre-release
 
 
 ########################################################################
