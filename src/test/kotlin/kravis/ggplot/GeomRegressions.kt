@@ -7,6 +7,7 @@ import kravis.*
 import kravis.Aesthetic.x
 import kravis.Aesthetic.y
 import kravis.OrderUtils.reorder
+import org.junit.Ignore
 import org.junit.Test
 import java.io.File
 
@@ -107,10 +108,10 @@ class GeomRegressions : AbstractSvgPlotRegression() {
                 )
 
         println(plot.spec)
-        plot.show()
-        Thread.sleep(10000)
+//        plot.show()
+//        Thread.sleep(10000)
 
-//                assertExpected(plot)
+        assertExpected(plot)
     }
 
 
@@ -119,8 +120,30 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     fun `enforce mandatory aestetics`() {
         // create random time series
         shouldThrow<MissingAestheticsMapping> {
-            faithfuld.plot(x = "eruptions").geomTile().show()
+            faithfuld.plot(x = "eruptions").geomTile() // .show()
         }
+    }
+
+    @Ignore
+    @Test
+    //https://github.com/holgerbrandl/kravis/issues/17
+    fun `github ticket 14 regression`() {
+        val xs = 0..500 step 9
+        val ys = (xs.map { listOf(it, 1.0 * it, "y") }
+                + xs.map { listOf(it, 2.0 * it, "dy/dx") }
+                + xs.map { listOf(it, 3.0 * it, "d²y/x²") }
+                + xs.map { listOf(it, 4.0 * it, "d³y/dx³") }
+                + xs.map { listOf(it, 5.0 * it, "d⁴y/dx⁴") }
+                + xs.map { listOf(it, 6.0 * it, "d⁵y/dx⁵") }
+                ).flatten()
+
+        val plot = dataFrameOf("x", "y", "Function")(ys)
+                .plot(x = "x", y = "y", color = "Function")
+                .geomLine(size = 1.0)
+                .title("Derivatives of y=$y")
+//                .save(File("src/main/resources/plot.png"))
+
+        assertExpected(plot)
     }
 
 }
