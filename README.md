@@ -14,6 +14,7 @@ R is required to use `ggplot`. However, `kravis` works with various integration 
 [TOC]: # " "
 
 - [`kravis` - A {k}otlin {gra}mmar for data {vis}ualization](#kravis---a-kotlin-grammar-for-data-visualization)
+  - [Jupyter](#jupyter)
   - [Setup](#setup)
   - [First Example](#first-example)
   - [The Grammar of Graphics](#the-grammar-of-graphics)
@@ -38,6 +39,13 @@ R is required to use `ggplot`. However, `kravis` works with various integration 
 **This is an experimental API and is subject to breaking changes until a first major release**
 
 ---
+
+## Jupyter
+
+An easy way to get started with `kravis` is with jupyter, you simply need to install the [kotlin-jupyter](https://github.com/Kotlin/kotlin-jupyter) kernel.
+
+See [here](https://github.com/holgerbrandl/kalasim/blob/master/simulations/notebooks/kravis_test.ipynb) for a notebook example.
+
 
 ## Setup
 
