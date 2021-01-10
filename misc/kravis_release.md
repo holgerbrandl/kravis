@@ -19,9 +19,8 @@ gradle clean dokka
 
 ```bash
 export KRAVIS_HOME="/c/brandl_data/private/projects/kotlin/kravis";
-
 trim() { while read -r line; do echo "$line"; done; }
-kravis_version=$(grep '^version' ${KRAVIS_HOME}/build.gradle | cut -f2 -d' ' | tr -d "'" | trim)
+kravis_version='v'$(grep '^version' ${KRAVIS_HOME}/build.gradle | cut -f2 -d' ' | tr -d "'" | trim)
 
 echo "new version is $kravis_version"
 
@@ -31,12 +30,13 @@ if [[ $kravis_version == *"-SNAPSHOT" ]]; then
   exit 1
 fi
 
+cd  $KRAVIS_HOME
 
 git status
-git commit -am "${kalasim_version} release"
+git commit -am "${kravis_version} release"
 #git diff --exit-code  || echo "There are uncomitted changes"
 
-git tag "${kalasim_version}"
+git tag "${kravis_version}"
 
 git push origin 
 git push origin --tags
