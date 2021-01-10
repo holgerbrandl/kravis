@@ -1,7 +1,6 @@
 package kravis.device
 
 import jupyter.kotlin.MimeTypedResult
-import jupyter.kotlin.resultOf
 import krangl.irisData
 import kravis.Aesthetic
 import kravis.GGPlot
@@ -57,6 +56,10 @@ class JupyterDevice(val renderSVG: Boolean = false) : OutputDevice() {
         return resultOf("image/jpeg" to b64img)
     }
 }
+
+//abstract class ScriptTemplateWithDisplayHelpers(val args: kotlin.Array<kotlin.String>) {
+fun resultOf(vararg mimeToData: Pair<String, String>): MimeTypedResult = MimeTypedResult(mapOf(*mimeToData))
+//}
 
 val testPlot by lazy {
     irisData

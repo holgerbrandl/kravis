@@ -21,7 +21,7 @@ object SessionPrefs {
 
     private val AUTO_DETECT_DEVICE by lazy {
         try {
-            Class.forName("org.jetbrains.kotlin.jupyter.KernelConfig")
+            Class.forName("jupyter.kotlin.KotlinContext")
             infoMsg("Using jupyter device")
             JupyterDevice()
         } catch (e: ClassNotFoundException) {

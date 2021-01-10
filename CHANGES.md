@@ -1,6 +1,11 @@
 Kravis Release History
 ======================
 
+v0.7
+----
+
+* Fixed compatibility with jupyter-kernel
+
 v0.6
 ------------------
 

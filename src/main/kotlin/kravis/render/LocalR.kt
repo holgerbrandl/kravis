@@ -1,5 +1,7 @@
 package kravis.render
 
+import krangl.print
+import krangl.schema
 import krangl.writeTSV
 import kravis.GGPlot
 import java.awt.Dimension
@@ -14,6 +16,8 @@ class LocalR(val r:File?= null) : AbstractLocalRenderEngine() {
         // save all the data
         // todo hash dfs where possible to avoid IO
         val dataIngest = plot.dataRegistry.mapValues {
+//            it.value.schema()
+//            it.value.print()
             createTempFile(".txt").apply { it.value.writeTSV(this) }
         }.map { (dataVar, file) ->
             """${dataVar} = read_tsv("${file.invariantSeparatorsPath}")"""

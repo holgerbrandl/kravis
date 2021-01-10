@@ -66,16 +66,16 @@ internal fun RConnection.setTable(varName: String, data: DataFrame) {
     val col2data = data.cols.withIndex().map { (index, col) ->
         "col_$index" to when {
 
-            col is DoubleCol -> col.asDoubles().map { if (it == null) REXPDouble.NA else it }.toDoubleArray().let { REXPDouble(it) }
-            col is IntCol -> col.asInts().map { if (it == null) REXPInteger.NA else it }.toIntArray().let { REXPInteger(it) }
-            col is BooleanCol -> col.asBooleans().map {
+            col is DoubleCol -> col.toDoubles().map { if (it == null) REXPDouble.NA else it }.toDoubleArray().let { REXPDouble(it) }
+            col is IntCol -> col.toInts().map { if (it == null) REXPInteger.NA else it }.toIntArray().let { REXPInteger(it) }
+            col is BooleanCol -> col.toBooleans().map {
                 if (it == null) {
                     REXPLogical.NA
                 } else {
                     (if (it!!) 1 else 0).toByte()
                 }
             }.toByteArray().let { REXPLogical(it) }
-            col is StringCol -> col.asStrings().map { if (it == null) "NA" else it }.toTypedArray().let { REXPString(it) }
+            col is StringCol -> col.toStrings().map { if (it == null) "NA" else it }.toTypedArray().let { REXPString(it) }
             else -> TODO("Unsupported type ${col::class.simpleName}")
         }
     }
