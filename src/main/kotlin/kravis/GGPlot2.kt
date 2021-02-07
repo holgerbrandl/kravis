@@ -67,6 +67,7 @@ fun DataFrame.plot(
     ymax: String? = null,
     xend: String? = null,
     yend: String? = null,
+    weight: String? = null,
     label: String? = null
 
 ): GGPlot {
@@ -83,6 +84,7 @@ fun DataFrame.plot(
         .addNonNull(ymax, Aesthetic.ymax)
         .addNonNull(xend, Aesthetic.xend)
         .addNonNull(yend, Aesthetic.yend)
+        .addNonNull(weight, Aesthetic.weight)
         .addNonNull(label, Aesthetic.label)
 
     val aes = Aes(*mapping.toTypedArray()
@@ -255,6 +257,7 @@ class Aes(vararg val aes: Pair<String, Aesthetic>) {
         ymax: String? = null,
         xend: String? = null,
         yend: String? = null,
+        weight: String? = null,
         label: String? = null
     ) :
         this(*listOf<Pair<String, Aesthetic>>()
@@ -270,6 +273,7 @@ class Aes(vararg val aes: Pair<String, Aesthetic>) {
             .addNonNull(ymax, Aesthetic.ymax)
             .addNonNull(xend, Aesthetic.xend)
             .addNonNull(yend, Aesthetic.yend)
+            .addNonNull(weight, Aesthetic.weight)
             .addNonNull(label, Aesthetic.label)
             .toTypedArray()
         )
@@ -303,6 +307,8 @@ enum class Aesthetic {
 
     xend,
     yend,
+
+    weight,
 
     label
 }

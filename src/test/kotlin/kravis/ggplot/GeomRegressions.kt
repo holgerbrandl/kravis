@@ -61,6 +61,14 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     }
 
     @Test
+    fun `create a bar chart with a weight attribute`() {
+        val plot = irisData.plot(x="Species", weight = "Sepal.Length").geomBar()
+
+//                plot.show()
+        assertExpected(plot)
+    }
+
+    @Test
     fun `grouped line plot`() {
         // create random time series
 
