@@ -1,6 +1,6 @@
 # `kravis` - A {k}otlin {gra}mmar for data {vis}ualization
 
- [ ![Download](https://api.bintray.com/packages/holgerbrandl/github/kravis/images/download.svg) ](https://bintray.com/holgerbrandl/github/kravis/_latestVersion)
+ [ ![Download](https://img.shields.io/badge/Maven%20Central-0.7.4-orange) ](https://mvnrepository.com/artifact/com.github.holgerbrandl/kravis)
 [![Build Status](https://travis-ci.org/holgerbrandl/kravis.svg?branch=master)](https://travis-ci.org/holgerbrandl/kravis)
 
 Visualizing tabular and relational data is the core of data-science. `kravis` implements a grammar to create a wide range of plots using a standardized set of verbs.

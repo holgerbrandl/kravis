@@ -137,9 +137,15 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 //}
 
 group 'com.github.holgerbrandl'
-//version '0.8-SNAPSHOT'
-version '0.7.4'
+version '0.8-SNAPSHOT'
+//version '0.7.4'
 
+
+ext {
+    PUBLISH_GROUP_ID = "com.github.holgerbrandl"
+    PUBLISH_VERSION = version
+    PUBLISH_ARTIFACT_ID = 'kravis'
+}
 
 //artifacts {
 //    archives sourcesJar
