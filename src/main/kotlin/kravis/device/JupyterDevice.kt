@@ -8,6 +8,7 @@ import kravis.SessionPrefs
 import kravis.geomPoint
 import kravis.nshelper.plot
 import kravis.render.PlotFormat
+import java.awt.Dimension
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -17,7 +18,7 @@ import javax.imageio.ImageIO
 /**
  * @author Holger Brandl
  */
-class JupyterDevice(val renderSVG: Boolean = false) : OutputDevice() {
+class JupyterDevice(val renderSVG: Boolean = false, val size: Dimension? = Dimension(1400, 600) ) : OutputDevice() {
 
     override fun getPreferredFormat() = if (renderSVG) PlotFormat.SVG else PlotFormat.PNG
 
@@ -27,6 +28,8 @@ class JupyterDevice(val renderSVG: Boolean = false) : OutputDevice() {
 
         return if (renderSVG) renderAsSVG(imageFile) else renderAsImage(imageFile)
     }
+
+    override fun getPreferredSize(): Dimension? = size
 
     internal fun renderAsSVG(imageFile: File): MimeTypedResult {
         TODO()
