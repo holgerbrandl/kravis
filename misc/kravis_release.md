@@ -42,52 +42,18 @@ git push origin
 git push origin --tags
 
 
-### Build and publish the binary release to jcenter
-gradle install
-
-# careful with this one!
-gradle bintrayUpload
-
-## release is now done with action
-#### Do the github release
-### see https://github.com/aktau/github-release
-#
-### create tag on github 
-##github-release --help
-#
-#source /Users/brandl/archive/gh_token.sh
-#export GITHUB_TOKEN=${GH_TOKEN}
-##echo $GITHUB_TOKEN
-#
-## make your tag and upload
-#cd ${KRAVIS_HOME}
-#
-##git tag v${kravis_version} && git push --tags
-#(git diff --ignore-submodules --exit-code && git tag "v${kravis_version}")  || echo "could not tag current branch"
-#
-#git push --tags
-#
-## check the current tags and existing releases of the repo
-## binaries are located under $GOPATH/bin
-#github-release info -u holgerbrandl -r krangl
-#
-## create a formal release
-#github-release release \
-#    --user holgerbrandl \
-#    --repo kravis \
-#    --tag "v${kravis_version}" \
-#    --name "v${kravis_version}" \
-#    --description "See [CHANGES.md](https://github.com/holgerbrandl/kravis/blob/master/CHANGES.md) for changes." 
-##    --pre-release
-
-
 ########################################################################
-### Build and publish the binary release to jcenter
+### Build and publish the binary release to maven-central
 
-gradle install
+./gradlew install
 
 # careful with this one!
-gradle bintrayUpload
+# https://getstream.io/blog/publishing-libraries-to-mavencentral-2021/
+# https://central.sonatype.org/pages/gradle.html
+./gradlew publishReleasePublicationToSonatypeRepository
+./gradlew closeAndReleaseRepository
+
+## also see https://oss.sonatype.org/
 ```
 
 For released versions check:
