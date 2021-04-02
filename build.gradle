@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.4.30' // see https://github.com/Kotlin/dokka/issues/656
+    ext.kotlin_version = '1.4.32' // see https://github.com/Kotlin/dokka/issues/656
     ext.dokka_version = '0.10.0' // see https://github.com/Kotlin/dokka/issues/656
 
 
@@ -31,7 +31,7 @@ mainClassName = "foo.Bar" // not needed but does not work without
 repositories {
     mavenCentral()
 
-//        mavenLocal() //todo disable for release
+        mavenLocal() //todo disable for release
     //    maven { url 'https://jitpack.io' }
 }
 
@@ -41,12 +41,13 @@ dependencies {
     compileOnly "org.jetbrains.kotlin:kotlin-reflect"
 
     // tagged version for release
-    compile "com.github.holgerbrandl.krangl:krangl:0.15.6"
+//    compile "com.github.holgerbrandl.krangl:krangl:0.15.6"
+    compile "com.github.holgerbrandl:krangl:0.16-SNAPSHOT"
     // local snapshot build
 //    compile "de.mpicbg.scicomp:krangl:0.11-SNAPSHOT"
     // when using jitpack
 //    compile 'com.github.holgerbrandl:krangl:master-SNAPSHOT'
-    implementation "ml.dmlc:xgboost4j:0.80"
+//    api "ml.dmlc:xgboost4j:0.80"
 
     implementation group: 'no.tornado', name: 'tornadofx', version: '1.7.20'
     implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
