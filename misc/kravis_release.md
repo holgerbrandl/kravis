@@ -18,7 +18,7 @@ gradle clean dokka
 5. Do the release
 
 ```bash
-export KRAVIS_HOME="/c/brandl_data/private/projects/kotlin/kravis";
+export KRAVIS_HOME="/c/brandl_data/projects/misc/kravis";
 trim() { while read -r line; do echo "$line"; done; }
 kravis_version='v'$(grep '^version' ${KRAVIS_HOME}/build.gradle | cut -f2 -d' ' | tr -d "'" | trim)
 
