@@ -15,6 +15,11 @@ buildscript {
     }
 }
 
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
 
 apply plugin: 'kotlin'
 //apply plugin: 'org.jetbrains.dokka'
@@ -27,6 +32,11 @@ apply plugin: 'io.codearte.nexus-staging'
 // not neeeded but does not work without
 mainClassName = "foo.Bar" // not needed but does not work without
 
+
+javafx {
+    version = "15.0.1"
+    modules = [ 'javafx.controls' , 'javafx.swing', 'javafx.web']
+}
 
 repositories {
     mavenCentral()
@@ -42,7 +52,7 @@ dependencies {
 
     // tagged version for release
 //    compile "com.github.holgerbrandl.krangl:krangl:0.15.6"
-    compile "com.github.holgerbrandl:krangl:0.16-SNAPSHOT"
+    compile "com.github.holgerbrandl:krangl:0.16.2"
     // local snapshot build
 //    compile "de.mpicbg.scicomp:krangl:0.11-SNAPSHOT"
     // when using jitpack
@@ -138,8 +148,8 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 //}
 
 group 'com.github.holgerbrandl'
-version '0.8-SNAPSHOT'
-//version '0.7.4'
+//version '0.8-SNAPSHOT'
+version '0.7.5'
 
 
 ext {
