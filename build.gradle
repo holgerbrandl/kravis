@@ -1,9 +1,12 @@
 buildscript {
-    ext.kotlin_version = '1.4.32' // see https://github.com/Kotlin/dokka/issues/656
+    ext.kotlin_version = '1.5.10' // see https://github.com/Kotlin/dokka/issues/656
     ext.dokka_version = '0.10.0' // see https://github.com/Kotlin/dokka/issues/656
 
 
     repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
 //        maven { url 'https://dl.bintray.com/kotlin/dokka' }
         mavenCentral()
     }
@@ -12,11 +15,12 @@ buildscript {
 //        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.22.0'
+        classpath "org.jetbrains.kotlin:kotlin-jupyter-api-gradle-plugin:0.10.0-66"
+
     }
 }
 
 plugins {
-    id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
@@ -28,6 +32,8 @@ apply plugin: 'java'
 //apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'io.codearte.nexus-staging'
+apply plugin: "org.jetbrains.kotlin.jupyter.api"
+
 
 // not neeeded but does not work without
 mainClassName = "foo.Bar" // not needed but does not work without
@@ -35,13 +41,13 @@ mainClassName = "foo.Bar" // not needed but does not work without
 
 javafx {
     version = "15.0.1"
-    modules = [ 'javafx.controls' , 'javafx.swing', 'javafx.web']
+    modules = ['javafx.controls', 'javafx.swing', 'javafx.web']
 }
 
 repositories {
     mavenCentral()
 
-        mavenLocal() //todo disable for release
+    mavenLocal() //todo disable for release
     //    maven { url 'https://jitpack.io' }
 }
 
@@ -92,7 +98,6 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         jvmTarget = "1.8"
     }
 }
-
 
 
 //Minimal dokka configuration:
@@ -149,7 +154,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 
 group 'com.github.holgerbrandl'
 //version '0.8-SNAPSHOT'
-version '0.7.5'
+version '0.7.7'
 
 
 ext {

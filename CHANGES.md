@@ -5,9 +5,10 @@ v0.7
 ----
 
 * Fixed compatibility with jupyter-kernel
+* Fixed forecats compatibility issues in `OrderUtils`
 
 v0.6
-------------------
+----
 
 * Added `geomSegment`
 
