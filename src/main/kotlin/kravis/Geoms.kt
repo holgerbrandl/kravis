@@ -494,6 +494,91 @@ fun GGPlot.geomLine(
 
 
 /**
+ * Displays a y interval defined by ymin and ymax.
+ */
+fun GGPlot.geomRibbon(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: Stat = Stat.identity,
+    position: Position = PositionIdentity(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    fill: RColor? = null,
+    linetype: LineType? = null,
+    size: Double? = null
+): GGPlot = appendSpec {
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "fill" to fill,
+        "linetype" to linetype,
+        "size" to size
+    )
+
+    addSpec("geom_ribbon(${args})")
+}
+
+
+/**
+ * `geomArea` is a special case of `geomRibbon`, where the ymin is fixed to 0 and y is used instead of ymax.
+ */
+fun GGPlot.geomArea(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: Stat = Stat.identity,
+    position: Position = PositionIdentity(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    fill: RColor? = null,
+    linetype: LineType? = null,
+    size: Double? = null
+): GGPlot = appendSpec {
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "fill" to fill,
+        "linetype" to linetype,
+        "size" to size
+    )
+
+    addSpec("geom_area(${args})")
+}
+
+/**
  * geom_segment() draws a straight line between points (x, y) and (xend, yend).
  *
  * @linetype For options see http://sape.inf.usi.ch/quick-reference/ggplot2/linetype

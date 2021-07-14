@@ -1,6 +1,11 @@
 Kravis Release History
 ======================
 
+v0.8
+----
+
+* Added `geomArea` and `geomRibbon`
+
 v0.7
 ----
 

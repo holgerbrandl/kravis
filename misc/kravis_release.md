@@ -54,6 +54,7 @@ git push origin --tags
 ./gradlew closeAndReleaseRepository
 
 ## also see https://oss.sonatype.org/
+## tutorial https://getstream.io/blog/publishing-libraries-to-mavencentral-2021/
 ```
 
 For released versions check:

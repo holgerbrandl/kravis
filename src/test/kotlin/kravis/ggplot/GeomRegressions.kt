@@ -7,6 +7,9 @@ import kravis.*
 import kravis.Aesthetic.x
 import kravis.Aesthetic.y
 import kravis.OrderUtils.reorder
+import kravis.demo.IrisData
+import kravis.demo.lakeHuron
+import kravis.nshelper.plot
 import org.junit.Ignore
 import org.junit.Test
 import java.io.File
@@ -25,20 +28,20 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `boxplot with overlay`() {
         irisData.plot("Species" to x, "Petal.Length" to y)
-                .geomBoxplot(fill = RColor.orchid, color = RColor.create("#3366FF"))
-                .geomPoint(position = PositionJitter(width = 0.1, seed = 1), alpha = 0.3)
-                .title("Petal Length by Species")
-                //            .apply { open() }
-                .apply { assertExpected(this) }
+            .geomBoxplot(fill = RColor.orchid, color = RColor.create("#3366FF"))
+            .geomPoint(position = PositionJitter(width = 0.1, seed = 1), alpha = 0.3)
+            .title("Petal Length by Species")
+            //            .apply { open() }
+            .apply { assertExpected(this) }
     }
 
     @Test
     fun `simple heatmap`() {
 
         val plot = faithfuld.plot(Aes("eruptions", "waiting", fill = "density"))
-                .geomTile()
-                .scaleXDiscrete(expand = listOf(0.0, 0.0))
-                .scaleYDiscrete(expand = listOf(0.0, 0.0))
+            .geomTile()
+            .scaleXDiscrete(expand = listOf(0.0, 0.0))
+            .scaleYDiscrete(expand = listOf(0.0, 0.0))
 
         assertExpected(plot)
     }
@@ -47,14 +50,18 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `create factor ordered barchart with error bars`() {
         val plot = irisData.groupBy("Species")
-                .summarizeAt({ listOf("Sepal.Length") }, mean, sd)
-                .addColumn("ymax") { it["Sepal.Length.mean"] + it["Sepal.Length.sd"] }
-                .addColumn("ymin") { it["Sepal.Length.mean"] - it["Sepal.Length.sd"] }
-                .plot(x = reorder("Species", "Sepal.Length.mean", ascending = false), y = "Sepal.Length.mean", fill = "Species")
-                .geomBar(stat = Stat.identity)
-                .geomErrorBar(Aes(ymin = "ymin", ymax = "ymax"), width = .3)
-                .xLabel("Species")
-                .yLabel("Sepal.Length")
+            .summarizeAt({ listOf("Sepal.Length") }, mean, sd)
+            .addColumn("ymax") { it["Sepal.Length.mean"] + it["Sepal.Length.sd"] }
+            .addColumn("ymin") { it["Sepal.Length.mean"] - it["Sepal.Length.sd"] }
+            .plot(
+                x = reorder("Species", "Sepal.Length.mean", ascending = false),
+                y = "Sepal.Length.mean",
+                fill = "Species"
+            )
+            .geomBar(stat = Stat.identity)
+            .geomErrorBar(Aes(ymin = "ymin", ymax = "ymax"), width = .3)
+            .xLabel("Species")
+            .yLabel("Sepal.Length")
 
         //        plot.show()
         assertExpected(plot)
@@ -73,8 +80,8 @@ class GeomRegressions : AbstractSvgPlotRegression() {
         // create random time series
 
         val flightsSummary = flightsData
-                .groupBy("carrier", "day")
-                .summarize("mean_dep_delay") { it["dep_delay"].mean(removeNA = true) }
+            .groupBy("carrier", "day")
+            .summarize("mean_dep_delay") { it["dep_delay"].mean(removeNA = true) }
 
         flightsSummary.head().print()
 
@@ -91,9 +98,9 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     fun `text labels in plot`() {
         // todo use custom trafo here to convert to metric units on the fly
         val plot = mtcars
-                .plot(x = "wt", y = "mpg", label = "model", color = "cyl").geomText(hjust = .0, nudgeX = 0.05)
-                .scaleXContinuous(expand = listOf(.3, .1))
-                .scaleYContinuous(limits = Limits(5.0, 30.0))
+            .plot(x = "wt", y = "mpg", label = "model", color = "cyl").geomText(hjust = .0, nudgeX = 0.05)
+            .scaleXContinuous(expand = listOf(.3, .1))
+            .scaleYContinuous(limits = Limits(5.0, 30.0))
 
 //        println(plot.spec)
 //        plot.show()
@@ -104,20 +111,44 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `segments plot`() {
         val segments = dataFrameOf("x", "y", "x_end", "y_end")(
-                2.6, 21, 3.57, 15
+            2.6, 21, 3.57, 15
         )
 
         val plot = mtcars
-                .plot()
-                .geomPoint(Aes(x = "wt", y = "mpg", color = "cyl"))
-                .geomSegment(
-                        mapping = Aes(x = "x", y = "y", xend = "x_end", yend = "y_end"),
-                        data = segments
-                )
+            .plot()
+            .geomPoint(Aes(x = "wt", y = "mpg", color = "cyl"))
+            .geomSegment(
+                mapping = Aes(x = "x", y = "y", xend = "x_end", yend = "y_end"),
+                data = segments
+            )
 
         println(plot.spec)
 //        plot.show()
 //        Thread.sleep(10000)
+
+        assertExpected(plot)
+    }
+
+    @Test
+    fun `ribbon plot`() {
+        val plot = lakeHuron
+            .addColumn("lPLus1") { it["level"] + 1 }
+            .addColumn("lMin1") { it["level"] - 1 }
+            .plot(x = "year")
+            .geomRibbon(Aes(ymin = "lMin1", ymax = "lPLus1"), fill = RColor.gray70)
+            .geomLine(Aes(y = "level"))
+
+
+        assertExpected(plot)
+    }
+
+
+    @Test
+    fun `area plot`() {
+        val plot = irisData
+            .addColumn("row"){rowNumber}
+            .plot("row" to Aesthetic.x, IrisData.PetalLength to Aesthetic.y, IrisData.Species to Aesthetic.fill).geomArea()
+
 
         assertExpected(plot)
     }
@@ -146,9 +177,9 @@ class GeomRegressions : AbstractSvgPlotRegression() {
                 ).flatten()
 
         val plot = dataFrameOf("x", "y", "Function")(ys)
-                .plot(x = "x", y = "y", color = "Function")
-                .geomLine(size = 1.0)
-                .title("Derivatives of y=$y")
+            .plot(x = "x", y = "y", color = "Function")
+            .geomLine(size = 1.0)
+            .title("Derivatives of y=$y")
 //                .save(File("src/main/resources/plot.png"))
 
         assertExpected(plot)
