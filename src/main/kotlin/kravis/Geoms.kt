@@ -694,7 +694,7 @@ fun GGPlot.geomHistogram(
     mapping: Aes? = null,
     data: DataFrame? = null,
     stat: Stat = Stat.bin,
-    position: Position = PositionIdentity(),
+    position: Position = PositionStack(),
     showLegend: Boolean? = null,
     removeNAs: Boolean = false,
     inheritAes: Boolean = true,
