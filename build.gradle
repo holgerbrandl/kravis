@@ -29,12 +29,8 @@ dependencies {
 
     // tagged version for release
 //    compile "com.github.holgerbrandl.krangl:krangl:0.15.6"
-    compile "com.github.holgerbrandl:krangl:0.16.2"
+    compile "com.github.holgerbrandl:krangl:0.17"
 //    compile "com.github.holgerbrandl:krangl:0.17-SNAPSHOT"
-    // local snapshot build
-//    compile "de.mpicbg.scicomp:krangl:0.11-SNAPSHOT"
-    // when using jitpack
-//    compile 'com.github.holgerbrandl:krangl:master-SNAPSHOT'
 //    api "ml.dmlc:xgboost4j:0.80"
 
     implementation group: 'no.tornado', name: 'tornadofx', version: '1.7.20'
@@ -79,7 +75,7 @@ javadoc {
 //http://stackoverflow.com/questions/34377367/why-is-gradle-install-replacing-my-version-with-unspecified
 group 'com.github.holgerbrandl'
 //version '0.8-SNAPSHOT'
-version '0.9-SNAPSHOT'
+version '0.8.1-SNAPSHOT'
 
 
 

@@ -303,6 +303,9 @@ enum class Aesthetic {
 
     ymin,
 
+//    The group aesthetic is useful if there are only two or three groups and there is a summary statistic that should be calculated per group and displayed in one chart.
+    group,
+
     ymax,
 
     xend,
