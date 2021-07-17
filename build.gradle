@@ -75,7 +75,7 @@ javadoc {
 //http://stackoverflow.com/questions/34377367/why-is-gradle-install-replacing-my-version-with-unspecified
 group 'com.github.holgerbrandl'
 //version '0.8-SNAPSHOT'
-version '0.8.1-SNAPSHOT'
+version '0.8.1'
 
 
 
@@ -121,9 +121,9 @@ publishing {
 nexusPublishing {
     repositories {
         sonatype {
-            snapshotRepositoryUrl = uri(project.properties["sonatypeStagingProfileId"])
-            username = project.properties["ossrhUsername"]
-            password = project.properties["ossrhPassword"]
+            snapshotRepositoryUrl = uri(project.findProperty("sonatypeStagingProfileId") ?: 'not_defined')
+            username = project.findProperty("ossrhUsername")  ?: 'not_defined'
+            password = project.findProperty("ossrhPassword") ?: 'not_defined'
         }
     }
 }
