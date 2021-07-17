@@ -6,5 +6,7 @@ enum class Stat {
     /** The identity statistic leaves the data unchanged. */
     identity,
 
-    boxplot, bin, bin2d
+    boxplot, bin, bin2d,
+
+    smooth
 }

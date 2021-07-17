@@ -4,7 +4,8 @@ Kravis Release History
 v0.8
 ----
 
-* Added `geomArea` and `geomRibbon`
+* Added `geomArea`, `geomRibbon` and `geomSmooth`
+* Improved jupyter support
 
 v0.7
 ----

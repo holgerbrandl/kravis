@@ -13,6 +13,7 @@ import kravis.nshelper.plot
 import org.junit.Ignore
 import org.junit.Test
 import java.io.File
+import java.lang.Thread.sleep
 
 
 @Suppress("UNUSED_EXPRESSION")
@@ -147,11 +148,42 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     fun `area plot`() {
         val plot = irisData
             .addColumn("row"){rowNumber}
-            .plot("row" to Aesthetic.x, IrisData.PetalLength to Aesthetic.y, IrisData.Species to Aesthetic.fill).geomArea()
+            .plot("row" to x, IrisData.PetalLength to y, IrisData.Species to Aesthetic.fill).geomArea()
 
 
         assertExpected(plot)
     }
+
+
+    @Test
+    fun `linear smooth`() {
+        val plot = irisData
+            .plot(IrisData.SepalLength to x, IrisData.PetalLength to y, IrisData.Species to Aesthetic.color)
+            .geomPoint()
+            .geomSmooth(method="lm", se=false)
+
+        print(plot.spec)
+
+        assertExpected(plot)
+    }
+
+
+
+    @Test
+    fun `loess smooth`() {
+        val plot = irisData
+            .plot(IrisData.SepalLength to x, IrisData.PetalLength to y, IrisData.Species to Aesthetic.color)
+            .geomPoint()
+            .geomSmooth()
+
+        print(plot.spec)
+
+//        plot.show()
+//        sleep(100000)
+
+        assertExpected(plot)
+    }
+
 
 
     //    @Test

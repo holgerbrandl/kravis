@@ -830,3 +830,72 @@ fun GGPlot.geomBin2D(
 
     addSpec("geom_bin2d(${args})")
 }
+
+
+
+
+/**
+ * Aids the eye in seeing patterns in the presence of overplotting. geom_smooth() and stat_smooth() are effectively aliases: they both use the same arguments. Use stat_smooth() if you want to display the results with a non-standard geom.
+ *
+ * For a complete reference of the underlying method see https://ggplot2.tidyverse.org/reference/geom_smooth.html
+ *
+ * @param method Smoothing method (function) to use, accepts either NULL or a character vector, e.g. "lm", "glm", "gam", "loess" or a function, e.g. MASS::rlm or mgcv::gam, stats::lm, or stats::loess. "auto" is also accepted for backwards compatibility. It is equivalent to NULL. For method = NULL the smoothing method is chosen based on the size of the largest group (across all panels). stats::loess() is used for less than 1,000 observations; otherwise mgcv::gam() is used with formula = y ~ s(x, bs = "cs") with method = "REML".
+ * @param formula Formula to use in smoothing function, eg. y ~ x, y ~ poly(x, 2), y ~ log(x). NULL by default, in which case method = NULL implies formula = y ~ x when there are fewer than 1,000 observations and formula = y ~ s(x, bs = "cs") otherwise.
+ * @param se Display confidence interval around smooth? (TRUE by default, see level to control.)
+ * @param span Controls the amount of smoothing for the default loess smoother. Smaller numbers produce wigglier lines, larger numbers produce smoother lines. Only used with loess, i.e. when method = "loess", or when method = NULL (the default) and there are fewer than 1,000 observations.
+ *
+ * @param bins Number of bins. Overridden by binwidth. Defaults to 30.
+ *
+ */
+fun GGPlot.geomSmooth(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame? = null,
+    stat: Stat = Stat.smooth,
+    position: Position = PositionIdentity(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    //geom specific
+    method: String? = null,
+    formula: String? = null,
+    span: Int? = null,
+    se: Boolean = true,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    linetype: LineType? = null,
+    fill: RColor? = null,
+    height: RColor? = null,
+    width: RColor? = null,
+    size: Double? = null,
+): GGPlot = appendSpec {
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "linetype" to linetype,
+        "fill" to fill,
+        "height" to height,
+        "width" to width,
+        "size" to size,
+
+        "method" to method,
+        "formula" to formula,
+        "span" to span,
+        "se" to se,
+    )
+
+    addSpec("geom_smooth(${args})")
+}
