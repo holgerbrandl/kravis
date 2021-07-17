@@ -6,9 +6,7 @@ import krangl.DataFrame
 import krangl.readTSV
 import kravis.GGPlot
 import kravis.SessionPrefs
-import kravis.render.Docker
 import kravis.render.LocalR
-import kravis.render.RserveEngine
 import kravis.render.saveTempFile
 import org.junit.Before
 import org.junit.Rule
