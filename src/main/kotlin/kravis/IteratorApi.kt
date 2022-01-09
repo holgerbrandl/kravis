@@ -52,7 +52,8 @@ inline fun <reified T> Iterable<T>.plot(
     noinline xend: PropExtractor<T>? = null,
     noinline yend: PropExtractor<T>? = null,
     noinline weight: PropExtractor<T>? = null,
-    noinline label: PropExtractor<T>? = null
+    noinline label: PropExtractor<T>? = null,
+    noinline group: PropExtractor<T>? = null
 
 ): GGPlot {
     // build df from data
@@ -71,6 +72,7 @@ inline fun <reified T> Iterable<T>.plot(
         .skipNull(Aesthetic.yend, yend)
         .skipNull(Aesthetic.weight, weight)
         .skipNull(Aesthetic.label, label)
+        .skipNull(Aesthetic.group, group)
 
     return plot(*mapping.toTypedArray())
 }
@@ -115,7 +117,8 @@ inline fun <reified T> Iterable<T>.plot(
     xend: KProperty1<T, *>? = null,
     yend: KProperty1<T, *>? = null,
     weight: KProperty1<T, *>? = null,
-    label: KProperty1<T, *>? = null
+    label: KProperty1<T, *>? = null,
+    group: KProperty1<T, *>? = null
 ): GGPlot {
     // build df from data
 
@@ -135,6 +138,7 @@ inline fun <reified T> Iterable<T>.plot(
         .skipNull(Aesthetic.yend, yend)
         .skipNull(Aesthetic.weight, weight)
         .skipNull(Aesthetic.label, label)
+        .skipNull(Aesthetic.group, group)
 
     val deparseFormulae = mapping.map { (_, kprop) ->
 

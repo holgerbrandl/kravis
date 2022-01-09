@@ -1,6 +1,6 @@
 
 plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.5.21"
+    id "org.jetbrains.kotlin.jvm" version "1.6.10"
     id "java"
     id "maven-publish"
     id "signing"
@@ -29,7 +29,7 @@ dependencies {
 
     // tagged version for release
 //    compile "com.github.holgerbrandl.krangl:krangl:0.15.6"
-    compile "com.github.holgerbrandl:krangl:0.17"
+    compile 'com.github.holgerbrandl:krangl:0.17.1'
 //    compile "com.github.holgerbrandl:krangl:0.17-SNAPSHOT"
 //    api "ml.dmlc:xgboost4j:0.80"
 
@@ -44,7 +44,7 @@ dependencies {
 
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 //    testCompile "io.kotlintest:kotlintest-runner-junit5:3.1.9"
-    testImplementation 'io.kotest:kotest-assertions-core:4.2.6'
+    testImplementation 'io.kotest:kotest-assertions-core:5.0.3'
 
 
     // needed to work around https://youtrack.jetbrains.com/issue/KT-15064
@@ -75,7 +75,7 @@ javadoc {
 //http://stackoverflow.com/questions/34377367/why-is-gradle-install-replacing-my-version-with-unspecified
 group 'com.github.holgerbrandl'
 //version '0.8-SNAPSHOT'
-version '0.8.1'
+version '0.8.2'
 
 
 
