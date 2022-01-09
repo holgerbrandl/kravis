@@ -1,6 +1,12 @@
 Kravis Release History
 ======================
 
+v0.9
+----
+
+* decoupeld javafx support into independent module
+* Added various geoms and exteded aesthetics support
+
 v0.8
 ----
 

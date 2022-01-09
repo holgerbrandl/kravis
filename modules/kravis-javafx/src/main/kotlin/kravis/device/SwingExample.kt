@@ -1,3 +1,5 @@
+package kravis.device
+
 import javafx.application.Platform
 import javafx.beans.property.SimpleObjectProperty
 import javafx.embed.swing.JFXPanel

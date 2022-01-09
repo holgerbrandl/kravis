@@ -7,7 +7,8 @@
 2. Rebuild the javadoc
 
 ```bash
-cd /Users/brandl/projects/kotlin/kravis
+cd /d/projects/misc/kravis
+
 gradle clean dokka
 ```
 
@@ -18,7 +19,8 @@ gradle clean dokka
 5. Do the release
 
 ```bash
-export KRAVIS_HOME="/c/brandl_data/projects/misc/kravis";
+export KRAVIS_HOME="/d/projects/misc/kravis";
+
 trim() { while read -r line; do echo "$line"; done; }
 kravis_version='v'$(grep '^version' ${KRAVIS_HOME}/build.gradle | cut -f2 -d' ' | tr -d "'" | trim)
 

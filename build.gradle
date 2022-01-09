@@ -6,14 +6,9 @@ plugins {
     id "signing"
     id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
     id "org.jetbrains.kotlin.jupyter.api" version "0.10.0-131-1"
-    id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
 
-javafx {
-    version = "15.0.1"
-    modules = ['javafx.controls', 'javafx.swing', 'javafx.web']
-}
 
 repositories {
     mavenCentral()
@@ -29,11 +24,10 @@ dependencies {
 
     // tagged version for release
 //    compile "com.github.holgerbrandl.krangl:krangl:0.15.6"
-    compile 'com.github.holgerbrandl:krangl:0.17.1'
+    implementation 'com.github.holgerbrandl:krangl:0.17.1'
 //    compile "com.github.holgerbrandl:krangl:0.17-SNAPSHOT"
 //    api "ml.dmlc:xgboost4j:0.80"
 
-    implementation group: 'no.tornado', name: 'tornadofx', version: '1.7.20'
     implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
 
     implementation 'org.rosuda.REngine:REngine:2.1.0'
@@ -75,7 +69,8 @@ javadoc {
 //http://stackoverflow.com/questions/34377367/why-is-gradle-install-replacing-my-version-with-unspecified
 group 'com.github.holgerbrandl'
 //version '0.8-SNAPSHOT'
-version '0.8.2'
+//version '0.9'
+version '0.7.90'
 
 
 
