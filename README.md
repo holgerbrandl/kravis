@@ -1,6 +1,6 @@
 # `kravis` - A {k}otlin {gra}mmar for data {vis}ualization
 
- [ ![Download](https://img.shields.io/badge/Maven%20Central-0.8.2-orange) ](https://mvnrepository.com/artifact/com.github.holgerbrandl/kravis)
+ [ ![Download](https://img.shields.io/badge/Maven%20Central-0.8.3-orange) ](https://mvnrepository.com/artifact/com.github.holgerbrandl/kravis)
 [![Build Status](https://travis-ci.org/holgerbrandl/kravis.svg?branch=master)](https://travis-ci.org/holgerbrandl/kravis)
 
 Visualizing tabular and relational data is the core of data-science. `kravis` implements a grammar to create a wide range of plots using a standardized set of verbs.
@@ -53,7 +53,7 @@ See [here](https://github.com/holgerbrandl/kalasim/blob/master/simulations/noteb
 Add the following artifact to your `gradle.build`
 
 ```
-compile "com.github.holgerbrandl:kravis:0.8.2"
+compile "com.github.holgerbrandl:kravis:0.8.3"
 ```
 
 You can also use [JitPack with Maven or Gradle](https://jitpack.io/#holgerbrandl/kravis/-SNAPSHOT) to build the latest snapshot as a dependency in your project.

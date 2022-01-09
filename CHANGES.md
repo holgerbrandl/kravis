@@ -8,6 +8,7 @@ v0.9
 * Added various geoms and extended aesthetics support
 * Migrated from `File` to `Path` API
 * Fixed numerous bugs
+* Enable advanced integration va jupyter `%use` 
 
 v0.8
 ----
