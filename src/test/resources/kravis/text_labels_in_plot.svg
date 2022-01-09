@@ -1,275 +1,104 @@
-<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 504.00 504.00">
-    
-    <defs>
-          
-        <style type="text/css">
-            <![CDATA[
-    line, polyline, polygon, path, rect, circle {
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svglite" width="504.00pt" height="504.00pt" viewBox="0 0 504.00 504.00">
+<defs>
+  <style type="text/css"><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
       fill: none;
       stroke: #000000;
       stroke-linecap: round;
       stroke-linejoin: round;
       stroke-miterlimit: 10.00;
     }
-  ]]>
-        </style>
-        
-    </defs>
-    
-    <rect width="100%" height="100%" style="stroke: none; fill: #FFFFFF;"/>
-    
-    <rect x="0.000000000000064" y="0.00" width="504.00" height="504.00" style="stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;"/>
-    
-    <defs>
-          
-        <clipPath id="cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4">
-                
-            <rect x="33.13" y="5.48" width="415.82" height="467.03"/>
-              
-        </clipPath>
-        
-    </defs>
-    
-    <rect x="33.13" y="5.48" width="415.82" height="467.03" style="stroke-width: 1.07; stroke: none; fill: #EBEBEB;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <polyline points="33.13,451.28 448.95,451.28 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <polyline points="33.13,281.45 448.95,281.45 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <polyline points="33.13,111.62 448.95,111.62 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <polyline points="78.87,472.51 78.87,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <polyline points="207.65,472.51 207.65,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <polyline points="336.44,472.51 336.44,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <polyline points="33.13,366.37 448.95,366.37 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <polyline points="33.13,196.54 448.95,196.54 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <polyline points="33.13,26.71 448.95,26.71 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <polyline points="143.26,472.51 143.26,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <polyline points="272.04,472.51 272.04,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <polyline points="400.83,472.51 400.83,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)"/>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="186.40" y="179.55" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="57.68px" lengthAdjust="spacingAndGlyphs">Mazda RX4</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="202.82" y="179.55" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="83.44px" lengthAdjust="spacingAndGlyphs">Mazda RX4 Wag</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="167.08" y="148.98" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="56.47px" lengthAdjust="spacingAndGlyphs">Datsun 710</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="224.72" y="172.76" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="71.17px" lengthAdjust="spacingAndGlyphs">Hornet 4 Drive</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="239.20" y="218.61" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="90.21px" lengthAdjust="spacingAndGlyphs">Hornet Sportabout</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="240.49" y="228.80" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="33.76px" lengthAdjust="spacingAndGlyphs">Valiant</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="247.57" y="293.34" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="54.00px" lengthAdjust="spacingAndGlyphs">Duster 360</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="223.11" y="121.81" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="53.99px" lengthAdjust="spacingAndGlyphs">Merc 240D</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="220.53" y="148.98" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="46.02px" lengthAdjust="spacingAndGlyphs">Merc 230</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="239.20" y="210.12" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="46.02px" lengthAdjust="spacingAndGlyphs">Merc 280</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="239.20" y="233.90" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="53.99px" lengthAdjust="spacingAndGlyphs">Merc 280C</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="279.77" y="257.68" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="60.75px" lengthAdjust="spacingAndGlyphs">Merc 450SE</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="257.88" y="242.39" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="59.52px" lengthAdjust="spacingAndGlyphs">Merc 450SL</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="261.10" y="278.05" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="67.49px" lengthAdjust="spacingAndGlyphs">Merc 450SLC</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="355.75" y="359.57" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="93.27px" lengthAdjust="spacingAndGlyphs">Cadillac Fleetwood</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="366.96" y="359.57" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="93.90px" lengthAdjust="spacingAndGlyphs">Lincoln Continental</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="361.87" y="286.55" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="83.43px" lengthAdjust="spacingAndGlyphs">Chrysler Imperial</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="176.42" y="171.06" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="73.02px" lengthAdjust="spacingAndGlyphs">Toyota Corona</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="244.35" y="272.96" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="88.99px" lengthAdjust="spacingAndGlyphs">Dodge Challenger</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="238.88" y="278.05" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="61.96px" lengthAdjust="spacingAndGlyphs">AMC Javelin</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="264.96" y="310.32" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="61.35px" lengthAdjust="spacingAndGlyphs">Camaro Z28</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="265.28" y="210.12" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="77.31px" lengthAdjust="spacingAndGlyphs">Pontiac Firebird</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="142.29" y="72.56" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="44.79px" lengthAdjust="spacingAndGlyphs">Fiat X1-9</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="155.49" y="94.64" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="71.80px" lengthAdjust="spacingAndGlyphs">Porsche 914-2</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="221.82" y="267.87" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="73.64px" lengthAdjust="spacingAndGlyphs">Ford Pantera L</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="196.06" y="201.63" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="58.28px" lengthAdjust="spacingAndGlyphs">Ferrari Dino</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="247.57" y="281.45" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="68.72px" lengthAdjust="spacingAndGlyphs">Maserati Bora</text>
-    </g>
-    
-    <g clip-path="url(#cpMzMuMTN8NDQ4Ljk1fDQ3Mi41MXw1LjQ4)">
-        <text x="196.70" y="172.76" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="56.47px" lengthAdjust="spacingAndGlyphs">Volvo 142E</text>
-    </g>
-    
-    <defs>
-          
-        <clipPath id="cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=">
-                
-            <rect x="0.00" y="0.00" width="504.00" height="504.00"/>
-              
-        </clipPath>
-        
-    </defs>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="18.41" y="369.52" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="9.79px" lengthAdjust="spacingAndGlyphs">10</text>
-    </g>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="18.41" y="199.69" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="9.79px" lengthAdjust="spacingAndGlyphs">20</text>
-    </g>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="18.41" y="29.86" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="9.79px" lengthAdjust="spacingAndGlyphs">30</text>
-    </g>
-    
-    <polyline points="30.39,366.37 33.13,366.37 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <polyline points="30.39,196.54 33.13,196.54 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <polyline points="30.39,26.71 33.13,26.71 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <polyline points="143.26,475.25 143.26,472.51 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <polyline points="272.04,475.25 272.04,472.51 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <polyline points="400.83,475.25 400.83,472.51 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="140.81" y="483.74" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.89px" lengthAdjust="spacingAndGlyphs">2</text>
-    </g>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="269.60" y="483.74" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.89px" lengthAdjust="spacingAndGlyphs">4</text>
-    </g>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="398.38" y="483.74" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.89px" lengthAdjust="spacingAndGlyphs">6</text>
-    </g>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="235.54" y="496.21" style="font-size: 11.00px; font-family: Arial;" textLength="11.00px" lengthAdjust="spacingAndGlyphs">wt</text>
-    </g>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text transform="translate(13.35,249.69) rotate(-90)" style="font-size: 11.00px; font-family: Arial;" textLength="21.40px" lengthAdjust="spacingAndGlyphs">mpg</text>
-    </g>
-    
-    <rect x="459.91" y="182.48" width="38.61" height="113.03" style="stroke-width: 1.07; stroke: none; fill: #FFFFFF;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <image width="17.28" height="86.40" x="465.39" y="203.63" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAABXCAYAAAAJWxWIAAAABmJLR0QA/wD/AP+gvaeTAAABO0lEQVRYhc2YwXVEMQwCwVFzaSAtpL0Uk1pysmEPfzvwHOIC9DASINtfP3/V5anzOW1u60iRpjnXdWxpmntEp2EQyRbD0YGuZi2NgEKiOIpFcbQojkLNUTUiriZDAxmKbBUi22YK5UEEcLQCdW1TonWZrp1Qc0RZrUrOEdK1QHMUqmtPiuQ6sWWq/S4lEUFztNeCyN5QrmHbSEpdTUGznxAtFEc+kGi3olHvtfZ2SMBqBdkIl7SUZ4vzbCxpIa3ZkER2qB3SVPZLmgISMYUoNSRabM9uoDkSNdlUQO5NpQglEZVKEepRc0oZG4VIoX4ihJGNbSMQovw7sq1qBGz+zzbSe2M7T9ISiKwRgOh9NQDRhvYjbKtNqM86Q3GEebYjaq2hPFuUQ7rkEwJ506KfdchkV+Pq+7ZQP87vCxFCTh3oKjTSAAAAAElFTkSuQmCC"/>
-    </g>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="488.15" y="293.03" style="font-size: 8.80px; font-family: Arial;" textLength="4.89px" lengthAdjust="spacingAndGlyphs">4</text>
-    </g>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="488.15" y="271.51" style="font-size: 8.80px; font-family: Arial;" textLength="4.89px" lengthAdjust="spacingAndGlyphs">5</text>
-    </g>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="488.15" y="249.98" style="font-size: 8.80px; font-family: Arial;" textLength="4.89px" lengthAdjust="spacingAndGlyphs">6</text>
-    </g>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="488.15" y="228.45" style="font-size: 8.80px; font-family: Arial;" textLength="4.89px" lengthAdjust="spacingAndGlyphs">7</text>
-    </g>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="488.15" y="206.92" style="font-size: 8.80px; font-family: Arial;" textLength="4.89px" lengthAdjust="spacingAndGlyphs">8</text>
-    </g>
-    
-    <g clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)">
-        <text x="465.39" y="196.99" style="font-size: 11.00px; font-family: Arial;" textLength="13.44px" lengthAdjust="spacingAndGlyphs">cyl</text>
-    </g>
-    
-    <line x1="465.39" y1="289.88" x2="468.84" y2="289.88" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <line x1="465.39" y1="268.36" x2="468.84" y2="268.36" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <line x1="465.39" y1="246.83" x2="468.84" y2="246.83" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <line x1="465.39" y1="225.30" x2="468.84" y2="225.30" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <line x1="465.39" y1="203.77" x2="468.84" y2="203.77" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <line x1="479.21" y1="289.88" x2="482.67" y2="289.88" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <line x1="479.21" y1="268.36" x2="482.67" y2="268.36" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <line x1="479.21" y1="246.83" x2="482.67" y2="246.83" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <line x1="479.21" y1="225.30" x2="482.67" y2="225.30" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
-    <line x1="479.21" y1="203.77" x2="482.67" y2="203.77" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;" clip-path="url(#cpMC4wMHw1MDQuMDB8NTA0LjAwfDAuMDA=)"/>
-    
+  ]]></style>
+</defs>
+<rect width="100%" height="100%" style="stroke: none; fill: #FFFFFF;"/>
+<defs>
+  <clipPath id="cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=">
+    <rect x="0.00" y="0.00" width="504.00" height="504.00"/>
+  </clipPath>
+</defs>
+<g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
+<rect x="0.00" y="0.00" width="504.00" height="504.00" style="stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;"/>
+</g>
+<defs>
+  <clipPath id="cpMzMuMTR8NDQ4Ljk1fDUuNDh8NDcyLjUw">
+    <rect x="33.14" y="5.48" width="415.81" height="467.02"/>
+  </clipPath>
+</defs>
+<g clip-path="url(#cpMzMuMTR8NDQ4Ljk1fDUuNDh8NDcyLjUw)">
+<rect x="33.14" y="5.48" width="415.81" height="467.02" style="stroke-width: 1.07; stroke: none; fill: #EBEBEB;"/>
+<polyline points="33.14,451.28 448.95,451.28 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="33.14,281.45 448.95,281.45 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="33.14,111.62 448.95,111.62 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="78.87,472.50 78.87,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="207.66,472.50 207.66,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="336.44,472.50 336.44,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="33.14,366.36 448.95,366.36 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="33.14,196.53 448.95,196.53 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="33.14,26.71 448.95,26.71 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="143.27,472.50 143.27,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="272.05,472.50 272.05,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="400.83,472.50 400.83,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<text x="186.41" y="183.50" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="57.63px" lengthAdjust="spacingAndGlyphs">Mazda RX4</text>
+<text x="202.83" y="183.50" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="82.97px" lengthAdjust="spacingAndGlyphs">Mazda RX4 Wag</text>
+<text x="167.09" y="152.93" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="56.42px" lengthAdjust="spacingAndGlyphs">Datsun 710</text>
+<text x="224.72" y="176.71" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="71.11px" lengthAdjust="spacingAndGlyphs">Hornet 4 Drive</text>
+<text x="239.21" y="222.56" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="90.14px" lengthAdjust="spacingAndGlyphs">Hornet Sportabout</text>
+<text x="240.50" y="232.75" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="32.90px" lengthAdjust="spacingAndGlyphs">Valiant</text>
+<text x="247.58" y="297.29" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="53.96px" lengthAdjust="spacingAndGlyphs">Duster 360</text>
+<text x="223.11" y="125.76" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="53.94px" lengthAdjust="spacingAndGlyphs">Merc 240D</text>
+<text x="220.53" y="152.93" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="45.98px" lengthAdjust="spacingAndGlyphs">Merc 230</text>
+<text x="239.21" y="214.07" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="45.98px" lengthAdjust="spacingAndGlyphs">Merc 280</text>
+<text x="239.21" y="237.85" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="53.94px" lengthAdjust="spacingAndGlyphs">Merc 280C</text>
+<text x="279.77" y="261.62" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="60.70px" lengthAdjust="spacingAndGlyphs">Merc 450SE</text>
+<text x="257.88" y="246.34" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="59.47px" lengthAdjust="spacingAndGlyphs">Merc 450SL</text>
+<text x="261.10" y="282.00" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="67.44px" lengthAdjust="spacingAndGlyphs">Merc 450SLC</text>
+<text x="355.75" y="363.52" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="93.18px" lengthAdjust="spacingAndGlyphs">Cadillac Fleetwood</text>
+<text x="366.96" y="363.52" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="93.82px" lengthAdjust="spacingAndGlyphs">Lincoln Continental</text>
+<text x="361.87" y="290.49" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="83.35px" lengthAdjust="spacingAndGlyphs">Chrysler Imperial</text>
+<text x="176.43" y="175.01" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="71.74px" lengthAdjust="spacingAndGlyphs">Toyota Corona</text>
+<text x="244.36" y="276.91" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="88.91px" lengthAdjust="spacingAndGlyphs">Dodge Challenger</text>
+<text x="238.89" y="282.00" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="61.91px" lengthAdjust="spacingAndGlyphs">AMC Javelin</text>
+<text x="264.96" y="314.27" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="61.30px" lengthAdjust="spacingAndGlyphs">Camaro Z28</text>
+<text x="265.29" y="214.07" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="77.24px" lengthAdjust="spacingAndGlyphs">Pontiac Firebird</text>
+<text x="142.30" y="76.51" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="44.76px" lengthAdjust="spacingAndGlyphs">Fiat X1-9</text>
+<text x="155.50" y="98.59" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="71.74px" lengthAdjust="spacingAndGlyphs">Porsche 914-2</text>
+<text x="221.82" y="271.81" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="73.58px" lengthAdjust="spacingAndGlyphs">Ford Pantera L</text>
+<text x="196.07" y="205.58" style="font-size: 11.04px; fill: #336A98; font-family: Arial;" textLength="58.22px" lengthAdjust="spacingAndGlyphs">Ferrari Dino</text>
+<text x="247.58" y="285.40" style="font-size: 11.04px; fill: #56B1F7; font-family: Arial;" textLength="68.66px" lengthAdjust="spacingAndGlyphs">Maserati Bora</text>
+<text x="196.71" y="176.71" style="font-size: 11.04px; fill: #132B43; font-family: Arial;" textLength="55.81px" lengthAdjust="spacingAndGlyphs">Volvo 142E</text>
+</g>
+<g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
+<text x="28.21" y="369.51" text-anchor="end" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="9.79px" lengthAdjust="spacingAndGlyphs">10</text>
+<text x="28.21" y="199.68" text-anchor="end" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="9.79px" lengthAdjust="spacingAndGlyphs">20</text>
+<text x="28.21" y="29.86" text-anchor="end" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="9.79px" lengthAdjust="spacingAndGlyphs">30</text>
+<polyline points="30.40,366.36 33.14,366.36 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="30.40,196.53 33.14,196.53 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="30.40,26.71 33.14,26.71 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="143.27,475.24 143.27,472.50 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="272.05,475.24 272.05,472.50 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="400.83,475.24 400.83,472.50 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+<text x="143.27" y="483.74" text-anchor="middle" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">2</text>
+<text x="272.05" y="483.74" text-anchor="middle" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">4</text>
+<text x="400.83" y="483.74" text-anchor="middle" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">6</text>
+<text x="241.04" y="496.20" text-anchor="middle" style="font-size: 11.00px; font-family: Arial;" textLength="11.00px" lengthAdjust="spacingAndGlyphs">wt</text>
+<text transform="translate(13.36,238.99) rotate(-90)" text-anchor="middle" style="font-size: 11.00px; font-family: Arial;" textLength="21.41px" lengthAdjust="spacingAndGlyphs">mpg</text>
+<rect x="459.91" y="182.47" width="38.61" height="113.03" style="stroke-width: 1.07; stroke: none; fill: #FFFFFF;"/>
+<image width="17.28" height="86.40" x="465.39" y="203.63" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAEsCAYAAAACUNnVAAAAmElEQVQ4ja2UQRLDMAgDd3hk/tnX5agcknFaCoa0vnkMCEnGsL12GQhDYDpPwoDrpBFlRDWi/9Wu6AHC9FkLYLrzlhD3oJ3mDvRHRYy7IC8A7bCK8gpWKYDzeQVArDcDyD2YAnSofZvzaOA6Q7Oahp/dmRuVTQ0xU5TGP2o8Waool1obVuv1q8qP9xPvg633XlGLDtfIhNUBcBeA5ss0BXMAAAAASUVORK5CYII="/>
+<text x="488.15" y="293.03" style="font-size: 8.80px; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">4</text>
+<text x="488.15" y="271.51" style="font-size: 8.80px; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">5</text>
+<text x="488.15" y="249.98" style="font-size: 8.80px; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">6</text>
+<text x="488.15" y="228.45" style="font-size: 8.80px; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">7</text>
+<text x="488.15" y="206.92" style="font-size: 8.80px; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">8</text>
+<text x="465.39" y="196.99" style="font-size: 11.00px; font-family: Arial;" textLength="13.44px" lengthAdjust="spacingAndGlyphs">cyl</text>
+<line x1="465.39" y1="289.88" x2="468.84" y2="289.88" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<line x1="465.39" y1="268.36" x2="468.84" y2="268.36" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<line x1="465.39" y1="246.83" x2="468.84" y2="246.83" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<line x1="465.39" y1="225.30" x2="468.84" y2="225.30" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<line x1="465.39" y1="203.77" x2="468.84" y2="203.77" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<line x1="479.21" y1="289.88" x2="482.67" y2="289.88" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<line x1="479.21" y1="268.36" x2="482.67" y2="268.36" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<line x1="479.21" y1="246.83" x2="482.67" y2="246.83" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<line x1="479.21" y1="225.30" x2="482.67" y2="225.30" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<line x1="479.21" y1="203.77" x2="482.67" y2="203.77" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+</g>
 </svg>
