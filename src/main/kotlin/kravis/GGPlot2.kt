@@ -20,7 +20,6 @@ import kotlin.io.path.extension
  */
 object SessionPrefs {
 
-
     private val AUTO_DETECT_DEVICE by lazy {
         try {
             Class.forName("jupyter.kotlin.KotlinContext")
@@ -227,13 +226,33 @@ class GGPlot(
      * labels display the full variable name. Use the plot title and subtitle to explain the main findings.
      * It's common to use the caption to provide information about the data source. tag can be used for adding identification tags.
      */
-    fun labs(title: String? = null, caption: String? = null, x: String? = null, y: String? = null, tag: String? = null) = appendSpec {
+    fun labs(
+        title: String? = null,
+        caption: String? = null,
+        x: String? = null,
+        y: String? = null,
+        tag: String? = null,
+
+        alpha: String? = null,
+        color: String? = null,
+        fill: String? = null,
+        shape: String? = null,
+        size: String? = null,
+        stroke: String? = null,
+        ) = appendSpec {
         val args = arg2string(
             "title" to title,
             "caption" to caption,
             "x" to x,
             "y" to y,
-            "tag" to tag
+            "tag" to tag,
+
+            "alpha" to alpha,
+            "color" to color,
+            "fill" to fill,
+            "shape" to shape,
+            "size" to size,
+            "stroke" to stroke,
         )
 
         addSpec("""labs(${args})""")

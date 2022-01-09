@@ -8,12 +8,12 @@ import kravis.Aesthetic.x
 import kravis.Aesthetic.y
 import kravis.OrderUtils.reorder
 import kravis.demo.IrisData
+import kravis.demo.irisScatter
 import kravis.demo.lakeHuron
 import kravis.nshelper.plot
 import org.junit.Ignore
 import org.junit.Test
 import java.io.File
-import java.lang.Thread.sleep
 
 
 @Suppress("UNUSED_EXPRESSION")
@@ -25,6 +25,14 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     override val testDataDir: File
         get() = File("src/test/resources/kravis")
 
+
+    @Test
+    fun `iris-scatter with limits`() {
+//        irisData.plot(x = "Species", y = "Sepal.Length", fill = "Species").geomPoint()
+        irisScatter
+            .xlim(5.0 to 6.0)
+            .apply { assertExpected(this) }
+    }
 
     @Test
     fun `boxplot with overlay`() {
@@ -70,7 +78,7 @@ class GeomRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `create a bar chart with a weight attribute`() {
-        val plot = irisData.plot(x="Species", weight = "Sepal.Length").geomBar()
+        val plot = irisData.plot(x = "Species", weight = "Sepal.Length").geomBar()
 
 //                plot.show()
         assertExpected(plot)
@@ -147,7 +155,7 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `area plot`() {
         val plot = irisData
-            .addColumn("row"){rowNumber}
+            .addColumn("row") { rowNumber }
             .plot("row" to x, IrisData.PetalLength to y, IrisData.Species to Aesthetic.fill).geomArea()
 
 
@@ -160,13 +168,12 @@ class GeomRegressions : AbstractSvgPlotRegression() {
         val plot = irisData
             .plot(IrisData.SepalLength to x, IrisData.PetalLength to y, IrisData.Species to Aesthetic.color)
             .geomPoint()
-            .geomSmooth(method="lm", se=false)
+            .geomSmooth(method = "lm", se = false)
 
         print(plot.spec)
 
         assertExpected(plot)
     }
-
 
 
     @Test
@@ -183,7 +190,6 @@ class GeomRegressions : AbstractSvgPlotRegression() {
 
         assertExpected(plot)
     }
-
 
 
     //    @Test
