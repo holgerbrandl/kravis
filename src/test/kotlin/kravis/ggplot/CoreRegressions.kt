@@ -52,6 +52,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `support custom r preamble for rendering`() {
         val preabmle = """
+        pacman::p_load(devtools)
         devtools::source_url("https://git.io/fAiQN")
         """
 
@@ -127,6 +128,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
         )
         """
 
+        @Suppress("UNUSED_VARIABLE")
         val plot2 = basePlot.theme(axisLine = ElementLine("arrow=arrow()"))
         //        plot2.open()
         //        plot.open()

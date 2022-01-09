@@ -32,6 +32,7 @@ package kravis
  * possible to place the labels on either of the four sides by setting strip.position = c("top", "bottom", "left",
  * "right")
  */
+@Suppress("KDocUnresolvedReference")
 fun GGPlot.facetWrap(
     vararg facets: String,
     nrow: Int? = null,
@@ -85,11 +86,11 @@ fun GGPlot.facetWrap(
  * "both".
  * @param drop If TRUE, the default, all factor levels not used in the data will automatically be dropped. If FALSE, all
  * factor levels will be shown, regardless of whether or not they appear in the data.
- * @param dir Direction: either "h" for horizontal, the default, or "v", for vertical.
  * @param stripPosition By default, the labels are displayed on the top of the plot. Using strip.position it is
  * possible to place the labels on either of the four sides by setting strip.position = c("top", "bottom", "left",
  * "right")
  */
+@Suppress("KDocUnresolvedReference")
 fun GGPlot.facetGrid(
     rows: Any? = null,
     cols: Any? = null,
@@ -106,7 +107,7 @@ fun GGPlot.facetGrid(
         "rows" to rows?.toStringList()?.toVars(),
         "cols" to cols?.toStringList()?.toVars(),
         "scales" to scales,
-        "space" to scales,
+        "space" to space,
         "shrink" to shrink,
 //        "labeller" to labeller,
         "as.table" to asTable,
@@ -136,12 +137,14 @@ private fun Any.toStringList(): List<String> = when (this) {
 //    margins: Boolean = false
 //) = facetGrid(listOf(rows), listOf(cols), scales, space, shrink, asTable, switch, drop, margins )
 
+@Suppress("EnumEntryName", "unused")
 enum class FacetScales {
     fixed, free, free_x, free_y;
 
     override fun toString(): String = super.toString().quoted
 }
 
+@Suppress("EnumEntryName", "unused")
 enum class FacetSwitch {
     both, x, y;
 
@@ -149,6 +152,7 @@ enum class FacetSwitch {
 
 }
 
+@Suppress("EnumEntryName", "unused")
 enum class StripPosition {
     top, bottom, left, right;
 

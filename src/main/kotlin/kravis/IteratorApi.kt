@@ -22,7 +22,7 @@ inline fun <reified T> Iterable<T>.plot(vararg aes2data: Pair<Aesthetic, PropExt
 
     //todo use reflection to get sensible names for variables
     val rulez = aes2data.toMap()
-        .mapKeys { (aes, extract) -> aes.toString() }
+        .mapKeys { (aes, _) -> aes.toString() }
 
     val aes = aes2data.toMap().keys.map { it.toString() to it }
 

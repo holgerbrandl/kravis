@@ -1,29 +1,31 @@
 package kravis.render
 
-import krangl.print
-import krangl.schema
 import krangl.writeTSV
 import kravis.GGPlot
 import java.awt.Dimension
 import java.io.File
+import java.nio.file.Path
+import kotlin.io.path.createTempFile
+import kotlin.io.path.exists
+import kotlin.io.path.invariantSeparatorsPath
 
 /**
  * @param path Path to R executable. If not set it will be inferred from PATH/environment settings.
  */
 class LocalR(val r:File?= null) : AbstractLocalRenderEngine() {
 
-    override fun render(plot: GGPlot, outputFile: File, preferredSize: Dimension?): File {
+    override fun render(plot: GGPlot, outputFile: Path, preferredSize: Dimension?): Path {
         // save all the data
         // todo hash dfs where possible to avoid IO
         val dataIngest = plot.dataRegistry.mapValues {
 //            it.value.schema()
 //            it.value.print()
-            createTempFile(".txt").apply { it.value.writeTSV(this) }
+            createTempFile(".txt").apply { it.value.writeTSV(this.toFile()) }
         }.map { (dataVar, file) ->
-            """${dataVar} = read_tsv("${file.invariantSeparatorsPath}")"""
+            """${dataVar} = read_tsv("${file.toFile().invariantSeparatorsPath}")"""
         }.joinToString("\n")
 
-        val rScript = compileScript(plot, dataIngest, outputFile.invariantSeparatorsPath, preferredSize)
+        val rScript = compileScript(plot, dataIngest, outputFile.toFile().invariantSeparatorsPath, preferredSize)
 
         val result = RUtils.runRScript(rScript, r)
         if (result.exitCode != 0) {

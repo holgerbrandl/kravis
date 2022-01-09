@@ -10,7 +10,10 @@ import kravis.render.PlotFormat
 import tornadofx.*
 import java.awt.Dimension
 import java.io.File
+import java.nio.file.Path
 import javax.swing.SwingUtilities
+import kotlin.io.path.createTempFile
+import kotlin.io.path.exists
 
 
 /**
@@ -22,7 +25,7 @@ object FxPngDevice : OutputDevice() {
     init {
         SwingUtilities.invokeLater {
 
-            val wrapper = JFXPanel()
+            JFXPanel()
 
             // Init TornadoFX Application
             Platform.runLater {
@@ -54,15 +57,15 @@ object FxPngDevice : OutputDevice() {
         //        imView.imageProperty.set(Image("file:///Users/brandl/Dropbox/sharedDB/fotos/2017-07-01 14.35.05.jpg"))
     }
 
-    fun showImage(imageFile: File) {
+    fun showImage(imageFile: Path) {
         val imView = FX.find(PngViewPanel::class.java)
-        imView.imageProperty.set(Image(imageFile.toURI().toURL().toString()))
+        imView.imageProperty.set(Image(imageFile.toUri().toURL().toString()))
     }
 }
 
 class PngViewPanel : View() {
 
-    val imageProperty = SimpleObjectProperty<javafx.scene.image.Image>()
+    val imageProperty = SimpleObjectProperty<Image>()
 
     override val root = borderpane {
         top = toolbar() {
@@ -100,7 +103,7 @@ fun main() {
     //    SwingUtilities.invokeLater { FXPlottingDevice.createAndShowGUI() }
 
 
-    FxPngDevice.showImage(File("/Users/brandl/Dropbox/sharedDB/fotos/2017-07-01 14.35.05.jpg"))
+    FxPngDevice.showImage(Path.of("/Users/brandl/Dropbox/sharedDB/fotos/2017-07-01 14.35.05.jpg"))
 
     // requires     compile 'de.codecentric.centerdevice:javafxsvg:1.3.0'
     //    SvgImageLoaderFactory.install(PrimitiveDimensionProvider())

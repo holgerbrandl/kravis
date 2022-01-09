@@ -14,39 +14,41 @@ import javax.imageio.ImageIO
  */
 
 
+@Suppress("unused")
 fun REXP.toPrettyString(): String {
     val o = this
     //assert o instanceof REXP : "Not an REXP object";
-    if (o is REXPNull) {
+    if(o is REXPNull) {
         return "NULL"
 
-    } else if (o.isList) {
+    } else if(o.isList) {
         val l = (o as REXPGenericVector).asList()
         var s = ""
-        for (k in l.keys()) {
-            s = s + k + ": " + with(l.get(k)) { if (this is REXP) toPrettyString() else toString() } + "\n"
+        for(k in l.keys()) {
+            s = s + k + ": " + with(l.get(k)) { if(this is REXP) toPrettyString() else toString() } + "\n"
         }
         return s
-    } else return if (o.isVector) {
+    } else return if(o.isVector) {
         try {
-            if (o.isRaw) {
+            if(o.isRaw) {
                 "[raw" + o.asBytes().size + "]"
             } else {
                 val ss = o.asStrings()
-                if (o.length() > 10) {
-                    Arrays.asList(*arrayOf(ss[0], ss[1], "...(" + ss.size + ")...", ss[ss.size - 2], ss[ss.size - 1])).toString()
+                if(o.length() > 10) {
+                    Arrays.asList(ss[0], ss[1], "...(" + ss.size + ")...", ss[ss.size - 2], ss[ss.size - 1])
+                        .toString()
                 } else {
                     Arrays.asList(*o.asStrings()).toString()
                 }
             }
-        } catch (ex: Exception) {
+        } catch(ex: Exception) {
             throw ClassCastException("[toString] Cannot toString $o")
         }
 
     } else {
         try {
             o.asString()
-        } catch (ex: Exception) {
+        } catch(ex: Exception) {
             throw ClassCastException("[toString] Cannot toString $o")
         }
 
@@ -66,16 +68,19 @@ internal fun RConnection.setTable(varName: String, data: DataFrame) {
     val col2data = data.cols.withIndex().map { (index, col) ->
         "col_$index" to when {
 
-            col is DoubleCol -> col.toDoubles().map { if (it == null) REXPDouble.NA else it }.toDoubleArray().let { REXPDouble(it) }
-            col is IntCol -> col.toInts().map { if (it == null) REXPInteger.NA else it }.toIntArray().let { REXPInteger(it) }
+            col is DoubleCol -> col.toDoubles().map { if(it == null) REXPDouble.NA else it }.toDoubleArray()
+                .let { REXPDouble(it) }
+            col is IntCol -> col.toInts().map { if(it == null) REXPInteger.NA else it }.toIntArray()
+                .let { REXPInteger(it) }
             col is BooleanCol -> col.toBooleans().map {
-                if (it == null) {
+                if(it == null) {
                     REXPLogical.NA
                 } else {
-                    (if (it!!) 1 else 0).toByte()
+                    (if(it) 1 else 0).toByte()
                 }
             }.toByteArray().let { REXPLogical(it) }
-            col is StringCol -> col.toStrings().map { if (it == null) "NA" else it }.toTypedArray().let { REXPString(it) }
+            col is StringCol -> col.toStrings().map { if(it == null) "NA" else it }.toTypedArray()
+                .let { REXPString(it) }
             else -> TODO("Unsupported type ${col::class.simpleName}")
         }
     }
@@ -118,7 +123,7 @@ internal fun RConnection.setTable(varName: String, data: DataFrame) {
 //        	logger.debug("make dataframe");
 //        eval("""data.frame(cbind(d1,d2))""")
 //        eval("attr($varName, \"row.names\") <- .set_row_names(length($varName[[1]])); class($varName) <- \"data.frame\"; ")
-    voidEval("""attr($varName, "row.names") <- .set_row_names(length($varName [[1]])); class($varName) <- "data.frame"; """);
+    voidEval("""attr($varName, "row.names") <- .set_row_names(length($varName [[1]])); class($varName) <- "data.frame"; """)
 
 
     // push row names to R and assign to dataframe
@@ -155,7 +160,7 @@ internal fun RConnection.createImageOld(script: String, width: Int, height: Int,
     val tempFileName = "rmPlotFile.$device"
 
     // create plot device on R side
-    val deviceArgs = if (device == "jpeg") "quality=97," else ""
+    val deviceArgs = if(device == "jpeg") "quality=97," else ""
 
     val xp: REXP? = null
 
@@ -187,7 +192,7 @@ internal fun RConnection.createImageOld(script: String, width: Int, height: Int,
 
     // evaluate script
     //        try {
-    if (useEvaluate) {
+    if(useEvaluate) {
         // parse and run script
         // evaluation list, can be used to create a console view
         //                evaluateScript(preparedScript, connection);
@@ -206,30 +211,29 @@ internal fun RConnection.createImageOld(script: String, width: Int, height: Int,
     //        }
 
     // close the image
-    var image: ByteArray? = null
     //        try {
     eval("dev.off();")
     // check if the plot file has been written
     val xpInt = eval("file.access('$tempFileName',0)").asInteger()
-    if (xpInt == -1) throw RServeExceptionException("Plot could not be created. Please check your script or submit a ticket to https://github.com/holgerbrandl/kravis")
+    if(xpInt == -1) throw RServeExceptionException("Plot could not be created. Please check your script or submit a ticket to https://github.com/holgerbrandl/kravis")
 
     // we limit the file size to 1MB which should be sufficient and we delete the file as well
-    val imagesBytes = eval("try({ binImage <- readBin('$tempFileName','raw',2024*2024); unlink('$tempFileName'); binImage })")
+    val imagesBytes =
+        eval("try({ binImage <- readBin('$tempFileName','raw',2024*2024); unlink('$tempFileName'); binImage })")
 
     //            if (xp.inherits("try-error")) { // if the result is of the class try-error then there was a problem
     //                throw new KnimeScriptingException(xp.asString());
     //            }
-    image = imagesBytes.asBytes()
 
     //        } catch (REXPMismatchException e) {
     //            throw new KnimeScriptingException("Failed to close image device and to read in plot as binary:+\n" + e.getMessage());
     //        }
 
     // create image object from bytes
-    var img: BufferedImage? = null
-    try {
-        img = ImageIO.read(ByteArrayInputStream(image))
-    } catch (e: IOException) {
+
+    val img: BufferedImage? = try {
+        ImageIO.read(ByteArrayInputStream(imagesBytes.asBytes()))
+    } catch(e: IOException) {
         throw RServeExceptionException(e.message ?: "")
     }
 

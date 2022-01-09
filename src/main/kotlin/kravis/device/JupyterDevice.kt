@@ -12,8 +12,11 @@ import java.awt.Dimension
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.nio.file.Path
 import java.util.*
 import javax.imageio.ImageIO
+import kotlin.io.path.createTempFile
+import kotlin.io.path.exists
 
 /**
  * @author Holger Brandl
@@ -31,15 +34,15 @@ class JupyterDevice(val renderSVG: Boolean = false, val size: Dimension? = Dimen
 
     override fun getPreferredSize(): Dimension? = size
 
-    internal fun renderAsSVG(imageFile: File): MimeTypedResult {
+    internal fun renderAsSVG(imageFile: Path): MimeTypedResult {
         TODO()
     }
 
-    internal fun renderAsImage(imageFile: File): MimeTypedResult {
+    internal fun renderAsImage(imageFile: Path): MimeTypedResult {
         // testing
         // val imageFile = File("/Users/brandl/Downloads/Clipboard.png")
 
-        val imageF = ImageIO.read(imageFile)
+        val imageF = ImageIO.read(imageFile.toFile())
 
         // Draw the image on to the buffered image
         val bimage = BufferedImage(imageF.getWidth(null), imageF.getHeight(null), BufferedImage.TYPE_INT_RGB)

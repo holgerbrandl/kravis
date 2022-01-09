@@ -1,13 +1,13 @@
 package kravis.ggplot
 
 import io.kotest.assertions.fail
-import junit.framework.Assert.assertTrue
 import krangl.DataFrame
 import krangl.readTSV
 import kravis.GGPlot
 import kravis.SessionPrefs
 import kravis.render.LocalR
 import kravis.render.saveTempFile
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.TestName
@@ -19,6 +19,9 @@ import javax.xml.transform.OutputKeys
 import javax.xml.transform.TransformerFactory
 import javax.xml.transform.stream.StreamResult
 import javax.xml.transform.stream.StreamSource
+import kotlin.io.path.createTempFile
+import kotlin.io.path.exists
+import kotlin.io.path.readText
 
 /**
  * @author Holger Brandl
@@ -35,7 +38,7 @@ abstract class AbstractSvgPlotRegression {
     protected fun assertExpected(plot: GGPlot, subtest: String? = null) {
         val plotFile = plot.save(createTempFile(suffix = ".svg"))
 
-        assertTrue(plotFile.exists() && plotFile.length() > 0)
+        assertTrue(plotFile.exists() && plotFile.toFile().length() > 0)
 
         val svgDoc = plotFile.readText().run { prettyFormat(this, 4) }.trim()
         //        val obtained = prettyFormat(svgDoc, 4).trim()
@@ -69,9 +72,9 @@ abstract class AbstractSvgPlotRegression {
             val stringWriter = StringWriter()
             val xmlOutput = StreamResult(stringWriter)
             val transformerFactory = TransformerFactory.newInstance()
-            transformerFactory.setAttribute("indent-number", indent)
             val transformer = transformerFactory.newTransformer()
             transformer.setOutputProperty(OutputKeys.INDENT, "yes")
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", indent.toString());
             transformer.transform(xmlInput, xmlOutput)
             return xmlOutput.writer.toString()
         } catch (e: Exception) {
@@ -89,10 +92,7 @@ abstract class AbstractSvgPlotRegression {
     }
 }
 
-fun GGPlot.open() = Desktop.getDesktop().open(saveTempFile())
-
-
-
+fun GGPlot.open() = Desktop.getDesktop().open(saveTempFile().toFile())
 
 
 val mpgData by lazy {

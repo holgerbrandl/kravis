@@ -5,7 +5,11 @@ import kravis.GGPlot
 import kravis.SessionPrefs
 import java.awt.Dimension
 import java.io.File
+import java.nio.file.Path
 import java.util.*
+import kotlin.io.path.copyTo
+import kotlin.io.path.exists
+import kotlin.io.path.extension
 
 /**
  * Note: The default container won't provide svg support. For svg support use `holgerbrandl/kravis_core:3.5.1`
@@ -19,7 +23,7 @@ class Docker(var image: String = "rocker/tidyverse:3.5.1") : AbstractLocalRender
     private val DOCKER_PLOT_MNT = """/plot"""
     private val DOCKER_DATA_MNT = """/data"""
 
-    override fun render(plot: GGPlot, outputFile: File, preferredSize: Dimension?): File {
+    override fun render(plot: GGPlot, outputFile: Path, preferredSize: Dimension?): Path {
         // save all the data
         // todo hash dfs where possible to avoid IO
 
@@ -61,7 +65,7 @@ class Docker(var image: String = "rocker/tidyverse:3.5.1") : AbstractLocalRender
             throw LocalRenderingFailedException(rScript, result)
         }
 
-        val tmpOutputFile = File(plotDir, File(plotOutputName).name)
+        val tmpOutputFile = File(plotDir, File(plotOutputName).name).toPath()
         require(tmpOutputFile.exists()) { System.err.println("Image generation failed") }
         //        require(outputFile.exists()) { System.err.println("Image generation failed") }
 

@@ -3,7 +3,7 @@ package kravis.samples
 import krangl.sleepData
 import krangl.sleepPatterns
 import kravis.*
-import java.io.File
+import kotlin.io.path.createTempFile
 
 
 /**
@@ -26,7 +26,7 @@ fun doScatter() {
         .scaleXLog10()
         .scaleYLog10("labels" to "comma".asRExpression)
         .title("Correlation of body and brain weight")
-        .save(File.createTempFile("kravis",".png"))
+        .save(createTempFile("kravis",".png"))
 //        .open()
 }
 

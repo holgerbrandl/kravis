@@ -3,6 +3,9 @@ package kravis.render
 import kravis.GGPlot
 import java.awt.Dimension
 import java.io.*
+import java.nio.file.Path
+import java.util.*
+import kotlin.io.path.createTempFile
 
 /**
  * @author Holger Brandl
@@ -12,18 +15,18 @@ enum class PlotFormat {
     PNG, SVG, EPS, JPG, PDF;
 
     override fun toString(): String {
-        return "." + super.toString().toLowerCase()
+        return "." + super.toString().lowercase(Locale.US)
     }
 
     companion object {
         @Suppress("SENSELESS_COMPARISON")
-        fun isSupported(extension: String): Boolean = valueOf(extension.toUpperCase()) != null
+        fun isSupported(extension: String): Boolean = valueOf(extension.uppercase(Locale.US)) != null
     }
 }
 
 
 abstract class RenderEngine {
-    internal abstract fun render(plot: GGPlot, outputFile: File, preferredSize: Dimension?): File
+    internal abstract fun render(plot: GGPlot, outputFile: Path, preferredSize: Dimension?): Path
 }
 
 internal object EngineAutodetect {
@@ -98,7 +101,7 @@ object RUtils {
 
 
     fun runRScript(script: String, r: File? = null): CmdResult {
-        val scriptFile = createTempFile(suffix = ".R").apply { writeText(script) }
+        val scriptFile = createTempFile(suffix = ".R").toFile().apply { writeText(script) }
 
         return evalCmd(r?.absolutePath ?: "R", listOf("--vanilla", "--quiet", "--slave", "-f", scriptFile.absolutePath))
     }
@@ -115,8 +118,9 @@ object RUtils {
 
     fun requireInPath(tool: String) = require(isInPath(tool)) { "$tool is required but not in PATH" }
 
-    fun evalCmd(executable: String, args: List<String>, showOutput: Boolean = false,
-                redirectStdout: File? = null, redirectStderr: File? = null): CmdResult {
+    fun evalCmd(
+        executable: String, args: List<String>, showOutput: Boolean = false
+    ): CmdResult {
 
         try {
             val pb = ProcessBuilder(*(arrayOf(executable) + args)) //.inheritIO();
@@ -147,7 +151,7 @@ object RUtils {
                 val isr = InputStreamReader(inStream)
                 val br = BufferedReader(isr)
                 for (line in br.linesJ7()) {
-                    sb.append(line!! + "\n")
+                    sb.append(line + "\n")
                     printStream?.println(line)
                 }
             } catch (ioe: IOException) {

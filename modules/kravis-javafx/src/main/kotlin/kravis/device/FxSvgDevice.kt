@@ -18,7 +18,7 @@ object FxSvgDevice {
     init {
         SwingUtilities.invokeLater {
 
-            val wrapper = JFXPanel()
+            JFXPanel()
 
             // Init TornadoFX Application
             Platform.runLater {

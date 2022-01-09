@@ -1,5 +1,6 @@
 package com.github.holgerbrandl.kravis.ggplot
 
+import kravis.titlecaseFirstChar
 import java.io.File
 
 /**
@@ -9,7 +10,7 @@ object PrepareArgList {
     @JvmStatic
     fun main(args: Array<String>) {
         File("/Users/brandl/Library/Preferences/IntelliJIdea2018.2/scratches/scratch_5.txt").useLines { line ->
-            line.map { it.split("").map { it.capitalize() }.joinToString("") }
+            line.map { it.split("").map { it.titlecaseFirstChar() }.joinToString("") }
                 .toList()
                 .flatMap { it.split(", ") }
                 .map { it.replace("= NULL", "") }

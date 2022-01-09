@@ -190,7 +190,7 @@ fun GGPlot.geomText(
         "color" to color,
         "size" to size,
         "hjust" to hjust,
-        "vjust" to hjust,
+        "vjust" to vjust,
 
         *dotdotdot.asList().toTypedArray()
     )
@@ -412,9 +412,9 @@ fun GGPlot.geomPath(
     removeNAs: Boolean = false,
     inheritAes: Boolean = true,
 
-    lineend: String = "butt",
-    linejoin: String = "round",
-    linemitre: Int = 10,
+    lineEnd: String = "butt",
+    lineJoin: String = "round",
+    lineMitre: Int = 10,
     arrow: String? = null,
 
     // list all the aesthetics it understands
@@ -434,9 +434,9 @@ fun GGPlot.geomPath(
         "show.legend" to showLegend,
         "inherit.aes" to inheritAes,
 
-        "lineend" to lineend,
-        "linejoin" to linejoin,
-        "linemitre" to linemitre,
+        "lineend" to lineEnd,
+        "linejoin" to lineJoin,
+        "linemitre" to lineMitre,
         "arrow" to arrow,
 
 
@@ -626,10 +626,11 @@ fun GGPlot.geomSegment(
  * @linetype For options see http://sape.inf.usi.ch/quick-reference/ggplot2/linetype
  */
 
+@Suppress("EnumEntryName", "unused")
 enum class StepDirection {
-    /** horizontal then vertical */
+    /** Horizontal then vertical */
     hv,
-    /**  vertical then horizontal*/
+    /** Vertical then horizontal*/
     vh;
 
     override fun toString(): String {
@@ -684,7 +685,7 @@ fun GGPlot.geomStep(
  *
  * For a complete reference of the underlying method see https://ggplot2.tidyverse.org/reference/geom_histogram.html
  *
- * @param binwidth The width of the bins. Can be specified as a numeric value, or a function that calculates width from x. The default is to use bins bins that cover the range of the data. You should always override this value, exploring multiple widths to find the best to illustrate the stories in your data. The bin width of a date variable is the number of days in each time; the bin width of a time variable is the number of seconds.
+ * @param binWidth The width of the bins. Can be specified as a numeric value, or a function that calculates width from x. The default is to use bins bins that cover the range of the data. You should always override this value, exploring multiple widths to find the best to illustrate the stories in your data. The bin width of a date variable is the number of days in each time; the bin width of a time variable is the number of seconds.
  *
  * @param bins Number of bins. Overridden by binwidth. Defaults to 30.
  *
@@ -706,6 +707,7 @@ fun GGPlot.geomHistogram(
     alpha: Double? = null,
     color: RColor? = null,
     fill: RColor? = null,
+    group: String? = null,
     linetype: LineType? = null,
     size: Double? = null
 ): GGPlot = appendSpec {
@@ -720,13 +722,14 @@ fun GGPlot.geomHistogram(
         "show.legend" to showLegend,
         "inherit.aes" to inheritAes,
 
-
         "binwidth" to binWidth,
         "bins" to bins,
 
-
+        "alpha" to alpha,
+        "color" to color,
         "color" to color,
         "fill" to fill,
+        "group" to group,
         "linetype" to linetype,
         "size" to size
     )
@@ -739,11 +742,6 @@ fun GGPlot.geomHistogram(
  * Visualize heatmaps. geom_tile uses the center of the tile and its size (x, y, width, height)
  *
  * For a complete reference of the underlying method see https://ggplot2.tidyverse.org/reference/geom_tile.html
- *
- * @param binwidth The width of the bins. Can be specified as a numeric value, or a function that calculates width from x. The default is to use bins bins that cover the range of the data. You should always override this value, exploring multiple widths to find the best to illustrate the stories in your data. The bin width of a date variable is the number of days in each time; the bin width of a time variable is the number of seconds.
- *
- * @param bins Number of bins. Overridden by binwidth. Defaults to 30.
- *
  */
 fun GGPlot.geomTile(
     // generic options to all geoms
@@ -792,7 +790,7 @@ fun GGPlot.geomTile(
  * Official Reference https://ggplot2.tidyverse.org/reference/geom_bin2d.html
  *
  * @param bins Number of bins. Overridden by binwidth. Defaults to 30.
- * @param binwdith Numeric vector giving bin width in both vertical and horizontal directions. Overrides bins if both set.
+ * @param binWidth Numeric vector giving bin width in both vertical and horizontal directions. Overrides bins if both set.
 
  */
 fun GGPlot.geomBin2D(
@@ -806,7 +804,7 @@ fun GGPlot.geomBin2D(
     inheritAes: Boolean = true,
 
     bins: Int = 30,
-    binwidth: List<Double>? = null,
+    binWidth: List<Double>? = null,
 
     // list all the aesthetics it understands
     fill: RColor? = null
@@ -823,7 +821,7 @@ fun GGPlot.geomBin2D(
         "inherit.aes" to inheritAes,
 
         "bins" to bins,
-        "binwidth" to binwidth?.toRVector(),
+        "binwidth" to binWidth?.toRVector(),
 
         "fill" to fill
     )
@@ -843,9 +841,6 @@ fun GGPlot.geomBin2D(
  * @param formula Formula to use in smoothing function, eg. y ~ x, y ~ poly(x, 2), y ~ log(x). NULL by default, in which case method = NULL implies formula = y ~ x when there are fewer than 1,000 observations and formula = y ~ s(x, bs = "cs") otherwise.
  * @param se Display confidence interval around smooth? (TRUE by default, see level to control.)
  * @param span Controls the amount of smoothing for the default loess smoother. Smaller numbers produce wigglier lines, larger numbers produce smoother lines. Only used with loess, i.e. when method = "loess", or when method = NULL (the default) and there are fewer than 1,000 observations.
- *
- * @param bins Number of bins. Overridden by binwidth. Defaults to 30.
- *
  */
 fun GGPlot.geomSmooth(
     // generic options to all geoms

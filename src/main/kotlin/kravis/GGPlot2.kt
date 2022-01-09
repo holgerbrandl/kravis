@@ -12,6 +12,8 @@ import kravis.render.PlotFormat
 import kravis.render.RenderEngine
 import java.awt.Dimension
 import java.io.File
+import java.nio.file.Path
+import kotlin.io.path.extension
 
 /**
  * Various Settings to finetune rendering and behavior of kravis. Those settins are not persisted and need to be configured on a per session basis
@@ -166,7 +168,7 @@ class GGPlot(
 
 
     /** Return the file to which the plot was saved. */
-    fun save(file: File, preferredSize: Dimension? = null): File {
+    fun save(file: Path, preferredSize: Dimension? = null): Path {
         require(PlotFormat.isSupported(file.extension)) { "Unsupported image format" }
         return RENDER_BACKEND.render(this, file, preferredSize)
     }

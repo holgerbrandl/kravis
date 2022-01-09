@@ -4,8 +4,10 @@ Kravis Release History
 v0.9
 ----
 
-* decoupeld javafx support into independent module
-* Added various geoms and exteded aesthetics support
+* Decoupled javafx support into independent module
+* Added various geoms and extended aesthetics support
+* Migrated from `File` to `Path` API
+* Fixed numerous bugs
 
 v0.8
 ----

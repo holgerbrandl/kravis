@@ -12,15 +12,22 @@ import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.IOException
 import java.nio.charset.StandardCharsets
+import java.nio.file.Path
+import java.util.*
 import javax.imageio.ImageIO
+import kotlin.io.path.createTempFile
+import kotlin.io.path.exists
+import kotlin.io.path.extension
+import kotlin.io.path.writeText
 
 /**
  * A rendering engine that uses a remote Rserve instance to build the plot. See https://www.rforge.net/Rserve/
+ *
  * @author Holger Brandl
  */
 class RserveEngine(val host: String = "localhost", val port: Int = 6311) : RenderEngine() {
 
-    override fun render(plot: GGPlot, outputFile: File, preferredSize: Dimension?): File {
+    override fun render(plot: GGPlot, outputFile: Path, preferredSize: Dimension?): Path {
 
         val connection = RConnection(host, port)
 
@@ -28,7 +35,7 @@ class RserveEngine(val host: String = "localhost", val port: Int = 6311) : Rende
             connection.setTable(varName, df)
         }
 
-        val plotFormat = PlotFormat.valueOf(outputFile.extension.toUpperCase())
+        val plotFormat = PlotFormat.valueOf(outputFile.extension.uppercase(Locale.US))
         val rScript = compileScript(plot, preferredSize, plotFormat)
 //        val rScript = """plot(1:10)"""
 
@@ -50,7 +57,7 @@ class RserveEngine(val host: String = "localhost", val port: Int = 6311) : Rende
 //            throw LocalRenderingFailedException(rScript, result)
 //        }
 
-            ImageIO.write(img, outputFile.extension, outputFile)
+            ImageIO.write(img, outputFile.extension, outputFile.toFile())
         }
 
 

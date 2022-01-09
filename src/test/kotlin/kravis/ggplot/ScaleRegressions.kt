@@ -34,7 +34,7 @@ class ScaleRegressions : AbstractSvgPlotRegression() {
                 "versicolor" to RColor.yellow
             ),
                 // to make sure that dotargs work as well we reset the aesthetic here
-                dotdotdot = *arrayOf("aesthetics" to "colour")
+                dotdotdot = arrayOf("aesthetics" to "colour")
             )
 
         assertExpected(plot)

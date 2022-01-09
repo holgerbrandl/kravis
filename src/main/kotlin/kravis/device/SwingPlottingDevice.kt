@@ -7,10 +7,13 @@ import java.awt.event.ActionEvent
 import java.awt.event.ComponentAdapter
 import java.awt.event.ComponentEvent
 import java.io.File
+import java.nio.file.Path
 import javax.imageio.ImageIO
 import javax.swing.JDialog
 import javax.swing.Timer
 import javax.swing.WindowConstants
+import kotlin.io.path.createTempFile
+import kotlin.io.path.exists
 
 
 abstract class OutputDevice {
@@ -120,8 +123,8 @@ class SwingPlottingDevice : OutputDevice() {
         plotResultPanel
     }
 
-    internal fun showImage(imageFile: File) {
-        val img = ImageIO.read(imageFile); // eventually C:\\ImageTest\\pic2.jpg
+    internal fun showImage(imageFile: Path) {
+        val img = ImageIO.read(imageFile.toFile()) // eventually C:\\ImageTest\\pic2.jpg
 
         panel.imagePanel.setImage(img)
     }
@@ -129,5 +132,5 @@ class SwingPlottingDevice : OutputDevice() {
 
 
 fun main() {
-    SwingPlottingDevice().showImage(File("/Users/brandl/Dropbox/sharedDB/fotos/2017-07-01 14.35.05.jpg"))
+    SwingPlottingDevice().showImage(Path.of("/Users/brandl/Dropbox/sharedDB/fotos/2017-07-01 14.35.05.jpg"))
 }

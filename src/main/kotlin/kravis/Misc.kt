@@ -17,7 +17,8 @@ fun GGPlot.guides(
         "color" to color,
         "fill" to fill,
         "shape" to shape,
-        "size" to size
+        "size" to size,
+        "stroke" to stroke
     ).filterValues { it != null }.toList().run { arg2string(*this.toTypedArray()) }
 
 
@@ -54,3 +55,10 @@ enum class LegendType {
 //        }
 //    }
 //}
+
+/**
+ * Replacement for Kotlin's deprecated `capitalize()` function.
+ *
+ * From https://stackoverflow.com/questions/67843986/is-there-a-shorter-replacement-for-kotlins-deprecated-string-capitalize-funct
+ */
+internal fun String.titlecaseFirstChar() = replaceFirstChar(Char::titlecase)
