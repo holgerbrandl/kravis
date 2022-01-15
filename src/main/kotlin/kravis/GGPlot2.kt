@@ -13,6 +13,7 @@ import kravis.render.RenderEngine
 import java.awt.Dimension
 import java.io.File
 import java.nio.file.Path
+import java.util.*
 import kotlin.io.path.extension
 
 /**
@@ -22,11 +23,13 @@ object SessionPrefs {
 
     private val AUTO_DETECT_DEVICE by lazy {
         try {
-            Class.forName("jupyter.kotlin.KotlinContext")
-            infoMsg("Using jupyter device")
+            // blocked by https://github.com/Kotlin/kotlin-jupyter/issues/352
+//            Class.forName("org.jetbrains.kotlinx.jupyter.api.session.JupyterSessionProvider")
+//            infoMsg("Using jupyter plotting device")
             JupyterDevice()
         } catch (e: ClassNotFoundException) {
             // it's not jupyter so default back to swing
+//            infoMsg("Using swing plotting device")
             SwingPlottingDevice()
         }
     }
