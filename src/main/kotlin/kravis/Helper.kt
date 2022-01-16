@@ -1,6 +1,7 @@
 package kravis
 
 import krangl.irisData
+import java.util.*
 
 class VarName(val name: String) {
     override fun toString() = name
@@ -37,7 +38,7 @@ internal fun Any.toStringAndQuote(): String? {
     }
 }
 
-internal fun Boolean.toRString() = this.toString().toUpperCase()
+internal fun Boolean.toRString() = this.toString().uppercase(Locale.US)
 
 private fun String.nullIfEmpty(): String? {
     if (isEmpty()) return null else return this

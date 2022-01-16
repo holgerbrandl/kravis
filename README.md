@@ -1,6 +1,6 @@
 # `kravis` - A {k}otlin {gra}mmar for data {vis}ualization
 
- [ ![Download](https://img.shields.io/badge/Maven%20Central-0.8.4-orange) ](https://mvnrepository.com/artifact/com.github.holgerbrandl/kravis)
+ [ ![Download](https://img.shields.io/badge/Maven%20Central-0.8.5-orange) ](https://mvnrepository.com/artifact/com.github.holgerbrandl/kravis)
 
 [//]: # ([![Build Status]&#40;https://travis-ci.org/holgerbrandl/kravis.svg?branch=master&#41;]&#40;https://travis-ci.org/holgerbrandl/kravis&#41;)
 
@@ -54,7 +54,7 @@ See [here](https://github.com/holgerbrandl/kalasim/blob/master/simulations/noteb
 Add the following artifact to your `gradle.build`
 
 ```
-compile "com.github.holgerbrandl:kravis:0.8.4"
+compile "com.github.holgerbrandl:kravis:0.8.5"
 ```
 
 You can also use [JitPack with Maven or Gradle](https://jitpack.io/#holgerbrandl/kravis/-SNAPSHOT) to build the latest snapshot as a dependency in your project.

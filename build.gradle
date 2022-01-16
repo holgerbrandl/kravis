@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
 //    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    compileOnly "org.jetbrains.kotlin:kotlin-reflect"
+    compileOnly "org.jetbrains.kotlin:kotlin-reflect:1.6.10"
 
     // tagged version for release
 //    compile "com.github.holgerbrandl.krangl:krangl:0.15.6"
@@ -43,7 +43,7 @@ dependencies {
 
     // needed to work around https://youtrack.jetbrains.com/issue/KT-15064
 //    compileOnly "org.jetbrains.kotlin:kotlin-script-runtime:$kotlin_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-script-runtime:1.4.21"
+    testImplementation "org.jetbrains.kotlin:kotlin-script-runtime:1.6.10"
 //    testCompile "org.jetbrains.kotlin:kotlin-script-runtime:$kotlin_version"
 
     // testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.16'
@@ -74,7 +74,7 @@ javadoc {
 group 'com.github.holgerbrandl'
 //version '0.8-SNAPSHOT'
 //version '0.9'
-version '0.8.5-SNAPSHOT'
+version '0.8.5'
 
 
 
