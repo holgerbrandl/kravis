@@ -8,6 +8,9 @@
       stroke-linejoin: round;
       stroke-miterlimit: 10.00;
     }
+    .svglite text {
+      white-space: pre;
+    }
   ]]></style>
 </defs>
 <rect width="100%" height="100%" style="stroke: none; fill: #FFFFFF;"/>
@@ -17,58 +20,58 @@
   </clipPath>
 </defs>
 <g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
-<rect x="0.00" y="0.00" width="504.00" height="504.00" style="stroke-width: 2.13; stroke: #FFFFFF; fill: #FFFFFF;"/>
+<rect x="-0.000000000000064" y="0.00" width="504.00" height="504.00" style="stroke-width: 2.13; stroke: #FFFFFF; fill: #FFFFFF;"/>
 </g>
 <defs>
-  <clipPath id="cpMzUuNTl8NDk4LjUyfDUuNDh8NDcyLjUw">
-    <rect x="35.59" y="5.48" width="462.93" height="467.02"/>
+  <clipPath id="cpMzcuNDR8NDk4LjUyfDUuNDh8NDcyLjI5">
+    <rect x="37.44" y="5.48" width="461.08" height="466.82"/>
   </clipPath>
 </defs>
-<g clip-path="url(#cpMzUuNTl8NDk4LjUyfDUuNDh8NDcyLjUw)">
-<rect x="35.59" y="5.48" width="462.93" height="467.02" style="stroke-width: 2.13; stroke: none; fill: #FFFFFF;"/>
-<polyline points="35.59,407.05 498.52,407.05 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="35.59,318.60 498.52,318.60 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="35.59,230.15 498.52,230.15 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="35.59,141.69 498.52,141.69 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="35.59,53.24 498.52,53.24 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="80.01,472.50 80.01,5.48 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="196.91,472.50 196.91,5.48 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="313.81,472.50 313.81,5.48 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="430.72,472.50 430.72,5.48 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="35.59,451.28 498.52,451.28 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="35.59,362.82 498.52,362.82 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="35.59,274.37 498.52,274.37 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="35.59,185.92 498.52,185.92 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="35.59,97.47 498.52,97.47 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="35.59,9.02 498.52,9.02 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="138.46,472.50 138.46,5.48 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="255.36,472.50 255.36,5.48 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="372.27,472.50 372.27,5.48 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<polyline points="489.17,472.50 489.17,5.48 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
-<rect x="35.59" y="5.48" width="462.93" height="467.02" style="stroke-width: 2.13; stroke: #333333;"/>
+<g clip-path="url(#cpMzcuNDR8NDk4LjUyfDUuNDh8NDcyLjI5)">
+<rect x="37.44" y="5.48" width="461.08" height="466.82" style="stroke-width: 2.13; stroke: none; fill: #FFFFFF;"/>
+<polyline points="37.44,406.87 498.52,406.87 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="37.44,318.46 498.52,318.46 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="37.44,230.05 498.52,230.05 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="37.44,141.63 498.52,141.63 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="37.44,53.22 498.52,53.22 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="81.69,472.29 81.69,5.48 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="198.12,472.29 198.12,5.48 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="314.56,472.29 314.56,5.48 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="430.99,472.29 430.99,5.48 " style="stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="37.44,451.08 498.52,451.08 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="37.44,362.66 498.52,362.66 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="37.44,274.25 498.52,274.25 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="37.44,185.84 498.52,185.84 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="37.44,97.43 498.52,97.43 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="37.44,9.02 498.52,9.02 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="139.91,472.29 139.91,5.48 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="256.34,472.29 256.34,5.48 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="372.77,472.29 372.77,5.48 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<polyline points="489.21,472.29 489.21,5.48 " style="stroke-width: 2.13; stroke: #EBEBEB; stroke-linecap: butt;"/>
+<rect x="37.44" y="5.48" width="461.08" height="466.82" style="stroke-width: 2.13; stroke: #333333;"/>
 </g>
 <g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
-<text x="30.65" y="454.43" text-anchor="end" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="12.24px" lengthAdjust="spacingAndGlyphs">2.0</text>
-<text x="30.65" y="365.97" text-anchor="end" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="12.24px" lengthAdjust="spacingAndGlyphs">2.5</text>
-<text x="30.65" y="277.52" text-anchor="end" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="12.24px" lengthAdjust="spacingAndGlyphs">3.0</text>
-<text x="30.65" y="189.07" text-anchor="end" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="12.24px" lengthAdjust="spacingAndGlyphs">3.5</text>
-<text x="30.65" y="100.62" text-anchor="end" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="12.24px" lengthAdjust="spacingAndGlyphs">4.0</text>
-<text x="30.65" y="12.17" text-anchor="end" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="12.24px" lengthAdjust="spacingAndGlyphs">4.5</text>
-<polyline points="32.85,451.28 35.59,451.28 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="32.85,362.82 35.59,362.82 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="32.85,274.37 35.59,274.37 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="32.85,185.92 35.59,185.92 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="32.85,97.47 35.59,97.47 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="32.85,9.02 35.59,9.02 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="138.46,475.24 138.46,472.50 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="255.36,475.24 255.36,472.50 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="372.27,475.24 372.27,472.50 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="489.17,475.24 489.17,472.50 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
-<text x="138.46" y="483.74" text-anchor="middle" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">5</text>
-<text x="255.36" y="483.74" text-anchor="middle" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">6</text>
-<text x="372.27" y="483.74" text-anchor="middle" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">7</text>
-<text x="489.17" y="483.74" text-anchor="middle" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">8</text>
-<text x="267.05" y="496.20" text-anchor="middle" style="font-size: 11.00px; font-family: Arial;" textLength="64.86px" lengthAdjust="spacingAndGlyphs">Sepal.Length</text>
-<text transform="translate(13.36,238.99) rotate(-90)" text-anchor="middle" style="font-size: 11.00px; font-family: Arial;" textLength="59.32px" lengthAdjust="spacingAndGlyphs">Sepal.Width</text>
+<text x="32.51" y="454.28" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="13.98px" lengthAdjust="spacingAndGlyphs">2.0</text>
+<text x="32.51" y="365.87" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="13.98px" lengthAdjust="spacingAndGlyphs">2.5</text>
+<text x="32.51" y="277.46" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="13.98px" lengthAdjust="spacingAndGlyphs">3.0</text>
+<text x="32.51" y="189.05" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="13.98px" lengthAdjust="spacingAndGlyphs">3.5</text>
+<text x="32.51" y="100.64" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="13.98px" lengthAdjust="spacingAndGlyphs">4.0</text>
+<text x="32.51" y="12.22" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="13.98px" lengthAdjust="spacingAndGlyphs">4.5</text>
+<polyline points="34.70,451.08 37.44,451.08 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="34.70,362.66 37.44,362.66 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="34.70,274.25 37.44,274.25 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="34.70,185.84 37.44,185.84 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="34.70,97.43 37.44,97.43 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="34.70,9.02 37.44,9.02 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="139.91,475.03 139.91,472.29 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="256.34,475.03 256.34,472.29 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="372.77,475.03 372.77,472.29 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="489.21,475.03 489.21,472.29 " style="stroke-width: 2.13; stroke: #333333; stroke-linecap: butt;"/>
+<text x="139.91" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">5</text>
+<text x="256.34" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">6</text>
+<text x="372.77" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">7</text>
+<text x="489.21" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">8</text>
+<text x="267.98" y="496.23" text-anchor="middle" style="font-size: 11.00px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="71.97px" lengthAdjust="spacingAndGlyphs">Sepal.Length</text>
+<text transform="translate(13.50,238.89) rotate(-90)" text-anchor="middle" style="font-size: 11.00px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="66.00px" lengthAdjust="spacingAndGlyphs">Sepal.Width</text>
 </g>
 </svg>
