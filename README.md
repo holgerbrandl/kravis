@@ -294,6 +294,12 @@ irisData.plot(x = "Species", y = "Sepal.Length", fill = "Species")
 
 ![](.README_images/dot_violin.png)
 
+## How to run tests on your local machine
+
+Run the following commands.
+
+    cd misc/docker/kravis_test/ && docker build --progress=plain -t kravis_test .
+    ./gradlew test
 
 ## References
 

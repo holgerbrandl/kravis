@@ -1,8 +1,10 @@
 package kravis.render
 
 import kravis.GGPlot
+import kravis.toStringAndQuote
 import java.awt.Dimension
 import java.io.*
+import java.nio.charset.StandardCharsets
 import java.nio.file.Path
 import java.util.*
 import kotlin.io.path.createTempFile
@@ -93,12 +95,7 @@ fun Dimension?.adjustSize(): String? {
 
 
 object RUtils {
-    data class CmdResult(val exitCode: Int, val stdout: Iterable<String>, val stderr: Iterable<String>) {
-        fun sout() = stdout.joinToString("\n").trim()
-
-        fun serr() = stderr.joinToString("\n").trim()
-    }
-
+    data class CmdResult(val exitCode: Int, val sout: String, val serr: String)
 
     fun runRScript(script: String, r: File? = null): CmdResult {
         val scriptFile = createTempFile(suffix = ".R").toFile().apply { writeText(script) }
@@ -127,49 +124,24 @@ object RUtils {
             pb.directory(File("."));
             val p = pb.start();
 
-            val outputGobbler = StreamGobbler(p.getInputStream(), if (showOutput) System.out else null)
-            val errorGobbler = StreamGobbler(p.getErrorStream(), if (showOutput) System.err else null)
-
-            // kick them off
-            errorGobbler.start()
-            outputGobbler.start()
-
             // any error???
             val exitVal = p.waitFor()
-            return CmdResult(exitVal, outputGobbler.sb.lines(), errorGobbler.sb.lines())
+            val sout = p.inputStream.readAllBytes().toString(StandardCharsets.UTF_8)
+            val serr = p.errorStream.readAllBytes().toString(StandardCharsets.UTF_8)
+            if (showOutput) {
+                System.out.println(sout)
+                System.err.println(serr)
+            }
+            return CmdResult(exitVal, sout, serr)
         } catch (t: Throwable) {
             throw RuntimeException(t)
         }
     }
-
-
-    internal class StreamGobbler(var inStream: InputStream, val printStream: PrintStream?) : Thread() {
-        var sb = StringBuilder()
-
-        override fun run() {
-            try {
-                val isr = InputStreamReader(inStream)
-                val br = BufferedReader(isr)
-                for (line in br.linesJ7()) {
-                    sb.append(line + "\n")
-                    printStream?.println(line)
-                }
-            } catch (ioe: IOException) {
-                ioe.printStackTrace()
-            }
-        }
-
-        private fun BufferedReader.linesJ7(): Iterable<String> = lineSequence().toList()
-
-
-        val output: String get() = sb.toString()
-    }
-
 }
 
 
 open class RenderingFailedException : java.lang.RuntimeException()
 
 class LocalRenderingFailedException(val script: String, val invokeResult: RUtils.CmdResult) : RenderingFailedException() {
-    override fun toString(): String = "Script:\n" + script + "\n\n" + invokeResult.serr()
+    override fun toString(): String = "Script:\n" + script + "\n\n" + invokeResult.serr
 }

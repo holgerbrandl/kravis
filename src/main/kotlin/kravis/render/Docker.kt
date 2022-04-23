@@ -79,7 +79,7 @@ class Docker(var image: String = "rocker/tidyverse:3.5.1") : AbstractLocalRender
        RUtils.requireInPath("docker")
 
         //not really  necessary, because would docker do this automatcially, but since this will take a while we want to log it
-        if(RUtils.evalBash("docker images -q $image").sout().isBlank()) {
+        if(RUtils.evalBash("docker images -q $image").sout.isBlank()) {
             System.err.println("image '$image' is not yet present on your machine. Pulling image with `docker pull $image`...")
             RUtils.evalCmd("docker", listOf("pull", image), showOutput = true)
         }
