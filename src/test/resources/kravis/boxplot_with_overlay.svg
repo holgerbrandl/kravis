@@ -8,6 +8,9 @@
       stroke-linejoin: round;
       stroke-miterlimit: 10.00;
     }
+    .svglite text {
+      white-space: pre;
+    }
   ]]></style>
 </defs>
 <rect width="100%" height="100%" style="stroke: none; fill: #FFFFFF;"/>
@@ -20,205 +23,205 @@
 <rect x="0.00" y="-0.000000000000057" width="504.00" height="504.00" style="stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;"/>
 </g>
 <defs>
-  <clipPath id="cpMjguMjR8NDk4LjUyfDIzLjE4fDQ3Mi41MA==">
-    <rect x="28.24" y="23.18" width="470.28" height="449.33"/>
+  <clipPath id="cpMjkuMDZ8NDk4LjUyfDIzLjMyfDQ3Mi4yOQ==">
+    <rect x="29.06" y="23.32" width="469.47" height="448.97"/>
   </clipPath>
 </defs>
-<g clip-path="url(#cpMjguMjR8NDk4LjUyfDIzLjE4fDQ3Mi41MA==)">
-<rect x="28.24" y="23.18" width="470.28" height="449.33" style="stroke-width: 1.07; stroke: none; fill: #EBEBEB;"/>
-<polyline points="28.24,452.08 498.52,452.08 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="28.24,313.84 498.52,313.84 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="28.24,175.60 498.52,175.60 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="28.24,37.35 498.52,37.35 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="28.24,382.96 498.52,382.96 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="28.24,244.72 498.52,244.72 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="28.24,106.48 498.52,106.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="116.42,472.50 116.42,23.18 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="263.38,472.50 263.38,23.18 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="410.34,472.50 410.34,23.18 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<circle cx="116.42" cy="445.17" r="1.95" style="stroke-width: 0.71; stroke: #3366FF; fill: #3366FF;"/>
-<circle cx="116.42" cy="452.08" r="1.95" style="stroke-width: 0.71; stroke: #3366FF; fill: #3366FF;"/>
-<circle cx="116.42" cy="389.87" r="1.95" style="stroke-width: 0.71; stroke: #3366FF; fill: #3366FF;"/>
-<circle cx="116.42" cy="389.87" r="1.95" style="stroke-width: 0.71; stroke: #3366FF; fill: #3366FF;"/>
-<line x1="116.42" y1="412.34" x2="116.42" y2="403.70" style="stroke-width: 1.07; stroke: #3366FF; stroke-linecap: butt;"/>
-<line x1="116.42" y1="424.43" x2="116.42" y2="438.26" style="stroke-width: 1.07; stroke: #3366FF; stroke-linecap: butt;"/>
-<polygon points="61.31,412.34 61.31,424.43 171.53,424.43 171.53,412.34 61.31,412.34 " style="stroke-width: 1.07; stroke: #3366FF; fill: #DA70D6;"/>
-<line x1="61.31" y1="417.52" x2="171.53" y2="417.52" style="stroke-width: 2.13; stroke: #3366FF; stroke-linecap: butt;"/>
-<circle cx="263.38" cy="313.84" r="1.95" style="stroke-width: 0.71; stroke: #3366FF; fill: #3366FF;"/>
-<line x1="263.38" y1="203.24" x2="263.38" y2="168.68" style="stroke-width: 1.07; stroke: #3366FF; stroke-linecap: butt;"/>
-<line x1="263.38" y1="244.72" x2="263.38" y2="293.10" style="stroke-width: 1.07; stroke: #3366FF; stroke-linecap: butt;"/>
-<polygon points="208.27,203.24 208.27,244.72 318.49,244.72 318.49,203.24 208.27,203.24 " style="stroke-width: 1.07; stroke: #3366FF; fill: #DA70D6;"/>
-<line x1="208.27" y1="220.53" x2="318.49" y2="220.53" style="stroke-width: 2.13; stroke: #3366FF; stroke-linecap: butt;"/>
-<line x1="410.34" y1="115.12" x2="410.34" y2="44.27" style="stroke-width: 1.07; stroke: #3366FF; stroke-linecap: butt;"/>
-<line x1="410.34" y1="168.68" x2="410.34" y2="210.16" style="stroke-width: 1.07; stroke: #3366FF; stroke-linecap: butt;"/>
-<polygon points="355.23,115.12 355.23,168.68 465.45,168.68 465.45,115.12 355.23,115.12 " style="stroke-width: 1.07; stroke: #3366FF; fill: #DA70D6;"/>
-<line x1="355.23" y1="137.58" x2="465.45" y2="137.58" style="stroke-width: 2.13; stroke: #3366FF; stroke-linecap: butt;"/>
-<circle cx="109.53" cy="423.80" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="112.66" cy="424.12" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="118.56" cy="432.29" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="128.42" cy="417.78" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="107.65" cy="424.43" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="128.13" cy="405.46" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="129.49" cy="424.27" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="121.15" cy="419.87" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="120.21" cy="425.66" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="103.54" cy="419.11" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="107.78" cy="418.71" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="106.91" cy="408.42" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="121.92" cy="424.73" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="113.01" cy="443.62" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="124.35" cy="436.15" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="116.35" cy="418.00" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="122.82" cy="433.76" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="130.88" cy="425.34" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="112.89" cy="402.46" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="124.57" cy="418.42" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="129.20" cy="402.97" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="107.96" cy="415.64" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="120.88" cy="450.11" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="105.41" cy="404.30" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="109.58" cy="390.53" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="113.07" cy="408.42" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="102.12" cy="409.81" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="112.96" cy="416.19" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="127.29" cy="423.85" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="111.73" cy="408.38" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="115.89" cy="411.75" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="119.35" cy="419.23" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="116.23" cy="415.38" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="107.20" cy="424.41" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="126.04" cy="415.43" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="121.37" cy="439.97" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="125.07" cy="429.92" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="104.90" cy="423.19" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="122.99" cy="428.89" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="113.81" cy="417.26" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="125.85" cy="430.17" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="120.74" cy="431.96" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="124.74" cy="433.55" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="117.98" cy="408.24" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="117.29" cy="391.07" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="124.92" cy="423.93" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="102.41" cy="412.76" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="115.75" cy="422.55" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="123.25" cy="418.53" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="122.08" cy="422.87" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="262.72" cy="197.62" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="274.00" cy="211.71" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="261.56" cy="182.42" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="255.88" cy="246.00" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="250.76" cy="205.01" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="251.61" cy="210.05" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="257.98" cy="195.99" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="263.93" cy="295.15" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="268.14" cy="204.59" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="260.64" cy="250.42" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="275.52" cy="276.73" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="257.31" cy="233.10" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="262.18" cy="243.26" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="258.45" cy="193.86" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="267.82" cy="270.60" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="256.27" cy="218.13" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="262.75" cy="209.33" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="271.21" cy="235.30" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="251.16" cy="207.65" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="274.41" cy="252.51" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="258.65" cy="190.73" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="273.36" cy="246.57" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="258.87" cy="183.49" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="258.50" cy="196.28" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="262.69" cy="221.64" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="274.91" cy="217.01" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="274.09" cy="190.76" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="260.15" cy="178.10" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="271.53" cy="210.61" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="276.92" cy="277.32" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="261.46" cy="259.39" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="269.63" cy="267.49" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="260.44" cy="252.32" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="258.25" cy="167.96" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="270.94" cy="210.76" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="254.64" cy="209.11" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="269.59" cy="195.29" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="252.26" cy="216.77" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="255.90" cy="238.19" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="252.90" cy="244.98" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="255.73" cy="218.14" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="250.42" cy="202.81" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="267.56" cy="242.45" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="274.44" cy="295.08" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="271.58" cy="231.36" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="272.12" cy="232.49" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="262.07" cy="231.29" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="260.74" cy="226.01" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="272.52" cy="314.06" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="266.47" cy="235.36" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="414.89" cy="105.03" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="406.03" cy="166.29" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="403.59" cy="113.55" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="424.82" cy="133.55" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="414.27" cy="120.38" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="401.91" cy="67.17" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="399.45" cy="211.55" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="409.70" cy="85.75" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="422.81" cy="121.00" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="413.25" cy="97.16" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="424.34" cy="168.55" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="417.16" cy="155.87" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="406.13" cy="142.26" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="408.33" cy="174.01" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="400.00" cy="167.56" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="396.03" cy="156.71" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="416.68" cy="143.44" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="398.68" cy="56.68" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="408.76" cy="43.60" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="414.46" cy="177.42" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="424.80" cy="129.63" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="410.21" cy="184.67" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="409.88" cy="58.75" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="400.74" cy="184.34" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="417.83" cy="128.33" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="408.99" cy="108.18" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="410.67" cy="190.76" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="401.75" cy="184.27" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="402.37" cy="134.25" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="413.16" cy="118.80" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="412.54" cy="102.17" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="397.91" cy="78.68" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="396.69" cy="132.02" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="414.54" cy="169.39" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="422.94" cy="136.62" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="413.23" cy="101.56" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="412.13" cy="135.11" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="411.11" cy="142.94" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="424.60" cy="191.45" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="410.57" cy="149.49" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="415.72" cy="135.64" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="413.33" cy="170.72" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="402.67" cy="166.02" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="403.24" cy="114.34" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="417.08" cy="127.17" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="408.95" cy="160.77" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="400.79" cy="177.81" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="417.59" cy="163.88" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="398.73" cy="150.43" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
-<circle cx="421.06" cy="166.31" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<g clip-path="url(#cpMjkuMDZ8NDk4LjUyfDIzLjMyfDQ3Mi4yOQ==)">
+<rect x="29.06" y="23.32" width="469.47" height="448.97" style="stroke-width: 1.07; stroke: none; fill: #EBEBEB;"/>
+<polyline points="29.06,451.89 498.52,451.89 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="29.06,313.75 498.52,313.75 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="29.06,175.62 498.52,175.62 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="29.06,37.49 498.52,37.49 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="29.06,382.82 498.52,382.82 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="29.06,244.69 498.52,244.69 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="29.06,106.55 498.52,106.55 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="117.08,472.29 117.08,23.32 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="263.79,472.29 263.79,23.32 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<polyline points="410.50,472.29 410.50,23.32 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+<circle cx="117.08" cy="444.98" r="1.95" style="stroke-width: 0.71; stroke: #3366FF; fill: #3366FF;"/>
+<circle cx="117.08" cy="451.89" r="1.95" style="stroke-width: 0.71; stroke: #3366FF; fill: #3366FF;"/>
+<circle cx="117.08" cy="389.73" r="1.95" style="stroke-width: 0.71; stroke: #3366FF; fill: #3366FF;"/>
+<circle cx="117.08" cy="389.73" r="1.95" style="stroke-width: 0.71; stroke: #3366FF; fill: #3366FF;"/>
+<line x1="117.08" y1="412.17" x2="117.08" y2="403.54" style="stroke-width: 1.07; stroke: #3366FF; stroke-linecap: butt;"/>
+<line x1="117.08" y1="424.26" x2="117.08" y2="438.07" style="stroke-width: 1.07; stroke: #3366FF; stroke-linecap: butt;"/>
+<polygon points="62.06,412.17 62.06,424.26 172.10,424.26 172.10,412.17 62.06,412.17 " style="stroke-width: 1.07; stroke: #3366FF; fill: #DA70D6;"/>
+<line x1="62.06" y1="417.35" x2="172.10" y2="417.35" style="stroke-width: 2.13; stroke: #3366FF; stroke-linecap: butt;"/>
+<circle cx="263.79" cy="313.75" r="1.95" style="stroke-width: 0.71; stroke: #3366FF; fill: #3366FF;"/>
+<line x1="263.79" y1="203.25" x2="263.79" y2="168.71" style="stroke-width: 1.07; stroke: #3366FF; stroke-linecap: butt;"/>
+<line x1="263.79" y1="244.69" x2="263.79" y2="293.03" style="stroke-width: 1.07; stroke: #3366FF; stroke-linecap: butt;"/>
+<polygon points="208.77,203.25 208.77,244.69 318.80,244.69 318.80,203.25 208.77,203.25 " style="stroke-width: 1.07; stroke: #3366FF; fill: #DA70D6;"/>
+<line x1="208.77" y1="220.51" x2="318.80" y2="220.51" style="stroke-width: 2.13; stroke: #3366FF; stroke-linecap: butt;"/>
+<line x1="410.50" y1="115.19" x2="410.50" y2="44.39" style="stroke-width: 1.07; stroke: #3366FF; stroke-linecap: butt;"/>
+<line x1="410.50" y1="168.71" x2="410.50" y2="210.15" style="stroke-width: 1.07; stroke: #3366FF; stroke-linecap: butt;"/>
+<polygon points="355.48,115.19 355.48,168.71 465.51,168.71 465.51,115.19 355.48,115.19 " style="stroke-width: 1.07; stroke: #3366FF; fill: #DA70D6;"/>
+<line x1="355.48" y1="137.63" x2="465.51" y2="137.63" style="stroke-width: 2.13; stroke: #3366FF; stroke-linecap: butt;"/>
+<circle cx="110.20" cy="423.63" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="113.33" cy="423.94" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="119.22" cy="432.11" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="129.06" cy="417.61" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="108.33" cy="424.26" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="128.77" cy="405.30" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="130.13" cy="424.10" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="121.80" cy="419.70" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="120.87" cy="425.49" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="104.22" cy="418.94" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="108.45" cy="418.54" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="107.59" cy="408.26" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="122.57" cy="424.56" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="113.68" cy="443.43" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="125.00" cy="435.97" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="117.01" cy="417.83" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="123.47" cy="433.58" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="131.51" cy="425.17" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="113.56" cy="402.30" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="125.22" cy="418.25" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="129.84" cy="402.82" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="108.63" cy="415.47" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="121.53" cy="449.92" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="106.09" cy="404.14" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="110.25" cy="390.39" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="113.74" cy="408.26" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="102.80" cy="409.65" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="113.63" cy="416.02" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="127.93" cy="423.68" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="112.40" cy="408.22" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="116.55" cy="411.59" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="120.00" cy="419.06" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="116.89" cy="415.22" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="107.87" cy="424.24" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="126.69" cy="415.27" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="122.02" cy="439.79" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="125.71" cy="429.74" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="105.58" cy="423.02" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="123.64" cy="428.72" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="114.48" cy="417.09" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="126.50" cy="430.00" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="121.40" cy="431.78" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="125.38" cy="433.37" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="118.64" cy="408.09" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="117.95" cy="390.92" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="125.57" cy="423.76" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="103.09" cy="412.60" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="116.41" cy="422.38" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="123.90" cy="418.36" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="122.74" cy="422.70" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="263.13" cy="197.63" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="274.39" cy="211.71" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="261.97" cy="182.43" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="256.30" cy="245.96" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="251.19" cy="205.01" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="252.04" cy="210.05" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="258.40" cy="195.99" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="264.33" cy="295.08" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="268.54" cy="204.59" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="261.05" cy="250.39" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="275.90" cy="276.67" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="257.73" cy="233.08" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="262.59" cy="243.23" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="258.87" cy="193.87" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="268.21" cy="270.55" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="256.69" cy="218.12" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="263.16" cy="209.33" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="271.60" cy="235.28" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="251.59" cy="207.65" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="274.80" cy="252.48" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="259.07" cy="190.75" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="273.75" cy="246.54" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="259.29" cy="183.51" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="258.91" cy="196.28" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="263.09" cy="221.62" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="275.30" cy="217.00" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="274.48" cy="190.77" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="260.56" cy="178.13" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="271.93" cy="210.61" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="277.30" cy="277.26" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="261.87" cy="259.34" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="270.02" cy="267.44" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="260.85" cy="252.29" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="258.66" cy="167.99" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="271.33" cy="210.76" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="255.06" cy="209.11" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="269.98" cy="195.29" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="252.69" cy="216.76" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="256.32" cy="238.17" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="253.32" cy="244.95" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="256.15" cy="218.13" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="250.85" cy="202.81" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="267.96" cy="242.42" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="274.83" cy="295.01" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="271.97" cy="231.34" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="272.51" cy="232.47" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="262.48" cy="231.27" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="261.15" cy="226.00" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="272.91" cy="313.97" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="266.87" cy="235.33" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="415.04" cy="105.11" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="406.19" cy="166.32" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="403.75" cy="113.62" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="424.95" cy="133.61" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="414.41" cy="120.45" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="402.08" cy="67.28" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="399.62" cy="211.55" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="409.85" cy="85.84" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="422.94" cy="121.07" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="413.39" cy="97.25" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="424.47" cy="168.58" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="417.30" cy="155.91" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="406.29" cy="142.31" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="408.49" cy="174.03" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="400.17" cy="167.60" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="396.21" cy="156.75" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="416.82" cy="143.49" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="398.85" cy="56.80" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="408.92" cy="43.73" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="414.61" cy="177.45" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="424.93" cy="129.69" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="410.37" cy="184.69" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="410.04" cy="58.86" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="400.91" cy="184.35" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="417.97" cy="128.39" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="409.14" cy="108.26" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="410.82" cy="190.78" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="401.91" cy="184.29" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="402.53" cy="134.31" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="413.30" cy="118.87" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="412.69" cy="102.26" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="398.09" cy="78.78" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="396.87" cy="132.08" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="414.69" cy="169.42" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="423.07" cy="136.68" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="413.37" cy="101.64" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="412.28" cy="135.17" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="411.26" cy="142.99" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="424.73" cy="191.47" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="410.72" cy="149.53" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="415.86" cy="135.69" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="413.48" cy="170.75" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="402.83" cy="166.05" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="403.40" cy="114.42" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="417.22" cy="127.24" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="409.10" cy="160.81" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="400.96" cy="177.84" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="417.73" cy="163.91" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="398.91" cy="150.48" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
+<circle cx="421.19" cy="166.34" r="1.95" style="stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.30; fill: #000000; fill-opacity: 0.30;"/>
 </g>
 <g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
-<text x="23.31" y="386.11" text-anchor="end" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">2</text>
-<text x="23.31" y="247.87" text-anchor="end" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">4</text>
-<text x="23.31" y="109.63" text-anchor="end" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">6</text>
-<polyline points="25.50,382.96 28.24,382.96 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="25.50,244.72 28.24,244.72 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="25.50,106.48 28.24,106.48 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="116.42,475.24 116.42,472.50 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="263.38,475.24 263.38,472.50 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="410.34,475.24 410.34,472.50 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<text x="116.42" y="483.74" text-anchor="middle" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="25.93px" lengthAdjust="spacingAndGlyphs">setosa</text>
-<text x="263.38" y="483.74" text-anchor="middle" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="37.65px" lengthAdjust="spacingAndGlyphs">versicolor</text>
-<text x="410.34" y="483.74" text-anchor="middle" style="font-size: 8.80px; fill: #4D4D4D; font-family: Arial;" textLength="32.27px" lengthAdjust="spacingAndGlyphs">virginica</text>
-<text x="263.38" y="496.20" text-anchor="middle" style="font-size: 11.00px; font-family: Arial;" textLength="39.14px" lengthAdjust="spacingAndGlyphs">Species</text>
-<text transform="translate(13.36,247.84) rotate(-90)" text-anchor="middle" style="font-size: 11.00px; font-family: Arial;" textLength="61.80px" lengthAdjust="spacingAndGlyphs">Petal.Length</text>
-<text x="28.24" y="14.93" style="font-size: 13.20px; font-family: Arial;" textLength="142.27px" lengthAdjust="spacingAndGlyphs">Petal Length by Species</text>
+<text x="24.12" y="386.03" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">2</text>
+<text x="24.12" y="247.90" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">4</text>
+<text x="24.12" y="109.76" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">6</text>
+<polyline points="26.32,382.82 29.06,382.82 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="26.32,244.69 29.06,244.69 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="26.32,106.55 29.06,106.55 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="117.08,475.03 117.08,472.29 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="263.79,475.03 263.79,472.29 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+<polyline points="410.50,475.03 410.50,472.29 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+<text x="117.08" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="28.81px" lengthAdjust="spacingAndGlyphs">setosa</text>
+<text x="263.79" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="42.94px" lengthAdjust="spacingAndGlyphs">versicolor</text>
+<text x="410.50" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="37.40px" lengthAdjust="spacingAndGlyphs">virginica</text>
+<text x="263.79" y="496.23" text-anchor="middle" style="font-size: 11.00px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="42.34px" lengthAdjust="spacingAndGlyphs">Species</text>
+<text transform="translate(13.50,247.81) rotate(-90)" text-anchor="middle" style="font-size: 11.00px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="68.56px" lengthAdjust="spacingAndGlyphs">Petal.Length</text>
+<text x="29.06" y="15.10" style="font-size: 13.20px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="157.53px" lengthAdjust="spacingAndGlyphs">Petal Length by Species</text>
 </g>
 </svg>
