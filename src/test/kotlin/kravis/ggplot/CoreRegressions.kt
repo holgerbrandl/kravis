@@ -134,6 +134,21 @@ class CoreRegressions : AbstractSvgPlotRegression() {
         //        plot.open()
     }
 
+    @Test
+    fun `theme - element_text`() {
+
+        val basePlot = mpgData.plot("displ" to x, "hwy" to y).geomPoint()
+
+        val plot = basePlot
+            .theme(axisText = ElementText(
+                family = "Oswald", face ="bold.italic",
+                size = 20, color = RColor.red,
+                hjust = 0.5, vjust = 0.5,
+                angle = 90, lineheight = 0.8))
+
+        assertExpected(plot, "axis")
+    }
+
 
     @Test
     fun `convert continues variable to discrete`() {
