@@ -112,13 +112,20 @@ fun GGPlot.themeVoid(base_size: Int = 11, base_family: String = "") = appendSpec
  * @param color Line/border colour. Color is an alias for colour.
  * @param size Line/border size in mm; text size in pts.
  * @param face Font face ("plain", "italic", "bold", "bold.italic") Line/border size in mm; text size in pts.
- * @param fill Fill colour.
+ * @param hjust Horizontal justification (in \eqn{[0, 1]})
+ * @param vjust Vertical justification (in \eqn{[0, 1]})
+ * @param angle Angle (in \eqn{[0, 360]})
+ * @param lineheight Line height
  */
 open class ElementText(
     val family: String? = null,
     val face: String? = null,
     val color: RColor? = null,
     val size: Int? = null,
+    val hjust: Double? = null,
+    val vjust: Double? = null,
+    val angle: Int? = null,
+    val lineheight: Double? = null,
 
     vararg dotdotdot: Pair<String, String>
 ) {
@@ -128,6 +135,10 @@ open class ElementText(
         "face" to face,
         "color" to color,
         "size" to size,
+        "hjust" to hjust,
+        "vjust" to vjust,
+        "angle" to angle,
+        "lineheight" to lineheight,
 
         *dotdotdot.asList().toTypedArray()
     )
