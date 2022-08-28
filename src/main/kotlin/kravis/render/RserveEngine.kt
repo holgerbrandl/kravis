@@ -1,9 +1,10 @@
 package kravis.render
 
-import krangl.irisData
 import kravis.GGPlot
 import kravis.SessionPrefs
 import kravis.demo.irisScatter
+import org.jetbrains.kotlinx.dataframe.api.remove
+import org.jetbrains.kotlinx.dataframe.datasets.irisData
 import org.rosuda.REngine.Rserve.RConnection
 import java.awt.Desktop
 import java.awt.Dimension

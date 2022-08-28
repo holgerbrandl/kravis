@@ -1,6 +1,6 @@
 package kravis
 
-import krangl.irisData
+import org.jetbrains.kotlinx.dataframe.datasets.irisData
 import java.util.*
 
 class VarName(val name: String) {

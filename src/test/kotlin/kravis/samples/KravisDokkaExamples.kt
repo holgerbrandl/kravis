@@ -32,7 +32,7 @@ fun doScatter() {
 
 fun iteratorAPI() {
     // using the famous sleep patterns dataset
-    sleepPatterns.plot(x = { sleep_total }, y = { sleep_cycle }).geomBar()
+    sleepPatterns.plot(x = { sleep_total }, y = { sleep_cycle }).geom()
 
     // using a custom data class
     data class Person(val name: String, val male: Boolean, val heightCm: Int, val weightKg: Double)

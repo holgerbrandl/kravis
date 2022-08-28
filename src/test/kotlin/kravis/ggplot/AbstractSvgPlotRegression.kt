@@ -7,6 +7,7 @@ import kravis.GGPlot
 import kravis.SessionPrefs
 import kravis.render.Docker
 import kravis.render.saveTempFile
+import org.jetbrains.kotlinx.dataframe.api.asKotlinDF
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -102,7 +103,7 @@ val mpgData by lazy {
 
 
 val faithfuld by lazy {
-    DataFrame.readTSV("src/test/resources/kravis/data/faithfuld.txt")
+    DataFrame.readTSV("src/test/resources/kravis/data/faithfuld.txt").asKotlinDF()
 }
 
 /**

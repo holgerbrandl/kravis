@@ -1,12 +1,12 @@
 package kravis.device
 
-import krangl.irisData
 import kravis.Aesthetic
 import kravis.GGPlot
 import kravis.SessionPrefs
 import kravis.geomPoint
 import kravis.nshelper.plot
 import kravis.render.PlotFormat
+import org.jetbrains.kotlinx.dataframe.datasets.irisData
 import org.jetbrains.kotlinx.jupyter.api.MimeTypedResult
 import java.awt.Dimension
 import java.awt.image.BufferedImage

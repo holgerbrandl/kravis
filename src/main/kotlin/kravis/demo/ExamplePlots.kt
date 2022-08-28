@@ -3,11 +3,11 @@ package kravis.demo
 import krangl.DoubleCol
 import krangl.IntCol
 import krangl.dataFrameOf
-import krangl.irisData
 import kravis.Aesthetic
 import kravis.demo.IrisData.*
 import kravis.geomPoint
 import kravis.nshelper.plot
+import org.jetbrains.kotlinx.dataframe.datasets.irisData
 
 /**
  * @author Holger Brandl

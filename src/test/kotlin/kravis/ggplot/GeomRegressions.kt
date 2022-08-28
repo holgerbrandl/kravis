@@ -11,6 +11,7 @@ import kravis.demo.IrisData
 import kravis.demo.irisScatter
 import kravis.demo.lakeHuron
 import kravis.nshelper.plot
+import org.jetbrains.kotlinx.dataframe.api.asKotlinDF
 import org.junit.Ignore
 import org.junit.Test
 import java.io.File
@@ -36,7 +37,7 @@ class GeomRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `boxplot with overlay`() {
-        irisData.plot("Species" to x, "Petal.Length" to y)
+        irisData.asKotlinDF().plot("Species" to x, "Petal.Length" to y)
             .geomBoxplot(fill = RColor.orchid, color = RColor.create("#3366FF"))
             .geomPoint(position = PositionJitter(width = 0.1, seed = 1), alpha = 0.3)
             .title("Petal Length by Species")
