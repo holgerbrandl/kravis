@@ -10,6 +10,7 @@ import kravis.device.SwingPlottingDevice
 import kravis.render.EngineAutodetect
 import kravis.render.PlotFormat
 import kravis.render.RenderEngine
+import org.jetbrains.kotlinx.jupyter.api.session.JupyterSessionInfo
 import java.awt.Dimension
 import java.io.File
 import java.nio.file.Path
@@ -23,11 +24,14 @@ object SessionPrefs {
 
     private val AUTO_DETECT_DEVICE by lazy {
         try {
-            // blocked by https://github.com/Kotlin/kotlin-jupyter/issues/352
+            // see by https://github.com/Kotlin/kotlin-jupyter/issues/352
+            JupyterSessionInfo.isRunWithKernel()
 //            Class.forName("org.jetbrains.kotlinx.jupyter.api.session.JupyterSessionProvider")
 //            infoMsg("Using jupyter plotting device")
             JupyterDevice()
         } catch (e: ClassNotFoundException) {
+            SwingPlottingDevice()
+        } catch (e: NoClassDefFoundError) {
             // it's not jupyter so default back to swing
 //            infoMsg("Using swing plotting device")
             SwingPlottingDevice()
@@ -44,7 +48,7 @@ object SessionPrefs {
     // and we do not want to render on `toString` in that context.
     internal val isDebugSession by lazy {
         try {
-            this.javaClass.classLoader.loadClass("FormPreviewFrame") != null
+            GGPlot::class.java.classLoader.loadClass("FormPreviewFrame") != null
             true
         } catch (e: ClassNotFoundException) {
             false
