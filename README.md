@@ -78,12 +78,13 @@ To build and install it into your local maven cache, simply clone the repo and r
 
 Let's start by analyzing mamalian [sleep patterns](https://ggplot2.tidyverse.org/reference/msleep.html)
 ```kotlin
-import krangl.*
 import kravis.*
+import org.jetbrains.kotlinx.dataframe.datasets.sleepData
+
 
 sleepData
-    .addColumn("rem_proportion") { it["sleep_rem"] / it["sleep_total"] }
-        // Analyze correlation
+    .add("rem_proportion") { "sleep_rem"<Double>() / "sleep_total"<Double>() }
+    // Analyze correlation
     .plot(x = "sleep_total", y = "rem_proportion", color = "vore", size = "brainwt")
         .geomPoint(alpha = 0.7)
         .guides(size = LegendType.none)
@@ -169,11 +170,11 @@ persons.plot(x = {name}, y = { weightKg }, fill = { gender.toString() })
 
 ### Tables
 
-`kravis` can handle any kind of tabular data via [krangl](https://github.com/holgerbrandl/krangl) data-frames
+`kravis` can handle any kind of tabular data via [data-frames](https://kotlin.github.io/dataframe)
 
 ```kotlin
-import kravis.* 
-import krangl.irisData 
+import kravis.*
+import org.jetbrains.kotlinx.dataframe.datasets.irisData
 
 irisData.plot(x="Species" , y="Petal.Length" )
     .geomBoxplot()
@@ -251,7 +252,7 @@ SessionPrefs.RENDER_BACKEND = RserveEngine(host="localhost", port=6302)
 
 ## Plot Immutability
 
-Plots are -- similar to [`krangl`](https://github.com/holgerbrandl/krangl) data-frames -- immutable.
+Plots are -- similar to [`dataframe`](https://kotlin.github.io/dataframe) data-frames -- immutable.
 
 ```kotlin
 val basePlot = mpgData.plot("displ" to x, "hwy" to y).geomPoint()

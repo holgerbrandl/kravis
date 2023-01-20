@@ -1,7 +1,6 @@
 package kravis.render
 
 import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.dataframe.values
 import org.rosuda.REngine.*
 import org.rosuda.REngine.Rserve.RConnection
 import java.awt.image.BufferedImage
@@ -70,17 +69,17 @@ internal fun RConnection.setTable(varName: String, data: DataFrame<*>) {
     val col2data = data.columns().withIndex().map { (index, col) ->
         "col_$index" to when {
             col.type() == typeOf<Double>() -> {
-                (col.values() as List<Double?>).map { if(it == null) REXPDouble.NA else it }
+                (col.values() as List<Double?>).map { it ?: REXPDouble.NA }
                     .toDoubleArray().let { REXPDouble(it) }
             }
 
             col.type() == typeOf<Int>() -> {
-                (col.values() as List<Int?>).map { if(it == null) REXPInteger.NA else it }
+                (col.values() as List<Int?>).map { it ?: REXPInteger.NA }
                     .toIntArray().let { REXPInteger(it) }
             }
 
             col.type() == typeOf<String>() -> {
-                (col.values() as List<String?>).map { if(it == null) "NA" else it }
+                (col.values() as List<String?>).map { it ?: "NA" }
                     .toTypedArray().let { REXPString(it) }
             }
 
@@ -104,9 +103,9 @@ internal fun RConnection.setTable(varName: String, data: DataFrame<*>) {
 
     // fix missing data in string columns
     // update missing values for string columns
-    col2data.zip(data.columns()).filter { it.first.second is REXPString }.forEach { (pair, kranglCol) ->
-        val naIndicies = kranglCol.values().withIndex().filter { it.value == null }.map { it.index }
-        voidEval("""${pair.first}[c(${naIndicies.joinToString(",")})] <- NA""")
+    col2data.zip(data.columns()).filter { it.first.second is REXPString }.forEach { (pair, column) ->
+        val naIndices = column.values().withIndex().filter { it.value == null }.map { it.index }
+        voidEval("""${pair.first}[c(${naIndices.joinToString(",")})] <- NA""")
     }
 
 

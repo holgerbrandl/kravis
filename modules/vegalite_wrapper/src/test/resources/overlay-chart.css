@@ -1,8 +1,0 @@
-/** file: overlay-chart.css (place in same directory as LayeredXyChartsSample */
-.chart-plot-background {
-    -fx-background-color: transparent;
-}
-
-.default-color0.chart-series-line {
-    -fx-stroke: forestgreen;
-}

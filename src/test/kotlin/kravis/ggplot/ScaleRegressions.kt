@@ -1,10 +1,10 @@
 package kravis.ggplot
 
-import krangl.irisData
 import kravis.*
 import kravis.Aesthetic.*
 import kravis.demo.IrisData.*
 import kravis.nshelper.plot
+import org.jetbrains.kotlinx.dataframe.datasets.irisData
 import org.junit.Test
 import java.io.File
 

@@ -1,13 +1,13 @@
 package kravis.ggplot
 
 import io.kotest.assertions.fail
-import krangl.DataFrame
-import krangl.readTSV
 import kravis.GGPlot
 import kravis.SessionPrefs
 import kravis.render.Docker
 import kravis.render.saveTempFile
+import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.api.asKotlinDF
+import org.jetbrains.kotlinx.dataframe.io.readTSV
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -103,7 +103,7 @@ val mpgData by lazy {
 
 
 val faithfuld by lazy {
-    DataFrame.readTSV("src/test/resources/kravis/data/faithfuld.txt").asKotlinDF()
+    DataFrame.readTSV("src/test/resources/kravis/data/faithfuld.txt")
 }
 
 /**

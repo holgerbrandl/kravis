@@ -1,6 +1,6 @@
 
 plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.7.10"
+    id "org.jetbrains.kotlin.jvm" version "1.8.0"
     id "java"
     id "maven-publish"
     id "signing"
@@ -21,14 +21,13 @@ repositories {
 
 dependencies {
 //    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    compileOnly "org.jetbrains.kotlin:kotlin-reflect:1.7.10"
+    compileOnly "org.jetbrains.kotlin:kotlin-reflect:1.8.0"
 
     // tagged version for release
-//    compile "com.github.holgerbrandl.krangl:krangl:0.15.6"
-    implementation 'com.github.holgerbrandl:krangl:0.18.4'
-    implementation 'com.github.holgerbrandl:kdfutils:1.0-SNAPSHOT'
+    api 'com.github.holgerbrandl:krangl:0.18.4'
+    implementation 'com.github.holgerbrandl:kdfutils:1.1'
 
-    implementation( 'org.jetbrains.kotlinx:dataframe-core:0.8.1')
+    implementation( 'org.jetbrains.kotlinx:dataframe-core:0.9.1')
 
 //    compile "com.github.holgerbrandl:krangl:0.17-SNAPSHOT"
 //    api "ml.dmlc:xgboost4j:0.80"
@@ -48,7 +47,7 @@ dependencies {
 
     // needed to work around https://youtrack.jetbrains.com/issue/KT-15064
 //    compileOnly "org.jetbrains.kotlin:kotlin-script-runtime:$kotlin_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-script-runtime:1.7.10"
+    testImplementation "org.jetbrains.kotlin:kotlin-script-runtime:1.8.0"
 //    testCompile "org.jetbrains.kotlin:kotlin-script-runtime:$kotlin_version"
 
     // testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.16'

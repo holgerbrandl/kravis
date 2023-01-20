@@ -1,8 +1,8 @@
 package kravis.samples
 
-import krangl.sleepData
-import krangl.sleepPatterns
 import kravis.*
+import org.jetbrains.kotlinx.dataframe.datasets.sleepData
+import org.jetbrains.kotlinx.dataframe.datasets.sleepPatterns
 import kotlin.io.path.createTempFile
 
 
@@ -32,7 +32,7 @@ fun doScatter() {
 
 fun iteratorAPI() {
     // using the famous sleep patterns dataset
-    sleepPatterns.plot(x = { sleep_total }, y = { sleep_cycle }).geom()
+    sleepPatterns.plot(x = { sleep_total }, y = { sleep_cycle }).geomCol()
 
     // using a custom data class
     data class Person(val name: String, val male: Boolean, val heightCm: Int, val weightKg: Double)

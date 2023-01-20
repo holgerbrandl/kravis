@@ -1,12 +1,17 @@
 package kravis.ggplot
 
-import krangl.*
 import kravis.*
 import kravis.Aesthetic.*
 import kravis.demo.IrisData.SepalLength
 import kravis.demo.IrisData.SepalWidth
-import kravis.plot
 import kravis.nshelper.plot
+import kravis.plot
+import org.jetbrains.kotlinx.dataframe.api.add
+import org.jetbrains.kotlinx.dataframe.api.groupBy
+import org.jetbrains.kotlinx.dataframe.api.mean
+import org.jetbrains.kotlinx.dataframe.datasets.irisData
+import org.jetbrains.kotlinx.dataframe.datasets.sleepData
+import org.jetbrains.kotlinx.dataframe.datasets.sleepPatterns
 import org.junit.Test
 import java.io.File
 import kotlin.math.roundToInt
@@ -24,13 +29,15 @@ class CoreRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `empty plot without axes`() {
-        irisData.plot().apply { assertExpected(this) }
+        irisData.plot()
+            .apply { assertExpected(this) }
     }
 
 
     @Test
     fun `empty plot with axes`() {
-        irisData.plot(x = "Species", y = "Petal.Length").apply { assertExpected(this) }
+        irisData.plot(x = "Species", y = "Petal.Length")
+            .apply { assertExpected(this) }
     }
 
     @Test
@@ -61,7 +68,13 @@ class CoreRegressions : AbstractSvgPlotRegression() {
             .addCustom("""geom_flat_violin(scale = "count", trim = FALSE)""")
             // todo
             //            .stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1), geom = "pointrange", position = position_nudge(0.05)) +
-            .geomDotplot(binaxis = "y", dotsize = 0.5, stackdir = "down", binWidth = 0.1, position = PositionNudge(-0.025))
+            .geomDotplot(
+                binaxis = "y",
+                dotsize = 0.5,
+                stackdir = "down",
+                binWidth = 0.1,
+                position = PositionNudge(-0.025)
+            )
             //            .geomPoint()
             .theme(legendPosition = "none")
             .labs(x = "Species", y = "Sepal length (cm)")
@@ -74,14 +87,20 @@ class CoreRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `different data overlays`() {
         // we would need a summerizeEach/All here
-        val irisSummary = irisData.groupBy("Species").summarize(
-            "Petal.Length.Mean" to { it["Petal.Length"].mean() },
-            "Sepal.Length.Mean" to { it["Sepal.Length"].mean() }
-        )
+        val irisSummary = irisData.groupBy("Species")
+            .aggregate {
+                mean("Petal.Length") into "Petal.Length.Mean"
+                mean("Sepal.Length") into "Sepal.Length.Mean"
+            }
 
         val plot = irisData.plot("Sepal.Length" to x, "Petal.Length" to y, "Species" to color)
             .geomPoint(alpha = 0.3)
-            .geomPoint(data = irisSummary, mapping = Aes("Sepal.Length.Mean", "Petal.Length.Mean"), shape = 4, stroke = 4)
+            .geomPoint(
+                data = irisSummary,
+                mapping = Aes("Sepal.Length.Mean", "Petal.Length.Mean"),
+                shape = 4,
+                stroke = 4
+            )
 
         //        plot.show()
         assertExpected(plot)
@@ -95,7 +114,8 @@ class CoreRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun testFixedTheme() {
-        val plot = irisData.plot(SepalLength to x, SepalWidth to y).themeBW() //.show()
+        val plot = irisData.plot(SepalLength to x, SepalWidth to y)
+            .themeBW() //.show()
         assertExpected(plot)
     }
 
@@ -111,7 +131,8 @@ class CoreRegressions : AbstractSvgPlotRegression() {
             axis.text = element_text(size=20, color="red")
         """
 
-        val basePlot = mpgData.plot("displ" to x, "hwy" to y).geomPoint()
+        val basePlot = mpgData.plot("displ" to x, "hwy" to y)
+            .geomPoint()
 
         val plot = basePlot
 //            .theme(panelBackground = ElementTextBlank(), axisText = ElementText("size=20, color='red'"))
@@ -137,7 +158,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `convert continues variable to discrete`() {
-        val plot = irisData.addColumn("Approx.SL") { it["Sepal.Length"].map<Double> { it.roundToInt() } }
+        val plot = irisData.add("Approx.SL") { "Sepal.Length"<Double>().roundToInt() }
             .plot(x = "Approx.SL".asDiscreteVariable, y = "Sepal.Width", color = "Species", size = "Petal.Width")
             .geomPoint(alpha = .4)
 
@@ -148,7 +169,9 @@ class CoreRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `manipulate legends`() {
-        val mssleep = sleepData.addColumn("rem_proportion") { it["sleep_rem"] / it["sleep_total"] }
+        val mssleep = sleepData.add("rem_proportion") {
+            "sleep_rem"<Double>() / "sleep_total"<Double>()
+        }
         // Analyze correlation
 
         val plot = mssleep.plot(x = "sleep_total", y = "rem_proportion", color = "vore", size = "brainwt")

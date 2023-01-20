@@ -34,7 +34,7 @@ class JupyterDevice(val renderSVG: Boolean = false, val size: Dimension? = Dimen
 
     override fun getPreferredSize(): Dimension? = size
 
-    internal fun renderAsSVG(imageFile: Path): MimeTypedResult {
+    internal fun renderAsSVG(@Suppress("UNUSED_PARAMETER") imageFile: Path): MimeTypedResult {
         TODO()
     }
 

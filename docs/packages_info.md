@@ -11,7 +11,7 @@ For details see [https://github.com/holgerbrandl/kravis](https://github.com/holg
 
 ## Features
 
- Visualize any `Iterable<T>`[ or krangl](https://github.com/holgerbrandl/krangl) `DataFrame`s.
+ Visualize any `Iterable<T>`  or  [`DataFrame`](https://kotlin.github.io/dataframe) using the power of ggplot2.
 
 
 # Package kravis
