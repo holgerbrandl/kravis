@@ -1,6 +1,8 @@
 package kravis
 
-import krangl.*
+import krangl.deparseRecords
+import org.jetbrains.kotlinx.dataframe.datasets.sleepData
+import org.jetbrains.kotlinx.dataframe.api.asKotlinDF
 import skipNull
 import kotlin.reflect.KProperty0
 import kotlin.reflect.KProperty1
@@ -30,7 +32,7 @@ inline fun <reified T> Iterable<T>.plot(vararg aes2data: Pair<Aesthetic, PropExt
     val df = this.deparseRecords(*rulez.toList().toTypedArray())
 
 
-    return GGPlot(data = df, mapping = Aes(*aes.toTypedArray()))
+    return GGPlot(data = df.asKotlinDF(), mapping = Aes(*aes.toTypedArray()))
 }
 
 /**
@@ -77,24 +79,6 @@ inline fun <reified T> Iterable<T>.plot(
     return plot(*mapping.toTypedArray())
 }
 
-
-internal object ExtractorPlots {
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val sleepPatterns = krangl.sleepData.rowsAs<SleepPattern>()
-
-        "to" to { it: SleepPattern -> it.awake }
-        sleepPatterns.deparseRecords { mapOf("awake" to it.awake, "genus" to it.genus) }
-
-        sleepPatterns.asDataFrame().plot()
-
-
-        krangl.sleepPatterns.deparseRecords(
-            "foo" with { awake },
-            "bar" with { it.brainwt?.plus(3) }
-        ).head().print()
-    }
-}
 
 
 /**
@@ -147,7 +131,7 @@ inline fun <reified T> Iterable<T>.plot(
         name to deparseFormula
     }
 
-    val deparsedReceiver = deparseRecords(*deparseFormulae.toTypedArray())
+    val deparsedReceiver = deparseRecords(*deparseFormulae.toTypedArray()).asKotlinDF()
 
 
     // build new mapping
@@ -157,59 +141,3 @@ inline fun <reified T> Iterable<T>.plot(
 
     return deparsedReceiver.plot(*col2aes.toTypedArray())
 }
-
-
-/**
- * Construct a plot by simply providing references to properties.
- *
- * @sample kravis.samples.iteratorAPI
- */
-// note this internalize for now becaus it's too similar to the extractor api. It would still allow to extract correct column names
-internal inline fun <reified T> Iterable<T>.ggplot3(
-    x: T.() -> KProperty0<*>,
-    y: T.() -> KProperty0<*>
-): GGPlot {
-    // build df from data
-
-
-    val map = map { x(it) to y(it) }
-    map.first().first.name
-
-    // later convert data to actual plot
-    TODO()
-
-//    return plot()
-}
-
-
-internal object KProperty0Plot {
-
-    @JvmStatic
-    fun main(args: Array<String>) {
-
-
-        // extractor lambda
-        sleepPatterns.plot(
-            x = { conservation },
-            y = { bodywt }
-        )
-
-        // KProperty1
-        sleepPatterns.plot(
-            x = SleepPattern::sleep_rem,
-            y = SleepPattern::sleep_total,
-            color = SleepPattern::vore,
-            size = SleepPattern::brainwt
-        )
-            .geomPoint()
-            .title("Correlation of total sleep and and rem sleep by food preference")
-            .show()
-
-        // KProperty2
-        sleepPatterns.ggplot3(
-            x = { ::conservation },
-            y = { ::bodywt }
-        )
-    }
-}
-

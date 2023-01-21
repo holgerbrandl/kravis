@@ -1,6 +1,6 @@
 package kravis.render
 
-import krangl.*
+import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.rosuda.REngine.*
 import org.rosuda.REngine.Rserve.RConnection
 import java.awt.image.BufferedImage
@@ -8,6 +8,7 @@ import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.util.*
 import javax.imageio.ImageIO
+import kotlin.reflect.typeOf
 
 /**
  * @author Holger Brandl
@@ -63,41 +64,48 @@ fun REXP.toPrettyString(): String {
 
 // see de.mpicbg.knime.scripting.r.data.RDataFrameContainer#createDataFrame
 @Suppress("ReplaceSingleLineLet")
-internal fun RConnection.setTable(varName: String, data: DataFrame) {
+internal fun RConnection.setTable(varName: String, data: DataFrame<*>) {
 
-    val col2data = data.cols.withIndex().map { (index, col) ->
+    val col2data = data.columns().withIndex().map { (index, col) ->
         "col_$index" to when {
+            col.type() == typeOf<Double>() -> {
+                (col.values() as List<Double?>).map { it ?: REXPDouble.NA }
+                    .toDoubleArray().let { REXPDouble(it) }
+            }
 
-            col is DoubleCol -> col.toDoubles().map { if(it == null) REXPDouble.NA else it }.toDoubleArray()
-                .let { REXPDouble(it) }
-            col is IntCol -> col.toInts().map { if(it == null) REXPInteger.NA else it }.toIntArray()
-                .let { REXPInteger(it) }
-            col is BooleanCol -> col.toBooleans().map {
-                if(it == null) {
-                    REXPLogical.NA
-                } else {
-                    (if(it) 1 else 0).toByte()
-                }
-            }.toByteArray().let { REXPLogical(it) }
-            col is StringCol -> col.toStrings().map { if(it == null) "NA" else it }.toTypedArray()
-                .let { REXPString(it) }
+            col.type() == typeOf<Int>() -> {
+                (col.values() as List<Int?>).map { it ?: REXPInteger.NA }
+                    .toIntArray().let { REXPInteger(it) }
+            }
+
+            col.type() == typeOf<String>() -> {
+                (col.values() as List<String?>).map { it ?: "NA" }
+                    .toTypedArray().let { REXPString(it) }
+            }
+
+            col.type() == typeOf<Boolean>() -> {
+                (col.values() as List<Boolean?>).map {
+                    if(it == null) {
+                        REXPLogical.NA
+                    } else {
+                        (if(it) 1 else 0).toByte()
+                    }
+                }.toByteArray().let { REXPLogical(it) }
+            }
+
             else -> TODO("Unsupported type ${col::class.simpleName}")
         }
     }
-
-
-
 
     col2data.forEach { (colName, colData) ->
         assign(colName, colData)
     }
 
-
     // fix missing data in string columns
     // update missing values for string columns
-    col2data.zip(data.cols).filter { it.first.second is REXPString }.forEach { (pair, kranglCol) ->
-        val naIndicies = kranglCol.values().withIndex().filter { it.value == null }.map { it.index }
-        voidEval("""${pair.first}[c(${naIndicies.joinToString(",")})] <- NA""")
+    col2data.zip(data.columns()).filter { it.first.second is REXPString }.forEach { (pair, column) ->
+        val naIndices = column.values().withIndex().filter { it.value == null }.map { it.index }
+        voidEval("""${pair.first}[c(${naIndices.joinToString(",")})] <- NA""")
     }
 
 
@@ -128,7 +136,7 @@ internal fun RConnection.setTable(varName: String, data: DataFrame) {
 
     // push row names to R and assign to dataframe
 //    val rowNames = data.cols.map { "`${it.name}`" }
-    val colNames = data.cols.map { it.name }
+    val colNames = data.columnNames()
 //        set (varName + "_rownames", REXPString(rowNames.toTypedArray()))
     assign(varName + "_colnames", colNames.toTypedArray())
     voidEval("colnames(" + varName + ") <- " + varName + "_colnames")

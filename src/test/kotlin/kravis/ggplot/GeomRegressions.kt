@@ -1,8 +1,5 @@
 package kravis.ggplot
 
-import krangl.*
-import krangl.SumFuns.mean
-import krangl.SumFuns.sd
 import kravis.*
 import kravis.Aesthetic.x
 import kravis.Aesthetic.y
@@ -11,6 +8,9 @@ import kravis.demo.IrisData
 import kravis.demo.irisScatter
 import kravis.demo.lakeHuron
 import kravis.nshelper.plot
+import org.jetbrains.kotlinx.dataframe.api.*
+import org.jetbrains.kotlinx.dataframe.datasets.flightsData
+import org.jetbrains.kotlinx.dataframe.datasets.irisData
 import org.junit.Ignore
 import org.junit.Test
 import java.io.File
@@ -78,7 +78,8 @@ class GeomRegressions : AbstractSvgPlotRegression() {
 
     @Test
     fun `create a bar chart with a weight attribute`() {
-        val plot = irisData.plot(x = "Species", weight = "Sepal.Length").geomBar()
+        val plot = irisData.plot(x = "Species", weight = "Sepal.Length")
+            .geomBar()
 
 //                plot.show()
         assertExpected(plot)
@@ -90,9 +91,10 @@ class GeomRegressions : AbstractSvgPlotRegression() {
 
         val flightsSummary = flightsData
             .groupBy("carrier", "day")
-            .summarize("mean_dep_delay") { it["dep_delay"].mean(removeNA = true) }
+            .aggregate { mean("dep_delay", skipNA = true) into "mean_dep_delay" }
 
-        flightsSummary.head().print()
+        flightsSummary.head()
+            .print()
 
         val basePlot = flightsSummary.plot(x = "day", y = "mean_dep_delay", color = "carrier")
 
@@ -107,7 +109,8 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     fun `text labels in plot`() {
         // todo use custom trafo here to convert to metric units on the fly
         val plot = mtcars
-            .plot(x = "wt", y = "mpg", label = "model", color = "cyl").geomText(hjust = .0, nudgeX = 0.05)
+            .plot(x = "wt", y = "mpg", label = "model", color = "cyl")
+            .geomText(hjust = .0, nudgeX = 0.05)
             .scaleXContinuous(expand = listOf(.3, .1))
             .scaleYContinuous(limits = Limits(5.0, 30.0))
 
@@ -141,8 +144,8 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `ribbon plot`() {
         val plot = lakeHuron
-            .addColumn("lPLus1") { it["level"] + 1 }
-            .addColumn("lMin1") { it["level"] - 1 }
+            .add("lPLus1") { "level"<Int>() + 1 }
+            .add("lMin1") { "level"<Int>() - 1 }
             .plot(x = "year")
             .geomRibbon(Aes(ymin = "lMin1", ymax = "lPLus1"), fill = RColor.gray70)
             .geomLine(Aes(y = "level"))
@@ -155,8 +158,9 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `area plot`() {
         val plot = irisData
-            .addColumn("row") { rowNumber }
-            .plot("row" to x, IrisData.PetalLength to y, IrisData.Species to Aesthetic.fill).geomArea()
+            .add("row") { index() }
+            .plot("row" to x, IrisData.PetalLength to y, IrisData.Species to Aesthetic.fill)
+            .geomArea()
 
 
         assertExpected(plot)
@@ -197,7 +201,8 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     fun `enforce mandatory aestetics`() {
         // create random time series
         shouldThrow<MissingAestheticsMapping> {
-            faithfuld.plot(x = "eruptions").geomTile() // .show()
+            faithfuld.plot(x = "eruptions")
+                .geomTile() // .show()
         }
     }
 

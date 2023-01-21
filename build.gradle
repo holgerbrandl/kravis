@@ -1,6 +1,6 @@
 
 plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.7.10"
+    id "org.jetbrains.kotlin.jvm" version "1.8.0"
     id "java"
     id "maven-publish"
     id "signing"
@@ -12,6 +12,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 
 //    mavenLocal() //todo disable for release
     //    maven { url 'https://jitpack.io' }
@@ -20,11 +21,14 @@ repositories {
 
 dependencies {
 //    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    compileOnly 'org.jetbrains.kotlin:kotlin-reflect:1.7.10'
+    compileOnly "org.jetbrains.kotlin:kotlin-reflect:1.8.0"
 
     // tagged version for release
-//    compile "com.github.holgerbrandl.krangl:krangl:0.15.6"
-    implementation 'com.github.holgerbrandl:krangl:0.18.4'
+    api 'com.github.holgerbrandl:krangl:0.18.4'
+    implementation 'com.github.holgerbrandl:kdfutils:1.1'
+
+    api( 'org.jetbrains.kotlinx:dataframe-core:0.9.1')
+
 //    compile "com.github.holgerbrandl:krangl:0.17-SNAPSHOT"
 //    api "ml.dmlc:xgboost4j:0.80"
 
@@ -36,14 +40,14 @@ dependencies {
     // see https://github.com/codecentric/javafxsvg
 //    compile 'de.codecentric.centerdevice:javafxsvg:1.3.0'
 
-    testImplementation group: 'junit', name: 'junit', version: '4.13.1'
+    testImplementation group: 'junit', name: 'junit', version: '4.13'
 //    testCompile "io.kotlintest:kotlintest-runner-junit5:3.1.9"
-    testImplementation 'io.kotest:kotest-assertions-core:5.4.2'
+    testImplementation 'io.kotest:kotest-assertions-core:5.0.3'
 
 
     // needed to work around https://youtrack.jetbrains.com/issue/KT-15064
 //    compileOnly "org.jetbrains.kotlin:kotlin-script-runtime:$kotlin_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-script-runtime:1.7.10"
+    testImplementation "org.jetbrains.kotlin:kotlin-script-runtime:1.8.0"
 //    testCompile "org.jetbrains.kotlin:kotlin-script-runtime:$kotlin_version"
 
     // testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.16'
@@ -74,7 +78,7 @@ javadoc {
 group 'com.github.holgerbrandl'
 //version '0.8-SNAPSHOT'
 //version '0.9'
-version '0.8.6'
+version '0.9-SNAPSHOT'
 
 
 

@@ -1,7 +1,6 @@
-import krangl.irisData
-import krangl.toDoubleMatrix
 import kravis.geomHistogram
 import kravis.plot
+import org.jetbrains.kotlinx.dataframe.datasets.irisData
 
 object PersonsDemo{
     @JvmStatic

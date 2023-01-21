@@ -59,11 +59,6 @@ git push origin --tags
 ## tutorial https://getstream.io/blog/publishing-libraries-to-mavencentral-2021/
 ```
 
-For released versions check:
-
-- https://bintray.com/holgerbrandl/mpicbg-scicomp/krangl
-- https://jcenter.bintray.com/de/mpicbg/scicomp/krangl/
-
 --
 
 4. Increment version to *-SNAPSHOT for next release cycle

@@ -1,10 +1,67 @@
 package kravis
 
-import krangl.DataFrame
+import org.jetbrains.kotlinx.dataframe.DataFrame
 
 /**
  * @author Holger Brandl
  */
+
+
+
+/**
+ * The point geom is used to create scatterplots. The scatterplot is most useful for displaying the relationship
+ * between two continuous variables. It can be used to compare one continuous and one categorical variable, or
+ * two categorical variables.
+ *
+ * Official reference [geom_point](https://ggplot2.tidyverse.org/reference/geom_point.html)
+ *
+ * @sample kravis.samples.doScatter
+ */
+fun GGPlot.geomPoint(
+    // generic options to all geoms
+    mapping: Aes? = null,
+    data: DataFrame<*>? = null,
+    stat: Stat = Stat.identity,
+    position: Position = PositionIdentity(),
+    showLegend: Boolean? = null,
+    removeNAs: Boolean = false,
+    inheritAes: Boolean = true,
+
+    // list all the aesthetics it understands
+    alpha: Double? = null,
+    color: RColor? = null,
+    fill: RColor? = null,
+    // group, // todo, unclear usage
+    shape: Int? = null,
+    size: Double? = null,
+    stroke: Int? = null // Use the stroke aesthetic to modify the width of the border
+): GGPlot = appendSpec {
+
+    val dataVar: VarName? = registerDataset(data)
+
+    val args = arg2string(
+        "mapping" to mapping?.stringify(),
+        "data" to dataVar,
+        "stat" to stat,
+        "position" to position,
+        "na.rm" to removeNAs,
+        "show.legend" to showLegend,
+        "inherit.aes" to inheritAes,
+
+
+        "alpha" to requireZeroOne(alpha),
+        "color" to color,
+        "fill" to fill,
+        "shape" to shape,
+        "size" to size,
+        "stroke" to stroke
+    )
+
+    addSpec("geom_point(${args})")
+}
+
+internal fun requireZeroOne(d: Double?) = d?.also { require(it >= 0 && it <= 1) { "alpha must be [0,1] but was $it." } }
+
 
 /**
  * The boxplot compactly displays the distribution of a continuous variable. It visualises five summary
@@ -15,7 +72,7 @@ import krangl.DataFrame
 fun GGPlot.geomBoxplot(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.boxplot,
     position: Position = PositionDodge2(),
     showLegend: Boolean? = null,
@@ -84,58 +141,6 @@ fun GGPlot.geomBoxplot(
 }
 
 /**
- * The point geom is used to create scatterplots. The scatterplot is most useful for displaying the relationship
- * between two continuous variables. It can be used to compare one continuous and one categorical variable, or
- * two categorical variables.
- *
- * Official reference [geom_point](https://ggplot2.tidyverse.org/reference/geom_point.html)
- *
- * @sample kravis.samples.doScatter
- */
-fun GGPlot.geomPoint(
-    // generic options to all geoms
-    mapping: Aes? = null,
-    data: DataFrame? = null,
-    stat: Stat = Stat.identity,
-    position: Position = PositionIdentity(),
-    showLegend: Boolean? = null,
-    removeNAs: Boolean = false,
-    inheritAes: Boolean = true,
-
-    // list all the aesthetics it understands
-    alpha: Double? = null,
-    color: RColor? = null,
-    fill: RColor? = null,
-    // group, // todo, unclear usage
-    shape: Int? = null,
-    size: Double? = null,
-    stroke: Int? = null // Use the stroke aesthetic to modify the width of the border
-): GGPlot = appendSpec {
-
-    val dataVar: VarName? = registerDataset(data)
-
-    val args = arg2string(
-        "mapping" to mapping?.stringify(),
-        "data" to dataVar,
-        "stat" to stat,
-        "position" to position,
-        "na.rm" to removeNAs,
-        "show.legend" to showLegend,
-        "inherit.aes" to inheritAes,
-
-
-        "alpha" to requireZeroOne(alpha),
-        "color" to color,
-        "fill" to fill,
-        "shape" to shape,
-        "size" to size,
-        "stroke" to stroke
-    )
-
-    addSpec("geom_point(${args})")
-}
-
-/**
  * Adds text directly to the plot.
  *
  * Official reference [geom_text](https://ggplot2.tidyverse.org/reference/geom_text.html)
@@ -145,7 +150,7 @@ fun GGPlot.geomPoint(
 fun GGPlot.geomText(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.identity,
     position: Position? = null,
     showLegend: Boolean? = null,
@@ -206,7 +211,7 @@ fun GGPlot.geomText(
 fun GGPlot.geomDotplot(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
@@ -258,8 +263,6 @@ fun GGPlot.geomDotplot(
 }
 
 
-private fun requireZeroOne(d: Double?) = d?.also { require(it >= 0 && it <= 1) { "alpha must be [0,1] but was $it." } }
-
 // todo use more constrained aestetics with just the supported fields or validate supported aestehtics
 /**
  * There are two types of bar charts: `geom_bar` makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use `geom_col` instead. `geom_bar` uses `stat_count` by default: it counts the number of cases at each x position. `geom_col` uses `stat_identity`: it leaves the data as is.
@@ -270,7 +273,7 @@ private fun requireZeroOne(d: Double?) = d?.also { require(it >= 0 && it <= 1) {
 fun GGPlot.geomBar(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.count,
     position: Position = PositionStack(),
     showLegend: Boolean? = null,
@@ -314,7 +317,7 @@ fun GGPlot.geomBar(
 fun GGPlot.geomCol(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     position: Position = PositionStack(),
     showLegend: Boolean? = null,
     removeNAs: Boolean = false,
@@ -356,7 +359,7 @@ fun GGPlot.geomCol(
 fun GGPlot.geomErrorBar(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
@@ -405,7 +408,7 @@ fun GGPlot.geomErrorBar(
 fun GGPlot.geomPath(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
@@ -458,7 +461,7 @@ fun GGPlot.geomPath(
 fun GGPlot.geomLine(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
@@ -499,7 +502,7 @@ fun GGPlot.geomLine(
 fun GGPlot.geomRibbon(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
@@ -542,7 +545,7 @@ fun GGPlot.geomRibbon(
 fun GGPlot.geomArea(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
@@ -586,7 +589,7 @@ fun GGPlot.geomArea(
 fun GGPlot.geomSegment(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
@@ -641,7 +644,7 @@ enum class StepDirection {
 fun GGPlot.geomStep(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
@@ -693,7 +696,7 @@ fun GGPlot.geomStep(
 fun GGPlot.geomHistogram(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.bin,
     position: Position = PositionStack(),
     showLegend: Boolean? = null,
@@ -746,7 +749,7 @@ fun GGPlot.geomHistogram(
 fun GGPlot.geomTile(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.identity,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
@@ -796,7 +799,7 @@ fun GGPlot.geomTile(
 fun GGPlot.geomBin2D(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.bin2d,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,
@@ -845,7 +848,7 @@ fun GGPlot.geomBin2D(
 fun GGPlot.geomSmooth(
     // generic options to all geoms
     mapping: Aes? = null,
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     stat: Stat = Stat.smooth,
     position: Position = PositionIdentity(),
     showLegend: Boolean? = null,

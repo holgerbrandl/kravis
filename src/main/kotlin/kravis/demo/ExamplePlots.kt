@@ -1,13 +1,11 @@
 package kravis.demo
 
-import krangl.DoubleCol
-import krangl.IntCol
-import krangl.dataFrameOf
-import krangl.irisData
 import kravis.Aesthetic
 import kravis.demo.IrisData.*
 import kravis.geomPoint
 import kravis.nshelper.plot
+import org.jetbrains.kotlinx.dataframe.api.dataFrameOf
+import org.jetbrains.kotlinx.dataframe.datasets.irisData
 
 /**
  * @author Holger Brandl
@@ -57,5 +55,5 @@ val lakeHuron by lazy {
         576.80, 577.68, 578.38, 578.52, 579.74, 579.31, 579.89, 579.96
     )
 
-    dataFrameOf(IntCol("year", (1875..1972).toList()), DoubleCol("level", levels))
+    dataFrameOf("year" to (1875..1972).toList(), "level" to levels)
 }

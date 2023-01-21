@@ -1,8 +1,9 @@
 package kravis.render
 
-import krangl.writeTSV
 import kravis.GGPlot
 import kravis.SessionPrefs
+import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.writeTSV
 import java.awt.Dimension
 import java.io.File
 import java.nio.file.Path
@@ -28,13 +29,13 @@ class Docker(var image: String = "rocker/tidyverse:3.5.1") : AbstractLocalRender
         // todo hash dfs where possible to avoid IO
 
 
-        val data2Files = plot.dataRegistry.mapValues {
-            val dataFile = File(KRAVIS_DOCKER_DATA_CACHE_DIR, it.value.hashCode().toString() + ".txt")
+        val data2Files = plot.dataRegistry.mapValues { (_, value: DataFrame<*>) ->
+            val dataFile = File(KRAVIS_DOCKER_DATA_CACHE_DIR, value.hashCode().toString() + ".txt")
 
             dataFile.deleteOnExit()
 
             if (!dataFile.isFile) {
-                it.value.writeTSV(dataFile)
+                value.writeTSV(dataFile)
             }
 
             dataFile

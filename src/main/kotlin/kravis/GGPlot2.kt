@@ -1,7 +1,6 @@
 package kravis
 
 
-import krangl.DataFrame
 import kravis.SessionPrefs.OUTPUT_DEVICE
 import kravis.SessionPrefs.RENDER_BACKEND
 import kravis.device.JupyterDevice
@@ -10,7 +9,7 @@ import kravis.device.SwingPlottingDevice
 import kravis.render.EngineAutodetect
 import kravis.render.PlotFormat
 import kravis.render.RenderEngine
-import org.jetbrains.kotlinx.jupyter.api.session.JupyterSessionInfo
+import org.jetbrains.kotlinx.dataframe.DataFrame
 import java.awt.Dimension
 import java.io.File
 import java.nio.file.Path
@@ -24,14 +23,11 @@ object SessionPrefs {
 
     private val AUTO_DETECT_DEVICE by lazy {
         try {
-            // see by https://github.com/Kotlin/kotlin-jupyter/issues/352
-            JupyterSessionInfo.isRunWithKernel()
+            // blocked by https://github.com/Kotlin/kotlin-jupyter/issues/352
 //            Class.forName("org.jetbrains.kotlinx.jupyter.api.session.JupyterSessionProvider")
 //            infoMsg("Using jupyter plotting device")
             JupyterDevice()
         } catch (e: ClassNotFoundException) {
-            SwingPlottingDevice()
-        } catch (e: NoClassDefFoundError) {
             // it's not jupyter so default back to swing
 //            infoMsg("Using swing plotting device")
             SwingPlottingDevice()
@@ -48,7 +44,7 @@ object SessionPrefs {
     // and we do not want to render on `toString` in that context.
     internal val isDebugSession by lazy {
         try {
-            GGPlot::class.java.classLoader.loadClass("FormPreviewFrame") != null
+            this.javaClass.classLoader.loadClass("FormPreviewFrame") != null
             true
         } catch (e: ClassNotFoundException) {
             false
@@ -60,9 +56,9 @@ object SessionPrefs {
 }
 
 
-fun DataFrame.plot(aes: Aes? = null) = GGPlot(this, aes)
+fun DataFrame<*>.plot(aes: Aes? = null) = GGPlot(this, aes)
 
-fun DataFrame.plot(
+fun DataFrame<*>.plot(
     x: String? = null,
     y: String? = null,
     alpha: String? = null,
@@ -101,13 +97,13 @@ fun DataFrame.plot(
     return GGPlot(this, aes)
 }
 
-fun DataFrame.plot(vararg aes: Pair<String, Aesthetic>) = GGPlot(this, Aes(*aes))
+fun DataFrame<*>.plot(vararg aes: Pair<String, Aesthetic>) = GGPlot(this, Aes(*aes))
 
 
 //var KRAVIS_LOG_GGPLOT_SCRIPT = false
 
 class GGPlot(
-    data: DataFrame? = null,
+    data: DataFrame<*>? = null,
     mapping: Aes? = null,
     environment: String? = null
 ) {
@@ -115,7 +111,7 @@ class GGPlot(
 
     internal val plotCmd = emptyList<String>().toMutableList()
 
-    internal val dataRegistry = mapOf<String, DataFrame>().toMutableMap()
+    internal val dataRegistry = mapOf<String, DataFrame<*>>().toMutableMap()
 
     init {
         //todo check variable persence  in df her
@@ -154,7 +150,7 @@ class GGPlot(
     }
 
 
-    fun registerDataset(data: DataFrame?): VarName? {
+    fun registerDataset(data: DataFrame<*>?): VarName? {
         if (data == null) {
             return null
         }

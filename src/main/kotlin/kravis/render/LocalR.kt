@@ -1,13 +1,12 @@
 package kravis.render
 
-import krangl.writeTSV
 import kravis.GGPlot
+import org.jetbrains.kotlinx.dataframe.api.writeTSV
 import java.awt.Dimension
 import java.io.File
 import java.nio.file.Path
 import kotlin.io.path.createTempFile
 import kotlin.io.path.exists
-import kotlin.io.path.invariantSeparatorsPath
 
 /**
  * @param path Path to R executable. If not set it will be inferred from PATH/environment settings.
@@ -17,10 +16,10 @@ class LocalR(val r:File?= null) : AbstractLocalRenderEngine() {
     override fun render(plot: GGPlot, outputFile: Path, preferredSize: Dimension?): Path {
         // save all the data
         // todo hash dfs where possible to avoid IO
-        val dataIngest = plot.dataRegistry.mapValues {
+        val dataIngest = plot.dataRegistry.mapValues { (_, value) ->
 //            it.value.schema()
 //            it.value.print()
-            createTempFile(".txt").apply { it.value.writeTSV(this.toFile()) }
+            createTempFile(".txt").apply { value.writeTSV(this.toFile()) }
         }.map { (dataVar, file) ->
             """${dataVar} = read_tsv("${file.toFile().invariantSeparatorsPath}")"""
         }.joinToString("\n")
