@@ -31,6 +31,7 @@ internal object SleepPatternsExample {
             .show()
 
         // KProperty2
+        // submitted as https://youtrack.jetbrains.com/issue/KT-56095/Good-code-is-red-property-references
         sleepPatterns.ggplot3(
             x = { ::conservation },
             y = { ::bodywt }
@@ -45,7 +46,7 @@ internal object SleepPatternsExample {
  *
  * @sample kravis.samples.iteratorAPI
  */
-// note this internalize for now becaus it's too similar to the extractor api. It would still allow to extract correct column names
+// Note: this is internalized for now because it's too similar to the extractor api. It would still allow to extract correct column names
 internal inline fun <reified T> Iterable<T>.ggplot3(
     x: T.() -> KProperty0<*>,
     y: T.() -> KProperty0<*>

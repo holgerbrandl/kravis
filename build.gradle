@@ -27,7 +27,7 @@ dependencies {
     api 'com.github.holgerbrandl:krangl:0.18.4'
     implementation 'com.github.holgerbrandl:kdfutils:1.1'
 
-    implementation( 'org.jetbrains.kotlinx:dataframe-core:0.9.1')
+    api( 'org.jetbrains.kotlinx:dataframe-core:0.9.1')
 
 //    compile "com.github.holgerbrandl:krangl:0.17-SNAPSHOT"
 //    api "ml.dmlc:xgboost4j:0.80"
@@ -78,7 +78,7 @@ javadoc {
 group 'com.github.holgerbrandl'
 //version '0.8-SNAPSHOT'
 //version '0.9'
-version '0.8.5'
+version '0.9-SNAPSHOT'
 
 
 
