@@ -32,10 +32,10 @@ internal object SleepPatternsExample {
 
         // KProperty2
         // submitted as https://youtrack.jetbrains.com/issue/KT-56095/Good-code-is-red-property-references
-        sleepPatterns.ggplot3(
-            x = { ::conservation },
-            y = { ::bodywt }
-        )
+//        sleepPatterns.ggplot3(
+//            x = { ::conservation },
+//            y = { ::bodywt }
+//        )
     }
 }
 

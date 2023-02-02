@@ -1,9 +1,9 @@
 package kravis.render
 
+import com.github.holgerbrandl.kdfutils.writeTSV
 import kravis.GGPlot
 import kravis.SessionPrefs
 import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.dataframe.api.writeTSV
 import java.awt.Dimension
 import java.io.File
 import java.nio.file.Path

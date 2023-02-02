@@ -60,7 +60,7 @@ fun GGPlot.geomPoint(
     addSpec("geom_point(${args})")
 }
 
-internal fun requireZeroOne(d: Double?) = d?.also { require(it >= 0 && it <= 1) { "alpha must be [0,1] but was $it." } }
+internal fun requireZeroOne(d: Double?) = d?.also { require(it in 0.0..1.0) { "alpha must be [0,1] but was $it." } }
 
 
 /**

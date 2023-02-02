@@ -6,7 +6,6 @@ import kravis.SessionPrefs
 import kravis.render.Docker
 import kravis.render.saveTempFile
 import org.jetbrains.kotlinx.dataframe.DataFrame
-import org.jetbrains.kotlinx.dataframe.api.asKotlinDF
 import org.jetbrains.kotlinx.dataframe.io.readTSV
 import org.junit.Assert.assertTrue
 import org.junit.Before

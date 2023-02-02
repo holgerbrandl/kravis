@@ -1,8 +1,8 @@
 package kravis
 
+import com.github.holgerbrandl.kdfutils.toKotlinDF
 import krangl.deparseRecords
 import org.jetbrains.kotlinx.dataframe.datasets.sleepData
-import org.jetbrains.kotlinx.dataframe.api.asKotlinDF
 import skipNull
 import kotlin.reflect.KProperty0
 import kotlin.reflect.KProperty1
@@ -32,7 +32,7 @@ inline fun <reified T> Iterable<T>.plot(vararg aes2data: Pair<Aesthetic, PropExt
     val df = this.deparseRecords(*rulez.toList().toTypedArray())
 
 
-    return GGPlot(data = df.asKotlinDF(), mapping = Aes(*aes.toTypedArray()))
+    return GGPlot(data = df.toKotlinDF(), mapping = Aes(*aes.toTypedArray()))
 }
 
 /**
@@ -131,7 +131,7 @@ inline fun <reified T> Iterable<T>.plot(
         name to deparseFormula
     }
 
-    val deparsedReceiver = deparseRecords(*deparseFormulae.toTypedArray()).asKotlinDF()
+    val deparsedReceiver = deparseRecords(*deparseFormulae.toTypedArray()).toKotlinDF()
 
 
     // build new mapping

@@ -59,9 +59,14 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `create factor ordered barchart with error bars`() {
         val plot = irisData.groupBy("Species")
-            .summarizeAt({ listOf("Sepal.Length") }, mean, sd)
-            .addColumn("ymax") { it["Sepal.Length.mean"] + it["Sepal.Length.sd"] }
-            .addColumn("ymin") { it["Sepal.Length.mean"] - it["Sepal.Length.sd"] }
+            .aggregate {
+                mean() into "mean"
+                std() into "sd"
+            }
+
+//            .summarizeAt({ listOf("Sepal.Length") }, mean, sd)
+            .add("ymax") { "Sepal.Length.mean"<Double>() + "Sepal.Length.sd"<Double>() }
+            .add("ymin") { "Sepal.Length.mean"<Double>() - "Sepal.Length.sd"<Double>() }
             .plot(
                 x = reorder("Species", "Sepal.Length.mean", ascending = false),
                 y = "Sepal.Length.mean",

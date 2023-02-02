@@ -10,26 +10,30 @@ import kravis.render.EngineAutodetect
 import kravis.render.PlotFormat
 import kravis.render.RenderEngine
 import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.jupyter.api.session.JupyterSessionInfo
 import java.awt.Dimension
-import java.io.File
 import java.nio.file.Path
-import java.util.*
 import kotlin.io.path.extension
 
 /**
- * Various Settings to finetune rendering and behavior of kravis. Those settins are not persisted and need to be configured on a per session basis
+ * Various Settings to finetune rendering and behavior of kravis. Those settings are not persisted and need to be configured on a per-session basis
  */
 object SessionPrefs {
 
     private val AUTO_DETECT_DEVICE by lazy {
         try {
+//            if(JupyterSessionInfo.isRunWithKernel()) {
+            // Note: not part of the library dependencies but just provided at runtime
+            infoMsg("Detecting output device...")
+
+            JupyterSessionInfo.isRunWithKernel()
             // blocked by https://github.com/Kotlin/kotlin-jupyter/issues/352
 //            Class.forName("org.jetbrains.kotlinx.jupyter.api.session.JupyterSessionProvider")
-//            infoMsg("Using jupyter plotting device")
+            infoMsg("Using jupyter plotting device")
             JupyterDevice()
-        } catch (e: ClassNotFoundException) {
+        } catch(e: Throwable) {
             // it's not jupyter so default back to swing
-//            infoMsg("Using swing plotting device")
+            infoMsg("Using swing plotting device")
             SwingPlottingDevice()
         }
     }
@@ -46,12 +50,14 @@ object SessionPrefs {
         try {
             this.javaClass.classLoader.loadClass("FormPreviewFrame") != null
             true
-        } catch (e: ClassNotFoundException) {
+        } catch(e: ClassNotFoundException) {
             false
         }
     }
 
-    /** Render plots when toString is invoked. This makes it more convenient in a termimal setting. */
+    /**
+     * Render plots when toString is invoked. This makes it more convenient in a terminal setting.
+     */
     var SHOW_TO_STRING = !(OUTPUT_DEVICE is JupyterDevice) && !isDebugSession
 }
 
@@ -73,7 +79,7 @@ fun DataFrame<*>.plot(
     yend: String? = null,
     weight: String? = null,
     label: String? = null,
-    group: String? = null
+    group: String? = null,
 ): GGPlot {
     val mapping = listOf<Pair<String, Aesthetic>>()
         .addNonNull(x, Aesthetic.x)
@@ -92,7 +98,8 @@ fun DataFrame<*>.plot(
         .addNonNull(label, Aesthetic.label)
         .addNonNull(group, Aesthetic.group)
 
-    val aes = Aes(*mapping.toTypedArray()
+    val aes = Aes(
+        *mapping.toTypedArray()
     )
     return GGPlot(this, aes)
 }
@@ -105,7 +112,7 @@ fun DataFrame<*>.plot(vararg aes: Pair<String, Aesthetic>) = GGPlot(this, Aes(*a
 class GGPlot(
     data: DataFrame<*>? = null,
     mapping: Aes? = null,
-    environment: String? = null
+    environment: String? = null,
 ) {
     internal val preambble = emptyList<String>().toMutableList()
 
@@ -151,7 +158,7 @@ class GGPlot(
 
 
     fun registerDataset(data: DataFrame<*>?): VarName? {
-        if (data == null) {
+        if(data == null) {
             return null
         }
 
@@ -181,10 +188,10 @@ class GGPlot(
     }
 
     override fun toString(): String {
-        if (SessionPrefs.SHOW_TO_STRING) {
+        if(SessionPrefs.SHOW_TO_STRING) {
             try {
                 show()
-            } catch (e: Exception) {
+            } catch(e: Exception) {
                 System.err.println("Plot pendering failed with " + e)
             }
         }
@@ -242,7 +249,7 @@ class GGPlot(
         shape: String? = null,
         size: String? = null,
         stroke: String? = null,
-        ) = appendSpec {
+    ) = appendSpec {
         val args = arg2string(
             "title" to title,
             "caption" to caption,
@@ -284,32 +291,33 @@ class Aes(vararg val aes: Pair<String, Aesthetic>) {
         yend: String? = null,
         weight: String? = null,
         label: String? = null,
-        group: String? = null
+        group: String? = null,
     ) :
-        this(*listOf<Pair<String, Aesthetic>>()
-            .addNonNull(x, Aesthetic.x)
-            .addNonNull(y, Aesthetic.y)
-            .addNonNull(alpha, Aesthetic.alpha)
-            .addNonNull(color, Aesthetic.color)
-            .addNonNull(fill, Aesthetic.fill)
-            .addNonNull(shape, Aesthetic.shape)
-            .addNonNull(size, Aesthetic.size)
-            .addNonNull(stroke, Aesthetic.size)
-            .addNonNull(ymin, Aesthetic.ymin)
-            .addNonNull(ymax, Aesthetic.ymax)
-            .addNonNull(xend, Aesthetic.xend)
-            .addNonNull(yend, Aesthetic.yend)
-            .addNonNull(weight, Aesthetic.weight)
-            .addNonNull(label, Aesthetic.label)
-            .addNonNull(group, Aesthetic.group)
-            .toTypedArray()
-        )
+            this(
+                *listOf<Pair<String, Aesthetic>>()
+                    .addNonNull(x, Aesthetic.x)
+                    .addNonNull(y, Aesthetic.y)
+                    .addNonNull(alpha, Aesthetic.alpha)
+                    .addNonNull(color, Aesthetic.color)
+                    .addNonNull(fill, Aesthetic.fill)
+                    .addNonNull(shape, Aesthetic.shape)
+                    .addNonNull(size, Aesthetic.size)
+                    .addNonNull(stroke, Aesthetic.size)
+                    .addNonNull(ymin, Aesthetic.ymin)
+                    .addNonNull(ymax, Aesthetic.ymax)
+                    .addNonNull(xend, Aesthetic.xend)
+                    .addNonNull(yend, Aesthetic.yend)
+                    .addNonNull(weight, Aesthetic.weight)
+                    .addNonNull(label, Aesthetic.label)
+                    .addNonNull(group, Aesthetic.group)
+                    .toTypedArray()
+            )
 
     fun stringify(): VarName? {
-        if (aes.isEmpty()) return null
+        if(aes.isEmpty()) return null
 
         val map = aes.map { (expr, aesthetic) ->
-            val quoted = if (expr.isRExpression) {
+            val quoted = if(expr.isRExpression) {
                 expr.removePrefix(EXPRESSION_PREFIX)
             } else {
                 "`$expr`"
@@ -322,7 +330,7 @@ class Aes(vararg val aes: Pair<String, Aesthetic>) {
 }
 
 private fun List<Pair<String, Aesthetic>>.addNonNull(x: String?, aes: Aesthetic): List<Pair<String, Aesthetic>> {
-    return if (x != null) this + Pair(x, aes) else this
+    return if(x != null) this + Pair(x, aes) else this
 }
 
 enum class Aesthetic {
@@ -330,7 +338,7 @@ enum class Aesthetic {
 
     ymin,
 
-//    The group aesthetic is useful if there are only two or three groups and there is a summary statistic that should be calculated per group and displayed in one chart.
+    //    The group aesthetic is useful if there are only two or three groups and there is a summary statistic that should be calculated per group and displayed in one chart.
     group,
 
     ymax,
@@ -364,8 +372,13 @@ object OrderUtils {
      *
      * The levels of `f` are reordered so that the values of `fun(orderAttribute)` (for fct_reorder()) are in ascending order.
      */
-    fun reorder(f: String, orderAttribute: String, orderFun: OrderFun = OrderFun.mean, ascending: Boolean = true): String {
-        return (if (ascending) {
+    fun reorder(
+        f: String,
+        orderAttribute: String,
+        orderFun: OrderFun = OrderFun.mean,
+        ascending: Boolean = true,
+    ): String {
+        return (if(ascending) {
             "fct_reorder($f, $orderAttribute, .fun=$orderFun)"
         } else {
             "fct_rev(fct_reorder($f, $orderAttribute, .fun=$orderFun))"
