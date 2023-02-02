@@ -1,6 +1,11 @@
 Kravis Release History
 ======================
 
+v0.10 (not yet published)
+----
+
+* Migration to kotlin-dataframe
+
 v0.9
 ----
 

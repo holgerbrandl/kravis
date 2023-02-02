@@ -78,7 +78,7 @@ javadoc {
 group 'com.github.holgerbrandl'
 //version '0.8-SNAPSHOT'
 //version '0.9'
-version '0.9-SNAPSHOT'
+version '0.9.95'
 
 
 
