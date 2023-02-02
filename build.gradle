@@ -76,9 +76,8 @@ javadoc {
 
 //http://stackoverflow.com/questions/34377367/why-is-gradle-install-replacing-my-version-with-unspecified
 group 'com.github.holgerbrandl'
-//version '0.8-SNAPSHOT'
-//version '0.9'
-version '0.9.95'
+version '0.10-SNAPSHOT'
+//version '0.9.95'
 
 
 
