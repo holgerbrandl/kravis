@@ -1,9 +1,9 @@
 package kravis.samples
 
-import krangl.SleepPattern
 import kravis.GGPlot
 import kravis.geomPoint
 import kravis.plot
+import org.jetbrains.kotlinx.dataframe.datasets.SleepPattern
 import org.jetbrains.kotlinx.dataframe.datasets.sleepPatterns
 import kotlin.reflect.KProperty0
 

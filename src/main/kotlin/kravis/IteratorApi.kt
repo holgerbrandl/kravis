@@ -3,6 +3,7 @@ package kravis
 import com.github.holgerbrandl.kdfutils.toKotlinDF
 import krangl.deparseRecords
 import org.jetbrains.kotlinx.dataframe.datasets.sleepData
+import org.jetbrains.kotlinx.dataframe.datasets.sleepPatterns
 import skipNull
 import kotlin.reflect.KProperty0
 import kotlin.reflect.KProperty1
