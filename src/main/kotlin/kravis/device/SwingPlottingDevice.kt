@@ -2,12 +2,15 @@ package kravis.device
 
 import kravis.GGPlot
 import kravis.render.PlotFormat
+import java.awt.Desktop
 import java.awt.Dimension
 import java.awt.event.ActionEvent
 import java.awt.event.ComponentAdapter
 import java.awt.event.ComponentEvent
 import java.io.File
+import java.nio.file.Files
 import java.nio.file.Path
+import java.time.Instant
 import javax.imageio.ImageIO
 import javax.swing.JDialog
 import javax.swing.Timer
@@ -23,6 +26,9 @@ abstract class OutputDevice {
 
     abstract fun show(plot: GGPlot): Any
 }
+
+
+
 
 
 class SwingPlottingDevice : OutputDevice() {

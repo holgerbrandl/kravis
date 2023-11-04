@@ -35,6 +35,14 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     }
 
     @Test
+    fun `iris-scatter nullable limits`() {
+//        irisData.plot(x = "Species", y = "Sepal.Length", fill = "Species").geomPoint()
+        irisScatter
+            .xlim(5.0 to null)
+            .apply { assertExpected(this) }
+    }
+
+    @Test
     fun `boxplot with overlay`() {
         irisData.plot("Species" to x, "Petal.Length" to y)
             .geomBoxplot(fill = RColor.orchid, color = RColor.create("#3366FF"))

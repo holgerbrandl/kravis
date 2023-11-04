@@ -4,6 +4,7 @@ import io.kotest.assertions.fail
 import kravis.GGPlot
 import kravis.SessionPrefs
 import kravis.render.Docker
+import kravis.render.LocalR
 import kravis.render.saveTempFile
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.io.readTSV
@@ -93,7 +94,7 @@ abstract class AbstractSvgPlotRegression {
     }
 }
 
-fun GGPlot.open() = Desktop.getDesktop().open(saveTempFile().toFile())
+//fun GGPlot.open() = Desktop.getDesktop().open(saveTempFile().toFile())
 
 
 val mpgData by lazy {

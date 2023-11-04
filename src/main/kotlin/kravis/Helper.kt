@@ -8,9 +8,9 @@ class VarName(val name: String) {
 }
 
 
-typealias Limits = Pair<Double, Double>
+typealias Limits = Pair<Number?, Number?>
 
-internal fun Limits.toRVector(rExpr: Boolean = true): String = "c($first, $second)".run { if (rExpr) asRExpression else this }
+internal fun Limits.toRVector(rExpr: Boolean = true): String = "c(${first?.toDouble() ?: "NA"}, ${second?.toDouble()?:"NA"})".run { if (rExpr) asRExpression else this }
 
 
 internal fun Iterable<Any>.toRVector(): String = map { it.toStringAndQuote() }.joinToString(", ").run { "c($this)" }.asRExpression

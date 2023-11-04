@@ -33,16 +33,26 @@ fun GGPlot.coordCartesian(
  *  Supply the limits argument to the x scale. Note that, by default, any values outside the limits will be replaced with NA.
  */
 fun GGPlot.xlim(limits: Limits): GGPlot = appendSpec {
-    addSpec("""coord_cartesian(${limits.toRVector(false)})""")
+    addSpec("""coord_cartesian(xlim = ${limits.toRVector(false)})""")
 }
+
+/**
+ *  Supply the limits argument to the x scale. Note that, by default, any values outside the limits will be replaced with NA.
+ */
+fun GGPlot.xlim(lower: Number?, upper: Number?) = xlim(lower to upper)
 
 
 /**
  *  Supply the limits argument to the y scale. Note that, by default, any values outside the limits will be replaced with NA.
  */
 fun GGPlot.ylim(limits: Limits): GGPlot = appendSpec {
-    addSpec("""coord_cartesian(${limits.toRVector(false)})""")
+    addSpec("""coord_cartesian(ylim = ${limits.toRVector(false)})""")
 }
+
+/**
+ *  Supply the limits argument to the y scale. Note that, by default, any values outside the limits will be replaced with NA.
+ */
+fun GGPlot.ylim(lower: Number?, upper: Number?) = ylim(lower to upper)
 
 
 /**
