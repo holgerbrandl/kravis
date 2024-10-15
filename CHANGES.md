@@ -1,10 +1,11 @@
 Kravis Release History
 ======================
 
-v0.10 (not yet published)
+v1.0
 ----
 
 * Migration to kotlin-dataframe
+* Removed dependency on krangl
 
 v0.9
 ----

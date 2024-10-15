@@ -3,7 +3,7 @@ plugins {
     `maven-publish`
     signing
 
-    id("io.github.gradle-nexus.publish-plugin") version "1.2.0"
+    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
     id("org.jetbrains.kotlin.jupyter.api") version "0.12.0-285"
 }
 
@@ -22,7 +22,7 @@ dependencies {
     compileOnly("org.jetbrains.kotlin:kotlin-reflect:2.0.21")
 
     api("org.jetbrains.kotlinx:dataframe-core:0.14.1")
-    api("com.github.holgerbrandl:kdfutils:1.4.0")
+    api("com.github.holgerbrandl:kdfutils:1.4.3")
     api("org.apache.commons:commons-math3:3.6.1")
 
     implementation("org.rosuda.REngine:REngine:2.1.0")
@@ -79,11 +79,12 @@ publishing {
 
 nexusPublishing {
     repositories {
-        sonatype {
-            snapshotRepositoryUrl.set(uri(project.findProperty("sonatypeStagingProfileId") ?: "not_defined"))
-            username.set(project.findProperty("ossrhUsername")?.toString() ?: "not_defined")
-            password.set(project.findProperty("ossrhPassword")?.toString() ?: "not_defined")
-        }
+        sonatype()
+//        {
+//            snapshotRepositoryUrl.set(uri(project.findProperty("sonatypeStagingProfileId") ?: "not_defined"))
+//            username.set(project.findProperty("ossrhUsername")?.toString() ?: "not_defined")
+//            password.set(project.findProperty("ossrhPassword")?.toString() ?: "not_defined")
+//        }
     }
 }
 

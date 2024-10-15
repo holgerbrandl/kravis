@@ -22,7 +22,7 @@ gradle clean dokka
 export KRAVIS_HOME="/d/projects/misc/kravis";
 
 trim() { while read -r line; do echo "$line"; done; }
-kravis_version='v'$(grep '^version' ${KRAVIS_HOME}/build.gradle | cut -f2 -d' ' | tr -d "'" | trim)
+kravis_version='v'$(grep '^version' ${KRAVIS_HOME}/build.gradle.kts | cut -f3 -d' ' | tr -d '"' | trim)
 
 echo "new version is $kravis_version"
 
