@@ -10,7 +10,7 @@ plugins {
 
 
 group = "com.github.holgerbrandl"
-version = "1.0"
+version = "1.0.1"
 
 
 repositories {
@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.jetbrains.kotlin:kotlin-reflect:2.0.21")
+//    compileOnly("org.jetbrains.kotlin:kotlin-reflect:2.0.21")
 
     api("org.jetbrains.kotlinx:dataframe-core:0.14.1")
     api("com.github.holgerbrandl:kdfutils:1.4.3")
@@ -91,3 +91,8 @@ nexusPublishing {
 signing {
     sign(publishing.publications["mavenJava"])
 }
+
+kotlin {
+    jvmToolchain(11)
+}
+
