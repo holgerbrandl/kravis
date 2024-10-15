@@ -89,8 +89,8 @@ abstract class AbstractSvgPlotRegression {
     fun setup() {
 //        SessionPrefs.RENDER_BACKEND = RserveEngine()
 //        SessionPrefs.RENDER_BACKEND = Docker("holgerbrandl/kravis_core:3.5.1")
-//        SessionPrefs.RENDER_BACKEND = LocalR()
-        SessionPrefs.RENDER_BACKEND = Docker("kravis_test")
+        SessionPrefs.RENDER_BACKEND = LocalR()
+//        SessionPrefs.RENDER_BACKEND = Docker("kravis_test")
     }
 }
 

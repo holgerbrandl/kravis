@@ -7,6 +7,7 @@ import kravis.demo.IrisData.SepalWidth
 import kravis.nshelper.plot
 import kravis.plot
 import org.jetbrains.kotlinx.dataframe.api.add
+import org.jetbrains.kotlinx.dataframe.api.aggregate
 import org.jetbrains.kotlinx.dataframe.api.groupBy
 import org.jetbrains.kotlinx.dataframe.api.mean
 import org.jetbrains.kotlinx.dataframe.datasets.irisData

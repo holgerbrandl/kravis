@@ -16,7 +16,6 @@ import org.junit.Test
 import java.io.File
 
 
-@Suppress("UNUSED_EXPRESSION")
 /**
  * @author Holger Brandl
  */

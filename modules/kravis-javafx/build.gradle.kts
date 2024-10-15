@@ -18,6 +18,7 @@ version = "0.5-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {

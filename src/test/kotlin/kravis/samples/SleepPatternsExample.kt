@@ -1,8 +1,10 @@
 package kravis.samples
 
 import kravis.GGPlot
+import kravis.SessionPrefs
 import kravis.geomPoint
 import kravis.plot
+import kravis.render.LocalR
 import org.jetbrains.kotlinx.dataframe.datasets.SleepPattern
 import org.jetbrains.kotlinx.dataframe.datasets.sleepPatterns
 import kotlin.reflect.KProperty0
@@ -11,7 +13,7 @@ internal object SleepPatternsExample {
 
     @JvmStatic
     fun main(args: Array<String>) {
-
+        SessionPrefs.RENDER_BACKEND = LocalR()
 
         // extractor lambda
         sleepPatterns.plot(

@@ -1,11 +1,11 @@
 package kravis.samples
 
-import krangl.SleepPattern
 import kravis.plot
 import org.jetbrains.kotlinx.dataframe.api.head
 import org.jetbrains.kotlinx.dataframe.api.print
 import org.jetbrains.kotlinx.dataframe.api.toDataFrame
 import org.jetbrains.kotlinx.dataframe.api.toListOf
+import org.jetbrains.kotlinx.dataframe.datasets.SleepPattern
 import org.jetbrains.kotlinx.dataframe.datasets.sleepData
 
 internal object ExtractorPlots {
