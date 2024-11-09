@@ -10,7 +10,7 @@ plugins {
 
 
 group = "com.github.holgerbrandl"
-version = "1.0.1"
+version = "1.0.2"
 
 
 repositories {
@@ -21,7 +21,7 @@ repositories {
 dependencies {
 //    compileOnly("org.jetbrains.kotlin:kotlin-reflect:2.0.21")
 
-    api("org.jetbrains.kotlinx:dataframe-core:0.14.1")
+    api("org.jetbrains.kotlinx:dataframe-core:0.14.2")
     api("com.github.holgerbrandl:kdfutils:1.4.3")
     api("org.apache.commons:commons-math3:3.6.1")
 
@@ -93,6 +93,6 @@ signing {
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(17)
 }
 
