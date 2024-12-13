@@ -37,7 +37,7 @@ fun <T> DataFrame.Companion.fromRecords(records: Iterable<T>, mapping: (T) -> Da
         columnData.forEach { colName, colData -> colData.add(record[colName]) }
     }
 
-    val map = columnData.map { (name, data) -> data.toColumn("data", Infer.Type) }
+    val map = columnData.map { (name, data) -> data.toColumn(name, Infer.Type) }
     return map.toDataFrame()
 }
 

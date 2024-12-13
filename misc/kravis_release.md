@@ -34,6 +34,8 @@ fi
 
 cd  $KRAVIS_HOME
 
+./gradlew check
+
 git status
 git commit -am "${kravis_version} release"
 #git diff --exit-code  || echo "There are uncomitted changes"
