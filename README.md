@@ -54,7 +54,7 @@ See [here](https://github.com/holgerbrandl/kalasim/blob/master/simulations/noteb
 Add the following artifact to your `gradle.build`
 
 ```
-compile "com.github.holgerbrandl:kravis:0.8.5"
+compile "com.github.holgerbrandl:kravis:1.0.3"
 ```
 
 You can also use [JitPack with Maven or Gradle](https://jitpack.io/#holgerbrandl/kravis/-SNAPSHOT) to build the latest snapshot as a dependency in your project.
