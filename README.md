@@ -1,6 +1,6 @@
 # `kravis` - A {k}otlin {gra}mmar for data {vis}ualization
 
- [ ![Download](https://img.shields.io/badge/Maven%20Central-0.8.5-orange) ](https://mvnrepository.com/artifact/com.github.holgerbrandl/kravis)
+ [ ![Download](https://img.shields.io/badge/Maven%20Central-1.1-orange) ](https://mvnrepository.com/artifact/com.github.holgerbrandl/kravis)
 
 [//]: # ([![Build Status]&#40;https://travis-ci.org/holgerbrandl/kravis.svg?branch=master&#41;]&#40;https://travis-ci.org/holgerbrandl/kravis&#41;)
 

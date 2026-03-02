@@ -1,16 +1,16 @@
 plugins {
-    kotlin("jvm") version "2.0.21"
+    kotlin("jvm") version "2.2.10"
     `maven-publish`
     signing
 
     id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
-    id("org.jetbrains.kotlin.jupyter.api") version "0.12.0-285"
+    id("org.jetbrains.kotlin.jupyter.api") version "0.16.0-742"
 }
 
 
 
 group = "com.github.holgerbrandl"
-version = "1.0.4"
+version = "1.1"
 
 
 repositories {
@@ -21,8 +21,8 @@ repositories {
 dependencies {
 //    compileOnly("org.jetbrains.kotlin:kotlin-reflect:2.0.21")
 
-    api("org.jetbrains.kotlinx:dataframe-core:0.15.0")
-    api("com.github.holgerbrandl:kdfutils:1.5.0")
+    api("org.jetbrains.kotlinx:dataframe-core:1.0.0-Beta4")
+    api("com.github.holgerbrandl:kdfutils:1.6.0")
     api("org.apache.commons:commons-math3:3.6.1")
 
     implementation("org.rosuda.REngine:REngine:2.1.0")
@@ -30,7 +30,7 @@ dependencies {
 
     testImplementation("junit:junit:4.13.1")
     testImplementation("io.kotest:kotest-assertions-core:5.0.3")
-    testImplementation("org.jetbrains.kotlin:kotlin-script-runtime:2.0.21")
+    testImplementation("org.jetbrains.kotlin:kotlin-script-runtime:2.2.10")
 }
 
 tasks.processJupyterApiResources {
@@ -79,12 +79,11 @@ publishing {
 
 nexusPublishing {
     repositories {
-        sonatype()
-//        {
-//            snapshotRepositoryUrl.set(uri(project.findProperty("sonatypeStagingProfileId") ?: "not_defined"))
-//            username.set(project.findProperty("ossrhUsername")?.toString() ?: "not_defined")
-//            password.set(project.findProperty("ossrhPassword")?.toString() ?: "not_defined")
-//        }
+        // see https://central.sonatype.org/publish/publish-portal-ossrh-staging-api/#configuration
+        sonatype {
+            nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
+        }
     }
 }
 
@@ -93,6 +92,6 @@ signing {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
