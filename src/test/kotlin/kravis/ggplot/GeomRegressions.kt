@@ -67,8 +67,8 @@ class GeomRegressions : AbstractSvgPlotRegression() {
     fun `create factor ordered barchart with error bars`() {
         val plot = irisData.groupBy("Species")
             .aggregate {
-                mean() into "mean"
-                std() into "sd"
+                mean("Sepal.Length") into "Sepal.Length.mean"
+                std("Sepal.Length") into "Sepal.Length.sd"
             }
 
 //            .summarizeAt({ listOf("Sepal.Length") }, mean, sd)
@@ -103,7 +103,7 @@ class GeomRegressions : AbstractSvgPlotRegression() {
 
         val flightsSummary = flightsData
             .groupBy("carrier", "day")
-            .aggregate { mean("dep_delay", skipNA = true) into "mean_dep_delay" }
+            .aggregate { mean("dep_delay", skipNaN = true) into "mean_dep_delay" }
 
         flightsSummary.head()
             .print()

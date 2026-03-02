@@ -1,3 +1,3 @@
 rootProject.name = "kravis"
 
-include(":modules:kravis-javafx")
+//include(":modules:kravis-javafx")

@@ -4,6 +4,8 @@ import kravis.*
 import kravis.Aesthetic.*
 import kravis.demo.IrisData.SepalLength
 import kravis.demo.IrisData.SepalWidth
+import kravis.device.OutputDevice
+import kravis.device.SwingPlottingDevice
 import kravis.nshelper.plot
 import kravis.plot
 import org.jetbrains.kotlinx.dataframe.api.add
@@ -186,7 +188,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
     @Test
     fun `manipulate legends`() {
         val mssleep = sleepData.add("rem_proportion") {
-            "sleep_rem"<Double>() / "sleep_total"<Double>()
+            "sleep_rem"<Double?>()?.div("sleep_total"<Double>())
         }
         // Analyze correlation
 
@@ -194,7 +196,7 @@ class CoreRegressions : AbstractSvgPlotRegression() {
             .geomPoint(alpha = 0.7)
             .guides(size = LegendType.none)
 
-//        plot.show()
+        plot.show()
         assertExpected(plot)
     }
 

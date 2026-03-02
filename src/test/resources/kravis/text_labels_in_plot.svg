@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svglite" width="504.00pt" height="504.00pt" viewBox="0 0 504.00 504.00">
-<defs>
-  <style type="text/css"><![CDATA[
+    
+    <defs>
+          
+        <style type="text/css"><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
       fill: none;
       stroke: #000000;
@@ -12,96 +14,143 @@
       white-space: pre;
     }
   ]]></style>
-</defs>
-<rect width="100%" height="100%" style="stroke: none; fill: #FFFFFF;"/>
-<defs>
-  <clipPath id="cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=">
-    <rect x="0.00" y="0.00" width="504.00" height="504.00"/>
-  </clipPath>
-</defs>
-<g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
-<rect x="0.00" y="0.00" width="504.00" height="504.00" style="stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;"/>
-</g>
-<defs>
-  <clipPath id="cpMzQuNjV8NDQ4LjI1fDUuNDh8NDcyLjI5">
-    <rect x="34.65" y="5.48" width="413.60" height="466.82"/>
-  </clipPath>
-</defs>
-<g clip-path="url(#cpMzQuNjV8NDQ4LjI1fDUuNDh8NDcyLjI5)">
-<rect x="34.65" y="5.48" width="413.60" height="466.82" style="stroke-width: 1.07; stroke: none; fill: #EBEBEB;"/>
-<polyline points="34.65,451.08 448.25,451.08 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="34.65,281.32 448.25,281.32 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="34.65,111.57 448.25,111.57 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="80.14,472.29 80.14,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="208.24,472.29 208.24,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="336.34,472.29 336.34,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="34.65,366.20 448.25,366.20 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="34.65,196.45 448.25,196.45 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="34.65,26.70 448.25,26.70 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="144.19,472.29 144.19,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="272.29,472.29 272.29,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="400.39,472.29 400.39,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<text x="187.10" y="183.50" style="font-size: 11.04px;fill: #336A98; font-family: &quot;TeX Gyre Heros&quot;;" textLength="61.57px" lengthAdjust="spacingAndGlyphs">Mazda RX4</text>
-<text x="203.44" y="183.50" style="font-size: 11.04px;fill: #336A98; font-family: &quot;TeX Gyre Heros&quot;;" textLength="89.04px" lengthAdjust="spacingAndGlyphs">Mazda RX4 Wag</text>
-<text x="167.89" y="152.94" style="font-size: 11.04px;fill: #132B43; font-family: &quot;TeX Gyre Heros&quot;;" textLength="63.88px" lengthAdjust="spacingAndGlyphs">Datsun 710</text>
-<text x="225.21" y="176.71" style="font-size: 11.04px;fill: #336A98; font-family: &quot;TeX Gyre Heros&quot;;" textLength="80.94px" lengthAdjust="spacingAndGlyphs">Hornet 4 Drive</text>
-<text x="239.62" y="222.54" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="102.43px" lengthAdjust="spacingAndGlyphs">Hornet Sportabout</text>
-<text x="240.90" y="232.72" style="font-size: 11.04px;fill: #336A98; font-family: &quot;TeX Gyre Heros&quot;;" textLength="37.66px" lengthAdjust="spacingAndGlyphs">Valiant</text>
-<text x="247.95" y="297.23" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="61.45px" lengthAdjust="spacingAndGlyphs">Duster 360</text>
-<text x="223.61" y="125.78" style="font-size: 11.04px;fill: #132B43; font-family: &quot;TeX Gyre Heros&quot;;" textLength="59.72px" lengthAdjust="spacingAndGlyphs">Merc 240D</text>
-<text x="221.05" y="152.94" style="font-size: 11.04px;fill: #132B43; font-family: &quot;TeX Gyre Heros&quot;;" textLength="51.23px" lengthAdjust="spacingAndGlyphs">Merc 230</text>
-<text x="239.62" y="214.05" style="font-size: 11.04px;fill: #336A98; font-family: &quot;TeX Gyre Heros&quot;;" textLength="51.23px" lengthAdjust="spacingAndGlyphs">Merc 280</text>
-<text x="239.62" y="237.82" style="font-size: 11.04px;fill: #336A98; font-family: &quot;TeX Gyre Heros&quot;;" textLength="58.93px" lengthAdjust="spacingAndGlyphs">Merc 280C</text>
-<text x="279.97" y="261.58" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="65.20px" lengthAdjust="spacingAndGlyphs">Merc 450SE</text>
-<text x="258.20" y="246.30" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="64.38px" lengthAdjust="spacingAndGlyphs">Merc 450SL</text>
-<text x="261.40" y="281.95" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="72.08px" lengthAdjust="spacingAndGlyphs">Merc 450SLC</text>
-<text x="355.55" y="363.43" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="103.82px" lengthAdjust="spacingAndGlyphs">Cadillac Fleetwood</text>
-<text x="366.70" y="363.43" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="106.34px" lengthAdjust="spacingAndGlyphs">Lincoln Continental</text>
-<text x="361.64" y="290.44" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="94.62px" lengthAdjust="spacingAndGlyphs">Chrysler Imperial</text>
-<text x="177.18" y="175.01" style="font-size: 11.04px;fill: #132B43; font-family: &quot;TeX Gyre Heros&quot;;" textLength="78.72px" lengthAdjust="spacingAndGlyphs">Toyota Corona</text>
-<text x="244.75" y="276.86" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="99.23px" lengthAdjust="spacingAndGlyphs">Dodge Challenger</text>
-<text x="239.30" y="281.95" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="64.74px" lengthAdjust="spacingAndGlyphs">AMC Javelin</text>
-<text x="265.24" y="314.20" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="68.11px" lengthAdjust="spacingAndGlyphs">Camaro Z28</text>
-<text x="265.56" y="214.05" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="84.82px" lengthAdjust="spacingAndGlyphs">Pontiac Firebird</text>
-<text x="143.23" y="76.55" style="font-size: 11.04px;fill: #132B43; font-family: &quot;TeX Gyre Heros&quot;;" textLength="48.79px" lengthAdjust="spacingAndGlyphs">Fiat X1-9</text>
-<text x="156.36" y="98.62" style="font-size: 11.04px;fill: #132B43; font-family: &quot;TeX Gyre Heros&quot;;" textLength="78.70px" lengthAdjust="spacingAndGlyphs">Porsche 914-2</text>
-<text x="222.33" y="271.77" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="79.52px" lengthAdjust="spacingAndGlyphs">Ford Pantera L</text>
-<text x="196.71" y="205.56" style="font-size: 11.04px;fill: #336A98; font-family: &quot;TeX Gyre Heros&quot;;" textLength="64.58px" lengthAdjust="spacingAndGlyphs">Ferrari Dino</text>
-<text x="247.95" y="285.35" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;TeX Gyre Heros&quot;;" textLength="76.62px" lengthAdjust="spacingAndGlyphs">Maserati Bora</text>
-<text x="197.35" y="176.71" style="font-size: 11.04px;fill: #132B43; font-family: &quot;TeX Gyre Heros&quot;;" textLength="61.32px" lengthAdjust="spacingAndGlyphs">Volvo 142E</text>
-</g>
-<g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
-<text x="29.72" y="369.41" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="11.19px" lengthAdjust="spacingAndGlyphs">10</text>
-<text x="29.72" y="199.66" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="11.19px" lengthAdjust="spacingAndGlyphs">20</text>
-<text x="29.72" y="29.91" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="11.19px" lengthAdjust="spacingAndGlyphs">30</text>
-<polyline points="31.91,366.20 34.65,366.20 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="31.91,196.45 34.65,196.45 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="31.91,26.70 34.65,26.70 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="144.19,475.03 144.19,472.29 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="272.29,475.03 272.29,472.29 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="400.39,475.03 400.39,472.29 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<text x="144.19" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">2</text>
-<text x="272.29" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">4</text>
-<text x="400.39" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">6</text>
-<text x="241.45" y="496.23" text-anchor="middle" style="font-size: 11.00px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="13.31px" lengthAdjust="spacingAndGlyphs">wt</text>
-<text transform="translate(13.50,238.89) rotate(-90)" text-anchor="middle" style="font-size: 11.00px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="24.68px" lengthAdjust="spacingAndGlyphs">mpg</text>
-<rect x="459.21" y="182.31" width="39.31" height="113.15" style="stroke-width: 1.07; stroke: none; fill: #FFFFFF;"/>
-<image width="17.28" height="86.40" x="464.69" y="203.58" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAEsCAYAAAACUNnVAAAAmElEQVQ4ja2UQRLDMAgDd3hk/tnX5agcknFaCoa0vnkMCEnGsL12GQhDYDpPwoDrpBFlRDWi/9Wu6AHC9FkLYLrzlhD3oJ3mDvRHRYy7IC8A7bCK8gpWKYDzeQVArDcDyD2YAnSofZvzaOA6Q7Oahp/dmRuVTQ0xU5TGP2o8Waool1obVuv1q8qP9xPvg633XlGLDtfIhNUBcBeA5ss0BXMAAAAASUVORK5CYII="/>
-<text x="487.45" y="293.05" style="font-size: 8.80px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">4</text>
-<text x="487.45" y="271.52" style="font-size: 8.80px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">5</text>
-<text x="487.45" y="249.99" style="font-size: 8.80px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">6</text>
-<text x="487.45" y="228.46" style="font-size: 8.80px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">7</text>
-<text x="487.45" y="206.93" style="font-size: 8.80px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">8</text>
-<text x="464.69" y="196.96" style="font-size: 11.00px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="15.62px" lengthAdjust="spacingAndGlyphs">cyl</text>
-<line x1="464.69" y1="289.84" x2="468.14" y2="289.84" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<line x1="464.69" y1="268.31" x2="468.14" y2="268.31" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<line x1="464.69" y1="246.78" x2="468.14" y2="246.78" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<line x1="464.69" y1="225.25" x2="468.14" y2="225.25" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<line x1="464.69" y1="203.73" x2="468.14" y2="203.73" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<line x1="478.51" y1="289.84" x2="481.97" y2="289.84" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<line x1="478.51" y1="268.31" x2="481.97" y2="268.31" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<line x1="478.51" y1="246.78" x2="481.97" y2="246.78" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<line x1="478.51" y1="225.25" x2="481.97" y2="225.25" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<line x1="478.51" y1="203.73" x2="481.97" y2="203.73" style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
-</g>
+        
+    </defs>
+    
+    <rect width="100%" height="100%" style="stroke: none; fill: #FFFFFF;"/>
+    
+    <defs>
+          
+        <clipPath id="cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=">
+                
+            <rect x="0.00" y="0.00" width="504.00" height="504.00"/>
+              
+        </clipPath>
+        
+    </defs>
+    
+    <g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
+        
+        <rect x="0.00" y="0.00" width="504.00" height="504.00" style="stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;"/>
+        
+    </g>
+    
+    <defs>
+          
+        <clipPath id="cpMzMuMTR8NDQ4Ljk1fDUuNDh8NDcyLjUw">
+                
+            <rect x="33.14" y="5.48" width="415.81" height="467.02"/>
+              
+        </clipPath>
+        
+    </defs>
+    
+    <g clip-path="url(#cpMzMuMTR8NDQ4Ljk1fDUuNDh8NDcyLjUw)">
+        
+        <rect x="33.14" y="5.48" width="415.81" height="467.02" style="stroke-width: 1.07; stroke: none; fill: #EBEBEB;"/>
+        
+        <polyline points="33.14,451.28 448.95,451.28 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="33.14,281.45 448.95,281.45 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="33.14,111.62 448.95,111.62 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="49.91,472.50 49.91,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="170.18,472.50 170.18,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="290.45,472.50 290.45,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="410.71,472.50 410.71,5.48 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="33.14,366.36 448.95,366.36 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="33.14,196.53 448.95,196.53 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="33.14,26.71 448.95,26.71 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="110.04,472.50 110.04,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="230.31,472.50 230.31,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="350.58,472.50 350.58,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <text x="122.65" y="183.50" style="font-size: 11.04px;fill: #336A98; font-family: &quot;Arial&quot;;" textLength="57.63px" lengthAdjust="spacingAndGlyphs">Mazda RX4</text>
+        
+        <text x="248.35" y="183.50" style="font-size: 11.04px;fill: #336A98; font-family: &quot;Arial&quot;;" textLength="82.97px" lengthAdjust="spacingAndGlyphs">Mazda RX4 Wag</text>
+        
+        <text x="120.34" y="98.59" style="font-size: 11.04px;fill: #132B43; font-family: &quot;Arial&quot;;" textLength="71.74px" lengthAdjust="spacingAndGlyphs">Porsche 914-2</text>
+        
+        <text x="127.22" y="285.40" style="font-size: 11.04px;fill: #56B1F7; font-family: &quot;Arial&quot;;" textLength="68.66px" lengthAdjust="spacingAndGlyphs">Maserati Bora</text>
+        
+    </g>
+    
+    <g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
+        
+        <text x="28.21" y="369.51" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="9.79px" lengthAdjust="spacingAndGlyphs">10</text>
+        
+        <text x="28.21" y="199.68" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="9.79px" lengthAdjust="spacingAndGlyphs">20</text>
+        
+        <text x="28.21" y="29.86" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="9.79px" lengthAdjust="spacingAndGlyphs">30</text>
+        
+        <polyline points="30.40,366.36 33.14,366.36 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <polyline points="30.40,196.53 33.14,196.53 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <polyline points="30.40,26.71 33.14,26.71 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <polyline points="110.04,475.24 110.04,472.50 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <polyline points="230.31,475.24 230.31,472.50 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <polyline points="350.58,475.24 350.58,472.50 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <text x="110.04" y="483.74" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">0</text>
+        
+        <text x="230.31" y="483.74" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="19.58px" lengthAdjust="spacingAndGlyphs">2500</text>
+        
+        <text x="350.58" y="483.74" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="19.58px" lengthAdjust="spacingAndGlyphs">5000</text>
+        
+        <text x="241.04" y="496.20" text-anchor="middle" style="font-size: 11.00px; font-family: &quot;Arial&quot;;" textLength="11.00px" lengthAdjust="spacingAndGlyphs">wt</text>
+        
+        <text transform="translate(13.36,238.99) rotate(-90)" text-anchor="middle" style="font-size: 11.00px; font-family: &quot;Arial&quot;;" textLength="21.41px" lengthAdjust="spacingAndGlyphs">mpg</text>
+        
+        <rect x="459.91" y="182.47" width="38.61" height="113.03" style="stroke-width: 1.07; stroke: none; fill: #FFFFFF;"/>
+        
+        <text x="465.39" y="196.99" style="font-size: 11.00px; font-family: &quot;Arial&quot;;" textLength="13.44px" lengthAdjust="spacingAndGlyphs">cyl</text>
+        
+        <image width="17.28" height="86.40" x="465.39" y="203.63" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAEsCAYAAAACUNnVAAAAmElEQVQ4ja2UQRLDMAgDd3hk/tnX5agcknFaCoa0vnkMCEnGsL12GQhDYDpPwoDrpBFlRDWi/9Wu6AHC9FkLYLrzlhD3oJ3mDvRHRYy7IC8A7bCK8gpWKYDzeQVArDcDyD2YAnSofZvzaOA6Q7Oahp/dmRuVTQ0xU5TGP2o8Waool1obVuv1q8qP9xPvg633XlGLDtfIhNUBcBeA5ss0BXMAAAAASUVORK5CYII="/>
+        
+        <polyline points="479.21,289.88 482.67,289.88 " style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="479.21,268.36 482.67,268.36 " style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="479.21,246.83 482.67,246.83 " style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="479.21,225.30 482.67,225.30 " style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="479.21,203.77 482.67,203.77 " style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="468.84,289.88 465.39,289.88 " style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="468.84,268.36 465.39,268.36 " style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="468.84,246.83 465.39,246.83 " style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="468.84,225.30 465.39,225.30 " style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="468.84,203.77 465.39,203.77 " style="stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <text x="488.15" y="293.03" style="font-size: 8.80px; font-family: &quot;Arial&quot;;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">4</text>
+        
+        <text x="488.15" y="271.51" style="font-size: 8.80px; font-family: &quot;Arial&quot;;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">5</text>
+        
+        <text x="488.15" y="249.98" style="font-size: 8.80px; font-family: &quot;Arial&quot;;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">6</text>
+        
+        <text x="488.15" y="228.45" style="font-size: 8.80px; font-family: &quot;Arial&quot;;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">7</text>
+        
+        <text x="488.15" y="206.92" style="font-size: 8.80px; font-family: &quot;Arial&quot;;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">8</text>
+        
+    </g>
+    
 </svg>

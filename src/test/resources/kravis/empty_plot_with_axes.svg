@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svglite" width="504.00pt" height="504.00pt" viewBox="0 0 504.00 504.00">
-<defs>
-  <style type="text/css"><![CDATA[
+    
+    <defs>
+          
+        <style type="text/css"><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
       fill: none;
       stroke: #000000;
@@ -12,48 +14,99 @@
       white-space: pre;
     }
   ]]></style>
-</defs>
-<rect width="100%" height="100%" style="stroke: none; fill: #FFFFFF;"/>
-<defs>
-  <clipPath id="cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=">
-    <rect x="0.00" y="0.00" width="504.00" height="504.00"/>
-  </clipPath>
-</defs>
-<g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
-<rect x="0.00" y="0.00" width="504.00" height="504.00" style="stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;"/>
-</g>
-<defs>
-  <clipPath id="cpMjkuMDZ8NDk4LjUyfDUuNDh8NDcyLjI5">
-    <rect x="29.06" y="5.48" width="469.47" height="466.82"/>
-  </clipPath>
-</defs>
-<g clip-path="url(#cpMjkuMDZ8NDk4LjUyfDUuNDh8NDcyLjI5)">
-<rect x="29.06" y="5.48" width="469.47" height="466.82" style="stroke-width: 1.07; stroke: none; fill: #EBEBEB;"/>
-<polyline points="29.06,451.08 498.52,451.08 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="29.06,307.22 498.52,307.22 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="29.06,163.36 498.52,163.36 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="29.06,19.51 498.52,19.51 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="29.06,379.15 498.52,379.15 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="29.06,235.29 498.52,235.29 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="29.06,91.43 498.52,91.43 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="117.08,472.29 117.08,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="263.79,472.29 263.79,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-<polyline points="410.50,472.29 410.50,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
-</g>
-<g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
-<text x="24.12" y="382.36" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">2</text>
-<text x="24.12" y="238.50" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">4</text>
-<text x="24.12" y="94.64" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="5.59px" lengthAdjust="spacingAndGlyphs">6</text>
-<polyline points="26.32,379.15 29.06,379.15 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="26.32,235.29 29.06,235.29 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="26.32,91.43 29.06,91.43 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="117.08,475.03 117.08,472.29 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="263.79,475.03 263.79,472.29 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<polyline points="410.50,475.03 410.50,472.29 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
-<text x="117.08" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="28.81px" lengthAdjust="spacingAndGlyphs">setosa</text>
-<text x="263.79" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="42.94px" lengthAdjust="spacingAndGlyphs">versicolor</text>
-<text x="410.50" y="483.64" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;TeX Gyre Heros&quot;;" textLength="37.40px" lengthAdjust="spacingAndGlyphs">virginica</text>
-<text x="263.79" y="496.23" text-anchor="middle" style="font-size: 11.00px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="42.34px" lengthAdjust="spacingAndGlyphs">Species</text>
-<text transform="translate(13.50,238.89) rotate(-90)" text-anchor="middle" style="font-size: 11.00px; font-family: &quot;TeX Gyre Heros&quot;;" textLength="68.56px" lengthAdjust="spacingAndGlyphs">Petal.Length</text>
-</g>
+        
+    </defs>
+    
+    <rect width="100%" height="100%" style="stroke: none; fill: #FFFFFF;"/>
+    
+    <defs>
+          
+        <clipPath id="cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=">
+                
+            <rect x="0.00" y="0.00" width="504.00" height="504.00"/>
+              
+        </clipPath>
+        
+    </defs>
+    
+    <g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
+        
+        <rect x="0.00" y="0.00" width="504.00" height="504.00" style="stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;"/>
+        
+    </g>
+    
+    <defs>
+          
+        <clipPath id="cpMzMuMTR8NDk4LjUyfDUuNDh8NDcyLjUw">
+                
+            <rect x="33.14" y="5.48" width="465.38" height="467.02"/>
+              
+        </clipPath>
+        
+    </defs>
+    
+    <g clip-path="url(#cpMzMuMTR8NDk4LjUyfDUuNDh8NDcyLjUw)">
+        
+        <rect x="33.14" y="5.48" width="465.38" height="467.02" style="stroke-width: 1.07; stroke: none; fill: #EBEBEB;"/>
+        
+        <polyline points="33.14,395.08 498.52,395.08 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="33.14,270.21 498.52,270.21 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="33.14,145.34 498.52,145.34 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="33.14,20.46 498.52,20.46 " style="stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="33.14,457.52 498.52,457.52 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="33.14,332.65 498.52,332.65 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="33.14,207.77 498.52,207.77 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="33.14,82.90 498.52,82.90 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="120.40,472.50 120.40,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="265.83,472.50 265.83,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+        <polyline points="411.26,472.50 411.26,5.48 " style="stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;"/>
+        
+    </g>
+    
+    <g clip-path="url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)">
+        
+        <text x="28.21" y="460.67" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="4.90px" lengthAdjust="spacingAndGlyphs">0</text>
+        
+        <text x="28.21" y="335.80" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="9.79px" lengthAdjust="spacingAndGlyphs">20</text>
+        
+        <text x="28.21" y="210.92" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="9.79px" lengthAdjust="spacingAndGlyphs">40</text>
+        
+        <text x="28.21" y="86.05" text-anchor="end" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="9.79px" lengthAdjust="spacingAndGlyphs">60</text>
+        
+        <polyline points="30.40,457.52 33.14,457.52 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <polyline points="30.40,332.65 33.14,332.65 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <polyline points="30.40,207.77 33.14,207.77 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <polyline points="30.40,82.90 33.14,82.90 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <polyline points="120.40,475.24 120.40,472.50 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <polyline points="265.83,475.24 265.83,472.50 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <polyline points="411.26,475.24 411.26,472.50 " style="stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;"/>
+        
+        <text x="120.40" y="483.74" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="25.93px" lengthAdjust="spacingAndGlyphs">setosa</text>
+        
+        <text x="265.83" y="483.74" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="37.65px" lengthAdjust="spacingAndGlyphs">versicolor</text>
+        
+        <text x="411.26" y="483.74" text-anchor="middle" style="font-size: 8.80px;fill: #4D4D4D; font-family: &quot;Arial&quot;;" textLength="32.27px" lengthAdjust="spacingAndGlyphs">virginica</text>
+        
+        <text x="265.83" y="496.20" text-anchor="middle" style="font-size: 11.00px; font-family: &quot;Arial&quot;;" textLength="39.14px" lengthAdjust="spacingAndGlyphs">Species</text>
+        
+        <text transform="translate(13.36,238.99) rotate(-90)" text-anchor="middle" style="font-size: 11.00px; font-family: &quot;Arial&quot;;" textLength="61.80px" lengthAdjust="spacingAndGlyphs">Petal.Length</text>
+        
+    </g>
+    
 </svg>

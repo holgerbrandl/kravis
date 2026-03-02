@@ -1,6 +1,13 @@
 Kravis Release History
 ======================
 
+v1.1
+----
+
+* Updated kotlin-dataframe to 1.0.0-Beta4
+* Updated to JDK 21 and kotlin 2.2 as a minimum requirementa
+* Discontinued javafx support
+
 v1.0
 ----
 

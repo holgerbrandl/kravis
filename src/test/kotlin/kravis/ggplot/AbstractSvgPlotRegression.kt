@@ -8,6 +8,7 @@ import kravis.render.LocalR
 import kravis.render.saveTempFile
 import org.jetbrains.kotlinx.dataframe.DataFrame
 import org.jetbrains.kotlinx.dataframe.io.readTSV
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -59,7 +60,7 @@ abstract class AbstractSvgPlotRegression {
         val expected = file.readText().trim() //.run { prettyFormat(this, 4) }
 
         // note assertEquals would be cleaner but since its printing the complete diff, it's polluting the travis logs
-        //        assertEquals(expected, svgDoc)
+                assertEquals(expected, svgDoc)
         val failMsg = "svg mismatch got:\n${svgDoc.lines().take(30).joinToString("\n")}"
         assertTrue(failMsg, expected.equals(svgDoc))
 
