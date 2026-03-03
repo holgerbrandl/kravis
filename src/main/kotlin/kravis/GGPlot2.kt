@@ -29,12 +29,14 @@ object SessionPrefs {
             JupyterSessionInfo.isRunWithKernel()
             // blocked by https://github.com/Kotlin/kotlin-jupyter/issues/352
 //            Class.forName("org.jetbrains.kotlinx.jupyter.api.session.JupyterSessionProvider")
-            infoMsg("Using jupyter plotting device")
-            JupyterDevice()
-        } catch(e: Throwable) {
-            // it's not jupyter so default back to swing
+
             infoMsg("Using swing plotting device")
             SwingPlottingDevice()
+
+        } catch(e: Throwable) {
+            // it's not jupyter so default back to swing
+            infoMsg("Using jupyter plotting device")
+            JupyterDevice()
         }
     }
 
